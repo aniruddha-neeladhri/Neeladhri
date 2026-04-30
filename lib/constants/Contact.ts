@@ -17,7 +17,7 @@ export const CONTACT_TEXT = {
 // Contact section images
 export const CONTACT_IMAGES_PREMIUM = {
   background: "/Contact/Contact_Bg.webp",
-  contactImage: "/Contact/contact.webp",
+  contactImage: "/Contact/Contact.webp",
 } as const;
 
 /** Luxury contact – same paths as premium until you swap assets */
@@ -26,7 +26,7 @@ export const CONTACT_IMAGES_LUXURY: {
   contactImage: string;
 } = {
   background: "/Contact/Contact_Bg.webp",
-  contactImage: "/Contact/contact.webp",
+  contactImage: "/Contact/Contact.webp",
 };
 
 export function contactImages(theme: "premium" | "luxury") {
