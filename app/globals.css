@@ -58,3 +58,18 @@ html,
 body {
   overflow-x: hidden;
 }
+
+/* Theme styles */
+body.theme-premium {
+  background-color: #FFFFFF;
+}
+
+body.theme-luxury {
+  background-color:#3D3A3A;
+}
+
+/* Ensure sections keep their background images in luxury mode */
+body.theme-luxury [style*="backgroundImage"],
+body.theme-luxury [style*="background-image"] {
+  background-color: transparent !important;
+}

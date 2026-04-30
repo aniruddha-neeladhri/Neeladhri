@@ -1,11 +1,19 @@
-import Typography from "@/lib/Typography";
+import AboutSection from "@/components/About/AboutSection";
+import Experience from "@/components/About/Experience";
+import Whatdefines from "@/components/About/Whatdefines";
+import Whatweoffer from "@/components/About/Whatweoffer";
+import Ourcommitment from "@/components/About/Ourcommitment";
+import Visitsection from "@/components/About/Visitsection";
 
 export default function AboutPage() {
   return (
-    <section className="min-h-screen flex items-center justify-center">
-      <Typography variant="h2">
-        About page
-      </Typography>
-    </section>
+    <>
+      <AboutSection />
+      <Experience />
+      <Whatdefines />
+      <Whatweoffer />
+      <Ourcommitment />
+      <Visitsection />
+    </>
   );
 }

@@ -193,4 +193,3 @@ let centered = false;
     </div>
   );
 }
-

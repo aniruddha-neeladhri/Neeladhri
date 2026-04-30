@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import Typography from "@/lib/Typography";
-import { COLLECTION_IMAGES } from "@/lib/constants/collections";
+import { useTheme } from "@/lib/contexts/ThemeContext";
+import {
+  collectionGridImages,
+  collectionImageBorderColor,
+} from "@/lib/constants/collections";
 
 const GAP = 8;
 const ROW1 = 440;
@@ -14,16 +18,21 @@ function Cell({
   label,
   height,
   sizes = "30vw",
+  borderColor,
 }: {
   src: string;
   label: string;
   height?: number;
   sizes?: string;
+  borderColor: string;
 }) {
   return (
     <div
-      className={`group relative overflow-hidden flex-shrink-0 border-4 border-[#A98F76] ${height ? '' : 'aspect-[4/3]'}`}
-      style={height ? { height } : {}}
+      className={`group relative overflow-hidden flex-shrink-0 border-2 box-border ${height ? "" : "aspect-[4/3]"}`}
+      style={{
+        ...(height ? { height } : {}),
+        borderColor,
+      }}
     >
       <Image
         src={src}
@@ -46,41 +55,44 @@ function Cell({
 }
 
 export default function CollectionsSection() {
+  const { theme } = useTheme();
+  const borderColor = collectionImageBorderColor(theme);
+  const grid = collectionGridImages(theme);
   const bathroomH = ROW1 + GAP + Math.round(ROW2 * 0.42);
   const loungeH = Math.round(ROW2 * 0.58) - GAP + 120;
 
   return (
-    <section className="w-full bg-white pt-2 pb-2 md:pb-16 px-4">
+    <section className="w-full pt-2 pb-2 md:pb-16 px-4">
       <div
         className="hidden md:flex w-full justify-center gap-2 h-[calc(440px+8px+600px)]"
       >
         {/* LEFT */}
         <div className="flex flex-col flex-shrink-0 gap-2 w-[33%]">
-          <Cell src={COLLECTION_IMAGES.living} label="Living" height={loungeH} sizes="33vw" />
-          <Cell src={COLLECTION_IMAGES.alliedAccessories} label="Allied Accessories" height={bathroomH} sizes="33vw" />
+          <Cell src={grid.living} label="Living" height={loungeH} sizes="33vw" borderColor={borderColor} />
+          <Cell src={grid.alliedAccessories} label="Allied Accessories" height={bathroomH} sizes="33vw" borderColor={borderColor} />
         </div>
 
         {/* CENTER */}
         <div className="flex flex-col flex-shrink-0 gap-2 w-[34%]">
-          <Cell src={COLLECTION_IMAGES.bathroom} label="Bathroom" height={bathroomH} sizes="34vw" />
-          <Cell src={COLLECTION_IMAGES.blank} label="" height={loungeH} sizes="34vw" />
+          <Cell src={grid.bathroom} label="Bathroom" height={bathroomH} sizes="34vw" borderColor={borderColor} />
+          <Cell src={grid.blank} label="" height={loungeH} sizes="34vw" borderColor={borderColor} />
         </div>
 
         {/* RIGHT */}
         <div className="flex flex-col flex-shrink-0 gap-2 w-[33%]">
-          <Cell src={COLLECTION_IMAGES.dining} label="Dining" height={loungeH} sizes="33vw" />
-          <Cell src={COLLECTION_IMAGES.kitchen} label="Kitchen" height={bathroomH} sizes="33vw" />
+          <Cell src={grid.dining} label="Dining" height={loungeH} sizes="33vw" borderColor={borderColor} />
+          <Cell src={grid.kitchen} label="Kitchen" height={bathroomH} sizes="33vw" borderColor={borderColor} />
         </div>
       </div>
 
       {/* MOBILE */}
       <div className="flex flex-col gap-4 mt-10 md:hidden">
-        <Cell src={COLLECTION_IMAGES.bathroom} label="Bathroom" />
-        <Cell src={COLLECTION_IMAGES.living} label="Living" />
-        <Cell src={COLLECTION_IMAGES.dining} label="Dining" />
-        <Cell src={COLLECTION_IMAGES.alliedAccessories} label="Allied Accessories" />
-        <Cell src={COLLECTION_IMAGES.blank} label="" />
-        <Cell src={COLLECTION_IMAGES.kitchen} label="Kitchen" />
+        <Cell src={grid.bathroom} label="Bathroom" borderColor={borderColor} />
+        <Cell src={grid.living} label="Living" borderColor={borderColor} />
+        <Cell src={grid.dining} label="Dining" borderColor={borderColor} />
+        <Cell src={grid.alliedAccessories} label="Allied Accessories" borderColor={borderColor} />
+        <Cell src={grid.blank} label="" borderColor={borderColor} />
+        <Cell src={grid.kitchen} label="Kitchen" borderColor={borderColor} />
       </div>
     </section>
   );

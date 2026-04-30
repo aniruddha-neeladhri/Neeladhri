@@ -4,33 +4,11 @@ import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
-
-const BRAND_IMAGES = [
-  "/Brands/main111.png",
-  "/Brands/main12.png",
-  "/Brands/main13.png",
-  "/Brands/main14.png",
-  "/Brands/main15.png",
-  "/Brands/main16.png",
-  "/Brands/main17.png",
-  "/Brands/main18.png",
-  "/Brands/main19.png",
-  "/Brands/main20.png",
-  "/Brands/main21.png",
-];
-
-const BRAND_NAMES = [
-  "AUGA", "Simpolo", "Bellissimo", "Roca", "Hansgrohe",
-  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc",
-];
-
-const BRAND_ROUTES = [
-  "/brands/auga", "/brands/simpolo", "/brands/bellissimo", "/brands/roca",
-  "/brands/hansgrohe", "/brands/carysil", "/brands/smack", "/brands/ifb",
-  "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc",
-];
+import { brandImages, brandNames, brandRoutes } from "@/lib/constants/brands";
+import { useTheme } from "@/lib/contexts/ThemeContext";
 
 export default function BrandsSection() {
+  const { theme } = useTheme();
   const scrollRef = useRef<HTMLDivElement>(null);
   const posRef = useRef(0);
   const isHoveredRef = useRef(false);
@@ -111,10 +89,13 @@ export default function BrandsSection() {
 
   const onTouchEnd = () => { isDraggingRef.current = false; };
 
-  const allImages = [...BRAND_IMAGES, ...BRAND_IMAGES];
+  const currentImages = brandImages(theme);
+  const currentNames = brandNames(theme);
+  const currentRoutes = brandRoutes(theme);
+  const allImages = [...currentImages, ...currentImages];
 
   return (
-    <section className="relative w-full mt-2 h-screen">
+    <section className="relative w-full mt-0 h-screen">
       <div className="absolute inset-0 z-0">
         <Image src="/Brands/brandbg1.png" alt="Background" fill className="object-cover" priority />
       </div>
@@ -136,16 +117,16 @@ export default function BrandsSection() {
           {allImages.map((src, index) => (
             <Link
               key={`brand-${index}`}
-              href={BRAND_ROUTES[index % BRAND_ROUTES.length]}
+              href={currentRoutes[index % currentRoutes.length]}
               draggable={false}
               onClick={(e) => { if (hasDraggedRef.current) e.preventDefault(); }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              className="flex-shrink-0 w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] xl:w-[400px] xl:h-[400px] relative border-2 border-white rounded-4xl overflow-hidden"
+              className={`flex-shrink-0 w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] xl:w-[400px] xl:h-[400px] relative border-2 rounded-4xl overflow-hidden ${theme === "luxury" ? "border-[#F79440]" : "border-white"}`}
             >
               <Image
                 src={src}
-                alt={`Brand ${(index % BRAND_IMAGES.length) + 1}`}
+                alt={`Brand ${(index % currentImages.length) + 1}`}
                 fill
                 draggable={false}
                 className="object-contain"
@@ -153,7 +134,7 @@ export default function BrandsSection() {
               <div className="absolute inset-0 bg-black/40 z-10" />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <Typography variant="display-xl" className="text-white text-xl font-light text-center px-2">
-                  {BRAND_NAMES[index % BRAND_NAMES.length]}
+                  {currentNames[index % currentNames.length]}
                 </Typography>
               </div>
             </Link>

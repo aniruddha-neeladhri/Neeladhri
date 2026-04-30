@@ -2,20 +2,27 @@
 
 import Image from "next/image";
 import Typography from "@/lib/Typography";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
+import { useTheme } from "@/lib/contexts/ThemeContext";
 import {
   CAROUSEL_GAP as GAP,
   CAROUSEL_SIDE_RATIO as SIDE_RATIO,
   CAROUSEL_CENTER_RATIO as CENTER_RATIO,
   CAROUSEL_GAP_MOBILE as GAP_MOBILE,
   CAROUSEL_PEEK_MOBILE as PEEK_MOBILE,
-  ALLIED_ACCESSORIES_IMAGES as IMAGES,
+  ALLIED_ACCESSORIES_IMAGES_PREMIUM,
+  alliedCarouselImages,
+  collectionImageBorderColor,
 } from "@/lib/constants/collections";
 
-const LOOP_IMAGES = [...IMAGES, ...IMAGES, ...IMAGES];
-
 export default function AlliedAccessories() {
-  const [index, setIndex] = useState(IMAGES.length);
+  const { theme } = useTheme();
+  const IMAGES = alliedCarouselImages(theme);
+  const LOOP_IMAGES = useMemo(
+    () => [...IMAGES, ...IMAGES, ...IMAGES],
+    [IMAGES]
+  );
+  const [index, setIndex] = useState<number>(ALLIED_ACCESSORIES_IMAGES_PREMIUM.length);
   const [isMobile, setIsMobile] = useState(false);
 
   const dragStart = useRef<number | null>(null);
@@ -149,24 +156,39 @@ export default function AlliedAccessories() {
             {LOOP_IMAGES.map((src, i) => {
               const isCenter = i === index + 1;
               const w = isMobile ? centerW_mobile : (isCenter ? centerW_desktop : sideW_desktop);
+              const borderOnImage = "border-2 box-border rounded-sm";
+              const borderStyle = { borderColor: collectionImageBorderColor(theme) };
+
               return (
                 <div
                   key={i}
-                  className="flex-shrink-0 overflow-hidden h-full"
+                  className="relative flex h-full flex-shrink-0 items-center justify-center overflow-hidden"
                   style={{ width: w }}
                 >
-                  <Image
-                    src={src}
-                    alt={`Allied Accessories ${i + 1}`}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    draggable={false}
-                    className="w-full h-full block object-center"
-                    style={{
-                      objectFit: isMobile ? "contain" : isCenter ? "fill" : "cover",
-                    }}
-                  />
+                  {isMobile ? (
+                    <Image
+                      src={src}
+                      alt={`Allied Accessories ${i + 1}`}
+                      width={1600}
+                      height={1200}
+                      sizes="90vw"
+                      draggable={false}
+                      className={`max-h-full max-w-full object-contain ${borderOnImage}`}
+                      style={borderStyle}
+                    />
+                  ) : (
+                    <Image
+                      src={src}
+                      alt={`Allied Accessories ${i + 1}`}
+                      fill
+                      sizes="100vw"
+                      draggable={false}
+                      className={`object-center ${borderOnImage} ${
+                        isCenter ? "object-fill" : "object-cover"
+                      }`}
+                      style={borderStyle}
+                    />
+                  )}
                 </div>
               );
             })}

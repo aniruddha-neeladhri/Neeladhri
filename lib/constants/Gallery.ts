@@ -1,5 +1,22 @@
-export const GALLERY_IMAGES = Array.from({ length: 40 }, (_, i) => `/Gallery/gallerys${11 + i}.png`);
-export const GALLERY_TOTAL = GALLERY_IMAGES.length;
+export const GALLERY_IMAGES_PREMIUM: readonly string[] = Array.from(
+  { length: 40 },
+  (_, i) => `/Gallery/gallerys${11 + i}.png`
+);
+
+/** Luxury gallery – same paths as premium until you swap assets */
+export const GALLERY_IMAGES_LUXURY: readonly string[] = Array.from(
+  { length: 40 },
+  (_, i) => `/Gallery/gallerys${11 + i}.png`
+);
+
+export function galleryImages(theme: "premium" | "luxury"): readonly string[] {
+  return theme === "luxury" ? GALLERY_IMAGES_LUXURY : GALLERY_IMAGES_PREMIUM;
+}
+
+export const GALLERY_TOTAL = GALLERY_IMAGES_PREMIUM.length;
+
+/** @deprecated Use galleryImages(theme) */
+export const GALLERY_IMAGES = GALLERY_IMAGES_PREMIUM;
 
 export interface TiltState { rx: number; ry: number }
 

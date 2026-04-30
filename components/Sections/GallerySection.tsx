@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState, useCallback, useRef } from "react";
+import { useTheme } from "@/lib/contexts/ThemeContext";
 import {
   GALLERY_IMAGES as IMAGES,
   GALLERY_TOTAL as TOTAL,
@@ -16,6 +17,7 @@ import {
 } from "@/lib/constants/Gallery";
 
 export default function GallerySection() {
+  const { theme } = useTheme();
   const [center, setCenter]   = useState(0);
   const [tiltMap, setTiltMap] = useState<Record<number, TiltState>>({});
   const [bp, setBp]           = useState<Breakpoint>("desktop");
@@ -124,6 +126,7 @@ export default function GallerySection() {
 
   const { w, h } = CARD_SIZE[bp];
   const renderOffset = maxOffset + 1;
+  const cardBorderColor = theme === "luxury" ? "#F79440" : "rgba(255,255,255,0.8)";
 
   return (
     <div
@@ -136,7 +139,7 @@ export default function GallerySection() {
         className="object-fill"
         priority
       />
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/50"/>
 
       <div
         className="absolute inset-0 flex items-center justify-center"
@@ -167,10 +170,11 @@ export default function GallerySection() {
                   width: w,
                   height: h,
                   marginTop: `calc(${h} / -2)`,
+                  borderColor: cardBorderColor,
                 }}
                 onMouseMove={(e) => handleMouseMove(e, idx)}
                 onMouseLeave={() => handleMouseLeave(idx)}
-                className="absolute top-1/2 overflow-hidden border-[1.5px] border-white/80 [will-change:transform,opacity,left] [border-radius:clamp(6px,1vw,12px)]"
+                className="absolute top-1/2 overflow-hidden border-[2px] [will-change:transform,opacity,left] [border-radius:clamp(6px,1vw,12px)]"
               >
                 <div
                   className="absolute inset-0 z-10 pointer-events-none"

@@ -1,13 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import Typography from "@/lib/Typography";
+import { useTheme } from "@/lib/contexts/ThemeContext";
+import { contactBannerImages } from "@/lib/constants/Contact";
 
 export default function ContactBanner() {
+  const { theme } = useTheme();
+  const images = contactBannerImages(theme);
+
   return (
     <div className="relative w-full aspect-1920/600 overflow-hidden">
       
       {/* Image */}
       <Image
-        src="/Contact/Contact_Banner.webp"
+        src={images.banner}
         alt="Contact Us Banner"
         fill
         priority

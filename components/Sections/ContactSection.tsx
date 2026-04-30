@@ -2,12 +2,18 @@
 
 import Image from "next/image";
 import Typography from "@/lib/Typography";
+import { useTheme } from "@/lib/contexts/ThemeContext";
+import { contactImages, contactBorderColor } from "@/lib/constants/Contact";
 
 export default function ContactSection() {
+  const { theme } = useTheme();
+  const images = contactImages(theme);
+  const borderColor = contactBorderColor(theme);
+
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
       <Image
-        src="/Contact/Contact_Bg.webp"
+        src={images.background}
         alt="Contact Background"
         fill
         priority
@@ -65,40 +71,47 @@ export default function ContactSection() {
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full bg-[#7E7669A6] border-2 border-white px-4 py-3 text-white placeholder:text-white focus:outline-none focus:border-white"
+              className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
+              style={{ borderColor }}
             />
 
             <input
               type="email"
               placeholder="Your Email"
-              className="w-full bg-[#7E7669A6] border-2 border-white px-4 py-3 text-white placeholder:text-white focus:outline-none focus:border-white"
+              className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
+              style={{ borderColor }}
             />
 
             <input
               type="tel"
               placeholder="Phone Number"
-              className="w-full bg-[#7E7669A6] border-2 border-white px-4 py-3 text-white placeholder:text-white focus:outline-none focus:border-white"
+              className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
+              style={{ borderColor }}
             />
 
             <textarea
               rows={4}
               placeholder="Message"
-              className="w-full bg-[#7E7669A6] border-2 border-white px-4 py-3 text-white placeholder:text-white focus:outline-none focus:border-white"
+              className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
+              style={{ borderColor }}
             />
           </form>
         </div>
         <div className="relative w-full max-w-lg mx-auto">
           <Image
-            src="/Contact/Contact.webp"
+            src={images.contactImage}
             alt="Modern Bathroom Interior"
             width={500}
             height={600}
-            className="object-contain w-full h-auto"
+            className="object-contain w-full h-auto border-2"
+            style={{ borderColor }}
           />
         </div>
       </div>
       <div className="relative z-10 flex justify-center pb-16">
-        <button className="px-10 py-3 bg-gray-200/70 text-black rounded-full hover:bg-white transition">
+        <button
+          className="px-10 py-3 border-4 border-[#7E7669] bg-gray-200/70 text-black rounded-full hover:bg-white transition"
+        >
           Send Your Message
         </button>
       </div>
