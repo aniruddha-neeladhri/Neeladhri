@@ -60,6 +60,7 @@ export default function WhatDefinesUs() {
                 >
                   {feature.title}
                 </Typography>
+                
               </div>
               {/* Card Description */}
               <Typography

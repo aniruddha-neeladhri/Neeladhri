@@ -4,6 +4,7 @@ import Whatdefines from "@/components/About/Whatdefines";
 import Whatweoffer from "@/components/About/Whatweoffer";
 import Ourcommitment from "@/components/About/Ourcommitment";
 import Visitsection from "@/components/About/Visitsection";
+
 export default function AboutPage() {
   return (
     <>

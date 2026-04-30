@@ -32,6 +32,7 @@ export default function StatsSection() {
                   : "bg-[#4a4a4a]"
               }`}
             >
+              
               <Typography
                 variant="body-xl"
                 className={`text-center leading-relaxed font-normal ${
