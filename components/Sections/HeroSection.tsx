@@ -7,6 +7,7 @@ import DiningRoom from "./DiningRoom";
 import TileAnimation from "./TileAnimation";
 import Typography from "@/lib/Typography";
 import Navbar from "@/components/SharedSections/Navbar";
+import HomeBrands from "./HomeBrands";
 
 const ZOOM_SCROLL_VH = 400; // vh units of scroll that drive the hero zoom
 
@@ -101,6 +102,7 @@ export default function HeroSection() {
     <LivingRoom />
     <Bathroom />
     <DiningRoom />
+    <HomeBrands/>
     </>
   );
 }
