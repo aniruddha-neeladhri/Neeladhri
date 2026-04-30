@@ -19,7 +19,6 @@ export default function AboutSection() {
             {content.heading}
           </Typography>
         </div>
-
         {/* Content Row */}
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-24 xl:gap-32 items-stretch">
           {/* Left Side - Image stretches to match content height */}
@@ -32,7 +31,6 @@ export default function AboutSection() {
               priority
             />
           </div>
-
           {/* Right Side - Content */}
           <div className="w-full md:flex-1 flex flex-col gap-6">
             <Typography variant="display-xl" className="font-normal text-center md:text-left" style={{ color: textColor }}>
@@ -54,3 +52,4 @@ export default function AboutSection() {
     </section>
   );
 }
+

@@ -59,7 +59,6 @@ export default function WhatWeOffer() {
                   {item.title}
                 </Typography>
               </div>
-
               {/* Card Description */}
               <div className="px-4 pb-6">
                 <Typography

@@ -18,7 +18,6 @@ export default function ShowroomBanner() {
           <div
             className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${isLuxury ? "bg-[url('/About/aboutluxury3.png')]" : "bg-[url('/About/about3.png')]"}`}
           />
-
           {/* Black Overlay */}
           <div className="absolute inset-0 bg-black/50" />
 

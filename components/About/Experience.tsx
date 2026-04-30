@@ -14,11 +14,9 @@ const highlights = [
   "We take pride in offering a well-rounded range of solutions that cater to every aspect of modern interiors.",
   "Our strengths lie in quality selection, design understanding, and customer focused service.",
 ];
-
 export default function StatsSection() {
   const { theme } = useTheme();
   const isLuxury = theme === "luxury";
-
   return (
     <section className="w-full py-6 md:py-10 lg:py-14 px-6 lg:px-20">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-10 md:gap-14">
