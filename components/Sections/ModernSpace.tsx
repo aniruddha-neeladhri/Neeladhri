@@ -117,63 +117,68 @@ export default function SpacesShowcase() {
       {/* ── DESKTOP: 3-column layout (≥ 768px) ── */}
       <div className="hidden md:block">
 
-        {/* Image strip — full bleed, no padding */}
-        <div className="flex items-center gap-2 md:gap-3 w-full">
+        <div className="flex items-start gap-2 md:gap-3 w-full">
 
           {/* Left */}
-          <div className="relative flex-[1] overflow-hidden group
-                          h-[260px] md:h-[320px] lg:h-[400px]">
-            <Image
-              src={spaces[0].src}
-              alt={spaces[0].alt}
-              fill
-              className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
-            />
+          <div className="flex flex-col flex-[1]">
+            <div className="relative w-full overflow-hidden group h-[260px] md:h-[320px] lg:h-[400px]">
+              <Image
+                src={spaces[0].src}
+                alt={spaces[0].alt}
+                fill
+                className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
+              />
+            </div>
+            <div className="mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
+              <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
+                {spaces[0].label}
+              </Typography>
+              <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
+                {spaces[0].sublabel}
+              </Typography>
+            </div>
           </div>
 
           {/* Center */}
-          <div className="relative flex-[1.4] overflow-hidden group
-                          h-[300px] md:h-[380px] lg:h-[460px]">
-            <Image
-              src={spaces[1].src}
-              alt={spaces[1].alt}
-              fill
-              className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
-            />
+          <div className="flex flex-col flex-[1.4]">
+            <div className="relative w-full overflow-hidden group h-[300px] md:h-[380px] lg:h-[460px]">
+              <Image
+                src={spaces[1].src}
+                alt={spaces[1].alt}
+                fill
+                className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
+              />
+            </div>
+            <div className="mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
+              <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
+                {spaces[1].label}
+              </Typography>
+              <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
+                {spaces[1].sublabel}
+              </Typography>
+            </div>
           </div>
 
           {/* Right */}
-          <div className="relative flex-[1] overflow-hidden group
-                          h-[260px] md:h-[320px] lg:h-[400px]">
-            <Image
-              src={spaces[2].src}
-              alt={spaces[2].alt}
-              fill
-              className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
-            />
+          <div className="flex flex-col flex-[1]">
+            <div className="relative w-full overflow-hidden group h-[260px] md:h-[320px] lg:h-[400px]">
+              <Image
+                src={spaces[2].src}
+                alt={spaces[2].alt}
+                fill
+                className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
+              />
+            </div>
+            <div className="mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
+              <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
+                {spaces[2].label}
+              </Typography>
+              <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
+                {spaces[2].sublabel}
+              </Typography>
+            </div>
           </div>
 
-        </div>
-
-        {/* Labels */}
-        <div className="md:mt-6">
-          <div className="flex gap-2 md:gap-3 w-full">
-            {spaces.map((space, i) => (
-              <div
-                key={i}
-                className={`flex flex-col gap-0.5 items-center text-center ${
-                  i === 1 ? "flex-[1.4]" : "flex-[1]"
-                }`}
-              >
-                <Typography variant="body-lg" className={`font-light leading-snug ${textColor}`}>
-                  {space.label}
-                </Typography>
-                <Typography variant="body-lg" className={`font-light leading-snug ${textColor}`}>
-                  {space.sublabel}
-                </Typography>
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>
