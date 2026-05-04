@@ -115,13 +115,14 @@ export default function SpacesShowcase() {
       </div>
 
       {/* ── DESKTOP: 3-column layout (≥ 768px) ── */}
-      <div className="hidden md:block">
+      <div className="hidden md:block pb-24">
 
-        <div className="flex items-start gap-2 md:gap-3 w-full">
+        {/* Image strip — full bleed, no padding */}
+        <div className="flex items-center gap-2 md:gap-3 w-full">
 
           {/* Left */}
-          <div className="flex flex-col flex-[1]">
-            <div className="relative w-full overflow-hidden group h-[260px] md:h-[320px] lg:h-[400px]">
+          <div className="relative flex-[1] h-[260px] md:h-[320px] lg:h-[400px]">
+            <div className="relative w-full h-full overflow-hidden group">
               <Image
                 src={spaces[0].src}
                 alt={spaces[0].alt}
@@ -129,7 +130,7 @@ export default function SpacesShowcase() {
                 className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
               />
             </div>
-            <div className="mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
+            <div className="absolute top-full left-0 w-full mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
               <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
                 {spaces[0].label}
               </Typography>
@@ -140,8 +141,8 @@ export default function SpacesShowcase() {
           </div>
 
           {/* Center */}
-          <div className="flex flex-col flex-[1.4]">
-            <div className="relative w-full overflow-hidden group h-[300px] md:h-[380px] lg:h-[460px]">
+          <div className="relative flex-[1.4] h-[300px] md:h-[380px] lg:h-[460px]">
+            <div className="relative w-full h-full overflow-hidden group">
               <Image
                 src={spaces[1].src}
                 alt={spaces[1].alt}
@@ -149,7 +150,7 @@ export default function SpacesShowcase() {
                 className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
               />
             </div>
-            <div className="mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
+            <div className="absolute top-full left-0 w-full mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
               <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
                 {spaces[1].label}
               </Typography>
@@ -160,8 +161,8 @@ export default function SpacesShowcase() {
           </div>
 
           {/* Right */}
-          <div className="flex flex-col flex-[1]">
-            <div className="relative w-full overflow-hidden group h-[260px] md:h-[320px] lg:h-[400px]">
+          <div className="relative flex-[1] h-[260px] md:h-[320px] lg:h-[400px]">
+            <div className="relative w-full h-full overflow-hidden group">
               <Image
                 src={spaces[2].src}
                 alt={spaces[2].alt}
@@ -169,7 +170,7 @@ export default function SpacesShowcase() {
                 className="object-cover object-center transition-transform duration-700 ease-in-out group-hover:scale-105"
               />
             </div>
-            <div className="mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
+            <div className="absolute top-full left-0 w-full mt-4 md:mt-6 flex flex-col gap-0.5 items-center text-center">
               <Typography variant="body-xl" className={`font-light leading-snug ${textColor}`}>
                 {spaces[2].label}
               </Typography>
