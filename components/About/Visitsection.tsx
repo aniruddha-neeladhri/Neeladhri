@@ -34,7 +34,7 @@ export default function ShowroomBanner() {
 
             <Link href="/contact">
               <button
-                className="mt-2 px-8 py-3 rounded-full text-white font-medium transition-opacity hover:opacity-90 bg-[#F79440]"
+                className="mt-2 px-8 py-3 rounded-full text-white font-medium bg-[#F79440] cursor-pointer"
               >
                 <Typography variant="body-xl" className="text-white font-light">
                   Get started

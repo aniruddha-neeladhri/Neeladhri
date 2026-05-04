@@ -49,18 +49,20 @@ export default function WhatDefinesUs() {
           {features.map((feature, i) => (
             <div
               key={i}
-              className="flex flex-col gap-6 pt-0 pb-8 overflow-hidden"
+              className="group flex flex-col gap-6 pt-0 pb-8 overflow-hidden cursor-pointer"
               style={{ border: "1px solid #F79440" }}
             >
-              {/* Card Title - full bleed, no side gaps */}
+              {/* Card Title - pops up and glows on hover */}
               <div className="w-full bg-white/50 backdrop-blur-sm py-4 px-6 text-center">
                 <Typography
                   variant="h2"
-                  className="text-[#FFFFFF] font-normal tracking-wide"
+                  className="text-[#FFFFFF] font-normal tracking-wide
+                    transition-all duration-300 ease-out
+                    group-hover:-translate-y-1
+                    group-hover:drop-shadow-[0_0_10px_rgba(247,148,64,1)]"
                 >
                   {feature.title}
                 </Typography>
-                
               </div>
               {/* Card Description */}
               <Typography

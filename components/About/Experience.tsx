@@ -26,16 +26,19 @@ export default function StatsSection() {
           {highlights.map((text, i) => (
             <div
               key={i}
-              className={`px-6 py-6 md:px-8 md:py-8 flex items-center justify-center ${
-                isLuxury
-                  ? "border border-[#F79440] bg-transparent"
-                  : "bg-[#4a4a4a]"
-              }`}
+              className={`group px-6 py-6 md:px-8 md:py-8 flex items-center justify-center cursor-pointer
+                transition-all duration-300 ease-out
+                hover:-translate-y-2
+                hover:shadow-[0_12px_40px_rgba(247,148,64,0.35)]
+                ${
+                  isLuxury
+                    ? "border border-[#F79440] bg-transparent"
+                    : "bg-[#4a4a4a]"
+                }`}
             >
-              
               <Typography
                 variant="body-xl"
-                className={`text-center leading-relaxed font-normal ${
+                className={`text-center leading-relaxed font-normal transition-transform duration-300 group-hover:scale-[1.02] ${
                   isLuxury ? "text-white" : "text-white"
                 }`}
               >
