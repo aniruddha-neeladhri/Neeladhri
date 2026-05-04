@@ -4,14 +4,22 @@ import Image from "next/image";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 import { contactImages, contactBorderColor } from "@/lib/constants/Contact";
+import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons";
+
+const PHONE = "+91 080 26772477";
+const EMAIL = "info@needladri.com";
 
 export default function ContactSection() {
   const { theme } = useTheme();
+  const isLuxury = theme === "luxury";
   const images = contactImages(theme);
   const borderColor = contactBorderColor(theme);
 
+  const iconColor = isLuxury ? "#F79440" : "white";
+
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
+
       <Image
         src={images.background}
         alt="Contact Background"
@@ -19,101 +27,156 @@ export default function ContactSection() {
         priority
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-black/15" />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-10 items-center">
-        <div className="text-white space-y-8">
-          <div>
-            <Typography variant="display-xl" className="text-white font-light mb-4">
-              Get in Touch
-            </Typography>
+      <div className="absolute inset-0 bg-black/25" />
 
-            <Typography variant="body-lg" className="text-white/80 leading-relaxed max-w-xl">
-              Whether you're designing a home, a commercial space,
-              or sourcing high-quality tiles. Needladri Ceramics
-              is here to support your vision with precision and style.
-            </Typography>
-          </div>
+      <div className="relative z-10 w-full min-h-screen flex flex-col justify-between py-10 md:py-14 px-4 sm:px-8 lg:px-16">
 
-          <div className="grid sm:grid-cols-2 gap-6 text-white/80 text-sm">
+        {/* ROW 1 — Heading */}
+        <div className="max-w-[1400px] mx-auto w-full text-center lg:text-left">
+          <Typography variant="display-xl" className="text-white font-light">
+            Get in Touch
+          </Typography>
+        </div>
 
-            <div className="flex items-start gap-3">
-              <span className="text-lg">📍</span>
-              <Typography variant="body-sm" className="text-white/80">
-                Skanda Mansion, JSS Rd<br />
-                748/41, Kanakapura Rd<br />
-                Bangalore, Karnataka
+        {/* ROW 2 — Paragraph */}
+        <div className="max-w-[1400px] mx-auto w-full mt-4 text-center lg:text-left">
+          <Typography variant="body-xl" className="text-white leading-relaxed font-normal">
+            Whether you're designing a home, a commercial space, or sourcing high-quality tiles.
+            <br className="hidden md:block" />
+            Needladri Ceramics is here to support your vision with precision and style.
+          </Typography>
+        </div>
+
+        {/* ROW 3 — Contact info */}
+        <div className="max-w-[1400px] mx-auto w-full mt-5">
+
+          {/* MOBILE — below 768px: centered, one by one */}
+          <div className="flex flex-col gap-4 md:hidden w-full items-center">
+
+            <div className="flex items-start gap-3 w-full max-w-xs">
+              <LocationIcon iconColor={iconColor} />
+              <Typography variant="body-sm" className="text-white leading-relaxed">
+                Skanda Mansion, JSS Circle<br />
+                748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
+                Bangalore, Karnataka 560070, India
               </Typography>
             </div>
 
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <span>📞</span>
-                <Typography variant="body-sm" className="text-white/80">
-                  +91 080 26772477
+            <div className="flex items-center gap-3 w-full max-w-xs">
+              <PhoneIcon iconColor={iconColor} />
+              <a href={`tel:${PHONE.replace(/\s/g, "")}`}>
+                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition">
+                  {PHONE}
                 </Typography>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <span>✉️</span>
-                <Typography variant="body-sm" className="text-white/80">
-                  info@needladri.com
-                </Typography>
-              </div>
+              </a>
             </div>
+
+            <div className="flex items-center gap-3 w-full max-w-xs">
+              <EmailIcon iconColor={iconColor} />
+              <a href={`mailto:${EMAIL}`}>
+                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition">
+                  {EMAIL}
+                </Typography>
+              </a>
+            </div>
+
           </div>
 
-          <Typography variant="body-lg" className="text-white/90">
-            Have a question about our service?<br />
-            We're here to help, contact us today.
-          </Typography>
+          {/* TABLET + DESKTOP — 768px+: two cols */}
+          <div className="hidden md:flex flex-row gap-16 lg:gap-24 justify-center lg:justify-start items-start">
 
-          <form className="space-y-5 max-w-md">
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
-              style={{ borderColor }}
-            />
+            <div className="flex items-start gap-3">
+              <LocationIcon iconColor={iconColor} />
+              <Typography variant="body-lg" className="text-white leading-relaxed">
+                Skanda Mansion, JSS Circle<br />
+                748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
+                Bangalore, Karnataka 560070, India
+              </Typography>
+            </div>
 
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
-              style={{ borderColor }}
-            />
+            <div className="flex flex-col gap-3">
+              <div className="flex items-start gap-3">
+                <PhoneIcon iconColor={iconColor} />
+                <a href={`tel:${PHONE.replace(/\s/g, "")}`}>
+                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition">
+                    {PHONE}
+                  </Typography>
+                </a>
+              </div>
+              <div className="flex items-start gap-3">
+                <EmailIcon iconColor={iconColor} />
+                <a href={`mailto:${EMAIL}`}>
+                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition">
+                    {EMAIL}
+                  </Typography>
+                </a>
+              </div>
+            </div>
 
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
-              style={{ borderColor }}
-            />
+          </div>
 
-            <textarea
-              rows={4}
-              placeholder="Message"
-              className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
-              style={{ borderColor }}
-            />
-          </form>
         </div>
-        <div className="relative w-full max-w-lg mx-auto">
-          <Image
-            src={images.contactImage}
-            alt="Modern Bathroom Interior"
-            width={500}
-            height={600}
-            className="object-contain w-full h-auto border-2"
-            style={{ borderColor }}
-          />
+
+        {/* ROW 4 — Form left | Image right */}
+        <div className="max-w-[1400px] mx-auto w-full mt-6 flex flex-col lg:flex-row items-center gap-5 lg:gap-6">
+
+          {/* Left — CTA + Form */}
+          <div className="w-full lg:w-[48%] flex flex-col gap-4 items-center lg:items-start">
+            <Typography variant="body-xl" className="text-white/90 text-center lg:text-left w-full">
+              Have a question about our service?<br />
+              We're here to help, contact us today.
+            </Typography>
+
+            <form className="space-y-4 w-full max-w-lg mx-auto lg:mx-0">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
+                style={{ borderColor }}
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
+                style={{ borderColor }}
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none"
+                style={{ borderColor }}
+              />
+              <textarea
+                rows={4}
+                placeholder="Message"
+                className="w-full bg-[#7E7669A6] border-2 px-4 py-3 text-white placeholder:text-white focus:outline-none resize-none"
+                style={{ borderColor }}
+              />
+            </form>
+          </div>
+
+          {/* Right — Image */}
+          <div className="w-full max-w-lg mx-auto lg:mx-0 lg:max-w-none lg:w-[52%] relative h-[400px] sm:h-[440px] md:h-[440px] lg:h-[540px]">
+            <Image
+              src={images.contactImage}
+              alt="Modern Bathroom Interior"
+              fill
+              className="object-contain"
+            />
+          </div>
+
         </div>
-      </div>
-      <div className="relative z-10 flex justify-center pb-16">
-        <button
-          className="px-10 py-3 border-4 border-[#7E7669] bg-gray-200/70 text-black rounded-full hover:bg-white transition"
-        >
-          Send Your Message
-        </button>
+        {/* ROW 5 — Send button */}
+        <div className="flex justify-center mt-6">
+          <button
+            className={`px-10 py-3 border-4 ${
+              isLuxury ? "border-[#F79440]" : "border-[#7E7669]"
+            } bg-gray-200/70 text-black rounded-full cursor-pointer`}
+          >
+            Send Your Message
+          </button>
+        </div>
+
       </div>
     </section>
   );
