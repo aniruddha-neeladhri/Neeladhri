@@ -13,7 +13,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#262626] text-neutral-300">
+    <footer className="w-full bg-[#262626] text-white">
 
       {/* MAIN FOOTER */}
       <div className="mx-auto px-6 lg:px-8 xl:px-22 py-16">
@@ -24,33 +24,40 @@ export default function Footer() {
               <Image
                 src="/logo.png"
                 alt="Neeladhri Ceramics"
-                width={140}
-                height={46}
-                className="h-8 w-auto object-contain sm:h-9"
+                width={160}
+                height={60}
+                className="h-12 w-auto object-contain sm:h-14"
               />
             </Link>
-            <Typography variant="body-lg" className="max-w-[260px] leading-relaxed text-neutral-300">
+            <Typography variant="body-lg" className="max-w-[260px] leading-relaxed text-white">
               {TAGLINE}
             </Typography>
             <div className="flex gap-5">
-              {SOCIAL.map(({ name, href, icon }) => (
-                <a key={name} href={href} className="opacity-90 transition hover:opacity-100">
-                  <Image src={icon} alt={name} width={20} height={20} />
-                </a>
-              ))}
+              <a href={SOCIAL.find(s => s.name === "Facebook")?.href || "#"} aria-label="Facebook" className="opacity-90 transition hover:opacity-100 text-white hover:text-neutral-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </a>
+              <a href={SOCIAL.find(s => s.name === "Instagram")?.href || "#"} aria-label="Instagram" className="opacity-90 transition hover:opacity-100 text-white hover:text-neutral-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              <a href={SOCIAL.find(s => s.name === "Twitter")?.href || "#"} aria-label="Twitter" className="opacity-90 transition hover:opacity-100 text-white hover:text-neutral-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+              </a>
+              <a href={SOCIAL.find(s => s.name === "LinkedIn")?.href || "#"} aria-label="LinkedIn" className="opacity-90 transition hover:opacity-100 text-white hover:text-neutral-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
             </div>
           </div>
 
           {/* About Us */}
           <div className="space-y-4">
-            <Typography variant="h4" className="font-semibold text-neutral-300">
+            <Typography variant="body-lg" className="text-white">
               About Us
             </Typography>
             <ul className="space-y-3">
               {ABOUT_LINKS.map(({ label, href }) => (
                 <li key={label}>
-                  <Link href={href} className="text-[15px] text-neutral-300 transition hover:text-white">
-                    <Typography variant="body-lg" className="text-neutral-300 transition hover:text-white">{label}</Typography>
+                  <Link href={href} className="text-[15px] text-white transition hover:text-neutral-300">
+                    <Typography variant="body-lg" className="text-white transition hover:text-neutral-300">{label}</Typography>
                   </Link>
                 </li>
               ))}
@@ -59,14 +66,14 @@ export default function Footer() {
 
           {/* Products */}
           <div className="space-y-4">
-            <Typography variant="h4" className="font-semibold text-neutral-300">
+            <Typography variant="body-lg" className="text-white">
               Products
             </Typography>
             <ul className="space-y-3">
               {PRODUCT_LINKS.map(({ label, href }) => (
                 <li key={label}>
-                  <Link href={href} className="text-[15px] text-neutral-300 transition hover:text-white">
-                    <Typography variant="body-lg" className="text-neutral-300 transition hover:text-white">{label}</Typography>
+                  <Link href={href} className="text-[15px] text-white transition hover:text-neutral-300">
+                    <Typography variant="body-lg" className="text-white transition hover:text-neutral-300">{label}</Typography>
                   </Link>
                 </li>
               ))}
@@ -75,27 +82,27 @@ export default function Footer() {
 
           {/* Contact Us */}
           <div className="space-y-4">
-            <Typography variant="h4" className="font-semibold text-neutral-300">
+            <Typography variant="body-lg" className="text-white">
               Contact Us
             </Typography>
-            <ul className="space-y-4 text-[15px] text-neutral-300">
+            <ul className="space-y-4 text-[15px] text-white">
               <li className="flex items-start gap-3">
-                <Image src="/footericons/location.png" alt="" width={18} height={18} className="mt-0.5 shrink-0" />
-                <Typography variant="body-lg" className="max-w-[280px] leading-relaxed text-neutral-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-white"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <Typography variant="body-lg" className="max-w-[280px] leading-relaxed text-white">
                   Skanda Mansion, JSS Circle 748/41, Kanakapura Rd, 7th Block,
                   Jayanagar Bangalore, Karnataka 560070, India
                 </Typography>
               </li>
               <li className="flex items-start gap-3">
-                <Image src="/footericons/phone.png" alt="" width={18} height={18} className="mt-0.5 shrink-0" />
-                <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="transition hover:text-white">
-                  <Typography variant="body-lg" className="text-neutral-300 transition hover:text-white">{PHONE}</Typography>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-white"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="transition hover:text-neutral-300">
+                  <Typography variant="body-lg" className="text-white transition hover:text-neutral-300">{PHONE}</Typography>
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Image src="/footericons/mail.png" alt="" width={18} height={18} className="mt-0.5 shrink-0" />
-                <a href={`mailto:${EMAIL}`} className="transition hover:text-white">
-                  <Typography variant="body-lg" className="text-neutral-300 transition hover:text-white">{EMAIL}</Typography>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-white"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <a href={`mailto:${EMAIL}`} className="transition hover:text-neutral-300">
+                  <Typography variant="body-lg" className="text-white transition hover:text-neutral-300">{EMAIL}</Typography>
                 </a>
               </li>
             </ul>
@@ -107,14 +114,14 @@ export default function Footer() {
       <div className="border-t border-neutral-600">
         <div className="mx-auto flex flex-col items-center justify-between gap-4 px-6 py-5 lg:max-w-[1800px] md:flex-row">
 
-          <Typography variant="body-sm" className="text-neutral-300">
-            © 2026 Neeladhri Ceramics. All rights reserved.
+          <Typography variant="body-sm" className="text-white">
+            © {new Date().getFullYear()} Neeladhri Ceramics. All rights reserved.
           </Typography>
 
-          <div className="flex gap-8 text-sm text-neutral-300">
+          <div className="flex gap-8 text-sm text-white">
             {LEGAL_LINKS.map(({ label, href }) => (
-              <Link key={label} href={href} className="transition hover:text-white">
-                <Typography variant="body-sm" className="text-neutral-300 transition hover:text-white">{label}</Typography>
+              <Link key={label} href={href} className="transition hover:text-neutral-300">
+                <Typography variant="body-sm" className="text-white transition hover:text-neutral-300">{label}</Typography>
               </Link>
             ))}
           </div>
