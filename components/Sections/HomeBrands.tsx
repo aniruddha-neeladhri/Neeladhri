@@ -11,7 +11,7 @@ export default function BrandsSection() {
   const data: Brand[] = theme === "luxury" ? luxuryBrands : brands;
 
   return (
-    <section className="w-full py-4 md:py-6 lg:py-8 px-6 lg:px-20">
+    <section id="homebrands" className="w-full py-4 md:py-6 lg:py-8 px-6 lg:px-20">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-8 md:gap-12">
 
         {/* Heading */}
