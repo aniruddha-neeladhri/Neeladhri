@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-start justify-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-[3px] shrink-0 text-neutral-400"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <Typography variant="body-sm" className="text-white leading-relaxed max-w-[260px]">
+            <Typography variant="body-sm" className="text-white leading-relaxed max-w-[240px]">
               Skanda Mansion, JSS Circle 748/41, Kanakapura&nbsp;Rd, 7th&nbsp;Block, Jayanagar Bangalore, India
             </Typography>
           </div>
@@ -134,7 +134,9 @@ export default function Footer() {
             {/* About Us */}
             <div className="space-y-4">
               <Typography variant="body-lg" className="text-white">
-                About Us
+                <Link href="/about" className="transition hover:text-neutral-300">
+                  About Us
+                </Link>
               </Typography>
               <ul className="space-y-3">
                 {ABOUT_LINKS.map(({ label, href }) => (
