@@ -32,8 +32,8 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-start justify-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-[3px] shrink-0 text-neutral-400"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <Typography variant="body-sm" className="text-white leading-relaxed">
-              Skanda Mansion, 3rd Cross Jakkur Main Road, 7th Block<br/>Jayanagar Bangalore, India
+            <Typography variant="body-sm" className="text-white leading-relaxed max-w-[260px]">
+              Skanda Mansion, JSS Circle 748/41, Kanakapura&nbsp;Rd, 7th&nbsp;Block, Jayanagar Bangalore, India
             </Typography>
           </div>
           <div className="flex items-center justify-center gap-8">
@@ -172,7 +172,7 @@ export default function Footer() {
                 <li className="flex items-start gap-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-white"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   <Typography variant="body-lg" className="max-w-[280px] leading-relaxed text-white">
-                    Skanda Mansion, JSS Circle 748/41, Kanakapura Rd, 7th Block,
+                    Skanda Mansion, JSS Circle 748/41, Kanakapura&nbsp;Rd, 7th&nbsp;Block,
                     Jayanagar Bangalore, Karnataka 560070, India
                   </Typography>
                 </li>
