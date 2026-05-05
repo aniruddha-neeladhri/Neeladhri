@@ -7,6 +7,7 @@ import {
   collectionGridImages,
   collectionImageBorderColor,
 } from "@/lib/constants/collections";
+import { useRouter } from "next/navigation";
 
 const GAP = 8;
 const ROW1 = 440;
@@ -19,16 +20,27 @@ function Cell({
   height,
   sizes = "30vw",
   borderColor,
+  href,
 }: {
   src: string;
   label: string;
   height?: number;
   sizes?: string;
   borderColor: string;
+  href?: string;
 }) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (href) {
+      router.push(href);
+    }
+  };
+
   return (
     <div
-      className={`group relative overflow-hidden flex-shrink-0 border-2 box-border ${height ? "" : "aspect-[4/3]"}`}
+      onClick={handleClick}
+      className={`group relative overflow-hidden flex-shrink-0 border-2 box-border cursor-pointer ${height ? "" : "aspect-[4/3]"}`}
       style={{
         ...(height ? { height } : {}),
         borderColor,
@@ -68,31 +80,31 @@ export default function CollectionsSection() {
       >
         {/* LEFT */}
         <div className="flex flex-col flex-shrink-0 gap-2 w-[33%]">
-          <Cell src={grid.living} label="Living" height={loungeH} sizes="33vw" borderColor={borderColor} />
-          <Cell src={grid.alliedAccessories} label="Allied Accessories" height={bathroomH} sizes="33vw" borderColor={borderColor} />
+          <Cell src={grid.living} label="Living" height={loungeH} sizes="33vw" borderColor={borderColor} href="/collection#living-room" />
+          <Cell src={grid.alliedAccessories} label="Allied Accessories" height={bathroomH} sizes="33vw" borderColor={borderColor} href="/collection#allied-accessories" />
         </div>
 
         {/* CENTER */}
         <div className="flex flex-col flex-shrink-0 gap-2 w-[34%]">
-          <Cell src={grid.bathroom} label="Bathroom" height={bathroomH} sizes="34vw" borderColor={borderColor} />
-          <Cell src={grid.blank} label="" height={loungeH} sizes="34vw" borderColor={borderColor} />
+          <Cell src={grid.bathroom} label="Bathroom" height={bathroomH} sizes="34vw" borderColor={borderColor} href="/collection#bathroom" />
+          <Cell src={grid.blank} label="" height={loungeH} sizes="34vw" borderColor={borderColor} href={undefined} />
         </div>
 
         {/* RIGHT */}
         <div className="flex flex-col flex-shrink-0 gap-2 w-[33%]">
-          <Cell src={grid.dining} label="Dining" height={loungeH} sizes="33vw" borderColor={borderColor} />
-          <Cell src={grid.kitchen} label="Kitchen" height={bathroomH} sizes="33vw" borderColor={borderColor} />
+          <Cell src={grid.dining} label="Dining" height={loungeH} sizes="33vw" borderColor={borderColor} href="/collection#dining" />
+          <Cell src={grid.kitchen} label="Kitchen" height={bathroomH} sizes="33vw" borderColor={borderColor} href="/collection#kitchen" />
         </div>
       </div>
 
       {/* MOBILE */}
       <div className="flex flex-col gap-4 mt-10 md:hidden">
-        <Cell src={grid.bathroom} label="Bathroom" borderColor={borderColor} />
-        <Cell src={grid.living} label="Living" borderColor={borderColor} />
-        <Cell src={grid.dining} label="Dining" borderColor={borderColor} />
-        <Cell src={grid.alliedAccessories} label="Allied Accessories" borderColor={borderColor} />
+        <Cell src={grid.bathroom} label="Bathroom" borderColor={borderColor} href="/collection#bathroom" />
+        <Cell src={grid.living} label="Living" borderColor={borderColor} href="/collection#living-room" />
+        <Cell src={grid.dining} label="Dining" borderColor={borderColor} href="/collection#dining" />
+        <Cell src={grid.alliedAccessories} label="Allied Accessories" borderColor={borderColor} href="/collection#allied-accessories" />
         <Cell src={grid.blank} label="" borderColor={borderColor} />
-        <Cell src={grid.kitchen} label="Kitchen" borderColor={borderColor} />
+        <Cell src={grid.kitchen} label="Kitchen" borderColor={borderColor} href="/collection#kitchen" />
       </div>
     </section>
   );

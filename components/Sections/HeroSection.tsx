@@ -6,7 +6,6 @@ import Bathroom from "./Bathroom";
 import DiningRoom from "./DiningRoom";
 import TileAnimation from "./TileAnimation";
 import Typography from "@/lib/Typography";
-import Navbar from "@/components/SharedSections/Navbar";
 import HomeBrands from "./HomeBrands";
 import ModernSpace from "./ModernSpace";
 
@@ -98,7 +97,7 @@ export default function HeroSection() {
         </div>
       </div>
       <div style={{ height: `${ZOOM_SCROLL_VH}vh` }} aria-hidden="true" />
-      {/* <TileAnimation /> */}
+      <TileAnimation />
     <Kitchen />
     <LivingRoom />
     <Bathroom />

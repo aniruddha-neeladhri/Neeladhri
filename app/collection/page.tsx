@@ -9,11 +9,21 @@ export default function CollectionsPage() {
   return (
     <>
       <CollectionsSection />
-      <LivingRoom />
-      <Bathroom />
-      <Dining />
-      <Kitchen />
-      <AlliedAccessories />
+      <section id="living-room">
+        <LivingRoom />
+      </section>
+      <section id="bathroom">
+        <Bathroom />
+      </section>
+      <section id="dining">
+        <Dining />
+      </section>
+      <section id="kitchen">
+        <Kitchen />
+      </section>
+      <section id="allied-accessories">
+        <AlliedAccessories />
+      </section>
     </>
   );
 }

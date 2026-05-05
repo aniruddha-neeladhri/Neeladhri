@@ -20,7 +20,7 @@ export default function AboutSection() {
           </Typography>
         </div>
         {/* Content Row */}
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-24 xl:gap-32 items-stretch">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-4 lg:gap-12 xl:gap-32 items-stretch">
           {/* Left Side - Image stretches to match content height */}
           <div className="w-full md:w-[40%] lg:w-[40%] flex-shrink-0 relative min-h-[300px]">
             <Image

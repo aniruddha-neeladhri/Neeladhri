@@ -6,6 +6,7 @@ import Typography from "@/lib/Typography";
 const DiningRoom = forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div
+    id="dining"
       ref={ref}
       className="min-h-screen bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url(/sections/di.png)" }}
