@@ -238,7 +238,7 @@ export default function ContactSection() {
     <section className="relative w-full min-h-screen overflow-hidden">
 
       <Image src={images.background} alt="Contact Background" fill priority className="object-cover" />
-      <div className="absolute inset-0 bg-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/50" />
 
       <div className="relative z-10 w-full min-h-screen flex flex-col justify-between py-10 md:py-14 px-4 sm:px-8 lg:px-16">
 

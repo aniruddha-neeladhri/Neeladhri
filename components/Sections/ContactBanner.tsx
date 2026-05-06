@@ -22,8 +22,11 @@ export default function ContactBanner() {
         sizes="100vw"
       />
 
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/50" />
+
       {/* Text Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/10">
+      <div className="absolute inset-0 flex items-center justify-center">
         <Typography 
           variant="display-3xl" 
           className="text-white font-light tracking-wide"
