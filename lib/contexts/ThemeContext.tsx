@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type ThemeMode = "premium" | "luxury";
 
@@ -12,8 +12,24 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const STORAGE_KEY = "neeladhri-theme";
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  // Use consistent initial value for SSR to avoid hydration mismatch
   const [theme, setTheme] = useState<ThemeMode>("premium");
+
+  // Sync with localStorage after mount (client-side only)
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === "luxury") {
+      setTheme("luxury");
+    }
+  }, []);
+
+  // Save to localStorage when theme changes
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, theme);
+  }, [theme]);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "premium" ? "luxury" : "premium"));

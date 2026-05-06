@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import { useTheme } from "@/lib/contexts/ThemeContext";
 
 function createMarbleTexture(): THREE.CanvasTexture {
   const size = 512;
@@ -131,6 +132,20 @@ const SECTIONS = [
     side: "center" as const,
     desc: "Premium tile brands curated for Indian homes — international quality, local sensibility. Discover collections from the world's leading ceramic manufacturers.",
   },
+  {
+    id: "solution",
+    name: "Solution",
+    x: 0,
+    side: "center" as const,
+    desc: "",
+  },
+  {
+    id: "onestopsolution",
+    name: "One Stop Solution",
+    x: 0,
+    side: "center" as const,
+    desc: "",
+  },
 ];
 
 const N = SECTIONS.length;
@@ -193,6 +208,7 @@ function DescCard({
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function TileAnimation() {
   const mountRef = useRef<HTMLDivElement | null>(null);
+  const { theme } = useTheme();
 
   const [activeIdx, setActiveIdx] = useState(-1);
   const [cardOpacity, setCardOpacity] = useState(0);
@@ -219,16 +235,18 @@ export default function TileAnimation() {
     marbleTexture.colorSpace = THREE.SRGBColorSpace;
 
     const geometry = new THREE.BoxGeometry(2.2, 2.2, 0.18);
+    
+    // Theme-aware materials for better visibility
     const faceMat = new THREE.MeshStandardMaterial({
       map: marbleTexture,
-      color: new THREE.Color("#FFFFFF"),
-      metalness: 0.1,
-      roughness: 0.55,
+      color: new THREE.Color(theme === "luxury" ? "#F5F0E8" : "#FFFFFF"),
+      metalness: theme === "luxury" ? 0.15 : 0.1,
+      roughness: theme === "luxury" ? 0.45 : 0.55,
     });
     const sideMat = new THREE.MeshStandardMaterial({
-      color: new THREE.Color("#C4B09A"),
-      metalness: 0.05,
-      roughness: 0.7,
+      color: new THREE.Color(theme === "luxury" ? "#D4C4A8" : "#C4B09A"),
+      metalness: theme === "luxury" ? 0.1 : 0.05,
+      roughness: theme === "luxury" ? 0.6 : 0.7,
     });
     const tile = new THREE.Mesh(geometry, [
       sideMat, sideMat, sideMat, sideMat, faceMat, faceMat,
@@ -249,11 +267,14 @@ export default function TileAnimation() {
 
     // Driven by onScroll, consumed by animate()
     let targetX = SECTIONS[0].x;
+    let targetY = 0;
     let targetRotY = 0;
+    let targetRotZ = 0; // For tilt effect
     let targetCardOp = 0;
     let cardIdxRef = 0;
     let frameCount = 0;
     let smoothCardOp = 0;
+    let curRotZ = 0;
 
     
     // ── Project tile centre to screen, offset by half-tile height ────────────
@@ -272,14 +293,41 @@ export default function TileAnimation() {
       setCardScreenY(sy + halfTilePx + 12);
     };
 
-    // ── Scroll handler ────────────────────────────────────────────────────────
-    // Sections stay exactly as they are in your page (min-h-screen = 100vh each).
-    // We read each section's real DOM top/bottom, then split its height into
-    // two equal virtual halves:
-    //   first  half  → ARRIVE  (tile flies in from previous X, spins 360°)
-    //   second half  → PAUSE   (tile holds at section X, description card shows)
-    //
-    // The user just scrolls normally — no height changes required.
+    const screenToWorldAtZ0 = (screenX: number, screenY: number) => {
+      const ndc = new THREE.Vector3(
+        (screenX / window.innerWidth) * 2 - 1,
+        -(screenY / window.innerHeight) * 2 + 1,
+        0.5
+      );
+      const p = ndc.unproject(camera);
+      const dir = p.sub(camera.position).normalize();
+      const t = -camera.position.z / dir.z; // intersect z=0 plane
+      return camera.position.clone().add(dir.multiplyScalar(t));
+    };
+
+    // Remember last dock point to avoid jitter when DOM is animating
+    let lastDock: { x: number; y: number } | null = null;
+    let dockActive = false;
+    let dockProgress = 0; // 0 = fullscreen render, 1 = fully inside dotted box
+    // Controls how slowly the tile "comes in" to the dotted box.
+    // Smaller = slower (roughly: 0.02 ~ 0.8s, 0.01 ~ 1.6s at 60fps).
+    const DOCK_PROGRESS_STEP = 0.012;
+
+    const readDockTarget = () => {
+      return document.querySelector(
+        '[data-onestopsolution-tile-target="true"][data-active="true"]'
+      ) as HTMLElement | null;
+    };
+    const updateDockFromDom = () => {
+      const el = readDockTarget();
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const w = screenToWorldAtZ0(cx, cy);
+      lastDock = { x: w.x, y: w.y };
+    };
+
     const onScroll = () => {
       const scrollY = window.scrollY;
       const vh = window.innerHeight;
@@ -323,6 +371,7 @@ export default function TileAnimation() {
 
       // ── 2. Map progress to visual targets ─────────────────────────────────
       let newTargetX = SECTIONS[0].x;
+      let newTargetY = 0;
       let newTargetRotY = 0;
       let newCardOp = 0;
       let newCardIdx = 0;
@@ -345,12 +394,12 @@ export default function TileAnimation() {
         // Last section (and beyond)
         const local = prog - (N - 1); // 0..1
         newTargetX = SECTIONS[N - 1].x;
-        newTargetRotY = (N) * Math.PI * 2;
+        newTargetY = 0;
+        newTargetRotY = (N - 1) * Math.PI * 2;
         newCardIdx = N - 1;
 
-        // Fade out at the very end
-        if (local > 0.8) newCardOp = smooth(1 - (local - 0.8) / 0.2);
-        else newCardOp = 1;
+        // Keep tile visible and settled in onestopsolution section
+        newCardOp = 1;
 
       } else {
         // Transitions between sections
@@ -390,8 +439,39 @@ export default function TileAnimation() {
         }
       }
 
+      // ── Dock tile into the dotted box in onestopsolution ─────────────────
+      if (newCardIdx === 6) {
+        // Only dock while the onestopsolution section is actually on screen.
+        // If user scrolls past, don't let the tile "follow" into the next section.
+        const sec = document.getElementById("onestopsolution");
+        const sr = sec?.getBoundingClientRect();
+        // Keep docked for the entire time any part of the section is visible.
+        // (The previous threshold was too strict and could "undock" mid-scroll,
+        // making the tile appear to move forward after this section.)
+        dockActive = !!sr && sr.bottom > 0 && sr.top < vh;
+
+        if (dockActive) {
+          // When docked, we render inside the dotted box element itself,
+          // so tile should be centered in that local canvas.
+          newTargetX = 0;
+          newTargetY = 0;
+          newCardOp = 1;
+          // Freeze rotation target so it doesn't feel like it "moves forward" again
+          newTargetRotY = (N - 1) * Math.PI * 2;
+        } else {
+          // Past the section: hide instead of drifting into next section
+          newCardOp = 0;
+        }
+      } else {
+        lastDock = null;
+        dockActive = false;
+      }
+
       targetX = newTargetX;
+      targetY = newTargetY;
       targetRotY = newTargetRotY;
+      // Set 40-degree tilt for solution section (index 5) and keep it for onestopsolution (index 6)
+      targetRotZ = newCardIdx >= 5 ? (40 * Math.PI) / 180 : 0;
       targetCardOp = newCardOp;
       cardIdxRef = newCardIdx;
       setActiveIdx(newCardIdx);
@@ -399,6 +479,9 @@ export default function TileAnimation() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+    // Delayed checks to ensure DOM is ready after scene recreation
+    setTimeout(() => onScroll(), 100);
+    setTimeout(() => onScroll(), 300);
 
     // ── Render loop ───────────────────────────────────────────────────────────
     let rafId: number;
@@ -407,15 +490,67 @@ export default function TileAnimation() {
       rafId = requestAnimationFrame(animate);
       frameCount++;
 
-      const spd = 0.09;
+      const ww = window.innerWidth;
+      const hh = window.innerHeight;
+
+      // While docked, keep updating the target from the DOM so it stays centered
+      const isDocked = cardIdxRef === 6;
+
+      // Horizontal dragging can change the dotted-box DOM without scrolling,
+      // so re-check target existence every frame.
+      const hasDockTarget = !!readDockTarget();
+
+      if (isDocked) {
+        const sec = document.getElementById("onestopsolution");
+        const sr = sec?.getBoundingClientRect();
+        const inView = !!sr && sr.bottom > 0 && sr.top < hh;
+
+        // Dock is only "active" when section is in view AND the dotted-box target exists.
+        // When the section scrolls away, we intentionally keep the tile clipped to the box
+        // (so it naturally disappears offscreen) instead of "undocking" back to fullscreen.
+        dockActive = inView && hasDockTarget;
+
+        if (!hasDockTarget) {
+          dockProgress = 0;
+          tile.visible = false;
+          targetCardOp = 0;
+        } else {
+          dockProgress = dockActive
+            ? Math.min(1, dockProgress + DOCK_PROGRESS_STEP)
+            : 1; // lock to fully docked when out of view
+
+          if (!dockActive) targetCardOp = 0;
+
+          targetX = 0;
+          targetY = 0;
+          // Keep ONLY the 40deg tilt pose while docked (no spin)
+          targetRotY = 0;
+          targetRotZ = (40 * Math.PI) / 180;
+        }
+      } else {
+        dockActive = false;
+        dockProgress = Math.max(0, dockProgress - DOCK_PROGRESS_STEP);
+        // Don't force visibility here - let onScroll control it
+      }
+
+      // Slow down motion while docking/settled so it gently "sits" in the box.
+      const dockVisualActiveNow = (isDocked && dockActive) || dockProgress > 0.001;
+      const spd = dockVisualActiveNow ? 0.06 : 0.09;
       curX += (targetX - curX) * spd;
-      curY += (0 - curY) * spd; // drift Y to viewport centre
-      curRotY += (targetRotY - curRotY) * spd;
+      curY += (targetY - curY) * spd; // drift Y to target
+      if (!dockVisualActiveNow) {
+        curRotY += (targetRotY - curRotY) * spd;
+        curRotZ += (targetRotZ - curRotZ) * spd; // Interpolate tilt
+      } else {
+        // Hard lock rotations when docked (prevents "moving forward" feel)
+        curRotY = targetRotY;
+        curRotZ = targetRotZ;
+      }
 
       smoothCardOp += (targetCardOp - smoothCardOp) * 0.08;
 
       // Gentle bob only while the card is fully visible
-      const idleBob = smoothCardOp > 0.5
+      const idleBob = !dockVisualActiveNow && smoothCardOp > 0.5
         ? Math.sin(frameCount * 0.025) * 0.035
         : 0;
 
@@ -423,8 +558,69 @@ export default function TileAnimation() {
       tile.position.y = curY + idleBob;
       tile.rotation.y = curRotY;
       tile.rotation.x = 0;
+      tile.rotation.z = curRotZ; // Apply tilt
 
-      renderer.render(scene, camera);
+      // Render either fullscreen or clipped into the dotted box using scissor+viewport.
+      // Always clear the full canvas each frame (avoids ghosting when scissored).
+      renderer.setScissorTest(false);
+      renderer.setViewport(0, 0, ww, hh);
+      renderer.clear();
+
+      if (dockProgress > 0.001) {
+        const host = readDockTarget();
+        const r = host?.getBoundingClientRect();
+        if (r && r.width > 0 && r.height > 0) {
+          const t = smooth(dockProgress);
+          const tx = r.left;
+          const ty = hh - r.bottom; // scissor origin is bottom-left
+          const tw = r.width;
+          const th = r.height;
+
+          const vx = lerp(0, tx, t);
+          const vy = lerp(0, ty, t);
+          const vw = lerp(ww, tw, t);
+          const vh = lerp(hh, th, t);
+
+          // Fit the (40deg) rotated tile into the dock viewport without cropping.
+          // This makes the tile as large as possible while guaranteeing it stays inside.
+          const baseZ = 7;
+          const vfov = (45 * Math.PI) / 180;
+          const aspect = vw / vh;
+
+          // Tile face side length in world units (matches BoxGeometry width/height).
+          const side = 2.2;
+          const tiltZ = (40 * Math.PI) / 180;
+          const aabbFactor = Math.abs(Math.cos(tiltZ)) + Math.abs(Math.sin(tiltZ)); // square rotated in-plane
+          const needed = side * aabbFactor * 1.06; // small safety margin
+
+          // Required camera distance to fit needed size in BOTH height and width.
+          const tanHalf = Math.tan(vfov / 2);
+          const zForHeight = (needed / 2) / tanHalf;
+          const zForWidth = (needed / 2) / (tanHalf * aspect);
+          const fitZ = Math.max(zForHeight, zForWidth);
+
+          // Move camera closer than baseZ when docking, but never too close.
+          const targetZ = Math.max(2.6, Math.min(baseZ, fitZ));
+          camera.position.z = lerp(baseZ, targetZ, t);
+          camera.aspect = vw / vh;
+          camera.updateProjectionMatrix();
+
+          renderer.setScissorTest(true);
+          renderer.setViewport(vx, vy, vw, vh);
+          renderer.setScissor(vx, vy, vw, vh);
+          renderer.render(scene, camera);
+        } else {
+          camera.position.z = 7;
+          camera.aspect = ww / hh;
+          camera.updateProjectionMatrix();
+          renderer.render(scene, camera);
+        }
+      } else {
+        camera.position.z = 7;
+        camera.aspect = ww / hh;
+        camera.updateProjectionMatrix();
+        renderer.render(scene, camera);
+      }
 
       if (tile.visible) {
         projectTile();
@@ -453,7 +649,7 @@ export default function TileAnimation() {
       }
       renderer.dispose();
     };
-  }, []);
+  }, [theme]);
 
   return (
     <>
@@ -464,13 +660,28 @@ export default function TileAnimation() {
       />
 
       {/* Description card — fades in below the tile during each pause phase */}
-      {activeIdx >= 0 && activeIdx < SECTIONS.length && (
+      {activeIdx >= 0 && activeIdx < SECTIONS.length && activeIdx !== 4 && activeIdx !== 5 && activeIdx !== 6 && (
         <DescCard
           section={SECTIONS[activeIdx]}
           opacity={cardOpacity}
           screenX={cardScreenX}
           screenY={cardScreenY}
         />
+      )}
+      
+      {/* Settled indicator for onestopsolution section */}
+      {activeIdx === 6 && (
+        <div
+          className="fixed z-[101] pointer-events-none"
+          style={{
+            left: cardScreenX,
+            top: cardScreenY - 20,
+            transform: "translate(-50%, -100%)",
+            opacity: cardOpacity,
+            transition: "opacity 0.3s ease",
+          }}
+        >
+          </div>
       )}
     </>
   );
