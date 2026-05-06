@@ -8,6 +8,8 @@ import TileAnimation from "./TileAnimation";
 import Typography from "@/lib/Typography";
 import HomeBrands from "./HomeBrands";
 import ModernSpace from "./ModernSpace";
+import Solution from "./solution";
+import Onestopsolution from "./Onestopsolution";
 
 // Responsive zoom scroll - smaller on mobile for better UX
 const getZoomScrollVH = () => {
@@ -111,6 +113,8 @@ export default function HeroSection() {
         <Bathroom />
         <DiningRoom />
         <HomeBrands/>
+        <Solution/>
+        <Onestopsolution/>
         <ModernSpace />
       </div>
     </>
