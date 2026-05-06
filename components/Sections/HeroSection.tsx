@@ -9,7 +9,12 @@ import Typography from "@/lib/Typography";
 import HomeBrands from "./HomeBrands";
 import ModernSpace from "./ModernSpace";
 
-const ZOOM_SCROLL_VH = 400; // vh units of scroll that drive the hero zoom
+// Responsive zoom scroll - smaller on mobile for better UX
+const getZoomScrollVH = () => {
+  if (typeof window === "undefined") return 300;
+  return window.innerWidth < 768 ? 250 : 400;
+};
+let ZOOM_SCROLL_VH = 400; // default, updated in effect
 
 function easeInOut(t: number): number {
   const c = Math.max(0, Math.min(1, t));
@@ -22,6 +27,8 @@ export default function HeroSection() {
   const overlayRef  = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Update responsive value
+    ZOOM_SCROLL_VH = getZoomScrollVH();
     const zoomPx = (ZOOM_SCROLL_VH / 100) * window.innerHeight;
 
     const onScroll = () => {
@@ -39,9 +46,9 @@ export default function HeroSection() {
         heroTextRef.current.style.opacity = `${1 - textP}`;
       }
 
-      // ── Whole overlay: start fading at 70%, fully gone at 100%
+      // ── Whole overlay: start fading at 50%, fully gone at 80%
       if (overlayRef.current) {
-        const fadeP = easeInOut(Math.max(0, (raw - 0.7) / 0.3));
+        const fadeP = easeInOut(Math.max(0, (raw - 0.5) / 0.3));
         overlayRef.current.style.opacity = `${1 - fadeP}`;
         // Once invisible, disable pointer-events (already none but be explicit)
         overlayRef.current.style.pointerEvents = fadeP >= 1 ? "none" : "none";
@@ -58,16 +65,16 @@ export default function HeroSection() {
       {/* ── 1. FIXED HERO OVERLAY (sits above everything, fades out) ─────── */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 pointer-events-none"
+        className="fixed inset-0 pointer-events-none w-full h-[100dvh]"
         style={{ zIndex: 50 }}
       >
         {/* Background image that zooms */}
         <div
           ref={heroBgRef}
-          className="absolute inset-0 bg-cover bg-no-repeat origin-center"
+          className="absolute inset-0 bg-cover bg-no-repeat origin-center w-full h-full"
           style={{
             backgroundImage: "url(/Ndoor.png)",
-            backgroundPosition: "center ",
+            backgroundPosition: "center center",
             willChange: "transform",
           }}
         />
@@ -78,32 +85,34 @@ export default function HeroSection() {
         {/* Hero text */}
         <div
           ref={heroTextRef}
-          className="absolute inset-0 flex flex-col items-center justify-end"
+          className="absolute inset-0 flex flex-col items-center justify-end px-4 pb-safe"
         >
           <Typography
             variant="display-xl"
-            className="text-center text-white font-light tracking-[0.06em] mb-3"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)", fontSize: "clamp(1.8rem,5.5vw,4rem)" }}
+            className="text-center text-white font-light tracking-[0.06em] mb-2 md:mb-3 max-w-[90vw]"
+            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)", fontSize: "clamp(1.5rem,5vw,4rem)" }}
           >
             PORTAL TO NEELADHRI CERAMICS
           </Typography>
           <Typography
             variant="caption"
-            className="text-center font-light tracking-[0.22em] text-white mb-10 normal-case"
-            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)", fontSize: "clamp(0.7rem,1.3vw,0.95rem)" }}
+            className="text-center font-light tracking-[0.18em] md:tracking-[0.22em] text-white mb-6 md:mb-10 normal-case"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)", fontSize: "clamp(0.65rem,1.2vw,0.95rem)" }}
           >
             Scroll to Explore
           </Typography>
         </div>
       </div>
-      <div style={{ height: `${ZOOM_SCROLL_VH}vh` }} aria-hidden="true" />
+      <div style={{ height: `${ZOOM_SCROLL_VH}dvh` }} aria-hidden="true" className="w-full" />
       <TileAnimation />
-    <Kitchen />
-    <LivingRoom />
-    <Bathroom />
-    <DiningRoom />
-    <HomeBrands/>
-    <ModernSpace />
+      <div className="w-full">
+        <Kitchen />
+        <LivingRoom />
+        <Bathroom />
+        <DiningRoom />
+        <HomeBrands/>
+        <ModernSpace />
+      </div>
     </>
   );
 }
