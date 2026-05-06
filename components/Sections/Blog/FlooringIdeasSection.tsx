@@ -16,14 +16,14 @@ export default function FlooringIdeasSection() {
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 xl:grid-cols-2 gap-12 items-start">
 
         {/* LEFT IMAGE */}
-        <div className="relative mx-auto size-72 md:size-80
+        <div className="relative mx-auto size-80 md:size-96
                         xl:size-auto xl:w-full xl:h-[clamp(24rem,58vw,54rem)]
                         2xl:h-[clamp(28rem,42vw,43rem)]">
           <Image
             src={currentImages.blog1}
             alt="Flooring Living Room"
             fill
-            className={`object-cover ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}
+            className={`object-contain xl:object-cover 2xl:object-fill ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}
           />
         </div>
 
@@ -61,7 +61,7 @@ export default function FlooringIdeasSection() {
               src={currentImages.blog2}
               alt="Modern Living Interior"
               fill
-              className={`object-contain xl:object-cover ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}
+              className={`object-contain xl:object-cover xl:object-top ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}
             />
           </div>
         </div>
