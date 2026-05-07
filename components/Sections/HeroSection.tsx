@@ -8,8 +8,6 @@ import TileAnimation from "./TileAnimation";
 import Typography from "@/lib/Typography";
 import HomeBrands from "./HomeBrands";
 import ModernSpace from "./ModernSpace";
-import Solution from "./solution";
-import Onestopsolution from "./Onestopsolution";
 
 // Responsive zoom scroll - smaller on mobile for better UX
 const getZoomScrollVH = () => {
@@ -106,15 +104,13 @@ export default function HeroSection() {
         </div>
       </div>
       <div style={{ height: `${ZOOM_SCROLL_VH}dvh` }} aria-hidden="true" className="w-full" />
-      <TileAnimation />
+      {/* <TileAnimation /> */}
       <div className="w-full">
         <Kitchen />
         <LivingRoom />
         <Bathroom />
         <DiningRoom />
         <HomeBrands/>
-        <Solution/>
-        <Onestopsolution/>
         <ModernSpace />
       </div>
     </>
