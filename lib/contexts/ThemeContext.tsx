@@ -18,17 +18,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // Use consistent initial value for SSR to avoid hydration mismatch
   const [theme, setTheme] = useState<ThemeMode>("premium");
 
-  // Sync with localStorage after mount (client-side only)
+  // Sync with sessionStorage after mount (client-side only)
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = sessionStorage.getItem(STORAGE_KEY);
     if (stored === "luxury") {
       setTheme("luxury");
     }
   }, []);
 
-  // Save to localStorage when theme changes
+  // Save to sessionStorage when theme changes
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, theme);
+    sessionStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
   const toggleTheme = () => {

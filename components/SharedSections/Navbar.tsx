@@ -5,29 +5,39 @@ import Image from "next/image";
 import Typography from "@/lib/Typography";
 import { NAV_LINKS } from "@/lib/constants/Navlinks";
 import { useTheme } from "@/lib/contexts/ThemeContext";
+import { motion } from "framer-motion";
 
 interface NavbarProps {
   menuOpen: boolean;
   onMenuToggle: (open: boolean) => void;
 }
 
-function HamburgerIcon({ open }: { open: boolean }) {
-  return (   
-    <div className="flex flex-col gap-[5px]">
-      <span
-        className={`block h-[2px] transition-all duration-300 origin-center ${
-          open ? "w-6 rotate-45 translate-y-[3.5px] bg-black" : "w-6 bg-[#2b2320]"
-        }`}
+function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <div className="flex flex-col gap-[5px] w-6 h-5 relative justify-center">
+      <motion.span
+        className="block h-[2px] bg-[#2b2320] absolute left-0"
+        animate={
+          isOpen
+            ? { rotate: 45, y: 0, width: "24px" }
+            : { rotate: 0, y: -7, width: "24px" }
+        }
+        transition={{ duration: 0.35, ease: [0.77, 0, 0.175, 1] }}
       />
-      <span
-        className={`block h-[2px] transition-all duration-300 ${
-          open ? "opacity-0 w-6 bg-black" : "w-4 bg-[#2b2320]"
-        }`}
+      <motion.span
+        className="block h-[2px] bg-[#2b2320] absolute left-0"
+        style={{ width: "16px" }}
+        animate={isOpen ? { opacity: 0 } : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.2 }}
       />
-      <span
-        className={`block h-[2px] transition-all duration-300 origin-center ${
-          open ? "w-6 -rotate-45 -translate-y-[3.5px] bg-black" : "w-6 bg-[#2b2320]"
-        }`}
+      <motion.span
+        className="block h-[2px] bg-[#2b2320] absolute left-0"
+        animate={
+          isOpen
+            ? { rotate: -45, y: 0, width: "24px" }
+            : { rotate: 0, y: 7, width: "24px" }
+        }
+        transition={{ duration: 0.35, ease: [0.77, 0, 0.175, 1] }}
       />
     </div>
   );
@@ -38,7 +48,7 @@ export default function Navbar({ menuOpen, onMenuToggle }: NavbarProps) {
   const displayText = theme === "premium" ? "Luxury" : "Premium";
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full bg-white relative z-[10002]">
       <div className="mx-5 2xl:mx-10 h-[80px] flex items-center justify-between gap-4">
 
         {/* Logo */}
@@ -74,21 +84,20 @@ export default function Navbar({ menuOpen, onMenuToggle }: NavbarProps) {
           ))}
         </nav>
 
-        <div className="flex lg:hidden items-center gap-3 ml-auto relative z-[10002]">
-          {!menuOpen && (
-            <button
-              onClick={toggleTheme}
-              className="bg-[#2b2320] px-8 py-2 rounded-full tracking-wider cursor-pointer"
-            >
-              <Typography variant="body-sm" className="text-white">{displayText}</Typography>
-            </button>
-          )}
+        {/* Mobile controls */}
+        <div className="flex lg:hidden items-center gap-3 ml-auto">
+          <button
+            onClick={toggleTheme}
+            className="bg-[#2b2320] px-8 py-2 rounded-full tracking-wider cursor-pointer"
+          >
+            <Typography variant="body-sm" className="text-white">{displayText}</Typography>
+          </button>
           <button
             onClick={() => onMenuToggle(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="p-1"
+            className="p-1 w-8 h-8 flex items-center justify-center"
           >
-            <HamburgerIcon open={menuOpen} />
+            <HamburgerIcon isOpen={menuOpen} />
           </button>
         </div>
 
