@@ -13,8 +13,121 @@ type BlogDetailColors = {
   mutedBorder: string;
 };
 
+function normalizeTextForCompare(input: string) {
+  return input
+    .replace(/\u00A0/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function stripHtmlTags(input: string) {
+  return input.replace(/<[^>]*>/g, "");
+}
+
+function sanitizeHtmlWithDom(html: string, title: string) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, "text/html");
+  const body = doc.body;
+
+  // Remove leading H1/H2/H3 if it matches the page title.
+  const firstHeading = body.querySelector("h1,h2,h3");
+  if (firstHeading) {
+    const headingText = normalizeTextForCompare(firstHeading.textContent ?? "");
+    const titleText = normalizeTextForCompare(title);
+    if (headingText && headingText === titleText) {
+      firstHeading.remove();
+    }
+  }
+
+  // Remove empty <p> everywhere (covers &nbsp;, <br>, nested spans/strong/em, etc.)
+  const paragraphs = Array.from(body.querySelectorAll("p"));
+  for (const p of paragraphs) {
+    const text = normalizeTextForCompare(p.textContent ?? "");
+    const hasMeaningfulText = text !== "" && text !== "&nbsp;" && text !== "nbsp;";
+    const hasNonTextMedia = !!p.querySelector("img,video,iframe,svg,table");
+    if (!hasMeaningfulText && !hasNonTextMedia) {
+      p.remove();
+    }
+  }
+
+  // If any containers become empty after paragraph removal, trim them.
+  const empties = Array.from(body.querySelectorAll("div,section,article"));
+  for (const el of empties) {
+    const text = normalizeTextForCompare(el.textContent ?? "");
+    const hasChildren = el.querySelector("img,video,iframe,svg,table,ul,ol,h1,h2,h3,h4,p") !== null;
+    if (!hasChildren && text === "") el.remove();
+  }
+
+  return body.innerHTML.trim();
+}
+
+function stripEmptyParagraphsEverywhere(html: string) {
+  let out = html;
+
+  // Remove empty paragraphs such as:
+  // <p>&nbsp;</p>, <p> </p>, <p><br></p>, <p><span>&nbsp;</span></p>, etc.
+  // Repeat a few times to handle nested wrappers.
+  for (let i = 0; i < 10; i += 1) {
+    const next = out.replace(
+      /<p\b[^>]*>\s*(?:(?:&nbsp;|&#160;|\u00A0)\s*|<br\s*\/?>\s*|<span\b[^>]*>\s*(?:&nbsp;|&#160;|\u00A0)?\s*<\/span>\s*)*<\/p>\s*/gi,
+      ""
+    );
+    if (next === out) break;
+    out = next;
+  }
+
+  return out;
+}
+
+function stripLeadingTitleFromHtml(html: string, title: string) {
+  let out = html.trim();
+
+  // Remove leading <h1>/<h2>/<h3> that duplicates the page title.
+  const headingMatch = out.match(/^\s*<h[1-3][^>]*>([\s\S]*?)<\/h[1-3]>\s*/i);
+  if (headingMatch?.[0] && headingMatch?.[1]) {
+    const headingInner = headingMatch[1];
+    const headingText = normalizeTextForCompare(stripHtmlTags(headingInner));
+    const titleText = normalizeTextForCompare(title);
+    if (headingText === titleText) {
+      out = out.slice(headingMatch[0].length).trimStart();
+    }
+  }
+
+  // Remove leading empty paragraphs (&nbsp; or whitespace-only) that often follow editor exports.
+  // Run a few times to clear stacks like: <p>&nbsp;</p><p>&nbsp;</p>
+  for (let i = 0; i < 6; i += 1) {
+    const pMatch = out.match(/^\s*<p[^>]*>([\s\S]*?)<\/p>\s*/i);
+    if (!pMatch?.[0]) break;
+    const pText = normalizeTextForCompare(stripHtmlTags(pMatch[1] ?? ""));
+    if (pText === "" || pText === "&nbsp;" || pText === "nbsp;") {
+      out = out.slice(pMatch[0].length).trimStart();
+      continue;
+    }
+    break;
+  }
+
+  // Also remove empty paragraphs throughout the content to avoid big visual gaps.
+  out = stripEmptyParagraphsEverywhere(out).trim();
+
+  return out;
+}
+
+function getEffectiveHtmlContent(post: BlogPost) {
+  const raw = post.htmlContent?.trim();
+  if (!raw) return null;
+  const sanitized =
+    typeof window !== "undefined" && typeof DOMParser !== "undefined"
+      ? sanitizeHtmlWithDom(raw, post.title)
+      : stripLeadingTitleFromHtml(raw, post.title);
+
+  const finalHtml = sanitized.trim();
+  return finalHtml ? finalHtml : null;
+}
+
 function renderHtmlBody(post: BlogPost, colors: BlogDetailColors, isLuxury: boolean) {
-  if (!post.htmlContent?.trim()) return null;
+  const html = getEffectiveHtmlContent(post);
+  if (!html) return null;
   return (
     <div
       className={`blog-html-content blog-detail-prose ${isLuxury ? "" : "blog-detail-prose-premium"}`}
@@ -24,15 +137,83 @@ function renderHtmlBody(post: BlogPost, colors: BlogDetailColors, isLuxury: bool
           "--theme-text-color": colors.body,
         } as React.CSSProperties
       }
-      dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+      dangerouslySetInnerHTML={{ __html: html }}
     />
   );
 }
 
 function renderStructuredBody(post: BlogPost, colors: BlogDetailColors, theme: string) {
-  return post.content.map((item, index) =>
-    renderContentItem(item, index, colors, theme)
+  const isLuxury = theme === "luxury";
+  return (
+    <div
+      className={`blog-html-content blog-detail-prose ${isLuxury ? "" : "blog-detail-prose-premium"}`}
+      style={
+        {
+          color: colors.body,
+          "--theme-text-color": colors.body,
+        } as React.CSSProperties
+      }
+    >
+      {post.content.map((item, index) => {
+        switch (item.type) {
+          case "heading":
+            return (
+              <h2 key={index} style={{ color: colors.heading }}>
+                {item.text}
+              </h2>
+            );
+          case "subheading":
+            return (
+              <h3 key={index} style={{ color: colors.heading }}>
+                {item.text}
+              </h3>
+            );
+          case "paragraph":
+            return <p key={index}>{item.text}</p>;
+          case "list":
+            return (
+              <ul key={index}>
+                {item.items?.map((li, i) => (
+                  <li key={i}>{li}</li>
+                ))}
+              </ul>
+            );
+          case "table":
+            return (
+              <div key={index} className="overflow-x-auto">
+                <table>
+                  <thead>
+                    <tr>
+                      {item.headers?.map((header, i) => (
+                        <th key={i} style={{ color: colors.heading }}>
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {item.rows?.map((row, i) => (
+                      <tr key={i}>
+                        {row.map((cell, j) => (
+                          <td key={j}>{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          default:
+            return null;
+        }
+      })}
+    </div>
   );
+}
+
+function _unused(item: BlogContentItem) {
+  // keep file compiling if BlogContentItem import is otherwise unused in future edits
+  return item;
 }
 
 function renderContentItem(
@@ -41,102 +222,12 @@ function renderContentItem(
   colors: BlogDetailColors,
   theme: string
 ) {
-  const isLuxury = theme === "luxury";
-  switch (item.type) {
-    case "heading":
-      return (
-        <Typography
-          key={index}
-          variant="h2"
-          className={`mb-3 border-b pb-2 text-left ${index === 0 ? "mt-0" : "mt-7"}`}
-          style={{
-            color: colors.heading,
-            borderColor: isLuxury ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.08)",
-          }}
-        >
-          {item.text}
-        </Typography>
-      );
-    case "subheading":
-      return (
-        <Typography
-          key={index}
-          variant="h3"
-          className={`text-left font-semibold ${index === 0 ? "mt-0" : "mt-6"} mb-2`}
-          style={{ color: colors.heading }}
-        >
-          {item.text}
-        </Typography>
-      );
-    case "paragraph":
-      return (
-        <Typography
-          key={index}
-          variant="body-lg"
-          className={`text-left leading-[1.65] ${index === 0 ? "mt-0" : ""}`}
-          style={{ color: colors.body }}
-        >
-          {item.text}
-        </Typography>
-      );
-    case "list":
-      return (
-        <ul
-          key={index}
-          className={`list-disc space-y-2 pl-5 text-left ${index === 0 ? "mt-0" : "mt-4"}`}
-          style={{ color: colors.body }}
-        >
-          {item.items?.map((li, i) => (
-            <li key={i} className="leading-[1.65] pl-1">
-              <Typography variant="body-lg" className="inline text-inherit" style={{ color: colors.body }}>
-                {li}
-              </Typography>
-            </li>
-          ))}
-        </ul>
-      );
-    case "table":
-      return (
-        <div key={index} className={`overflow-x-auto ${index === 0 ? "mt-0" : "my-6"}`}>
-          <table
-            className={`w-full border-collapse border text-left ${isLuxury ? "border-white/20" : "border-black/10"}`}
-          >
-            <thead>
-              <tr className={isLuxury ? "bg-white/5" : "bg-black/3"}>
-                {item.headers?.map((header, i) => (
-                  <th
-                    key={i}
-                    className={`border px-3 py-2 text-left text-sm font-semibold sm:px-4 sm:py-3 ${isLuxury ? "border-white/20" : "border-black/10"}`}
-                  >
-                    <Typography variant="h4" style={{ color: colors.heading }}>
-                      {header}
-                    </Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {item.rows?.map((row, i) => (
-                <tr key={i}>
-                  {row.map((cell, j) => (
-                    <td
-                      key={j}
-                      className={`border px-3 py-2 sm:px-4 sm:py-3 ${isLuxury ? "border-white/20" : "border-black/10"}`}
-                    >
-                      <Typography variant="body-lg" style={{ color: colors.body }}>
-                        {cell}
-                      </Typography>
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      );
-    default:
-      return null;
-  }
+  // legacy: no longer used (structured posts now use the same `.blog-html-content` styles)
+  void item;
+  void index;
+  void colors;
+  void theme;
+  return null;
 }
 
 export default function BlogDetailPage() {
@@ -165,7 +256,7 @@ export default function BlogDetailPage() {
 
   const isVerticalLayout = post.slug === "sustainable-ceramic-tiles";
 
-  const body = post.htmlContent?.trim()
+  const body = getEffectiveHtmlContent(post)
     ? renderHtmlBody(post, colors, isLuxury)
     : renderStructuredBody(post, colors, theme);
 
@@ -226,13 +317,13 @@ export default function BlogDetailPage() {
           >
             <Typography
               variant="display-xl"
-              className="font-semibold leading-[1.15] tracking-tight mb-5 sm:mb-6 text-left max-w-xl"
+              className="font-semibold leading-[1.1] tracking-tight mb-4 sm:mb-5 text-left max-w-xl text-[26px] sm:text-[34px] md:text-[38px] lg:text-[42px]"
               style={{ color: colors.heading }}
             >
               {post.title}
             </Typography>
 
-            <div className="flex flex-col gap-5 sm:gap-6 text-left">{body}</div>
+            <div className="flex flex-col gap-4 sm:gap-5 text-left">{body}</div>
           </div>
         </div>
       )}
