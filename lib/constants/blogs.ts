@@ -1,5 +1,25 @@
 // Blog Section Constants
 
+import bathroomTileIdeas from "./posts/bathroom-tile-ideas-that-elevate-everyday-spaces.json";
+import biophilicDesignBasics from "./posts/biophilic-design-basics.json";
+import colorPalettesFor2026 from "./posts/color-palettes-for-2026.json";
+import creatingAWarmAndElegantDiningAmbience from "./posts/creating-a-warm-and-elegant-dining-ambience.json";
+import designingAModernBathroom from "./posts/designing-a-modern-bathroom.json";
+import designingAStylishDiningSpace from "./posts/designing-a-stylish-dining-space.json";
+import easyToMaintainFlooringForDiningAreas from "./posts/easy-to-maintain-flooring-for-dining-areas.json";
+import flooringIdeasForContemporaryLivingRooms from "./posts/flooring-ideas-for-contemporary-living-rooms.json";
+import lightingMasteryInteriors from "./posts/lighting-mastery-interiors.json";
+import livingRoomDesignIdeasWithTilesAndSurfaces from "./posts/living-room-design-ideas-with-tiles-and-surfaces.json";
+import minimalistKitchenDesign from "./posts/minimalist-kitchen-design.json";
+import modernBathroomDesignGuide from "./posts/modern-bathroom-design-guide.json";
+import outdoorLivingSpaces from "./posts/outdoor-living-spaces.json";
+import smallSpaceSolutions from "./posts/small-space-solutions.json";
+import smartHomeIntegration from "./posts/smart-home-integration.json";
+import sustainableCeramicTiles from "./posts/sustainable-ceramic-tiles.json";
+import textureInInteriorDesign from "./posts/texture-in-interior-design.json";
+import theImportanceOfQualityTileAccessoriesInFinishing from "./posts/the-importance-of-quality-tile-accessories-in-finishing.json";
+import timelessEleganceCeramics from "./posts/timeless-elegance-ceramics.json";
+
 export const BLOG_IMAGES = {
   premium: {
     banner: "/Blog/Blog_Banner.webp",
@@ -49,3 +69,44 @@ export const BLOG_CONTENT = {
     },
   },
 } as const;
+
+export type BlogContentItem = {
+  type: "paragraph" | "heading" | "subheading" | "list" | "table";
+  text?: string;
+  items?: string[];
+  headers?: string[];
+  rows?: string[][];
+};
+
+export type BlogPost = {
+  id: number;
+  slug: string;
+  title: string;
+  image: string;
+  content: BlogContentItem[];
+  htmlContent?: string;
+};
+
+const blogPostsRaw = [
+  bathroomTileIdeas,
+  biophilicDesignBasics,
+  colorPalettesFor2026,
+  creatingAWarmAndElegantDiningAmbience,
+  designingAModernBathroom,
+  designingAStylishDiningSpace,
+  easyToMaintainFlooringForDiningAreas,
+  flooringIdeasForContemporaryLivingRooms,
+  lightingMasteryInteriors,
+  livingRoomDesignIdeasWithTilesAndSurfaces,
+  minimalistKitchenDesign,
+  modernBathroomDesignGuide,
+  outdoorLivingSpaces,
+  smallSpaceSolutions,
+  smartHomeIntegration,
+  sustainableCeramicTiles,
+  textureInInteriorDesign,
+  theImportanceOfQualityTileAccessoriesInFinishing,
+  timelessEleganceCeramics,
+] as const;
+
+export const BLOG_POSTS = [...blogPostsRaw].sort((a, b) => a.id - b.id) as BlogPost[];

@@ -2,6 +2,7 @@
 
 import Typography from "@/lib/Typography";
 import Image from "next/image";
+import Link from "next/link";
 import { BLOG_IMAGES, BLOG_CONTENT } from "@/lib/constants/blogs";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 
@@ -56,13 +57,20 @@ export default function FlooringIdeasSection() {
           {/* BOTTOM RIGHT IMAGE */}
           <div className="relative w-full aspect-video mt-4
                 xl:aspect-auto xl:h-[clamp(20rem,20vw,20rem)]
-                2xl:h-[clamp(16rem,16vw,16rem)]">
+                2xl:h-[clamp(16rem,16vw,16rem)] group overflow-hidden">
             <Image
               src={currentImages.blog2}
               alt="Modern Living Interior"
               fill
-              className={`object-contain xl:object-cover xl:object-top ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}
+              className={`object-contain xl:object-cover xl:object-top transition-transform duration-500 group-hover:scale-105 ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}
             />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+              <Link href="/blog/modern-bathroom-design-guide">
+                <span className="text-white text-[11px] tracking-[0.18em] uppercase bg-black/40 px-4 py-2 cursor-pointer hover:bg-black/60 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
 

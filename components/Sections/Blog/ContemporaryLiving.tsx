@@ -3,6 +3,7 @@
 import Typography from "@/lib/Typography";
 import { BLOG_CONTENT } from "@/lib/constants/blogs";
 import { useTheme } from "@/lib/contexts/ThemeContext";
+import Link from "next/link";
 
 const Placeholder = () => <div className="w-full h-full bg-neutral-200" />;
 
@@ -56,55 +57,119 @@ export default function FlooringIdeas() {
             <Placeholder />
             {/* swap ↑ for: <Image src="/Blog/Blog1.webp" alt="…" fill className="object-cover" /> */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1">
-                Read Article
-              </span>
+              <Link href="/blog/designing-a-modern-bathroom">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
             </div>
           </div>
 
-          {/* A2 – medium middle */}
-          <div className={`relative col-start-1 row-start-5 row-span-3 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-1 row-start-5 row-span-3 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/bathroom-tile-ideas-that-elevate-everyday-spaces">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* A3 – tall bottom */}
-          <div className={`relative col-start-1 row-start-8 row-span-5 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-1 row-start-8 row-span-5 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/flooring-ideas-for-contemporary-living-rooms">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* B1 – landscape top */}
-          <div className={`relative col-start-2 row-start-1 row-span-3 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-2 row-start-1 row-span-3 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/modern-bathroom-design-guide">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* B2 – landscape second */}
-          <div className={`relative col-start-2 row-start-4 row-span-3 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-2 row-start-4 row-span-3 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/living-room-design-ideas-with-tiles-and-surfaces">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* B3 – landscape third */}
-          <div className={`relative col-start-2 row-start-7 row-span-3 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-2 row-start-7 row-span-3 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/designing-a-stylish-dining-space">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* B4 – landscape bottom */}
-          <div className={`relative col-start-2 row-start-10 row-span-3 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-2 row-start-10 row-span-3 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/easy-to-maintain-flooring-for-dining-areas">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* C1 – short top */}
-          <div className={`relative col-start-3 row-start-1 row-span-3 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-3 row-start-1 row-span-3 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/bathroom-tile-ideas-that-elevate-everyday-spaces">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* C2 – medium middle */}
-          <div className={`relative col-start-3 row-start-4 row-span-3 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-3 row-start-4 row-span-3 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/the-importance-of-quality-tile-accessories-in-finishing">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
 
           {/* C3 – tall bottom */}
-          <div className={`relative col-start-3 row-start-7 row-span-6 overflow-hidden ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
+          <div className={`relative col-start-3 row-start-7 row-span-6 overflow-hidden group ${theme === "luxury" ? "border-2 border-[#F79440]" : ""}`}>
             <Placeholder />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href="/blog/creating-a-warm-and-elegant-dining-ambience">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
 
