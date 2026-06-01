@@ -23,7 +23,7 @@ export interface TypographyProps {
 const variantStyles = {
   // Display - Hero (largest, clear hierarchy)
   // Mobile → Small → Medium → Desktop
-  "display-3xl": "text-[32px] sm:text-[40px] md:text-[50px] lg:text-[65px] font-bold",
+  "display-3xl": "text-[30px] sm:text-[35px] md:text-[40px] lg:text-[65px] font-bold",
   "display-2xl": "text-[28px] sm:text-[32px] md:text-[35px] lg:text-[38px] font-bold",
   "display-xl": "text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-bold",
 

@@ -121,10 +121,10 @@ export default function LivingRoom() {
   };
 
   return (
-    <div className="mt-2 md:mt-16 pb-2 select-none">
+    <div className="mt-2 lg:mt-16 select-none">
       <Typography
         variant="display-3xl"
-        className="text-[#F79440] font-normal mb-4 text-center"
+        className="text-[#F79440] font-normal text-center"
       >
         Living
       </Typography>

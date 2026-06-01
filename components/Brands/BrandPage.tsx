@@ -60,24 +60,24 @@ export default function BrandPage({ brand }: BrandPageProps) {
       `}</style>
       <div className="flex flex-col items-center justify-center px-4 md:px-8 mt-2 mb-12 pop-up">
         <div
-          className="w-full rounded-[4.5rem] p-6 md:p-10"
+          className="w-full rounded-[4.5rem] p-2 md:p-10"
           style={{ border: `4px solid ${accentColor}` }}
         >
           {/* Header */}
           <div className="flex flex-col items-center mb-6">
-            <Typography variant="display-2xl" className="font-semibold mb-6 text-center tracking-wide" style={{color:"#F79440"}}>
+            <Typography variant="display-2xl" className="font-semibold mb-2 lg:mb-6 text-center tracking-wide" style={{color:"#F79440"}}>
               {brand.name}
             </Typography>
-            <Typography variant="h1" className="font-medium mb-8 text-center" style={{ color: theme === "luxury" ? "#FFFFFF" : "#7E7669" }}>
+            <Typography variant="h1" className="font-medium mb-2 lg:mb-8 text-center" style={{ color: theme === "luxury" ? "#FFFFFF" : "#7E7669" }}>
               {brand.tagline}
             </Typography>
-            <Typography variant="h2" className="font-light text-center mb-2 md:mb-4 lg:mb-14 leading-relaxed" style={{ color: theme === "luxury" ? "#FFFFFF" : "#7E7669" }}>
+            <Typography variant="h2" className="font-light text-center mb-0 md:mb-4 lg:mb-14 leading-relaxed" style={{ color: theme === "luxury" ? "#FFFFFF" : "#7E7669" }}>
               {brand.description}
             </Typography>
           </div>
 
           {/* Images — carousel on small, grid on md+ */}
-          <div className="relative w-full mb-6">
+          <div className="relative w-full mb-2 lg:mb-6">
             {/* Left arrow — mobile only */}
             <button
               onClick={() => scroll("left")}
@@ -134,8 +134,8 @@ export default function BrandPage({ brand }: BrandPageProps) {
                     alt={`${brand.name} ${index + 1}`}
                     width={400}
                     height={300}
-                    className="w-[50vw] h-auto"
-                    style={{ border: `1px solid ${accentColor}` }}
+                    className="w-[40vw] h-auto"
+                    style={{ border: `1px solid ${accentColor}`, borderRadius: "2.5rem" }}
                   />
                 </div>
               ))}
@@ -152,7 +152,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                   height={300}
                   className="w-full h-auto object-contain"
                     style={{
-                      borderRadius: "1.25rem",
+                      borderRadius: "1.5rem",
                       border: `1px solid ${accentColor}`,
                     }}
                 />

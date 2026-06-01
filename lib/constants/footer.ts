@@ -10,10 +10,12 @@ export const ABOUT_LINKS = [
 ];
 
 export const PRODUCT_LINKS = [
-  { label: "Tiles", href: "/collection"},
-  { label: "Kitchen Accessories", href: "/collection" },
-  { label: "Bathroom Fittings", href: "/collection" },
-  { label: "Allied Products", href: "/collection" },
+  { label: "Living Accessories", href: "/collection#living-room"},
+  { label: "Kitchen Accessories", href: "/collection#kitchen" },
+  { label: "Bathroom Fittings", href: "/collection#bathroom" },
+  { label: "Dining Accessories", href: "/collection#dining" },
+  { label: "Allied Products", href: "/collection#allied-accessories" },
+  
 ];
 
 export const SOCIAL = [

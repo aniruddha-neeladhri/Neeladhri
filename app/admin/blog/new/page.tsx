@@ -1,10 +1,14 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Editor } from "@tinymce/tinymce-react";
+import dynamic from "next/dynamic";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 
+const Editor = dynamic(
+  () => import("@tinymce/tinymce-react").then((mod) => mod.Editor),
+  { ssr: false }
+);
 export default function AddBlogPage() {
   const { theme } = useTheme();
   const [title, setTitle] = useState("");
