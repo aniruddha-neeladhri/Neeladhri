@@ -32,7 +32,7 @@ export default function InsightsHero() {
 
         {/* Center Text */}
         <div className="absolute inset-0 flex items-center justify-center text-center px-6">
-          <Typography variant="display-2xl" className="text-[#2D200A] font-normal leading-snug max-w-[700px]">
+          <Typography variant="display-xl" className="text-[#2D200A] font-normal leading-snug max-w-[700px]">
             {currentContent.hero.title.split('\n').map((line: string, i: number) => (
               <span key={i}>
                 {line}

@@ -115,7 +115,6 @@ export default function GallerySection() {
     };
   };
 
-  // ── Gloss follows per-card cursor ──────────────────────────────────────────
   const glossStyle = (idx: number): React.CSSProperties => {
     const tilt = tiltMap[idx] ?? { rx: 0, ry: 0 };
     return {
@@ -149,7 +148,7 @@ export default function GallerySection() {
         <button
           onClick={() => nav(-1)}
           aria-label="Previous"
-          className="absolute left-1 z-50 top-1/2 -translate-y-1/2 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center text-white text-3xl md:text-4xl font-thin leading-none hover:text-white/70 active:scale-50 active:rotate-12 transition-all duration-150 ease-out cursor-pointer"
+          className="absolute left-1 z-50 top-1/2 -translate-y-1/2 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center text-white text-3xl md:text-4xl font-semibold leading-none hover:text-white/70 active:scale-50 active:rotate-12 transition-all duration-150 ease-out cursor-pointer"
         >
           &#8249;
         </button>
@@ -174,7 +173,7 @@ export default function GallerySection() {
                 }}
                 onMouseMove={(e) => handleMouseMove(e, idx)}
                 onMouseLeave={() => handleMouseLeave(idx)}
-                className="absolute top-1/2 overflow-hidden border-[2px] [will-change:transform,opacity,left] [border-radius:clamp(6px,1vw,12px)]"
+                className="absolute top-1/2 overflow-hidden border-[2px] [will-change:transform,opacity,left]"
               >
                 <div
                   className="absolute inset-0 z-10 pointer-events-none"
@@ -196,7 +195,7 @@ export default function GallerySection() {
         <button
           onClick={() => nav(1)}
           aria-label="Next"
-          className="absolute right-1 z-50 top-1/2 -translate-y-1/2 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center text-white text-3xl md:text-4xl font-thin leading-none hover:text-white/70 active:scale-50 active:-rotate-12 transition-all duration-150 ease-out cursor-pointer"
+          className="absolute right-1 z-50 top-1/2 -translate-y-1/2 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center text-white text-3xl md:text-4xl font-semibold leading-none hover:text-white/70 active:scale-50 active:-rotate-12 transition-all duration-150 ease-out cursor-pointer"
         >
           &#8250;
         </button>

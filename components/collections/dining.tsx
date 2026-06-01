@@ -122,10 +122,10 @@ export default function Dining() {
   };
 
   return (
-    <div className="mt-2 pb-2 select-none">
+    <div className="mt-0 md:mt-2 select-none">
       <Typography
         variant="display-3xl"
-        className="text-[#F79440] font-normal mb-4 text-center"
+        className="text-[#F79440] font-normal mb-0 lg:mb-4 text-center"
       >
         Dining
       </Typography>
