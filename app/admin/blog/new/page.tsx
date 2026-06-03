@@ -20,7 +20,7 @@ export default function AddBlogPage() {
   const editorRef = useRef<any>(null);
 
   const textColor = theme === "luxury" ? "#FFFFFF" : "#000000";
-  const bgColor = theme === "luxury" ? "#1A1A1A" : "#FFFFFF";
+  const bgColor = theme === "luxury" ? "#000000" : "#FFFFFF";
   const borderColor = theme === "luxury" ? "border-white/20" : "border-black/20";
   const inputBg = theme === "luxury" ? "bg-white/5" : "bg-black/5";
 

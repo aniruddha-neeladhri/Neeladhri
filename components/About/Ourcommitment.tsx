@@ -9,75 +9,60 @@ export default function OurCommitment() {
   const { theme } = useTheme();
   const isLuxury = theme === "luxury";
   const commitments = COMMITMENTS_DATA[theme];
-  const textColor = isLuxury ? "text-white" : "text-black";
+  const textColor = isLuxury ? "#FFFFFF" : "#555555";
 
   return (
-    <section className="w-full py-2 px-6 lg:px-20">
-      <style>{`
-        @keyframes iconFlip {
-          0%   { transform: rotateY(0deg); }
-          40%  { transform: rotateY(90deg); }
-          100% { transform: rotateY(0deg); }
-        }
-        @keyframes floatUpDown {
-          0%   { transform: translateY(0px); }
-          50%  { transform: translateY(-10px); }
-          100% { transform: translateY(0px); }
-        }
-        .commitment-card {
-          transition: box-shadow 0.3s ease;
-        }
-        .commitment-card:hover {
-          animation: floatUpDown 1.6s ease-in-out infinite;
-          box-shadow: 0 12px 32px rgba(247, 148, 64, 0.2);
-        }
-        .commitment-card:hover .flip-icon {
-          animation: iconFlip 0.25s ease-in-out forwards;
-        }
-      `}</style>
+    <section className="w-full py-2 px-4 sm:px-8 md:px-20 lg:px-8 xl:px-24 mb-4 lg:mb-8">
+      <div className="w-full flex flex-col items-center gap-8 md:gap-10 lg:gap-12">
 
-      <div className="max-w-[1400px] mx-auto flex flex-col gap-4 md:gap-4">
-
-        <Typography variant="display-xl" className={`font-normal ${textColor}`}>
+        {/* Heading */}
+        <Typography
+          variant="display-xl"
+          className="font-semibold text-center"
+          style={{ color: textColor }}
+        >
           Our Commitment
         </Typography>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16 mt-8 sm:mt-10">
+        {/* Grid */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-y-12 gap-x-8 sm:gap-x-12 md:gap-x-16 lg:gap-x-10 xl:gap-x-14">
           {commitments.map((item, i) => (
             <div
               key={i}
-              className="commitment-card relative flex flex-col items-center gap-4 pt-12 sm:pt-14 pb-8 px-6"
-              style={{ border: "1px solid #F79440" }}
+              className="flex flex-col items-center gap-3 w-full max-w-[280px] mx-auto sm:max-w-none"
             >
-              {/* Icon Circle */}
-              <div
-                className={`absolute -top-7 sm:-top-8 lg:-top-10 left-1/2 -translate-x-1/2
-                            w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20
-                            rounded-full border border-[#F79440]
-                            flex items-center justify-center shadow-sm
-                            [perspective:400px] ${
-                              isLuxury ? "bg-[#6B6B6B]" : "bg-[#D9D9D9]"
-                            }`}
-              >
+              {/* Icon */}
+              <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center flex-shrink-0">
                 <Image
                   src={item.icon}
                   alt={item.title}
-                  width={44}
-                  height={44}
-                  className="flip-icon object-contain w-7 h-7 sm:w-8 sm:h-8 lg:w-11 lg:h-11"
+                  width={64}
+                  height={64}
+                  className="object-contain w-full h-full"
                 />
               </div>
 
-              <Typography variant="h2" className={`font-normal text-center ${textColor}`}>
+              {/* Title */}
+              <Typography
+                variant="h2"
+                className="font-normal text-center leading-snug"
+                style={{ color: textColor }}
+              >
                 {item.title}
               </Typography>
 
-              <Typography variant="body-xl" className={`font-light text-center leading-relaxed ${textColor}`}>
+              {/* Description */}
+              <Typography
+                variant="body-xl"
+                className="font-light text-center leading-relaxed"
+                style={{ color: textColor }}
+              >
                 {item.description}
               </Typography>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

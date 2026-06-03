@@ -11,42 +11,75 @@ export default function AboutSection() {
   const textColor = content.textColor;
 
   return (
-    <section className="w-full py-2 md:py-4 lg:py-8 px-6 lg:px-20">
-      <div className="max-w-[1400px] mx-auto">
-        {/* About Us Heading - Full Width */}
-        <div className="text-start mb-8">
-          <Typography variant="display-xl" className="font-semibold tracking-wide uppercase" style={{ color: textColor }}>
-            {content.heading}
-          </Typography>
+    <section className="w-full pt-6 pb-4 md:pt-10 md:pb-6 lg:pt-14 lg:pb-8 px-6 lg:px-20">
+      <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row lg:items-stretch gap-6 lg:gap-10">
+
+        {/* MOBILE / TABLET: natural aspect ratio, zero empty space, capped width */}
+        <div className="block lg:hidden w-[85%] sm:w-[75%] mx-auto rounded-2xl overflow-hidden">
+          <Image
+            src={content.image}
+            alt="Neeladhri Ceramics – modern living space"
+            width={800}
+            height={534}
+            className="w-full h-auto block"
+            priority
+          />
         </div>
-        {/* Content Row */}
-        <div className="flex flex-col md:flex-row gap-8 md:gap-4 lg:gap-12 xl:gap-32 items-stretch">
-          {/* Left Side - Image stretches to match content height */}
-          <div className="w-full md:w-[40%] lg:w-[40%] flex-shrink-0 relative min-h-[300px]">
-            <Image
-              src={content.image}
-              alt="About Us"
-              fill
-              className="object-cover object-center"
-              priority
-            />
+
+        {/* DESKTOP lg+: fill to stretch full height of text column */}
+        <div className="hidden lg:block lg:w-[52%] lg:flex-none lg:self-stretch relative rounded-2xl overflow-hidden">
+          <Image
+            src={content.image}
+            alt="Neeladhri Ceramics – modern living space"
+            fill
+            className="object-cover object-bottom"   //use cover if needed
+            priority
+          />
+        </div>
+
+        {/* ── TEXT ── */}
+        <div className="flex-1 flex flex-col gap-2">
+
+          {/* Eyebrow — centred below lg, left on lg+ */}
+          <div>
+            <Typography
+              variant="overline"
+              className="block tracking-[0.2em] uppercase text-center lg:text-left"
+              style={{ color: "#F79440" }}
+            >
+              {content.heading}
+            </Typography>
           </div>
-          {/* Right Side - Content */}
-          <div className="w-full md:flex-1 flex flex-col gap-6">
-            <Typography variant="display-xl" className="font-normal text-center md:text-left" style={{ color: textColor }}>
+
+          {/* Title — centred below lg, left on lg+ */}
+          <div>
+            <Typography
+              variant="h1"
+              className="font-normal leading-snug text-center lg:text-left"
+              style={{ color: textColor }}
+            >
               {content.title.split("\n").map((line, i) => (
                 <span key={i}>
                   {i > 0 && <br />}
-                  {line}
+                  {line.trim()}
                 </span>
               ))}
             </Typography>
-            {content.paragraphs.map((para, i) => (
-              <Typography key={i} variant="body-xl" className="leading-relaxed font-light" style={{ color: textColor }}>
+          </div>
+
+          {/* Paragraphs */}
+          {content.paragraphs.map((para, i) => (
+            <div key={i}>
+              <Typography
+                variant="body-lg"
+                className="font-light leading-loose"
+                style={{ color: textColor }}
+              >
                 {para}
               </Typography>
-            ))}
-          </div>
+            </div>
+          ))}
+
         </div>
       </div>
     </section>
