@@ -124,7 +124,7 @@ export default function LivingRoom() {
     <div className="mt-2 lg:mt-16 select-none">
       <Typography
         variant="display-3xl"
-        className={`font-normal text-center ${theme === "luxury" ? "text-[#D3B898]" : "text-[#F79440]"}`}
+        className={`font-normal text-center ${theme === "luxury" ? "text-[#D3B898]" : "text-[#555555]"}`}
       >
         Living
       </Typography>
