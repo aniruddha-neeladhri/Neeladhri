@@ -25,7 +25,12 @@ export default function BrandPage({ brand }: BrandPageProps) {
   }
 
   const theme: "luxury" | "premium" = LUXURY_BRAND_IDS.has(brand.id) ? "luxury" : "premium";
-  const accentColor = theme === "luxury" ? "#F79440" : "#7E7669";
+  const isLuxury = theme === "luxury";
+  const accentColor = isLuxury ? "#D3B898" : "#7E7669";
+  const brandNameColor = isLuxury ? "#D3B898" : "#555555";
+  const bodyTextColor = isLuxury ? "#FFFFFF" : "#555555";
+  const textAlign = isLuxury ? "text-left" : "text-center";
+  const flexAlign = isLuxury ? "items-start" : "items-center";
 
   const scroll = (direction: "left" | "right") => {
     const container = scrollRef.current;
@@ -58,20 +63,20 @@ export default function BrandPage({ brand }: BrandPageProps) {
           animation: popUp 0.5s ease-out;
         }
       `}</style>
-      <div className="flex flex-col items-center justify-center px-4 md:px-8 mt-2 mb-12 pop-up">
+      <div className={`flex flex-col ${flexAlign} justify-center px-4 md:px-8 mt-2 mb-12 pop-up`}>
         <div
-          className="w-full rounded-[4.5rem] p-2 md:p-10"
+          className={`w-full p-2 md:p-10 ${isLuxury ? "" : "rounded-[4.5rem]"}`}
           style={{ border: `4px solid ${accentColor}` }}
         >
           {/* Header */}
-          <div className="flex flex-col items-center mb-6">
-            <Typography variant="display-2xl" className="font-semibold mb-2 lg:mb-6 text-center tracking-wide" style={{color:"#F79440"}}>
+          <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
+            <Typography variant="display-2xl" className={`font-semibold mb-2 lg:mb-6 ${textAlign} tracking-wide`} style={{ color: brandNameColor }}>
               {brand.name}
             </Typography>
-            <Typography variant="h1" className="font-medium mb-2 lg:mb-8 text-center" style={{ color: theme === "luxury" ? "#FFFFFF" : "#7E7669" }}>
+            <Typography variant="h1" className={`font-medium mb-2 lg:mb-8 ${textAlign}`} style={{ color: bodyTextColor }}>
               {brand.tagline}
             </Typography>
-            <Typography variant="h2" className="font-light text-center mb-0 md:mb-4 lg:mb-14 leading-relaxed" style={{ color: theme === "luxury" ? "#FFFFFF" : "#7E7669" }}>
+            <Typography variant="h2" className={`font-light ${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed`} style={{ color: bodyTextColor }}>
               {brand.description}
             </Typography>
           </div>
@@ -134,8 +139,8 @@ export default function BrandPage({ brand }: BrandPageProps) {
                     alt={`${brand.name} ${index + 1}`}
                     width={400}
                     height={300}
-                    className="w-[40vw] h-auto"
-                    style={{ border: `1px solid ${accentColor}`, borderRadius: "2.5rem" }}
+                    className="w-[40vw] h-auto object-contain border-6 rounded-[2.5rem] sm:rounded-[5rem]"
+                    style={{ borderColor: accentColor }}
                   />
                 </div>
               ))}
@@ -150,11 +155,8 @@ export default function BrandPage({ brand }: BrandPageProps) {
                   alt={`${brand.name} ${index + 1}`}
                   width={400}
                   height={300}
-                  className="w-full h-auto object-contain"
-                    style={{
-                      borderRadius: "1.5rem",
-                      border: `1px solid ${accentColor}`,
-                    }}
+                  className="w-full h-auto object-contain border-6 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem]"
+                  style={{ borderColor: accentColor }}
                 />
               ))}
             </div>
