@@ -28,52 +28,60 @@ const features = [
 export default function WhatDefinesUs() {
   return (
     <section className="relative w-full py-10 md:py-14 lg:py-20 px-6 lg:px-20 overflow-hidden">
+
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/About/about1.png')" }}
       />
 
-      {/* Black Overlay */}
-      <div className="absolute inset-0 bg-black/50" />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/55" />
 
       {/* Content */}
       <div className="relative z-10 max-w-[1400px] mx-auto flex flex-col gap-8 md:gap-12">
-        {/* Heading */}
-        <Typography variant="display-2xl" className="text-white font-normal">
+
+        {/* Heading — centred at all screen sizes */}
+        <Typography
+          variant="display-xl"
+          className="text-white font-semibold text-center w-full"
+        >
           What Defines Us
         </Typography>
 
-        {/* 2x2 Grid */}
+        {/* 2×2 grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
           {features.map((feature, i) => (
             <div
               key={i}
-              className="group flex flex-col gap-6 pt-0 pb-8 overflow-hidden cursor-pointer"
-              style={{ border: "1px solid #F79440" }}
+              className={[
+                "group flex flex-col gap-3 px-6 py-6 md:px-8 md:py-8",
+                "cursor-pointer transition-all duration-300 ease-out",
+                "hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(247,148,64,0.3)] rounded-lg",
+              ].join(" ")}
+              style={{ border: "2px solid #F7944080" }}
             >
-              {/* Card Title - pops up and glows on hover */}
-              <div className="w-full bg-white/50 backdrop-blur-sm py-4 px-6 text-center">
-                <Typography
-                  variant="h2"
-                  className="text-[#FFFFFF] font-normal tracking-wide
-                    transition-all duration-300 ease-out
-                    group-hover:-translate-y-1
-                    group-hover:drop-shadow-[0_0_10px_rgba(247,148,64,1)]"
-                >
-                  {feature.title}
-                </Typography>
-              </div>
-              {/* Card Description */}
+              {/* Title — bold, white, left-aligned */}
+              <Typography
+                variant="h2"
+                className="text-white font-semibold leading-snug
+                  transition-all duration-300 ease-out
+                  group-hover:drop-shadow-[0_0_8px_rgba(247,148,64,0.8)]"
+              >
+                {feature.title}
+              </Typography>
+
+              {/* Description — muted white, left-aligned */}
               <Typography
                 variant="body-xl"
-                className="text-white/80 font-normal text-center leading-relaxed px-6"
+                className="text-[#FFFFFF] font-light leading-relaxed"
               >
                 {feature.description}
               </Typography>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

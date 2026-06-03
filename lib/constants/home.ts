@@ -1,3 +1,24 @@
+export const HOME_HERO = {
+  premium: {
+    titleLine1: "Crafted to",
+    titleLine2: "Inspire",
+    subtitleLine1: "PREMIUM CERAMIC DECOR",
+    subtitleLine2: "FOR REFINED INTERIORS",
+    cta: "EXPLORE COLLECTION →",
+    ctaHref: "/collection",
+    image: "/Home/premiumhome.png",
+    buttonBg: "#61523A",
+  },
+  luxury: {
+    titleLine1: "Dark Luxury Style",
+    titleLine2: "Elevating Everyday Living",
+    cta: "EXPLORE COLLECTION →",
+    ctaHref: "/collection",
+    image: "/Home/luxuryhome.png",
+    buttonBg: "#55524E9C",
+  },
+} as const;
+
 export const SPACES_DATA = {
   premium: [
     {

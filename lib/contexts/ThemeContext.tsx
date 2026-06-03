@@ -2,7 +2,19 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-type ThemeMode = "premium" | "luxury";
+export type ThemeMode = "premium" | "luxury";
+
+/** Page / section background per theme */
+export const THEME_PAGE_BG: Record<ThemeMode, string> = {
+  premium: "#FFFFFF",
+  luxury: "#000000",
+};
+
+/** Default body / content text color per theme */
+export const THEME_FOREGROUND: Record<ThemeMode, string> = {
+  premium: "#171717",
+  luxury: "#FFFFFF",
+};
 
 interface ThemeContextType {
   theme: ThemeMode;

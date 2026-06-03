@@ -6,25 +6,40 @@ import { AnimatePresence } from "framer-motion";
 import Navbar from "./Navbar";
 import FullscreenMenu from "./FullscreenMenu";
 
+const NAVBAR_HEIGHT = 80;
+const HOMEPAGE_SECTION_ID = "homepage-hero-section";
+
 export default function ScrollTriggeredNavbar() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
   useEffect(() => {
+    if (!isHomePage) {
+      setIsVisible(true);
+      return;
+    }
+
     const handleScroll = () => {
-      if (!isHomePage) return;
-      const scrollThreshold = window.innerHeight * 4;
-      setIsVisible(window.scrollY >= scrollThreshold);
+      const homeSection = document.getElementById(HOMEPAGE_SECTION_ID);
+      if (!homeSection) {
+        setIsVisible(false);
+        return;
+      }
+
+      const top = homeSection.getBoundingClientRect().top;
+      setIsVisible(top <= NAVBAR_HEIGHT);
     };
 
-    if (!isHomePage) setIsVisible(true);
-
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [isHomePage]);
 
   return (

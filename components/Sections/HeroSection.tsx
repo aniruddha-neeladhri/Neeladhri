@@ -1,14 +1,10 @@
 "use client";
 import { useEffect, useRef } from "react";
-import Kitchen from "./Kitchen";
-import LivingRoom from "./LivingRoom";
-import Bathroom from "./Bathroom";
-import DiningRoom from "./DiningRoom";
 import TileAnimation from "./TileAnimation";
 import Typography from "@/lib/Typography";
 import HomeBrands from "./HomeBrands";
 import ModernSpace from "./ModernSpace";
-
+import HomePage from "./homepage";
 // Responsive zoom scroll - smaller on mobile for better UX
 const getZoomScrollVH = () => {
   if (typeof window === "undefined") return 300;
@@ -22,9 +18,9 @@ function easeInOut(t: number): number {
 }
 
 export default function HeroSection() {
-  const heroBgRef   = useRef<HTMLDivElement>(null);
+  const heroBgRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
-  const overlayRef  = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Update responsive value
@@ -33,7 +29,7 @@ export default function HeroSection() {
 
     const onScroll = () => {
       const raw = Math.min(Math.max(window.scrollY / zoomPx, 0), 1);
-      const p   = easeInOut(raw); // smoothed progress 0 → 1
+      const p = easeInOut(raw); // smoothed progress 0 → 1
 
       // ── Hero background: zoom 1 → 5
       if (heroBgRef.current) {
@@ -105,12 +101,9 @@ export default function HeroSection() {
       </div>
       <div style={{ height: `${ZOOM_SCROLL_VH}dvh` }} aria-hidden="true" className="w-full" />
       {/* <TileAnimation /> */}
-      <div className="w-full">
-        <Kitchen />
-        <LivingRoom />
-        <Bathroom />
-        <DiningRoom />
-        <HomeBrands/>
+      <div id="homepage-hero-section" className="w-full">
+        <HomePage />
+        <HomeBrands />
         <ModernSpace />
       </div>
     </>

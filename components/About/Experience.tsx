@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Typography from "@/lib/Typography";
-import { useTheme } from "@/lib/contexts/ThemeContext";
+import { THEME_FOREGROUND, useTheme } from "@/lib/contexts/ThemeContext";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
@@ -12,8 +13,14 @@ const stats = [
 ];
 
 const highlights = [
-  "We take pride in offering a well-rounded range of solutions that cater to every aspect of modern interiors.",
-  "Our strengths lie in quality selection, design understanding, and customer focused service.",
+  {
+    icon: "/About/houseplan.png",
+    text: "We take pride in offering a well-rounded range of solutions that cater to every aspect of modern interiors.",
+  },
+  {
+    icon: "/About/security.png",
+    text: "Our strengths lie in quality selection, design understanding, and customer focused service.",
+  },
 ];
 
 const DURATION = 2200;
@@ -27,25 +34,17 @@ function useCountUp(target: number, start: boolean) {
 
   useEffect(() => {
     if (!start) return;
-
     setCount(0);
     const startTime = performance.now();
-
     const tick = (now: number) => {
       const elapsed = now - startTime;
       const raw = Math.min(elapsed / DURATION, 1);
       const eased = easeOutQuart(raw);
       const current = Math.round(eased * target);
-
       setCount(Math.min(current, target));
-
-      if (raw < 1) {
-        requestAnimationFrame(tick);
-      } else {
-        setCount(target);
-      }
+      if (raw < 1) requestAnimationFrame(tick);
+      else setCount(target);
     };
-
     requestAnimationFrame(tick);
   }, [start, target]);
 
@@ -57,14 +56,14 @@ function StatItem({
   suffix,
   label,
   started,
+  labelColor,
 }: {
   value: number;
   suffix: string;
   label: string;
   started: boolean;
+  labelColor: string;
 }) {
-  const { theme } = useTheme();
-  const isLuxury = theme === "luxury";
   const count = useCountUp(value, started);
 
   return (
@@ -77,7 +76,8 @@ function StatItem({
       </Typography>
       <Typography
         variant="body-xl"
-        className={`font-light text-center ${isLuxury ? "text-white" : "text-black"}`}
+        className="font-light text-center"
+        style={{ color: labelColor }}
       >
         {label}
       </Typography>
@@ -88,6 +88,7 @@ function StatItem({
 export default function StatsSection() {
   const { theme } = useTheme();
   const isLuxury = theme === "luxury";
+  const statLabelColor = THEME_FOREGROUND[theme];
   const sectionRef = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
 
@@ -102,33 +103,58 @@ export default function StatsSection() {
     return () => observer.disconnect();
   }, [started]);
 
+  // card bg: luxury → dark with orange border, premium → warm cream
+  const cardBg = isLuxury
+    ? "bg-transparent border border-[#F79440]"
+    : "bg-[#F5EFE6]";
+
   return (
     <section className="w-full py-6 md:py-10 lg:py-14 px-6 lg:px-20">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-10 md:gap-14">
 
-        {/* Top - Two highlight boxes */}
+        {/* ── Highlight Cards ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-          {highlights.map((text, i) => (
+          {highlights.map((item, i) => (
             <div
               key={i}
-              className={`group px-6 py-6 md:px-8 md:py-8 flex items-center justify-center cursor-pointer
-                transition-all duration-300 ease-out
-                hover:-translate-y-2
-                hover:shadow-[0_12px_40px_rgba(247,148,64,0.35)]
-                ${isLuxury ? "border border-[#F79440] bg-transparent" : "bg-[#4a4a4a]"}`}
+              className={[
+                "group flex flex-row items-center gap-5 px-6 py-6 md:px-8 md:py-8",
+                "cursor-pointer transition-all duration-300 ease-out",
+                "hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(247,148,64,0.25)]",
+                cardBg,
+              ].join(" ")}
             >
+              {/* Icon — white circular background */}
+              <div className="flex-none w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm">
+                <Image
+                  src={item.icon}
+                  alt=""
+                  width={30}
+                  height={30}
+                  className="object-contain"
+                />
+              </div>
+
+              {/* Text */}
               <Typography
                 variant="body-xl"
-                className="text-center leading-relaxed font-normal transition-transform duration-300 group-hover:scale-[1.02] text-white"
+                className={[
+                  "leading-relaxed font-light flex-1",
+                  isLuxury ? "text-white" : "text-[#555555]",
+                ].join(" ")}
               >
-                {text}
+                {item.text}
               </Typography>
             </div>
           ))}
         </div>
 
-        {/* Bottom - Stats row */}
-        <div ref={sectionRef} className="flex flex-wrap justify-between gap-y-8">
+        {/* ── Stats Row ── */}
+        <div
+          ref={sectionRef}
+          className="flex flex-wrap justify-between gap-y-8"
+          style={{ color: statLabelColor }}
+        >
           {stats.map((stat, i) => (
             <StatItem
               key={i}
@@ -136,6 +162,7 @@ export default function StatsSection() {
               suffix={stat.suffix}
               label={stat.label}
               started={started}
+              labelColor={statLabelColor}
             />
           ))}
         </div>

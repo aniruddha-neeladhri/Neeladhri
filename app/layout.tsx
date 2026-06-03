@@ -95,8 +95,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={robotoSlab.variable}>
-      <body className="antialiased">
+    <html lang="en" className={`${robotoSlab.variable} theme-premium`}>
+      <body className="antialiased theme-premium">
         <ThemeProvider>
           <ThemeWrapper />
           <ScrollToTop />

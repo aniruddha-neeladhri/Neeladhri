@@ -9,39 +9,32 @@ export default function ShowroomBanner() {
   const isLuxury = theme === "luxury";
 
   return (
-    <section className={`w-full px-6 lg:px-20 py-6 md:py-8 lg:py-10 ${isLuxury ? "bg-[#3D3A3A]" : "bg-white"}`}>
-      <div className="max-w-[1400px] mx-auto">
-        {/* Framed Container */}
-        <div className="relative w-full overflow-hidden min-h-[50vh] md:min-h-[65vh] lg:min-h-[75vh] flex items-center justify-center">
+    <section className="w-full">
+      <div
+        className={`relative w-full min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] lg:min-h-[70vh] flex items-end justify-center
+          bg-cover bg-center bg-no-repeat
+          ${isLuxury ? "bg-[url('/About/aboutluxury3.png')]" : "bg-[url('/About/about3.png')]"}`}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/50" />
 
-          {/* Background Image */}
-          <div
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${isLuxury ? "bg-[url('/About/aboutluxury3.png')]" : "bg-[url('/About/about3.png')]"}`}
-          />
-          
-          {/* Black Overlay */}
-          <div className="absolute inset-0 bg-black/50" />
+        {/* Content pinned to bottom center */}
+        <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-5 px-4 pb-8 sm:pb-10 md:pb-12 lg:pb-16 text-center">
+          <Typography
+            variant="display-xl"
+            className="text-white font-normal leading-snug"
+          >
+            Visit Our Showroom <br />
+            We'll Help You Build Spaces That Inspire
+          </Typography>
 
-          {/* Content — centered */}
-          <div className="relative z-10 flex flex-col items-center justify-center gap-6 px-6 text-center">
-            <Typography
-              variant="display-xl"
-              className="text-white font-light leading-snug"
-            >
-              Visit Our Showroom <br />
-              We Help You Build Spaces That Inspire
-            </Typography>
-
-            <Link href="/contact">
-              <button
-                className="mt-2 px-8 py-3 rounded-full text-white font-medium bg-[#F79440] cursor-pointer"
-              >
-                <Typography variant="body-xl" className="text-white font-light">
-                  Get started
-                </Typography>
-              </button>
-            </Link>
-          </div>
+          <Link href="/contact">
+            <button className="mt-1 px-8 py-3 rounded-full bg-[#F79440] cursor-pointer">
+              <Typography variant="body-xl" className="text-white font-light">
+                Get started
+              </Typography>
+            </button>
+          </Link>
         </div>
       </div>
     </section>

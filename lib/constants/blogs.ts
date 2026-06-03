@@ -20,14 +20,56 @@ import textureInInteriorDesign from "./posts/texture-in-interior-design.json";
 import theImportanceOfQualityTileAccessoriesInFinishing from "./posts/the-importance-of-quality-tile-accessories-in-finishing.json";
 import timelessEleganceCeramics from "./posts/timeless-elegance-ceramics.json";
 
+/** Same 10 article links as premium ContemporaryLiving grid */
+export const BLOG_DISCOVER_HREFS = [
+  "/blog/designing-a-modern-bathroom",
+  "/blog/flooring-ideas-for-contemporary-living-rooms",
+  "/blog/bathroom-tile-ideas-that-elevate-everyday-spaces",
+  "/blog/the-importance-of-quality-tile-accessories-in-finishing",
+  "/blog/modern-bathroom-design-guide",
+  "/blog/living-room-design-ideas-with-tiles-and-surfaces",
+  "/blog/designing-a-stylish-dining-space",
+  "/blog/easy-to-maintain-flooring-for-dining-areas",
+  "/blog/bathroom-tile-ideas-that-elevate-everyday-spaces",
+  "/blog/creating-a-warm-and-elegant-dining-ambience",
+] as const;
+
+export const BLOG_DISCOVER_GRID_IMAGES_PREMIUM = [
+  "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+] as const;
+
+export const BLOG_DISCOVER_GRID_IMAGES_LUXURY = [
+  "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+        "/Blog/Blog1.webp",
+] as const;
+
 export const BLOG_IMAGES = {
   premium: {
     banner: "/Blog/Blog_Banner.webp",
+    bannerOverlay: 0,
     blog1: "/Blog/Blog1.webp",
     blog2: "/Blog/Blog2.webp",
   },
   luxury: {
-   banner: "/Blog/Blog_Banner.webp",
+    banner: "/Blog/blogbannerluxury.png",
+    bannerOverlay: 0.55,
     blog1: "/Blog/Blog1.webp",
     blog2: "/Blog/Blog2.webp",
   },
@@ -37,35 +79,75 @@ export const BLOG_CONTENT = {
   premium: {
     hero: {
       title: "Latest Insights On Tiles,\nInteriors And Design.",
+      titleColor: "#2D200A",
     },
-    flooringIdeas: {
-      heading: "Flooring Ideas for\nContemporary Living Rooms",
-      intro: "Transforming your living room into a contemporary haven often begins from the ground up, with the right flooring setting the stage for the entire interior design. This article explores a myriad of flooring ideas to help you create an elegant living room that reflects modern aesthetics and functional needs.",
-      importance: {
-        title: "Importance of Choosing the Right Flooring",
-        text: "Choosing the right flooring for your living room is paramount as it significantly impacts the overall aesthetic and functionality of the space. The floor design dictates the mood and style, influencing everything from furniture choices to decor accents. The perfect living room flooring not only enhances visual appeal but also contributes to the comfort and practicality of this central living area.",
-      },
-      materials: {
-        title: "Overview of Living Room Flooring Materials",
-        text: "There's a vast array of living room flooring materials available, each offering unique benefits and styles. Traditional options like wooden flooring, including hardwood and engineered wood, provide a classic, warm aesthetic. Tile flooring, encompassing ceramic, porcelain, and vitrified tiles, offers incredible durability and versatility in tile designs. For those seeking modern flooring solutions, luxury vinyl flooring, laminate flooring, and even polished concrete floor options present compelling alternatives.",
-      },
+    // flooringIdeas: {
+    //   heading: "Flooring Ideas for\nContemporary Living Rooms",
+    //   intro: "Transforming your living room into a contemporary haven often begins from the ground up, with the right flooring setting the stage for the entire interior design. This article explores a myriad of flooring ideas to help you create an elegant living room that reflects modern aesthetics and functional needs.",
+    //   importance: {
+    //     title: "Importance of Choosing the Right Flooring",
+    //     text: "Choosing the right flooring for your living room is paramount as it significantly impacts the overall aesthetic and functionality of the space. The floor design dictates the mood and style, influencing everything from furniture choices to decor accents. The perfect living room flooring not only enhances visual appeal but also contributes to the comfort and practicality of this central living area.",
+    //   },
+    //   materials: {
+    //     title: "Overview of Living Room Flooring Materials",
+    //     text: "There's a vast array of living room flooring materials available, each offering unique benefits and styles. Traditional options like wooden flooring, including hardwood and engineered wood, provide a classic, warm aesthetic. Tile flooring, encompassing ceramic, porcelain, and vitrified tiles, offers incredible durability and versatility in tile designs. For those seeking modern flooring solutions, luxury vinyl flooring, laminate flooring, and even polished concrete floor options present compelling alternatives.",
+    //   },
+    // },
+    designJournal: {
+      title: "Discover Spaces That Inspire",
+      gridImages: [...BLOG_DISCOVER_GRID_IMAGES_PREMIUM],
+      paragraphs: [
+        "Step into a world where design meets inspiration, and every space tells a story of elegance, comfort, and modern living. Our Design Journal is thoughtfully curated to bring you the finest ideas, expert insights, and creative inspirations from the world of interiors, architecture, décor, and premium surfaces — helping you transform everyday spaces into timeless experiences.",
+        "Here, we explore the evolving language of contemporary design through carefully crafted articles that celebrate aesthetics, functionality, and innovation. From luxurious living rooms that create lasting impressions to serene bathrooms designed for relaxation, from modern kitchens built around efficiency to sophisticated dining spaces that bring people together — every feature is created to inspire refined and meaningful living.",
+        "Our blog goes beyond trends to showcase thoughtful design concepts, material inspirations, styling techniques, and practical solutions that suit modern lifestyles. Whether you are designing a new home, renovating an existing space, selecting the perfect tiles and finishes, or simply looking for fresh interior inspiration, our journal serves as your trusted guide throughout the journey.",
+        "Discover expert perspectives on color palettes, textures, lighting, layouts, furniture styling, architectural details, and space planning — all tailored to help you create interiors that feel both visually stunning and deeply personal. We also bring you the latest innovations in premium materials, contemporary craftsmanship, and modern décor trends that elevate the beauty and functionality of every corner of your home.",
+        "At the heart of our Design Journal is a passion for creating spaces that reflect individuality, sophistication, and effortless living. Every article is designed to spark ideas, encourage creativity, and help you reimagine interiors with confidence and style.",
+        "Explore a curated destination filled with inspiration, creativity, and modern elegance — where timeless design and contemporary living come together beautifully.",
+      ],
     },
   },
   luxury: {
     hero: {
       title: "Luxury Insights On Tiles,\nInteriors And Design.",
+      titleColor: "#D8B691",
     },
-    flooringIdeas: {
-      heading: "Luxury Flooring Ideas for\nContemporary Living Rooms",
-      intro: "Dummy content for luxury mode. Transforming your living room into a contemporary haven often begins from the ground up, with the right flooring setting the stage for the entire interior design.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.",
-      importance: {
-        title: "Importance of Choosing Luxury Flooring",
-        text: "Dummy content for luxury mode. Choosing the right flooring for your living room is paramount as it significantly impacts the overall aesthetic and functionality of the space.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.",
-      },
-      materials: {
-        title: "Overview of Luxury Flooring Materials",
-        text: "Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.",
-      },
+    // flooringIdeas: {
+    //   heading: "Luxury Flooring Ideas for\nContemporary Living Rooms",
+    //   intro: "Dummy content for luxury mode. Transforming your living room into a contemporary haven often begins from the ground up, with the right flooring setting the stage for the entire interior design.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.",
+    //   importance: {
+    //     title: "Importance of Choosing Luxury Flooring",
+    //     text: "Dummy content for luxury mode. Choosing the right flooring for your living room is paramount as it significantly impacts the overall aesthetic and functionality of the space.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.",
+    //   },
+    //   materials: {
+    //     title: "Overview of Luxury Flooring Materials",
+    //     text: "Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.",
+    //   },
+    // },
+    designJournal: {
+      title: "Discover Spaces That Inspire",
+      paragraphs: [
+        "Step into a world where design meets inspiration, and every space tells a story of elegance, comfort, and modern living. Our Design Journal is thoughtfully curated to bring you the finest ideas, expert insights, and creative inspirations from the world of interiors, architecture, décor, and premium surfaces — helping you transform everyday spaces into timeless experiences.",
+        "Here, we explore the evolving language of contemporary design through carefully crafted articles that celebrate aesthetics, functionality, and innovation. From luxurious living rooms that create lasting impressions to serene bathrooms designed for relaxation, from modern kitchens built around efficiency to sophisticated dining spaces that bring people together — every feature is created to inspire refined and meaningful living.",
+        "Our blog goes beyond trends to showcase thoughtful design concepts, material inspirations, styling techniques, and practical solutions that suit modern lifestyles. Whether you are designing a new home, renovating an existing space, selecting the perfect tiles and finishes, or simply looking for fresh interior inspiration, our journal serves as your trusted guide throughout the journey.",
+        "Discover expert perspectives on color palettes, textures, lighting, layouts, furniture styling, architectural details, and space planning — all tailored to help you create interiors that feel both visually stunning and deeply personal. We also bring you the latest innovations in premium materials, contemporary craftsmanship, and modern décor trends that elevate the beauty and functionality of every corner of your home.",
+        "At the heart of our Design Journal is a passion for creating spaces that reflect individuality, sophistication, and effortless living. Every article is designed to spark ideas, encourage creativity, and help you reimagine interiors with confidence and style.",
+        "Explore a curated destination filled with inspiration, creativity, and modern elegance — where timeless design and contemporary living come together beautifully.",
+      ],
+    },
+    discover: {
+      title: "Discover Spaces that Inspire",
+      intro:
+        "Step into a world where design meets inspiration, and every space tells a story of elegance, comfort, and modern living. Our Design Journal is thoughtfully curated to bring you the finest ideas, expert insights, and creative inspirations from the world of interiors, architecture, décor, and premium surfaces — helping you transform everyday spaces into timeless experiences.",
+      gridImages: [...BLOG_DISCOVER_GRID_IMAGES_LUXURY],
+    },
+    luxurySpace: {
+      title: "Where Spaces Find Their Style",
+      paragraphs: [
+        "Step into a world where design meets inspiration, and every space tells a story of elegance, comfort, and modern living. Our Design Journal is thoughtfully curated to bring you the finest ideas, expert insights, and creative inspirations from the world of interiors, architecture, décor, and premium surfaces — helping you transform everyday spaces into timeless experiences.",
+        "Our blog goes beyond trends to showcase thoughtful design concepts, material inspirations, styling techniques, and practical solutions that suit modern lifestyles. Whether you are designing a new home, renovating an existing space, selecting the perfect tiles and finishes, or simply looking for fresh interior inspiration, our journal serves as your trusted guide throughout the journey.",
+        "Discover expert perspectives on color palettes, textures, lighting, layouts, furniture styling, architectural details, and space planning — all tailored to help you create interiors that feel both visually stunning and deeply personal. We also bring you the latest innovations in premium materials, contemporary craftsmanship, and modern décor trends that elevate the beauty and functionality of every corner of your home.",
+        "Explore a curated destination filled with inspiration, creativity, and modern elegance — where timeless design and contemporary living come together beautifully.",
+      ],
     },
   },
 } as const;
@@ -110,3 +192,28 @@ const blogPostsRaw = [
 ] as const;
 
 export const BLOG_POSTS = [...blogPostsRaw].sort((a, b) => a.id - b.id) as BlogPost[];
+
+export type BlogDiscoverCard = {
+  href: string;
+  title: string;
+  image: string;
+};
+
+export type BlogTheme = keyof typeof BLOG_CONTENT;
+
+export function getBlogDiscoverCards(theme: BlogTheme): BlogDiscoverCard[] {
+  const images =
+    theme === "luxury"
+      ? BLOG_CONTENT.luxury.discover.gridImages
+      : BLOG_CONTENT.premium.designJournal.gridImages;
+
+  return BLOG_DISCOVER_HREFS.map((href, index) => {
+    const slug = href.replace("/blog/", "");
+    const post = BLOG_POSTS.find((p) => p.slug === slug);
+    return {
+      href,
+      title: post?.title ?? "",
+      image: images[index] ?? post?.image ?? "/Blog/Blog1.webp",
+    };
+  });
+}
