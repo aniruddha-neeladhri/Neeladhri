@@ -19,6 +19,7 @@ function Cell({
   height,
   sizes = "30vw",
   borderColor,
+  isLuxury,
   href,
   uniformAspect,
   mobileAspect,
@@ -28,13 +29,14 @@ function Cell({
   height?: number;
   sizes?: string;
   borderColor: string;
+  isLuxury?: boolean;
   href?: string;
   uniformAspect?: boolean; // tablet: fixed aspect ratio, object-cover
   mobileAspect?: boolean;  // mobile: slightly shorter aspect ratio
 }) {
   const inner = (
     <div
-      className={`group relative overflow-hidden flex-shrink-0 border-2 box-border w-full
+      className={`group relative overflow-hidden flex-shrink-0 border-4 box-border w-full
         ${mobileAspect ? "aspect-[5/3]" : uniformAspect ? "aspect-[4/3]" : height ? "" : "aspect-[4/3]"}
         ${href ? "cursor-pointer" : ""}
       `}
@@ -52,10 +54,13 @@ function Cell({
           ${uniformAspect || mobileAspect ? "object-cover" : "object-fill"}
         `}
       />
+      {isLuxury && (
+        <div className="absolute inset-0 z-[1] bg-black/50 pointer-events-none" aria-hidden />
+      )}
       {label && (
         <Typography
           variant="display-xl"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-light whitespace-nowrap w-full text-center [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]"
+          className="absolute top-1/2 left-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 text-white font-light whitespace-nowrap w-full text-center [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]"
         >
           {label}
         </Typography>
@@ -76,6 +81,7 @@ function Cell({
 
 export default function CollectionsSection() {
   const { theme } = useTheme();
+  const isLuxury = theme === "luxury";
   const borderColor = collectionImageBorderColor(theme);
   const grid = collectionGridImages(theme);
   const bathroomH = ROW1 + GAP + Math.round(ROW2 * 0.42);
@@ -99,16 +105,16 @@ export default function CollectionsSection() {
         style={{ height: ROW1 + GAP + ROW2 }}
       >
         <div className="flex flex-col flex-shrink-0 gap-2 w-[33%]">
-          <Cell src={grid.living} label="Living" height={loungeH} sizes="33vw" borderColor={borderColor} href="/collection#living-room" />
-          <Cell src={grid.alliedAccessories} label="Allied Accessories" height={bathroomH} sizes="33vw" borderColor={borderColor} href="/collection#allied-accessories" />
+          <Cell src={grid.living} label="Living" height={loungeH} sizes="33vw" borderColor={borderColor} isLuxury={isLuxury} href="/collection#living-room" />
+          <Cell src={grid.alliedAccessories} label="Allied Accessories" height={bathroomH} sizes="33vw" borderColor={borderColor} isLuxury={isLuxury} href="/collection#allied-accessories" />
         </div>
         <div className="flex flex-col flex-shrink-0 gap-2 w-[34%]">
-          <Cell src={grid.bathroom} label="Bathroom" height={bathroomH} sizes="34vw" borderColor={borderColor} href="/collection#bathroom" />
-          <Cell src={grid.blank} label="" height={loungeH} sizes="34vw" borderColor={borderColor} />
+          <Cell src={grid.bathroom} label="Bathroom" height={bathroomH} sizes="34vw" borderColor={borderColor} isLuxury={isLuxury} href="/collection#bathroom" />
+          <Cell src={grid.blank} label="" height={loungeH} sizes="34vw" borderColor={borderColor} isLuxury={isLuxury} />
         </div>
         <div className="flex flex-col flex-shrink-0 gap-2 w-[33%]">
-          <Cell src={grid.dining} label="Dining" height={loungeH} sizes="33vw" borderColor={borderColor} href="/collection#dining" />
-          <Cell src={grid.kitchen} label="Kitchen" height={bathroomH} sizes="33vw" borderColor={borderColor} href="/collection#kitchen" />
+          <Cell src={grid.dining} label="Dining" height={loungeH} sizes="33vw" borderColor={borderColor} isLuxury={isLuxury} href="/collection#dining" />
+          <Cell src={grid.kitchen} label="Kitchen" height={bathroomH} sizes="33vw" borderColor={borderColor} isLuxury={isLuxury} href="/collection#kitchen" />
         </div>
       </div>
 
@@ -121,6 +127,7 @@ export default function CollectionsSection() {
             label={label}
             sizes="50vw"
             borderColor={borderColor}
+            isLuxury={isLuxury}
             href={href}
             uniformAspect
           />
@@ -136,6 +143,7 @@ export default function CollectionsSection() {
             label={label}
             sizes="100vw"
             borderColor={borderColor}
+            isLuxury={isLuxury}
             href={href}
             mobileAspect
           />

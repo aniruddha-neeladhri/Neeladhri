@@ -124,7 +124,7 @@ export default function LivingRoom() {
     <div className="mt-2 lg:mt-16 select-none">
       <Typography
         variant="display-3xl"
-        className="text-[#F79440] font-normal text-center"
+        className={`font-normal text-center ${theme === "luxury" ? "text-[#D3B898]" : "text-[#F79440]"}`}
       >
         Living
       </Typography>
@@ -157,7 +157,7 @@ export default function LivingRoom() {
               const w = isMobile
                 ? centerW_mobile
                 : isCenter ? centerW_desktop : sideW_desktop;
-              const borderOnImage = "border-2 box-border rounded-sm";
+              const borderOnImage = "border-6 box-border rounded-sm";
               const borderStyle = { borderColor: collectionImageBorderColor(theme) };
 
               return (

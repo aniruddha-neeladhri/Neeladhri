@@ -119,7 +119,7 @@ export default function StatsSection() {
               key={i}
               className={[
                 "group flex flex-row items-center gap-5 px-6 py-6 md:px-8 md:py-8",
-                "cursor-pointer transition-all duration-300 ease-out",
+                "transition-all duration-300 ease-out",
                 "hover:-translate-y-2 hover:shadow-[0_12px_40px_rgba(247,148,64,0.25)]",
                 cardBg,
               ].join(" ")}

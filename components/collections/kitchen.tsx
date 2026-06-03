@@ -125,7 +125,7 @@ export default function Kitchen() {
     <div className="mt-0 md:mt-2 select-none">
       <Typography
         variant="display-3xl"
-        className="text-[#F79440] font-normal mb-0 lg:mb-4 text-center"
+        className={`font-normal text-center ${theme === "luxury" ? "text-[#D3B898]" : "text-[#F79440]"}`}
       >
         Kitchen
       </Typography>
@@ -156,7 +156,7 @@ export default function Kitchen() {
             {LOOP_IMAGES.map((src, i) => {
               const isCenter = i === index + 1;
               const w = isMobile ? centerW_mobile : (isCenter ? centerW_desktop : sideW_desktop);
-              const borderOnImage = "border-2 box-border rounded-sm";
+              const borderOnImage = "border-6 box-border rounded-sm";
               const borderStyle = { borderColor: collectionImageBorderColor(theme) };
 
               return (

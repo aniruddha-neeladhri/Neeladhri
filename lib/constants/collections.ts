@@ -1,8 +1,8 @@
 /** Carousel / collection grid image frame (premium theme) */
-export const COLLECTION_IMAGE_BORDER = "#6B6B6B";
+export const COLLECTION_IMAGE_BORDER = "#00000080";
 
 /** Carousel / collection grid image frame (luxury theme) */
-export const COLLECTION_IMAGE_BORDER_LUXURY = "#F79440";
+export const COLLECTION_IMAGE_BORDER_LUXURY = "#D3B898";
 
 export function collectionImageBorderColor(
   theme: "premium" | "luxury"
