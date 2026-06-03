@@ -10,6 +10,7 @@ import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons
 const PHONE     = "+91 080 26772477";
 const EMAIL     = "info@needladri.com";
 const CAROUSEL_INTERVAL_MS = 3000;
+const CAROUSEL_ACTIVE_DOT = "#F79440";
 const BORDER_W  = 1.5;
 const GLOW_LEN  = 0.22;
 const SPEED     = 0.003;
@@ -268,6 +269,23 @@ function PremiumMessageField({ inputClass }: { inputClass: string }) {
   );
 }
 
+const DOT_NAV_GAP_PX = 4;
+const DOT_NAV_HEIGHT_PX = 8;
+
+function getContainedImageHeight(
+  containerWidth: number,
+  maxImageHeight: number,
+  naturalWidth: number,
+  naturalHeight: number
+) {
+  if (containerWidth <= 0 || maxImageHeight <= 0 || naturalWidth <= 0 || naturalHeight <= 0) {
+    return maxImageHeight;
+  }
+
+  const scale = Math.min(containerWidth / naturalWidth, maxImageHeight / naturalHeight);
+  return naturalHeight * scale;
+}
+
 function ContactImageCarousel({
   images,
   imageFit = "contain",
@@ -275,52 +293,83 @@ function ContactImageCarousel({
   images: string[];
   imageFit?: "contain" | "cover";
 }) {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
-  const trackRef = useRef<HTMLDivElement>(null);
-
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [imageBoxHeight, setImageBoxHeight] = useState<number | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const dimensionsRef = useRef<Map<number, { w: number; h: number }>>(new Map());
   const slideCount = images.length;
-  const loopSlides = slideCount > 1 ? [...images, images[0]] : images;
+  const showDots = slideCount > 1;
+
+  const recalculateImageHeight = useCallback(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const containerWidth = root.clientWidth;
+    const totalHeight = root.clientHeight;
+    const reservedForDots = showDots ? DOT_NAV_HEIGHT_PX + DOT_NAV_GAP_PX : 0;
+    const maxImageHeight = Math.max(0, totalHeight - reservedForDots);
+
+    if (imageFit === "cover" || maxImageHeight === 0) {
+      setImageBoxHeight(maxImageHeight);
+      return;
+    }
+
+    const dims = dimensionsRef.current.get(activeIndex);
+    if (!dims) {
+      setImageBoxHeight(maxImageHeight);
+      return;
+    }
+
+    setImageBoxHeight(
+      getContainedImageHeight(containerWidth, maxImageHeight, dims.w, dims.h)
+    );
+  }, [activeIndex, imageFit, showDots]);
 
   useEffect(() => {
     if (slideCount <= 1) return;
     const timer = setInterval(() => {
-      setSlideIndex((prev) => prev + 1);
+      setActiveIndex((prev) => (prev + 1) % slideCount);
     }, CAROUSEL_INTERVAL_MS);
     return () => clearInterval(timer);
   }, [slideCount]);
 
   useEffect(() => {
-    if (slideCount <= 1 || slideIndex !== slideCount) return;
+    recalculateImageHeight();
+    const root = rootRef.current;
+    if (!root) return;
 
-    const track = trackRef.current;
-    if (!track) return;
-
-    const handleTransitionEnd = (e: TransitionEvent) => {
-      if (e.target !== track || e.propertyName !== "transform") return;
-
-      setTransitionEnabled(false);
-      setSlideIndex(0);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => setTransitionEnabled(true));
-      });
+    const observer = new ResizeObserver(recalculateImageHeight);
+    observer.observe(root);
+    window.addEventListener("resize", recalculateImageHeight);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", recalculateImageHeight);
     };
+  }, [recalculateImageHeight]);
 
-    track.addEventListener("transitionend", handleTransitionEnd);
-    return () => track.removeEventListener("transitionend", handleTransitionEnd);
-  }, [slideIndex, slideCount]);
+  const handleImageLoad = useCallback(
+    (index: number, naturalWidth: number, naturalHeight: number) => {
+      dimensionsRef.current.set(index, { w: naturalWidth, h: naturalHeight });
+      if (index === activeIndex) recalculateImageHeight();
+    },
+    [activeIndex, recalculateImageHeight]
+  );
 
   if (slideCount === 0) return null;
 
   return (
-    <div className="relative w-full h-full overflow-hidden" aria-live="polite" aria-atomic="true">
+    <div ref={rootRef} className="flex h-full w-full flex-col items-center justify-start" aria-live="polite" aria-atomic="true">
       <div
-        ref={trackRef}
-        className={`flex h-full ${transitionEnabled ? "transition-transform duration-700 ease-in-out" : ""}`}
-        style={{ transform: `translateX(-${slideIndex * 100}%)` }}
+        className="relative w-full shrink-0 overflow-hidden"
+        style={{ height: imageBoxHeight ?? "100%" }}
       >
-        {loopSlides.map((src, i) => (
-          <div key={`${src}-${i}`} className="relative min-w-full h-full shrink-0">
+        {images.map((src, i) => (
+          <div
+            key={`${src}-${i}`}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+              i === activeIndex ? "z-10 opacity-100" : "z-0 opacity-0"
+            }`}
+          >
             <Image
               src={src}
               alt="Contact showcase"
@@ -328,10 +377,37 @@ function ContactImageCarousel({
               priority={i === 0}
               className={imageFit === "cover" ? "object-cover" : "object-contain"}
               sizes="(max-width: 1024px) 100vw, 52vw"
+              onLoadingComplete={(img) =>
+                handleImageLoad(i, img.naturalWidth, img.naturalHeight)
+              }
             />
           </div>
         ))}
       </div>
+
+      {showDots && (
+        <div
+          className="flex shrink-0 items-center justify-center gap-2"
+          style={{ marginTop: DOT_NAV_GAP_PX, height: DOT_NAV_HEIGHT_PX }}
+        >
+          {images.map((src, i) => {
+            const isActive = i === activeIndex;
+            return (
+              <button
+                key={`dot-${src}-${i}`}
+                type="button"
+                aria-label={`Show image ${i + 1}`}
+                aria-current={isActive ? "true" : undefined}
+                onClick={() => setActiveIndex(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  isActive ? "w-7" : "w-2 bg-white/50 hover:bg-white/70"
+                }`}
+                style={isActive ? { backgroundColor: CAROUSEL_ACTIVE_DOT } : undefined}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
