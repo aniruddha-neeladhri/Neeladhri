@@ -4,12 +4,13 @@ import { useRef, useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
-import { contactImages, contactBorderColor } from "@/lib/constants/Contact";
+import { contactImages, contactCarouselImages } from "@/lib/constants/Contact";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons";
 
 const PHONE     = "+91 080 26772477";
 const EMAIL     = "info@needladri.com";
-const BORDER_W  = 2;
+const CAROUSEL_INTERVAL_MS = 3000;
+const BORDER_W  = 1.5;
 const GLOW_LEN  = 0.22;
 const SPEED     = 0.003;
 const MAX_CHARS = 500;
@@ -134,7 +135,48 @@ function GlowField({
   );
 }
 
-function MessageField({ isLuxury, inputClass }: { isLuxury: boolean; inputClass: string }) {
+function LuxuryMessageField({ inputClass }: { inputClass: string }) {
+  const [message, setMessage] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const remaining = MAX_CHARS - message.length;
+  const isNearLimit = remaining <= 20;
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const val = e.target.value;
+    if (val.length > MAX_CHARS) return;
+    setMessage(val);
+    const ta = textareaRef.current;
+    if (ta) {
+      ta.style.height = "auto";
+      ta.style.height = `${ta.scrollHeight}px`;
+    }
+  };
+
+  return (
+    <div className="w-full">
+      <textarea
+        ref={textareaRef}
+        value={message}
+        onChange={handleChange}
+        placeholder="Message"
+        rows={3}
+        className={`${inputClass} resize-none block overflow-hidden min-h-[120px]`}
+        style={{ height: "auto" }}
+      />
+      <div className="flex justify-end mt-1 pr-1">
+        <span
+          className={`text-xs transition-colors duration-200 ${
+            isNearLimit ? "text-red-400" : "text-white/50"
+          }`}
+        >
+          {remaining} / {MAX_CHARS}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function PremiumMessageField({ inputClass }: { inputClass: string }) {
   const [message, setMessage] = useState("");
   const textareaRef           = useRef<HTMLTextAreaElement>(null);
   const wrapRef               = useRef<HTMLDivElement>(null);
@@ -143,8 +185,8 @@ function MessageField({ isLuxury, inputClass }: { isLuxury: boolean; inputClass:
   const progress              = useRef(0);
   const active                = useRef(false);
 
-  const borderColor = isLuxury ? "#F79440" : "#ffffff";
-  const glowColor   = isLuxury ? "#F79440" : "#ffffff";
+  const borderColor = "#ffffff";
+  const glowColor   = "#ffffff";
   const remaining   = MAX_CHARS - message.length;
   const isNearLimit = remaining <= 20;
 
@@ -213,7 +255,7 @@ function MessageField({ isLuxury, inputClass }: { isLuxury: boolean; inputClass:
           onBlur={onBlur}
           placeholder="Message"
           rows={3}
-          className={`${inputClass} resize-none block overflow-hidden min-h-[80px]`}
+          className={`${inputClass} resize-none block overflow-hidden min-h-[120px]`}
           style={{ height: "auto" }}
         />
       </div>
@@ -226,32 +268,168 @@ function MessageField({ isLuxury, inputClass }: { isLuxury: boolean; inputClass:
   );
 }
 
+function ContactImageCarousel({
+  images,
+  imageFit = "contain",
+}: {
+  images: string[];
+  imageFit?: "contain" | "cover";
+}) {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const slideCount = images.length;
+  const loopSlides = slideCount > 1 ? [...images, images[0]] : images;
+
+  useEffect(() => {
+    if (slideCount <= 1) return;
+    const timer = setInterval(() => {
+      setSlideIndex((prev) => prev + 1);
+    }, CAROUSEL_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [slideCount]);
+
+  useEffect(() => {
+    if (slideCount <= 1 || slideIndex !== slideCount) return;
+
+    const track = trackRef.current;
+    if (!track) return;
+
+    const handleTransitionEnd = (e: TransitionEvent) => {
+      if (e.target !== track || e.propertyName !== "transform") return;
+
+      setTransitionEnabled(false);
+      setSlideIndex(0);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setTransitionEnabled(true));
+      });
+    };
+
+    track.addEventListener("transitionend", handleTransitionEnd);
+    return () => track.removeEventListener("transitionend", handleTransitionEnd);
+  }, [slideIndex, slideCount]);
+
+  if (slideCount === 0) return null;
+
+  return (
+    <div className="relative w-full h-full overflow-hidden" aria-live="polite" aria-atomic="true">
+      <div
+        ref={trackRef}
+        className={`flex h-full ${transitionEnabled ? "transition-transform duration-700 ease-in-out" : ""}`}
+        style={{ transform: `translateX(-${slideIndex * 100}%)` }}
+      >
+        {loopSlides.map((src, i) => (
+          <div key={`${src}-${i}`} className="relative min-w-full h-full shrink-0">
+            <Image
+              src={src}
+              alt="Contact showcase"
+              fill
+              priority={i === 0}
+              className={imageFit === "cover" ? "object-cover" : "object-contain"}
+              sizes="(max-width: 1024px) 100vw, 52vw"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ContactSection() {
   const { theme } = useTheme();
   const isLuxury  = theme === "luxury";
   const images    = contactImages(theme);
-  const iconColor = isLuxury ? "#F79440" : "white";
+  const carouselImages = contactCarouselImages(theme);
 
-  const inputClass = "w-full bg-[#7E7669A6] border-0 px-4 py-3 text-white placeholder:text-white focus:outline-none";
+  const premiumInputClass =
+    "w-full min-h-[52px] bg-transparent border-0 px-4 py-4 text-white placeholder:text-white/80 focus:outline-none";
+
+  const luxuryInputClass =
+    "w-full min-h-[48px] sm:min-h-[56px] bg-[#E5E1DC] border-0 px-4 sm:px-5 py-3.5 sm:py-4 !text-black !caret-black placeholder:!text-black focus:outline-none font-light";
+
+  if (isLuxury) {
+    return (
+      <section className="relative w-full overflow-hidden">
+        <Image
+          src={images.background}
+          alt="Contact Background"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/75" aria-hidden />
+
+        <div className="relative z-10 w-full flex items-center py-8 sm:py-10 md:py-14 px-4 sm:px-6 md:px-8 lg:px-16">
+          <div className="max-w-[1400px] mx-auto w-full flex flex-col lg:flex-row lg:items-center gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
+            <div className="w-full max-w-lg mx-auto lg:mx-0 lg:max-w-none lg:w-1/2 relative h-[300px] sm:h-[400px] md:h-[440px] lg:h-[540px] shrink-0">
+              <ContactImageCarousel images={carouselImages} imageFit="contain" />
+            </div>
+
+            <div className="w-full lg:w-1/2 flex flex-col justify-center gap-6 sm:gap-8 lg:pl-4 xl:pl-8">
+              <div className="space-y-1.5 sm:space-y-2 text-center lg:text-left">
+                <Typography variant="body-xl" className="!text-white font-light leading-snug">
+                  Have a question about our service?
+                </Typography>
+                <Typography variant="body-xl" className="!text-white font-light leading-snug">
+                  We&apos;re here to help, contact us today.
+                </Typography>
+              </div>
+
+              <form className="space-y-4 sm:space-y-5 md:space-y-6 w-full max-w-xl mx-auto lg:mx-0">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className={luxuryInputClass}
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className={luxuryInputClass}
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className={luxuryInputClass}
+                />
+                <LuxuryMessageField inputClass={luxuryInputClass} />
+
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto mt-1 sm:mt-2 px-8 sm:px-12 py-3 sm:py-3.5 bg-transparent border border-[#D3B898] text-white cursor-pointer"
+                >
+                  <Typography variant="body-lg" className="!text-white font-light">
+                    Send Your Message
+                  </Typography>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const iconColor = "white";
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
 
       <Image src={images.background} alt="Contact Background" fill priority className="object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/50" />
+      <div className="absolute inset-0 bg-black/75" aria-hidden />
 
       <div className="relative z-10 w-full min-h-screen flex flex-col justify-between py-10 md:py-14 px-4 sm:px-8 lg:px-16">
 
         {/* ROW 1 — Heading */}
         <div className="max-w-[1400px] mx-auto w-full text-center lg:text-left">
-          <Typography variant="display-xl" className="text-white font-light">
+          <Typography variant="display-xl" className="text-white font-normal">
             Get in Touch
           </Typography>
         </div>
 
         {/* ROW 2 — Paragraph */}
         <div className="max-w-[1400px] mx-auto w-full mt-4 text-center lg:text-left">
-          <Typography variant="body-xl" className="text-white leading-relaxed font-normal">
+          <Typography variant="body-xl" className="text-white leading-relaxed font-light">
             Whether you're designing a home, a commercial space, or sourcing high-quality tiles.
             <br className="hidden md:block" />
             Needladri Ceramics is here to support your vision with precision and style.
@@ -265,7 +443,7 @@ export default function ContactSection() {
           <div className="flex flex-col gap-4 md:hidden w-full items-center">
             <div className="flex items-start gap-3 w-full max-w-xs">
               <LocationIcon iconColor={iconColor} />
-              <Typography variant="body-sm" className="text-white leading-relaxed">
+              <Typography variant="body-sm" className="text-white leading-relaxed font-light">
                 Skanda Mansion, JSS Circle<br />
                 748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
                 Bangalore, Karnataka 560070, India
@@ -274,13 +452,13 @@ export default function ContactSection() {
             <div className="flex items-center gap-3 w-full max-w-xs">
               <PhoneIcon iconColor={iconColor} />
               <a href={`tel:${PHONE.replace(/\s/g, "")}`}>
-                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition">{PHONE}</Typography>
+                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition font-light">{PHONE}</Typography>
               </a>
             </div>
             <div className="flex items-center gap-3 w-full max-w-xs">
               <EmailIcon iconColor={iconColor} />
               <a href={`mailto:${EMAIL}`}>
-                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition">{EMAIL}</Typography>
+                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition font-light">{EMAIL}</Typography>
               </a>
             </div>
           </div>
@@ -289,7 +467,7 @@ export default function ContactSection() {
           <div className="hidden md:flex flex-row gap-16 lg:gap-24 justify-center lg:justify-start items-start">
             <div className="flex items-start gap-3">
               <LocationIcon iconColor={iconColor} />
-              <Typography variant="body-lg" className="text-white leading-relaxed">
+              <Typography variant="body-lg" className="text-white leading-relaxed font-light">
                 Skanda Mansion, JSS Circle<br />
                 748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
                 Bangalore, Karnataka 560070, India
@@ -299,13 +477,13 @@ export default function ContactSection() {
               <div className="flex items-start gap-3">
                 <PhoneIcon iconColor={iconColor} />
                 <a href={`tel:${PHONE.replace(/\s/g, "")}`}>
-                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition">{PHONE}</Typography>
+                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition font-light">{PHONE}</Typography>
                 </a>
               </div>
               <div className="flex items-start gap-3">
                 <EmailIcon iconColor={iconColor} />
                 <a href={`mailto:${EMAIL}`}>
-                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition">{EMAIL}</Typography>
+                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition font-light">{EMAIL}</Typography>
                 </a>
               </div>
             </div>
@@ -317,50 +495,49 @@ export default function ContactSection() {
         <div className="max-w-[1400px] mx-auto w-full mt-6 flex flex-col lg:flex-row items-center gap-5 lg:gap-6">
 
           <div className="w-full lg:w-[48%] flex flex-col gap-4 items-center lg:items-start">
-            <Typography variant="body-xl" className="text-white/90 text-center lg:text-left w-full">
+            <Typography variant="body-xl" className="text-white text-center lg:text-left w-full font-normal">
               Have a question about our service?<br />
               We're here to help, contact us today.
             </Typography>
 
-            <form className="space-y-4 w-full max-w-lg mx-auto lg:mx-0">
+            <form className="space-y-6 w-full max-w-lg mx-auto lg:mx-0">
 
-              <GlowField isLuxury={isLuxury}>
+              <GlowField isLuxury={false}>
                 {({ onFocus, onBlur }) => (
                   <input type="text" placeholder="Your Name"
-                    className={inputClass} onFocus={onFocus} onBlur={onBlur} />
+                    className={premiumInputClass} onFocus={onFocus} onBlur={onBlur} />
                 )}
               </GlowField>
 
-              <GlowField isLuxury={isLuxury}>
+              <GlowField isLuxury={false}>
                 {({ onFocus, onBlur }) => (
                   <input type="email" placeholder="Your Email"
-                    className={inputClass} onFocus={onFocus} onBlur={onBlur} />
+                    className={premiumInputClass} onFocus={onFocus} onBlur={onBlur} />
                 )}
               </GlowField>
 
-              <GlowField isLuxury={isLuxury}>
+              <GlowField isLuxury={false}>
                 {({ onFocus, onBlur }) => (
                   <input type="tel" placeholder="Phone Number"
-                    className={inputClass} onFocus={onFocus} onBlur={onBlur} />
+                    className={premiumInputClass} onFocus={onFocus} onBlur={onBlur} />
                 )}
               </GlowField>
 
-              <MessageField isLuxury={isLuxury} inputClass={inputClass} />
+              <PremiumMessageField inputClass={premiumInputClass} />
 
+              <button
+                type="submit"
+                className="w-full mt-2 px-10 py-3 bg-[#555555] text-white cursor-pointer"
+              >
+                Send Your Message
+              </button>
             </form>
           </div>
 
           <div className="w-full max-w-lg mx-auto lg:mx-0 lg:max-w-none lg:w-[52%] relative h-[400px] sm:h-[440px] md:h-[440px] lg:h-[540px]">
-            <Image src={images.contactImage} alt="Modern Bathroom Interior" fill className="object-contain" />
+            <ContactImageCarousel images={carouselImages} />
           </div>
 
-        </div>
-
-        {/* ROW 5 — Send button */}
-        <div className="flex justify-center mt-6">
-          <button className={`px-10 py-3 border-4 ${isLuxury ? "border-[#F79440]" : "border-[#7E7669]"} bg-gray-200/70 text-black rounded-full cursor-pointer`}>
-            Send Your Message
-          </button>
         </div>
 
       </div>

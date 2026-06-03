@@ -14,23 +14,40 @@ export const CONTACT_TEXT = {
   submit: "Submit",
 };
 
-// Contact section images
-export const CONTACT_IMAGES_PREMIUM = {
-  background: "/Contact/Contact_Bg.webp",
-  contactImage: "/Contact/Contact.webp",
-} as const;
-
-/** Luxury contact – same paths as premium until you swap assets */
-export const CONTACT_IMAGES_LUXURY: {
+export type ContactThemeImages = {
   background: string;
   contactImage: string;
-} = {
-  background: "/Contact/Contact_Bg.webp",
-  contactImage: "/Contact/Contact.webp",
+  carousel: readonly string[];
 };
 
-export function contactImages(theme: "premium" | "luxury") {
+// Contact section images — premium
+export const CONTACT_IMAGES_PREMIUM: ContactThemeImages = {
+  background: "/Contact/Contact_Bg.webp",
+  contactImage: "/Contact/Contact.webp",
+  carousel: [
+    "/Contact/Contact.webp",
+    "/Contact/Contact.webp",
+    "/Contact/Contact.webp",
+  ],
+} as const;
+
+/** Luxury contact — swap asset paths when final images are ready */
+export const CONTACT_IMAGES_LUXURY: ContactThemeImages = {
+  background: "/Contact/Contact_Bg.webp",
+  contactImage: "/Contact/Contact.webp",
+  carousel: [
+    "/Contact/Contact.webp",
+    "/Contact/Contact.webp",
+    "/Contact/Contact.webp",
+  ],
+};
+
+export function contactImages(theme: "premium" | "luxury"): ContactThemeImages {
   return theme === "luxury" ? CONTACT_IMAGES_LUXURY : CONTACT_IMAGES_PREMIUM;
+}
+
+export function contactCarouselImages(theme: "premium" | "luxury"): string[] {
+  return [...contactImages(theme).carousel];
 }
 
 // Contact banner images
@@ -38,7 +55,6 @@ export const CONTACT_BANNER_IMAGES_PREMIUM = {
   banner: "/Contact/Contact_Banner.webp",
 } as const;
 
-/** Luxury banner – same paths as premium until you swap assets */
 export const CONTACT_BANNER_IMAGES_LUXURY: { banner: string } = {
   banner: "/Contact/Contact_Banner.webp",
 };
