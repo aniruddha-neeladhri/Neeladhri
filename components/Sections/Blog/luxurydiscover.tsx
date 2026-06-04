@@ -235,7 +235,7 @@ export default function LuxuryDiscover() {
   const translatePercent = (startIndex / cards.length) * 100;
 
   return (
-    <section className="w-full bg-black py-2 sm:py-2 md:py-4 lg:py-4">
+    <section className="w-full bg-black py-2 sm:py-2 md:py-4 lg:py-8">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
         <div className="flex flex-col items-center text-center gap-4 sm:gap-5 mb-8 sm:mb-10 md:mb-12">
           <Typography
@@ -245,8 +245,8 @@ export default function LuxuryDiscover() {
             {discover.title}
           </Typography>
           <Typography
-            variant="body-lg"
-            className="!text-white/90 font-light leading-relaxed max-w-[980px]"
+            variant="body-xl"
+            className="!text-white/90 font-light leading-relaxed max-w-[860px]"
           >
             {discover.intro}
           </Typography>
@@ -296,7 +296,7 @@ export default function LuxuryDiscover() {
                   />
 
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"
+                    className="absolute inset-0 z-[1] bg-black/50 pointer-events-none opacity-100 transition-opacity duration-500 group-hover:opacity-0"
                     aria-hidden
                   />
 
@@ -307,12 +307,15 @@ export default function LuxuryDiscover() {
                     >
                       {LUXURY_DISCOVER_TITLES[index]}
                     </Typography>
-                    <span className="inline-flex items-center gap-2 text-white/90 text-[11px] sm:text-xs tracking-[0.14em] uppercase font-light group-hover:text-white transition-colors">
+                    <Typography
+                      variant="caption"
+                      className="inline-flex items-center gap-2 !text-white !font-light tracking-[0.14em] group-hover:!text-white transition-colors"
+                    >
                       Read Artical
                       <span aria-hidden className="text-base leading-none">
                         →
                       </span>
-                    </span>
+                    </Typography>
                   </div>
                 </Link>
               ))}

@@ -122,7 +122,7 @@ export default function BrandsSection() {
               onClick={(e) => { if (hasDraggedRef.current) e.preventDefault(); }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
-              className={`flex-shrink-0 w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] xl:w-[400px] xl:h-[400px] relative border-2 rounded-4xl overflow-hidden ${theme === "luxury" ? "border-[#F79440]" : "border-white"}`}
+              className={`group flex-shrink-0 w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] xl:w-[400px] xl:h-[400px] relative border-2 rounded-4xl overflow-hidden ${theme === "luxury" ? "border-[#D3B898]" : "border-white"}`}
             >
               <Image
                 src={src}
@@ -131,7 +131,10 @@ export default function BrandsSection() {
                 draggable={false}
                 className="object-contain"
               />
-              <div className="absolute inset-0 bg-black/40 z-10" />
+              <div
+                className="absolute inset-0 z-10 bg-black/50 pointer-events-none opacity-100 transition-opacity duration-500 group-hover:opacity-0"
+                aria-hidden
+              />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <Typography variant="display-xl" className="text-white text-xl font-light text-center px-2">
                   {currentNames[index % currentNames.length]}

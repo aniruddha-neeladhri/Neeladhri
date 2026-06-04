@@ -51,7 +51,14 @@ function LuxuryStatItem({
   label: string;
   started: boolean;
 }) {
-  const count = useCountUp(value, started);
+  const isDecimal = !Number.isInteger(value);
+  const countTarget = isDecimal ? Math.round(value * 10) : value;
+  const count = useCountUp(countTarget, started);
+  const displayValue = isDecimal
+    ? (count / 10).toFixed(1)
+    : value >= 1000
+      ? count.toLocaleString("en-US")
+      : String(count);
 
   return (
     <div className="flex flex-col items-center justify-center text-center py-5 md:py-8 px-2 md:px-3 lg:px-4 gap-1.5 md:gap-2">
@@ -60,7 +67,7 @@ function LuxuryStatItem({
         className="font-semibold leading-none tracking-tight"
         style={{ color: GOLD }}
       >
-        {count}
+        {displayValue}
         {suffix}
       </Typography>
       <Typography

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Typography from "@/lib/Typography";
 import { BrandData, brandsDataLuxury } from "@/lib/constants/brands";
@@ -13,6 +13,32 @@ interface BrandPageProps {
 
 export default function BrandPage({ brand }: BrandPageProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateScrollState = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    setCanScrollLeft(container.scrollLeft > 1);
+    setCanScrollRight(container.scrollLeft < maxScrollLeft - 1);
+  }, []);
+
+  useEffect(() => {
+    updateScrollState();
+    const container = scrollRef.current;
+    if (!container) return;
+
+    container.addEventListener("scroll", updateScrollState, { passive: true });
+    const observer = new ResizeObserver(updateScrollState);
+    observer.observe(container);
+
+    return () => {
+      container.removeEventListener("scroll", updateScrollState);
+      observer.disconnect();
+    };
+  }, [brand?.images.length, updateScrollState]);
 
   if (!brand) {
     return (
@@ -27,6 +53,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
   const theme: "luxury" | "premium" = LUXURY_BRAND_IDS.has(brand.id) ? "luxury" : "premium";
   const isLuxury = theme === "luxury";
   const accentColor = isLuxury ? "#D3B898" : "#7E7669";
+  const arrowColor = isLuxury ? "#D3B898" : "#555555";
   const brandNameColor = isLuxury ? "#D3B898" : "#555555";
   const bodyTextColor = isLuxury ? "#FFFFFF" : "#555555";
   const textAlign = isLuxury ? "text-left" : "text-center";
@@ -35,6 +62,10 @@ export default function BrandPage({ brand }: BrandPageProps) {
   const scroll = (direction: "left" | "right") => {
     const container = scrollRef.current;
     if (!container) return;
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    if (direction === "left" && container.scrollLeft <= 1) return;
+    if (direction === "right" && container.scrollLeft >= maxScrollLeft - 1) return;
+
     const child = container.children[0] as HTMLElement;
     const scrollAmount = child ? child.offsetWidth : 300;
     container.scrollBy({
@@ -66,7 +97,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
       <div className={`flex flex-col ${flexAlign} justify-center px-4 md:px-8 mt-2 mb-12 pop-up`}>
         <div
           className={`w-full p-2 md:p-10 ${isLuxury ? "" : "rounded-[4.5rem]"}`}
-          style={{ border: `4px solid ${accentColor}` }}
+          style={{ border: `2px solid ${accentColor}` }}
         >
           {/* Header */}
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
@@ -83,67 +114,75 @@ export default function BrandPage({ brand }: BrandPageProps) {
 
           {/* Images — carousel on small, grid on md+ */}
           <div className="relative w-full mb-2 lg:mb-6">
-            {/* Left arrow — mobile only */}
-            <button
-              onClick={() => scroll("left")}
-              className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-white/80 shadow cursor-pointer"
-              aria-label="Previous image"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={accentColor}
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            {/* Mobile: arrows flanking image with 2px gap */}
+            <div className="md:hidden flex w-full items-center justify-center gap-[12px]">
+              <button
+                type="button"
+                onClick={() => scroll("left")}
+                disabled={!canScrollLeft}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${
+                  canScrollLeft ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
+                }`}
+                aria-label="Previous image"
               >
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-
-            {/* Right arrow — mobile only */}
-            <button
-              onClick={() => scroll("right")}
-              className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-white/80 shadow cursor-pointer"
-              aria-label="Next image"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke={accentColor}
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
-
-            {/* Mobile: scrollable carousel */}
-            <div
-              ref={scrollRef}
-              className="md:hidden flex overflow-x-auto w-full snap-x snap-mandatory"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {brand.images.map((src, index) => (
-                <div
-                  key={index}
-                  className="shrink-0 w-full flex justify-center snap-center"
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke={arrowColor}
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  <Image
-                    src={src}
-                    alt={`${brand.name} ${index + 1}`}
-                    width={400}
-                    height={300}
-                    className="w-[40vw] h-auto object-contain border-6 rounded-[2.5rem] sm:rounded-[5rem]"
-                    style={{ borderColor: accentColor }}
-                  />
-                </div>
-              ))}
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+
+              <div
+                ref={scrollRef}
+                className="flex w-[40vw] snap-x snap-mandatory overflow-x-auto"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                {brand.images.map((src, index) => (
+                  <div
+                    key={index}
+                    className="flex w-full shrink-0 snap-center justify-center"
+                  >
+                    <Image
+                      src={src}
+                      alt={`${brand.name} ${index + 1}`}
+                      width={400}
+                      height={300}
+                      className="h-auto w-full object-contain border-4 rounded-[2.5rem] sm:rounded-[5rem]"
+                      style={{ borderColor: accentColor }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => scroll("right")}
+                disabled={!canScrollRight}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${
+                  canScrollRight ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
+                }`}              
+                aria-label="Next image"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke={arrowColor}
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
             </div>
 
             {/* Desktop: grid */}
@@ -155,7 +194,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                   alt={`${brand.name} ${index + 1}`}
                   width={400}
                   height={300}
-                  className="w-full h-auto object-contain border-6 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem]"
+                  className="w-full h-auto object-contain border-4 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem]"
                   style={{ borderColor: accentColor }}
                 />
               ))}

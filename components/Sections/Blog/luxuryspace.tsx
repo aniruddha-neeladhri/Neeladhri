@@ -38,7 +38,7 @@ export default function LuxurySpace() {
             <div className="w-full flex flex-col gap-4 sm:gap-5 lg:gap-6 text-left">
               <Typography
                 variant="display-2xl"
-                className="!text-white font-normal leading-tight text-left"
+                className="!text-white font-normal leading-tight text-center lg:text-left"
               >
                 {luxurySpace.title}
               </Typography>

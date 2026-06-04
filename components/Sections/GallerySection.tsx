@@ -21,8 +21,7 @@ export default function GallerySection() {
   const [center, setCenter]   = useState(0);
   const [tiltMap, setTiltMap] = useState<Record<number, TiltState>>({});
   const [bp, setBp]           = useState<Breakpoint>("desktop");
-  const touchStartX           = useRef<number | null>(null);
-  const trackRef              = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     const update = () => {
@@ -82,8 +81,8 @@ export default function GallerySection() {
   };
 
   const cardStyle = (idx: number): React.CSSProperties => {
-    const offset    = circularOffset(center, idx, TOTAL);
-    const tilt      = tiltMap[idx] ?? { rx: 0, ry: 0 };
+    const offset = circularOffset(center, idx, TOTAL);
+    const tilt = tiltMap[idx] ?? { rx: 0, ry: 0 };
     const isTilting = tilt.rx !== 0 || tilt.ry !== 0;
 
     if (Math.abs(offset) > maxOffset) {
@@ -95,20 +94,22 @@ export default function GallerySection() {
         left: side > 0 ? "150%" : "-150%",
         transform: "translateX(-50%) scale(0.82)",
         transition:
-          "left 3s cubic-bezier(0.25,0.46,0.45,0.94), transform 3s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.5s ease",
+          "left 0.5s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.5s ease",
       };
     }
 
     const s = getSlot(offset);
-    const isXsSide = bp === "xs" && Math.abs(offset) === 1;
+    const finalLeft = `calc(50% + ${s.xPct}%)`;
+    const finalTransform = `translateX(-50%) translateZ(${s.z}px) rotateY(${s.ry + tilt.ry}deg) rotateX(${tilt.rx}deg) scale(${s.scale})`;
+    const xsSideBlur = bp === "xs" && Math.abs(offset) === 1 ? "blur(4px)" : "none";
 
     return {
-      left: `calc(50% + ${s.xPct}%)`,
-      transform: `translateX(-50%) translateZ(${s.z}px) rotateY(${s.ry + tilt.ry}deg) rotateX(${tilt.rx}deg) scale(${s.scale})`,
-      opacity: s.op,
+      left: finalLeft,
+      transform: finalTransform,
+      opacity: 1,
       zIndex: offset === 0 ? 20 : 10 - Math.abs(offset),
       pointerEvents: "auto",
-      filter: isXsSide ? "blur(4px) brightness(0.65)" : "none",
+      filter: xsSideBlur,
       transition: isTilting
         ? "left 0.5s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.08s linear, opacity 0.5s ease, filter 0.3s ease"
         : "left 0.5s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.5s ease, filter 0.3s ease",
@@ -125,12 +126,10 @@ export default function GallerySection() {
 
   const { w, h } = CARD_SIZE[bp];
   const renderOffset = maxOffset + 1;
-  const cardBorderColor = theme === "luxury" ? "#F79440" : "rgba(255,255,255,0.8)";
+  const cardBorderColor = theme === "luxury" ? "#D3B898" : "rgba(255,255,255,0.8)";
 
   return (
-    <div
-      className="relative w-full overflow-hidden select-none h-dvh"
-    >
+    <div className="relative w-full overflow-hidden select-none h-dvh">
       <Image
         src="/Gallery/gallerybg.png"
         alt="Gallery Background"
@@ -154,7 +153,6 @@ export default function GallerySection() {
         </button>
 
         <div
-          ref={trackRef}
           className={`relative w-full h-full ${bp === "xs" ? "perspective-none" : "perspective-[1300px]"}`}
         >
           {IMAGES.map((src, idx) => {
@@ -173,7 +171,7 @@ export default function GallerySection() {
                 }}
                 onMouseMove={(e) => handleMouseMove(e, idx)}
                 onMouseLeave={() => handleMouseLeave(idx)}
-                className="absolute top-1/2 overflow-hidden border-[2px] [will-change:transform,opacity,left]"
+                className="absolute top-1/2 overflow-hidden border-[2px]"
               >
                 <div
                   className="absolute inset-0 z-10 pointer-events-none"
