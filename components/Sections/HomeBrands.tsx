@@ -11,9 +11,9 @@ export default function BrandsSection() {
   const data: Brand[] = theme === "luxury" ? luxuryBrands : brands;
 
   return (
-    <section id="homebrands" className="relative z-[101] w-full min-h-screen py-4 md:py-6 lg:py-8 px-6 lg:px-20">
+    <section id="homebrands" className="relative z-[101] w-full min-h-screen py-4 md:py-6 lg:py-8 px-4 md:px-2 lg:px-20">
       {/* Content Overlay on top of the tile from HeroSection */}
-      <div className="max-w-[1400px] mx-auto flex flex-col gap-8 md:gap-12 rounded-3xl p-6 md:p-10">
+      <div className="max-w-[1400px] mx-auto flex flex-col gap-6 md:gap-8 lg:gap-12 rounded-3xl p-4 md:p-4 lg:p-10">
 
         {/* Heading */}
         <Typography
@@ -25,15 +25,15 @@ export default function BrandsSection() {
         </Typography>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 items-stretch sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-3 lg:gap-6">
           {data.map((brand, i) => (
             <Link
               href={brand.href}
               key={i}
-              className="group relative w-full max-w-[320px] mx-auto sm:max-w-none pb-14 block"
+              className="group flex h-full w-full max-w-[320px] mx-auto sm:max-w-none flex-col"
             >
               {/* Image — scales up on hover */}
-              <div className="relative w-full aspect-[3/4] overflow-hidden">
+              <div className="relative w-full aspect-[3/4] overflow-hidden shrink-0">
                 <Image
                   src={brand.image}
                   alt={brand.name}
@@ -42,9 +42,9 @@ export default function BrandsSection() {
                 />
               </div>
 
-              {/* White card — pops up with orange shadow on hover */}
+              {/* White card — overlaps image, grows with content */}
               <div
-                className="absolute bottom-0 left-0 right-0 bg-white rounded-2xl px-4 py-8 md:py-4 lg:py-8 shadow-sm flex flex-col gap-1
+                className="relative z-10 -mt-12 flex min-h-[6.5rem] flex-1 flex-col justify-start gap-1 rounded-2xl bg-white px-4 py-4 shadow-sm
                            transition-all duration-500 ease-out
                            group-hover:-translate-y-2
                            group-hover:shadow-[0_8px_30px_rgba(247,148,64,0.5)]"
@@ -54,7 +54,7 @@ export default function BrandsSection() {
                 </Typography>
                 <Typography
                   variant="body-sm"
-                  className="text-black/70 font-medium leading-snug"
+                  className="min-h-[2.75rem] flex-1 text-black/70 font-medium leading-snug"
                 >
                   {brand.description}
                 </Typography>
