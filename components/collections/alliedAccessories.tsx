@@ -155,9 +155,20 @@ export default function AlliedAccessories() {
           >
             {LOOP_IMAGES.map((src, i) => {
               const isCenter = i === index + 1;
-              const w = isMobile ? centerW_mobile : (isCenter ? centerW_desktop : sideW_desktop);
-              const borderOnImage = "border-6 box-border rounded-sm";
-              const borderStyle = { borderColor: collectionImageBorderColor(theme) };
+              const isLeftPeek = isMobile ? i === index - 1 : i === index;
+              const isRightPeek = isMobile ? i === index + 1 : i === index + 2;
+              const w = isMobile
+                ? centerW_mobile
+                : isCenter ? centerW_desktop : sideW_desktop;
+              const borderOnImage = "box-border rounded-sm";
+              const borderStyle = {
+                borderColor: collectionImageBorderColor(theme),
+                borderStyle: "solid" as const,
+                borderTopWidth: 4,
+                borderBottomWidth: 4,
+                borderLeftWidth: isLeftPeek ? 0 : 4,
+                borderRightWidth: isRightPeek ? 0 : 4,
+              };
 
               return (
                 <div
