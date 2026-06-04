@@ -6,6 +6,22 @@ import Image from "next/image";
 import { BLOG_POSTS, BlogContentItem, BlogPost } from "@/lib/constants/blogs";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
+import { cn } from "@/lib/utils";
+
+const BLOG_PROSE_TEXT_LUXURY =
+  "!text-white [&_h1]:!text-white [&_h2]:!text-white [&_h3]:!text-white [&_h4]:!text-white [&_p]:!text-white [&_li]:!text-white [&_td]:!text-white [&_th]:!text-white [&_strong]:!text-white [&_b]:!text-white [&_a]:!text-white [&_span]:!text-white";
+
+const BLOG_PROSE_TEXT_PREMIUM =
+  "!text-[#555555] [&_h1]:!text-[#555555] [&_h2]:!text-[#555555] [&_h3]:!text-[#555555] [&_h4]:!text-[#555555] [&_p]:!text-[#555555] [&_li]:!text-[#555555] [&_td]:!text-[#555555] [&_th]:!text-[#555555] [&_strong]:!text-[#555555] [&_b]:!text-[#555555] [&_a]:!text-[#555555] [&_span]:!text-[#555555]";
+
+function blogProseClassName(isLuxury: boolean) {
+  return cn(
+    "blog-html-content blog-detail-prose font-light",
+    "[&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h4]:font-normal [&_th]:font-normal",
+    isLuxury ? "blog-detail-prose-luxury" : "blog-detail-prose-premium",
+    isLuxury ? BLOG_PROSE_TEXT_LUXURY : BLOG_PROSE_TEXT_PREMIUM
+  );
+}
 
 type BlogDetailColors = {
   heading: string;
@@ -23,43 +39,6 @@ function normalizeTextForCompare(input: string) {
 
 function stripHtmlTags(input: string) {
   return input.replace(/<[^>]*>/g, "");
-}
-
-function sanitizeHtmlWithDom(html: string, title: string) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, "text/html");
-  const body = doc.body;
-
-  // Remove leading H1/H2/H3 if it matches the page title.
-  const firstHeading = body.querySelector("h1,h2,h3");
-  if (firstHeading) {
-    const headingText = normalizeTextForCompare(firstHeading.textContent ?? "");
-    const titleText = normalizeTextForCompare(title);
-    if (headingText && headingText === titleText) {
-      firstHeading.remove();
-    }
-  }
-
-  // Remove empty <p> everywhere (covers &nbsp;, <br>, nested spans/strong/em, etc.)
-  const paragraphs = Array.from(body.querySelectorAll("p"));
-  for (const p of paragraphs) {
-    const text = normalizeTextForCompare(p.textContent ?? "");
-    const hasMeaningfulText = text !== "" && text !== "&nbsp;" && text !== "nbsp;";
-    const hasNonTextMedia = !!p.querySelector("img,video,iframe,svg,table");
-    if (!hasMeaningfulText && !hasNonTextMedia) {
-      p.remove();
-    }
-  }
-
-  // If any containers become empty after paragraph removal, trim them.
-  const empties = Array.from(body.querySelectorAll("div,section,article"));
-  for (const el of empties) {
-    const text = normalizeTextForCompare(el.textContent ?? "");
-    const hasChildren = el.querySelector("img,video,iframe,svg,table,ul,ol,h1,h2,h3,h4,p") !== null;
-    if (!hasChildren && text === "") el.remove();
-  }
-
-  return body.innerHTML.trim();
 }
 
 function stripEmptyParagraphsEverywhere(html: string) {
@@ -113,13 +92,24 @@ function stripLeadingTitleFromHtml(html: string, title: string) {
   return out;
 }
 
+/** Remove inline color so theme CSS applies to h2, h3, p, etc. */
+function stripInlineColorFromHtml(html: string) {
+  let out = html.replace(/\scolor="[^"]*"/gi, "");
+  out = out.replace(/\sstyle="([^"]*)"/gi, (_match, styles: string) => {
+    const cleaned = styles
+      .replace(/(?:^|;)\s*color\s*:\s*[^;]+;?/gi, "")
+      .replace(/;\s*;/g, ";")
+      .trim()
+      .replace(/^;|;$/g, "");
+    return cleaned ? ` style="${cleaned}"` : "";
+  });
+  return out;
+}
+
 function getEffectiveHtmlContent(post: BlogPost) {
   const raw = post.htmlContent?.trim();
   if (!raw) return null;
-  const sanitized =
-    typeof window !== "undefined" && typeof DOMParser !== "undefined"
-      ? sanitizeHtmlWithDom(raw, post.title)
-      : stripLeadingTitleFromHtml(raw, post.title);
+  const sanitized = stripInlineColorFromHtml(stripLeadingTitleFromHtml(raw, post.title));
 
   const finalHtml = sanitized.trim();
   return finalHtml ? finalHtml : null;
@@ -130,10 +120,11 @@ function renderHtmlBody(post: BlogPost, colors: BlogDetailColors, isLuxury: bool
   if (!html) return null;
   return (
     <div
-      className={`blog-html-content blog-detail-prose ${isLuxury ? "" : "blog-detail-prose-premium"}`}
+      className={blogProseClassName(isLuxury)}
       style={
         {
           color: colors.body,
+          "--blog-detail-text": colors.body,
           "--theme-text-color": colors.body,
         } as React.CSSProperties
       }
@@ -146,10 +137,11 @@ function renderStructuredBody(post: BlogPost, colors: BlogDetailColors, theme: s
   const isLuxury = theme === "luxury";
   return (
     <div
-      className={`blog-html-content blog-detail-prose ${isLuxury ? "" : "blog-detail-prose-premium"}`}
+      className={blogProseClassName(isLuxury)}
       style={
         {
           color: colors.body,
+          "--blog-detail-text": colors.body,
           "--theme-text-color": colors.body,
         } as React.CSSProperties
       }
@@ -158,23 +150,29 @@ function renderStructuredBody(post: BlogPost, colors: BlogDetailColors, theme: s
         switch (item.type) {
           case "heading":
             return (
-              <h2 key={index} style={{ color: colors.heading }}>
+              <h2 key={index} className="font-normal" style={{ color: colors.body }}>
                 {item.text}
               </h2>
             );
           case "subheading":
             return (
-              <h3 key={index} style={{ color: colors.heading }}>
+              <h3 key={index} className="font-normal" style={{ color: colors.body }}>
                 {item.text}
               </h3>
             );
           case "paragraph":
-            return <p key={index}>{item.text}</p>;
+            return (
+              <p key={index} className="font-light" style={{ color: colors.body }}>
+                {item.text}
+              </p>
+            );
           case "list":
             return (
-              <ul key={index}>
+              <ul key={index} className="font-light" style={{ color: colors.body }}>
                 {item.items?.map((li, i) => (
-                  <li key={i}>{li}</li>
+                  <li key={i} className="font-light" style={{ color: colors.body }}>
+                    {li}
+                  </li>
                 ))}
               </ul>
             );
@@ -185,7 +183,7 @@ function renderStructuredBody(post: BlogPost, colors: BlogDetailColors, theme: s
                   <thead>
                     <tr>
                       {item.headers?.map((header, i) => (
-                        <th key={i} style={{ color: colors.heading }}>
+                        <th key={i} className="font-normal" style={{ color: colors.body }}>
                           {header}
                         </th>
                       ))}
@@ -195,7 +193,9 @@ function renderStructuredBody(post: BlogPost, colors: BlogDetailColors, theme: s
                     {item.rows?.map((row, i) => (
                       <tr key={i}>
                         {row.map((cell, j) => (
-                          <td key={j}>{cell}</td>
+                          <td key={j} className="font-light" style={{ color: colors.body }}>
+                            {cell}
+                          </td>
                         ))}
                       </tr>
                     ))}
@@ -247,11 +247,11 @@ export default function BlogDetailPage() {
   }
 
   const isLuxury = theme === "luxury";
+  const textColor = isLuxury ? "#FFFFFF" : "#555555";
   const colors: BlogDetailColors = isLuxury
-    ? { heading: "#FFFFFF", body: "rgba(255,255,255,0.92)", mutedBorder: "rgba(255,255,255,0.2)" }
-    : { heading: "#333333", body: "#555555", mutedBorder: "rgba(0,0,0,0.08)" };
+    ? { heading: textColor, body: textColor, mutedBorder: "rgba(255,255,255,0.2)" }
+    : { heading: textColor, body: textColor, mutedBorder: "rgba(0,0,0,0.08)" };
 
-  const borderColor = isLuxury ? "border-[#F79440]" : "border-transparent";
   const imageSrc = post.image || "/Blog/Blog1.webp";
 
   const isVerticalLayout = post.slug === "sustainable-ceramic-tiles";
@@ -260,21 +260,21 @@ export default function BlogDetailPage() {
     ? renderHtmlBody(post, colors, isLuxury)
     : renderStructuredBody(post, colors, theme);
 
-  /* Viewport row height under fixed header: pt-24 (6rem) + a little air */
-  const splitRowLg = "lg:h-[calc(100vh-6.25rem)]";
+  /* Fill viewport below 80px navbar spacer; pt/pb (4px each) included via border-box */
+  const splitMainHeight = "lg:h-[calc(100vh-80px)] lg:max-h-[calc(100vh-80px)]";
 
   return (
     <main
-      className={`w-full bg-inherit ${
+      className={`w-full bg-inherit box-border ${
         isVerticalLayout
-          ? "min-h-screen overflow-y-auto pt-20 pb-12 sm:pt-24 sm:pb-16 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20"
-          : `min-h-screen pt-10 pb-10 sm:pt-24 sm:pb-14 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 ${splitRowLg} lg:overflow-hidden`
+          ? "overflow-y-auto pt-8 pb-8 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20"
+          : `pt-2 pb-8 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 ${splitMainHeight} lg:overflow-hidden lg:flex lg:flex-col`
       }`}
     >
       {isVerticalLayout ? (
         <div className="max-w-[1200px] mx-auto w-full flex flex-col gap-8 sm:gap-12">
           <div
-            className={`relative w-full aspect-21/9 overflow-hidden border-2 ${borderColor} shadow-lg sm:shadow-xl`}
+            className={`relative w-full aspect-21/9 overflow-hidden shadow-lg sm:shadow-xl`}
           >
             <Image src={imageSrc} alt={post.title} fill className="object-cover" priority sizes="100vw" />
           </div>
@@ -282,8 +282,11 @@ export default function BlogDetailPage() {
           <div className="flex flex-col gap-6 sm:gap-8 max-w-[900px] mx-auto w-full">
             <Typography
               variant="display-xl"
-              className="font-semibold leading-tight text-center sm:text-left"
-              style={{ color: colors.heading }}
+              className={cn(
+                "font-normal leading-tight text-center sm:text-left",
+                isLuxury ? "!text-white" : "!text-[#555555]"
+              )}
+              style={{ color: textColor }}
             >
               {post.title}
             </Typography>
@@ -292,13 +295,11 @@ export default function BlogDetailPage() {
           </div>
         </div>
       ) : (
-        <div
-          className={`mx-auto w-full max-w-[1400px] flex flex-col lg:flex-row lg:items-stretch gap-8 lg:gap-10 xl:gap-14 ${splitRowLg}`}
-        >
+        <div className="mx-auto w-full max-w-[1400px] flex flex-col lg:flex-row lg:items-stretch gap-8 lg:gap-10 xl:gap-14 h-full min-h-0 flex-1">
           {/* Mobile / tablet: hero image first */}
           <div className="order-1 lg:order-2 w-full lg:flex-1 lg:min-w-0 flex flex-col">
             <div
-              className={`relative w-full aspect-4/3 sm:aspect-16/10 lg:aspect-auto lg:flex-1 lg:min-h-[280px] min-h-[200px] overflow-hidden border-2 ${borderColor} shadow-lg lg:shadow-xl`}
+              className={`relative w-full aspect-4/3 sm:aspect-16/10 lg:aspect-auto lg:flex-1 lg:min-h-[280px] min-h-[200px] overflow-hidden shadow-lg lg:shadow-xl`}
             >
               <Image
                 src={imageSrc}
@@ -313,12 +314,15 @@ export default function BlogDetailPage() {
 
           {/* Text column: top aligns with image; scrolls inside row on desktop */}
           <div
-            className={`order-2 lg:order-1 w-full lg:flex-1 lg:min-w-0 min-h-0 flex flex-col lg:overflow-y-auto lg:pr-2 xl:pr-4 scrollbar-hide pb-2 lg:pb-0`}
+            className="order-2 lg:order-1 w-full lg:flex-1 lg:min-w-0 min-h-0 flex flex-col lg:overflow-y-auto lg:pr-2 xl:pr-4 scrollbar-hide"
           >
             <Typography
               variant="display-xl"
-              className="font-semibold leading-[1.1] tracking-tight mb-4 sm:mb-5 text-left max-w-xl text-[26px] sm:text-[34px] md:text-[38px] lg:text-[42px]"
-              style={{ color: colors.heading }}
+              className={cn(
+                "font-normal leading-[1.1] tracking-tight mb-4 sm:mb-5 text-left max-w-xl text-[26px] sm:text-[34px] md:text-[38px] lg:text-[42px]",
+                isLuxury ? "!text-white" : "!text-[#555555]"
+              )}
+              style={{ color: textColor }}
             >
               {post.title}
             </Typography>

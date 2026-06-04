@@ -6,10 +6,10 @@ import { THEME_FOREGROUND, useTheme } from "@/lib/contexts/ThemeContext";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { value: 10, suffix: "+", label: "Years Of Experience" },
-  { value: 1000, suffix: "+", label: "Projects Supported" },
-  { value: 500, suffix: "+", label: "Satisfied Customers" },
-  { value: 50, suffix: "+", label: "Premium Brands" },
+  { value: 22, suffix: "+", label: "Years Of Experience" },
+  { value: 10000, suffix: "+", label: "Projects Supported" },
+  { value: 97.6, suffix: "%", label: "Satisfied Customers" },
+  { value: 70, suffix: "+", label: "Premium Brands" },
 ];
 
 const highlights = [
@@ -64,7 +64,14 @@ function StatItem({
   started: boolean;
   labelColor: string;
 }) {
-  const count = useCountUp(value, started);
+  const isDecimal = !Number.isInteger(value);
+  const countTarget = isDecimal ? Math.round(value * 10) : value;
+  const count = useCountUp(countTarget, started);
+  const displayValue = isDecimal
+    ? (count / 10).toFixed(1)
+    : value >= 1000
+      ? count.toLocaleString("en-US")
+      : String(count);
 
   return (
     <div className="flex flex-col items-center w-[48%] md:w-auto md:flex-1 gap-1">
@@ -72,7 +79,8 @@ function StatItem({
         variant="display-xl"
         className="text-[#F79440] font-semibold leading-tight text-center"
       >
-        {count}{suffix}
+        {displayValue}
+        {suffix}
       </Typography>
       <Typography
         variant="body-xl"

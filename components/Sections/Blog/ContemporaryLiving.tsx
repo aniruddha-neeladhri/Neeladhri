@@ -56,9 +56,10 @@ export default function ContemporaryLiving() {
           style={{ height: "clamp(500px, 65vw, 860px)" }}
         >
           {gridCells.map((cell, index) => (
-            <div
+            <Link
               key={index}
-              className="relative overflow-hidden group"
+              href={cell.href}
+              className="relative overflow-hidden group block cursor-pointer"
               style={{
                 gridColumnStart: cell.col,
                 gridRowStart: cell.row,
@@ -69,24 +70,22 @@ export default function ContemporaryLiving() {
                 src={cell.image}
                 alt="Design journal inspiration"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                 sizes="(max-width: 1280px) 33vw, 20vw"
                 priority={index === 0}
               />
               <div
-                className={`absolute inset-0 z-10 flex items-center justify-center ${
+                className={`absolute inset-0 z-10 flex items-center justify-center pointer-events-none ${
                   "alwaysShowCta" in cell && cell.alwaysShowCta
                     ? ""
                     : "opacity-0 group-hover:opacity-100 transition-opacity"
                 }`}
               >
-                <Link href={cell.href}>
-                  <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 cursor-pointer hover:bg-black/50 transition-colors">
-                    Read Article
-                  </span>
-                </Link>
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 group-hover:bg-black/50 transition-colors">
+                  Read Article
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         </div>

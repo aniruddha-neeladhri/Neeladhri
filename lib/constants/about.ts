@@ -15,10 +15,10 @@ export const ABOUT_LUXURY_STORY = {
 };
 
 export const ABOUT_LUXURY_STATS = [
-  { value: 10, suffix: "+", label: "Years Of Experience" },
-  { value: 1000, suffix: "+", label: "Projects Supported" },
-  { value: 500, suffix: "+", label: "Satisfied Customers" },
-  { value: 50, suffix: "+", label: "Luxury Brands" },
+  { value: 22, suffix: "+", label: "Years Of Experience" },
+  { value: 10000, suffix: "+", label: "Projects Supported" },
+  { value: 97.6, suffix: "%", label: "Satisfied Customers" },
+  { value: 70, suffix: "+", label: "Luxury Brands" },
 ] as const;
 
 export const ABOUT_LUXURY_COMMITMENTS = [

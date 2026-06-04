@@ -209,7 +209,7 @@ body.theme-luxury [style*="background-image"] {
   font-weight: 600;
 }
 
-.blog-html-content a {
+.blog-html-content:not(.blog-detail-prose) a {
   color: #F79440;
   text-decoration: underline;
 }
@@ -221,13 +221,40 @@ body.theme-luxury [style*="background-image"] {
   margin-top: 0;
 }
 
-.blog-detail-prose p {
+.blog-html-content.blog-detail-prose {
+  font-weight: 300;
+}
+
+.blog-html-content.blog-detail-prose h1,
+.blog-html-content.blog-detail-prose h2,
+.blog-html-content.blog-detail-prose h3,
+.blog-html-content.blog-detail-prose h4,
+.blog-html-content.blog-detail-prose th {
+  font-weight: 400;
+}
+
+.blog-html-content.blog-detail-prose p,
+.blog-html-content.blog-detail-prose li,
+.blog-html-content.blog-detail-prose td {
+  font-weight: 300;
   text-align: left;
 }
 
-.blog-detail-prose-premium h1,
-.blog-detail-prose-premium h2,
-.blog-detail-prose-premium h3,
-.blog-detail-prose-premium h4 {
-  color: #333333;
+/* Blog detail article text — explicit selectors so h2/h3/p match the title */
+body.theme-luxury .blog-html-content.blog-detail-prose-luxury :is(h1, h2, h3, h4, p, li, td, th, strong, b, a, span) {
+  color: #ffffff !important;
+}
+
+body.theme-premium .blog-html-content.blog-detail-prose-premium :is(h1, h2, h3, h4, p, li, td, th, strong, b, a, span) {
+  color: #555555 !important;
+}
+
+.blog-html-content.blog-detail-prose-luxury {
+  --blog-detail-text: #ffffff;
+  color: #ffffff !important;
+}
+
+.blog-html-content.blog-detail-prose-premium {
+  --blog-detail-text: #555555;
+  color: #555555 !important;
 }

@@ -123,21 +123,11 @@ export const BLOG_CONTENT = {
     //     text: "Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.",
     //   },
     // },
-    designJournal: {
-      title: "Discover Spaces That Inspire",
-      paragraphs: [
-        "Step into a world where design meets inspiration, and every space tells a story of elegance, comfort, and modern living. Our Design Journal is thoughtfully curated to bring you the finest ideas, expert insights, and creative inspirations from the world of interiors, architecture, décor, and premium surfaces — helping you transform everyday spaces into timeless experiences.",
-        "Here, we explore the evolving language of contemporary design through carefully crafted articles that celebrate aesthetics, functionality, and innovation. From luxurious living rooms that create lasting impressions to serene bathrooms designed for relaxation, from modern kitchens built around efficiency to sophisticated dining spaces that bring people together — every feature is created to inspire refined and meaningful living.",
-        "Our blog goes beyond trends to showcase thoughtful design concepts, material inspirations, styling techniques, and practical solutions that suit modern lifestyles. Whether you are designing a new home, renovating an existing space, selecting the perfect tiles and finishes, or simply looking for fresh interior inspiration, our journal serves as your trusted guide throughout the journey.",
-        "Discover expert perspectives on color palettes, textures, lighting, layouts, furniture styling, architectural details, and space planning — all tailored to help you create interiors that feel both visually stunning and deeply personal. We also bring you the latest innovations in premium materials, contemporary craftsmanship, and modern décor trends that elevate the beauty and functionality of every corner of your home.",
-        "At the heart of our Design Journal is a passion for creating spaces that reflect individuality, sophistication, and effortless living. Every article is designed to spark ideas, encourage creativity, and help you reimagine interiors with confidence and style.",
-        "Explore a curated destination filled with inspiration, creativity, and modern elegance — where timeless design and contemporary living come together beautifully.",
-      ],
-    },
+    
     discover: {
       title: "Discover Spaces that Inspire",
       intro:
-        "Step into a world where design meets inspiration, and every space tells a story of elegance, comfort, and modern living. Our Design Journal is thoughtfully curated to bring you the finest ideas, expert insights, and creative inspirations from the world of interiors, architecture, décor, and premium surfaces — helping you transform everyday spaces into timeless experiences.",
+        "From elegant living rooms to serene bathrooms and modern kitchens, explore design ideas that blend comfort, functionality, and timeless style.Our blog brings you the latest trends, expert tips, and interior inspirations to transform every corner of your home with sophistication and warmth.",
       gridImages: [...BLOG_DISCOVER_GRID_IMAGES_LUXURY],
     },
     luxurySpace: {
