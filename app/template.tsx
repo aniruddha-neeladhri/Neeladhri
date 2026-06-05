@@ -66,16 +66,11 @@ export function AnimatedItem({ children }: { children: ReactNode }) {
 export default function Template({ children }: TemplateProps) {
   const { theme } = useTheme();
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
 
   useEffect(() => {
     // Scroll to top on page navigation
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname]);
-
-  if (isHomePage) {
-    return <div className="w-full">{children}</div>;
-  }
 
   return (
     <motion.div
