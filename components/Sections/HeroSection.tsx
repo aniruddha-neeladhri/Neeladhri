@@ -2,9 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Typography from "@/lib/Typography";
-import HomeBrands from "./HomeBrands";
-import ModernSpace from "./ModernSpace";
-import HomePage from "./homepage";
+import TileScrollSection from "./Tilemovement";
 import { cn } from "@/lib/utils";
 
 const INTRO_TEXT = "Enter a new world of Curated Spaces";
@@ -54,18 +52,17 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Main homepage sections — fade in as soon as the video ends */}
-      <div
-        id="homepage-hero-section"
-        className={cn(
-          "w-full transition-opacity ease-out",
-          introDone ? "opacity-100" : "opacity-0 pointer-events-none"
-        )}
-        style={{ transitionDuration: `${FADE_MS}ms` }}
-      >
-        <HomePage />
-        <HomeBrands />
-        <ModernSpace />
+      <div id="homepage-hero-section" className="w-full">
+        {/* Tile section — fades in immediately when the intro video ends */}
+        <div
+          className={cn(
+            "relative z-0 transition-opacity ease-out",
+            introDone ? "opacity-100" : "opacity-0 pointer-events-none"
+          )}
+          style={{ transitionDuration: `${FADE_MS}ms` }}
+        >
+          <TileScrollSection introReady={introDone} />
+        </div>
       </div>
     </>
   );
