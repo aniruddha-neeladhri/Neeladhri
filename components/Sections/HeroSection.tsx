@@ -1,107 +1,68 @@
 "use client";
-import { useEffect, useRef } from "react";
-import TileAnimation from "./TileAnimation";
+
+import { useCallback, useEffect, useState } from "react";
 import Typography from "@/lib/Typography";
 import HomeBrands from "./HomeBrands";
 import ModernSpace from "./ModernSpace";
 import HomePage from "./homepage";
-// Responsive zoom scroll - smaller on mobile for better UX
-const getZoomScrollVH = () => {
-  if (typeof window === "undefined") return 300;
-  return window.innerWidth < 768 ? 250 : 400;
-};
-let ZOOM_SCROLL_VH = 400; // default, updated in effect
+import { cn } from "@/lib/utils";
 
-function easeInOut(t: number): number {
-  const c = Math.max(0, Math.min(1, t));
-  return c < 0.5 ? 2 * c * c : 1 - Math.pow(-2 * c + 2, 2) / 2;
-}
+const INTRO_TEXT = "Enter a new world of Curated Spaces";
+const FADE_MS = 400;
 
 export default function HeroSection() {
-  const heroBgRef = useRef<HTMLDivElement>(null);
-  const heroTextRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
+  const [introDone, setIntroDone] = useState(false);
+
+  const finishIntro = useCallback(() => {
+    setIntroDone(true);
+  }, []);
 
   useEffect(() => {
-    // Update responsive value
-    ZOOM_SCROLL_VH = getZoomScrollVH();
-    const zoomPx = (ZOOM_SCROLL_VH / 100) * window.innerHeight;
-
-    const onScroll = () => {
-      const raw = Math.min(Math.max(window.scrollY / zoomPx, 0), 1);
-      const p = easeInOut(raw); // smoothed progress 0 → 1
-
-      // ── Hero background: zoom 1 → 5
-      if (heroBgRef.current) {
-        heroBgRef.current.style.transform = `scale(${1 + p * 4})`;
-      }
-
-      // ── Hero text: fade out in first 25% of scroll
-      if (heroTextRef.current) {
-        const textP = easeInOut(Math.min(raw / 0.25, 1));
-        heroTextRef.current.style.opacity = `${1 - textP}`;
-      }
-
-      // ── Whole overlay: start fading at 50%, fully gone at 80%
-      if (overlayRef.current) {
-        const fadeP = easeInOut(Math.max(0, (raw - 0.5) / 0.3));
-        overlayRef.current.style.opacity = `${1 - fadeP}`;
-        // Once invisible, disable pointer-events (already none but be explicit)
-        overlayRef.current.style.pointerEvents = fadeP >= 1 ? "none" : "none";
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.dispatchEvent(
+      new CustomEvent(introDone ? "homepage-intro-complete" : "homepage-intro-start")
+    );
+  }, [introDone]);
 
   return (
     <>
-      {/* ── 1. FIXED HERO OVERLAY (sits above everything, fades out) ─────── */}
+      {/* Video intro — fades out when playback ends */}
       <div
-        ref={overlayRef}
-        className="fixed inset-0 pointer-events-none w-full h-[100dvh]"
-        style={{ zIndex: 50 }}
+        className={cn(
+          "fixed inset-0 z-50 w-full h-[100dvh] transition-opacity ease-out",
+          introDone ? "opacity-0 pointer-events-none" : "opacity-100"
+        )}
+        style={{ transitionDuration: `${FADE_MS}ms` }}
+        aria-hidden={introDone}
       >
-        {/* Background image that zooms */}
-        <div
-          ref={heroBgRef}
-          className="absolute inset-0 bg-cover bg-no-repeat origin-center w-full h-full"
-          style={{
-            backgroundImage: "url(/Ndoor.png)",
-            backgroundPosition: "center center",
-            willChange: "transform",
-          }}
+        <video
+          src="/landingpage.mp4"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          onEnded={finishIntro}
         />
 
-        {/* Black overlay */}
-        <div className="absolute inset-0 bg-black/10" />
-
-        {/* Hero text */}
-        <div
-          ref={heroTextRef}
-          className="absolute inset-0 flex flex-col items-center justify-end px-4 pb-safe"
-        >
+        <div className="absolute inset-x-0 bottom-0 z-10 flex w-full justify-center px-3 pb-6 sm:px-6 sm:pb-10 md:pb-12 lg:pb-14">
           <Typography
-            variant="display-xl"
-            className="text-center text-white font-light tracking-[0.06em] mb-2 md:mb-3 max-w-[90vw]"
-            style={{ textShadow: "0 4px 30px rgba(0,0,0,0.9)", fontSize: "clamp(1.5rem,5vw,4rem)" }}
+            variant="display-2xl"
+            className="text-center text-white font-normal whitespace-nowrap leading-none tracking-[0.02em]"
           >
-            PORTAL TO NEELADHRI CERAMICS
-          </Typography>
-          <Typography
-            variant="caption"
-            className="text-center font-light tracking-[0.18em] md:tracking-[0.22em] text-white mb-6 md:mb-10 normal-case"
-            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.8)", fontSize: "clamp(0.65rem,1.2vw,0.95rem)" }}
-          >
-            Scroll to Explore
+            {INTRO_TEXT}
           </Typography>
         </div>
       </div>
-      <div style={{ height: `${ZOOM_SCROLL_VH}dvh` }} aria-hidden="true" className="w-full" />
-      {/* <TileAnimation /> */}
-      <div id="homepage-hero-section" className="w-full">
+
+      {/* Main homepage sections — fade in as soon as the video ends */}
+      <div
+        id="homepage-hero-section"
+        className={cn(
+          "w-full transition-opacity ease-out",
+          introDone ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        style={{ transitionDuration: `${FADE_MS}ms` }}
+      >
         <HomePage />
         <HomeBrands />
         <ModernSpace />
