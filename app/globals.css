@@ -54,10 +54,10 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Remove horizontal scroll */
+/* Remove horizontal scroll without breaking position:sticky descendants */
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Theme styles */

@@ -1,10 +1,17 @@
 import HeroSection from "@/components/Sections/HeroSection";
-import { AnimatedItem } from "./template";
+import HomePage from "@/components/Sections/homepage";
+import HomeBrands from "@/components/Sections/HomeBrands";
+import ModernSpace from "@/components/Sections/ModernSpace";
 
 export default function Home() {
   return (
-    <AnimatedItem>
+    <>
       <HeroSection />
-    </AnimatedItem>
+      <div className="relative z-30 w-full [transform:translateZ(0)] bg-[var(--theme-page-bg)]">
+        <HomePage />
+        <HomeBrands />
+        <ModernSpace />
+      </div>
+    </>
   );
 }
