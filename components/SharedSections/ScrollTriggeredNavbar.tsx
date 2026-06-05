@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 import Navbar from "./Navbar";
@@ -11,17 +11,27 @@ const HOMEPAGE_SECTION_ID = "homepage-hero-section";
 
 export default function ScrollTriggeredNavbar() {
   const [isVisible, setIsVisible] = useState(false);
+  const introCompleteRef = useRef(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
   useEffect(() => {
     if (!isHomePage) {
+      introCompleteRef.current = true;
       setIsVisible(true);
       return;
     }
 
-    const handleScroll = () => {
+    introCompleteRef.current = false;
+    setIsVisible(false);
+
+    const updateVisibility = () => {
+      if (!introCompleteRef.current) {
+        setIsVisible(false);
+        return;
+      }
+
       const homeSection = document.getElementById(HOMEPAGE_SECTION_ID);
       if (!homeSection) {
         setIsVisible(false);
@@ -32,13 +42,27 @@ export default function ScrollTriggeredNavbar() {
       setIsVisible(top <= NAVBAR_HEIGHT);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
-    handleScroll();
+    const onIntroComplete = () => {
+      introCompleteRef.current = true;
+      requestAnimationFrame(updateVisibility);
+    };
+
+    const onIntroStart = () => {
+      introCompleteRef.current = false;
+      setIsVisible(false);
+    };
+
+    window.addEventListener("homepage-intro-complete", onIntroComplete);
+    window.addEventListener("homepage-intro-start", onIntroStart);
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility, { passive: true });
+    updateVisibility();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("homepage-intro-complete", onIntroComplete);
+      window.removeEventListener("homepage-intro-start", onIntroStart);
+      window.removeEventListener("scroll", updateVisibility);
+      window.removeEventListener("resize", updateVisibility);
     };
   }, [isHomePage]);
 
