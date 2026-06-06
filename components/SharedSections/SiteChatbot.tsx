@@ -104,7 +104,7 @@ function ContactMenuLink({
       </span>
 
       <Typography
-        variant="body-sm"
+        variant="body-lg"
         className={cn(
           "relative z-10 font-normal normal-case tracking-normal !text-white",
           "[text-shadow:0_1px_2px_rgba(0,0,0,0.22)]",
