@@ -85,6 +85,7 @@ export const metadata: Metadata = {
 
 import ScrollTriggeredNavbar from "@/components/SharedSections/ScrollTriggeredNavbar";
 import Footer from "@/components/SharedSections/Footer";
+import SiteChatbot from "@/components/SharedSections/SiteChatbot";
 import ThemeWrapper from "@/components/SharedSections/ThemeWrapper";
 import ScrollToTop from "@/components/SharedSections/ScrollToTop";
 import { ThemeProvider } from "@/lib/contexts/ThemeContext";
@@ -103,6 +104,7 @@ export default function RootLayout({
           <ScrollTriggeredNavbar />
           {children}
           <Footer />
+          <SiteChatbot />
         </ThemeProvider>
       </body>
     </html>
