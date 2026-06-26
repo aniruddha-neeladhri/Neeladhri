@@ -4,8 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 import {
-  GALLERY_IMAGES as IMAGES,
-  GALLERY_TOTAL as TOTAL,
+  galleryImages,
   TiltState,
   Breakpoint,
   circularOffset,
@@ -18,6 +17,8 @@ import {
 
 export default function GallerySection() {
   const { theme } = useTheme();
+  const images = galleryImages(theme);
+  const total = images.length;
   const [center, setCenter]   = useState(0);
   const [tiltMap, setTiltMap] = useState<Record<number, TiltState>>({});
   const [bp, setBp]           = useState<Breakpoint>("desktop");
@@ -37,8 +38,8 @@ export default function GallerySection() {
   }, []);
 
   const nav = useCallback((dir: number) => {
-    setCenter((prev) => ((prev + dir) % TOTAL + TOTAL) % TOTAL);
-  }, []);
+    setCenter((prev) => ((prev + dir) % total + total) % total);
+  }, [total]);
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
@@ -81,7 +82,7 @@ export default function GallerySection() {
   };
 
   const cardStyle = (idx: number): React.CSSProperties => {
-    const offset = circularOffset(center, idx, TOTAL);
+    const offset = circularOffset(center, idx, total);
     const tilt = tiltMap[idx] ?? { rx: 0, ry: 0 };
     const isTilting = tilt.rx !== 0 || tilt.ry !== 0;
 
@@ -155,8 +156,8 @@ export default function GallerySection() {
         <div
           className={`relative w-full h-full ${bp === "xs" ? "perspective-none" : "perspective-[1300px]"}`}
         >
-          {IMAGES.map((src, idx) => {
-            const offset = circularOffset(center, idx, TOTAL);
+          {images.map((src, idx) => {
+            const offset = circularOffset(center, idx, total);
             if (Math.abs(offset) > renderOffset) return null;
 
             return (
