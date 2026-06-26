@@ -422,7 +422,7 @@ export default function ContactSection() {
     "w-full min-h-[52px] bg-transparent border-0 px-4 py-4 text-white placeholder:text-white/80 focus:outline-none font-poppins font-normal";
 
   const luxuryInputClass =
-    "w-full min-h-[48px] sm:min-h-[56px] bg-[#E5E1DC] border-0 px-4 sm:px-5 py-3.5 sm:py-4 !text-black !caret-black placeholder:!text-black focus:outline-none font-light";
+    "w-full min-h-[48px] sm:min-h-[56px] bg-[#E5E1DC] border-0 px-4 sm:px-5 py-3.5 sm:py-4 !text-black !caret-black placeholder:!text-black focus:outline-none font-normal font-cormorant-garamond";
 
   if (isLuxury) {
     return (
@@ -444,10 +444,10 @@ export default function ContactSection() {
 
             <div className="w-full lg:w-1/2 flex flex-col justify-center gap-6 sm:gap-8 lg:pl-4 xl:pl-8">
               <div className="space-y-1.5 sm:space-y-2 text-center lg:text-left">
-                <Typography variant="body-xl" className="!text-white font-light leading-snug">
+                <Typography variant="h1" className="!text-white font-normal font-cormorant-garamond leading-snug">
                   Have a question about our service?
                 </Typography>
-                <Typography variant="body-xl" className="!text-white font-light leading-snug">
+                <Typography variant="h1" className="!text-white font-normal font-cormorant-garamond leading-snug">
                   We&apos;re here to help, contact us today.
                 </Typography>
               </div>
@@ -474,7 +474,7 @@ export default function ContactSection() {
                   type="submit"
                   className="w-full sm:w-auto mt-1 sm:mt-2 px-8 sm:px-12 py-3 sm:py-3.5 bg-transparent border border-[#D3B898] text-white cursor-pointer"
                 >
-                  <Typography variant="body-lg" className="!text-white font-light font-montserrat font-semibold">
+                  <Typography variant="h3" className="!text-white font-light font-cormorant-garamond font-normal">
                     Send Your Message
                   </Typography>
                 </button>

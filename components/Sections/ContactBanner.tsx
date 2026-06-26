@@ -37,7 +37,7 @@ export default function ContactBanner() {
           </Typography>
           <Typography
             variant="h3"
-            className="!text-white font-light leading-relaxed max-w-[920px] mt-3 sm:mt-4 md:mt-5 font-cormorant-garamond "
+            className="!text-white font-light leading-relaxed max-w-[920px] mt-3 sm:mt-4 md:mt-5 font-cormorant-garamond"
           >
             {LUXURY_BANNER_DESCRIPTION}
           </Typography>
@@ -59,11 +59,11 @@ export default function ContactBanner() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/50" />
 
-      {/* <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center">
         <Typography variant="display-3xl" className="text-white font-semibold tracking-wide font-montserrat">
           Contact Us
         </Typography>
-      </div> */}
+      </div>
     </div>
   );
 }
