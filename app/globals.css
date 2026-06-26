@@ -4,13 +4,6 @@
 
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'RobotoSlab';
-  src: url('/Fonts/RobotoSlab-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -20,8 +13,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --default-font-family: inherit;
+  --default-mono-font-family: ui-monospace, monospace;
+  --font-cormorant: var(--font-cormorant-sc), "Cormorant SC", serif;
+  --font-montserrat: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-poppins: var(--font-poppins), "Poppins", sans-serif;
+  --font-poppins-light: var(--font-poppins-extralight), "Poppins", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,7 +31,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "RobotoSlab", serif;
 }
 
 /* Chrome, Safari, Edge */
@@ -136,12 +132,14 @@ body.theme-luxury [style*="background-image"] {
   opacity: 0.9;
   line-height: 1.8;
   font-size: 0.98rem;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
 }
 
 .blog-html-content h1,
 .blog-html-content h2,
 .blog-html-content h3,
 .blog-html-content h4 {
+  font-family: var(--font-cormorant-sc), "Cormorant SC", serif;
   font-weight: 500;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -222,7 +220,8 @@ body.theme-luxury [style*="background-image"] {
 }
 
 .blog-html-content.blog-detail-prose {
-  font-weight: 300;
+  font-family: var(--font-poppins-extralight), "Poppins", sans-serif;
+  font-weight: 200;
 }
 
 .blog-html-content.blog-detail-prose h1,

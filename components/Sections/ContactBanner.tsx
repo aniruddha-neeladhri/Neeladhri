@@ -60,7 +60,7 @@ export default function ContactBanner() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/50" />
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <Typography variant="display-3xl" className="text-white font-light tracking-wide">
+        <Typography variant="display-3xl" className="text-white font-semibold tracking-wide font-montserrat">
           Contact Us
         </Typography>
       </div>
