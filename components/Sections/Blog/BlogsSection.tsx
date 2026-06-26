@@ -20,7 +20,7 @@ export default function InsightsHero() {
 
         {/* Dummy Image (replace later) */}
         <Image
-          src={currentImages.banner}
+          src="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/12ed1f1c-2e9e-48c3-9336-765816378d96.png"
           alt="Interior Background"
           fill
           priority
