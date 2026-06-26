@@ -35,15 +35,15 @@ export default function ContemporaryLiving() {
       <div className="max-w-[1400px] mx-auto flex flex-col xl:flex-row xl:flex-nowrap xl:items-center gap-6 xl:gap-8">
         <div className="w-full xl:w-[38%] xl:min-w-0 flex flex-col gap-2 xl:gap-2 text-left">
           <Typography
-            variant="display-xl"
-            className="font-normal leading-tight  text-center xl:text-left"
+            variant="h1"
+            className="font-medium font-montserrat leading-tight text-center xl:text-left text-[#555555]"
           >
             {designJournal.title}
           </Typography>
 
           <div className="space-y-3 leading-relaxed text-left">
             {designJournal.paragraphs.map((paragraph, i) => (
-              <Typography key={i} variant="body-lg" className="text-left">
+              <Typography key={i} variant="body-lg" className="text-left font-normal font-poppins text-[#555555]">
                 {paragraph}
               </Typography>
             ))}
