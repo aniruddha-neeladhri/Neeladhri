@@ -1,3 +1,5 @@
+import { contactCarouselSliderImages } from "./contact-carousel";
+
 export const CONTACT_INITIAL_FORM = {
   name: "",
   contact: "",
@@ -24,22 +26,14 @@ export type ContactThemeImages = {
 export const CONTACT_IMAGES_PREMIUM: ContactThemeImages = {
   background: "/Contact/Contact_Bg.webp",
   contactImage: "/Contact/Contact.webp",
-  carousel: [
-    "/Contact/Contact.webp",
-    "/Contact/Contact.webp",
-    "/Contact/Contact.webp",
-  ],
+  carousel: [...contactCarouselSliderImages()],
 } as const;
 
 /** Luxury contact — swap asset paths when final images are ready */
 export const CONTACT_IMAGES_LUXURY: ContactThemeImages = {
   background: "/Contact/Contact_Bg.webp",
   contactImage: "/Contact/Contact.webp",
-  carousel: [
-    "/Contact/Contact.webp",
-    "/Contact/Contact.webp",
-    "/Contact/Contact.webp",
-  ],
+  carousel: [...contactCarouselSliderImages()],
 };
 
 export function contactImages(theme: "premium" | "luxury"): ContactThemeImages {

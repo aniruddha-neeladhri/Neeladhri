@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const robotoSlab = localFont({
-  src: [
-    {
-      path: "./Fonts/RobotoSlab-VariableFont_wght.ttf",
-      weight: "100 900",
-      style: "normal",
-    },
-  ],
-  variable: "--font-roboto-slab",
-  display: "swap",
-});
+import { fontVariableClassNames } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Neeladhri Ceramics - Premium Ceramic Solutions",
@@ -96,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${robotoSlab.variable} theme-premium`}>
+    <html lang="en" className={`${fontVariableClassNames} theme-premium`}>
       <body className="antialiased theme-premium">
         <ThemeProvider>
           <ThemeWrapper />
