@@ -419,7 +419,7 @@ export default function ContactSection() {
   const carouselImages = contactCarouselImages(theme);
 
   const premiumInputClass =
-    "w-full min-h-[52px] bg-transparent border-0 px-4 py-4 text-white placeholder:text-white/80 focus:outline-none";
+    "w-full min-h-[52px] bg-transparent border-0 px-4 py-4 text-white placeholder:text-white/80 focus:outline-none font-poppins font-normal";
 
   const luxuryInputClass =
     "w-full min-h-[48px] sm:min-h-[56px] bg-[#E5E1DC] border-0 px-4 sm:px-5 py-3.5 sm:py-4 !text-black !caret-black placeholder:!text-black focus:outline-none font-light";
@@ -474,7 +474,7 @@ export default function ContactSection() {
                   type="submit"
                   className="w-full sm:w-auto mt-1 sm:mt-2 px-8 sm:px-12 py-3 sm:py-3.5 bg-transparent border border-[#D3B898] text-white cursor-pointer"
                 >
-                  <Typography variant="body-lg" className="!text-white font-light">
+                  <Typography variant="body-lg" className="!text-white font-light font-montserrat font-semibold">
                     Send Your Message
                   </Typography>
                 </button>
@@ -498,14 +498,14 @@ export default function ContactSection() {
 
         {/* ROW 1 — Heading */}
         <div className="max-w-[1400px] mx-auto w-full text-center lg:text-left">
-          <Typography variant="display-xl" className="text-white font-normal">
+          <Typography variant="display-xl" className="text-white font-semibold font-poppins">
             Get in Touch
           </Typography>
         </div>
 
         {/* ROW 2 — Paragraph */}
         <div className="max-w-[1400px] mx-auto w-full mt-4 text-center lg:text-left">
-          <Typography variant="body-xl" className="text-white leading-relaxed font-light">
+          <Typography variant="body-xl" className="text-white leading-relaxed font-normal font-poppins">
             Whether you're designing a home, a commercial space, or sourcing high-quality tiles.
             <br className="hidden md:block" />
             Needladri Ceramics is here to support your vision with precision and style.
@@ -519,7 +519,7 @@ export default function ContactSection() {
           <div className="flex flex-col gap-4 md:hidden w-full items-center">
             <div className="flex items-start gap-3 w-full max-w-xs">
               <LocationIcon iconColor={iconColor} />
-              <Typography variant="body-sm" className="text-white leading-relaxed font-light">
+              <Typography variant="body-sm" className="text-white leading-relaxed font-normal font-poppins">
                 Skanda Mansion, JSS Circle<br />
                 748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
                 Bangalore, Karnataka 560070, India
@@ -528,13 +528,13 @@ export default function ContactSection() {
             <div className="flex items-center gap-3 w-full max-w-xs">
               <PhoneIcon iconColor={iconColor} />
               <a href={`tel:${PHONE.replace(/\s/g, "")}`}>
-                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition font-light">{PHONE}</Typography>
+                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition font-normal font-poppins">{PHONE}</Typography>
               </a>
             </div>
             <div className="flex items-center gap-3 w-full max-w-xs">
               <EmailIcon iconColor={iconColor} />
               <a href={`mailto:${EMAIL}`}>
-                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition font-light">{EMAIL}</Typography>
+                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition font-normal font-poppins">{EMAIL}</Typography>
               </a>
             </div>
           </div>
@@ -543,7 +543,7 @@ export default function ContactSection() {
           <div className="hidden md:flex flex-row gap-16 lg:gap-24 justify-center lg:justify-start items-start">
             <div className="flex items-start gap-3">
               <LocationIcon iconColor={iconColor} />
-              <Typography variant="body-lg" className="text-white leading-relaxed font-light">
+              <Typography variant="body-lg" className="text-white leading-relaxed font-normal font-poppins">
                 Skanda Mansion, JSS Circle<br />
                 748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
                 Bangalore, Karnataka 560070, India
@@ -553,13 +553,13 @@ export default function ContactSection() {
               <div className="flex items-start gap-3">
                 <PhoneIcon iconColor={iconColor} />
                 <a href={`tel:${PHONE.replace(/\s/g, "")}`}>
-                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition font-light">{PHONE}</Typography>
+                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition font-normal font-poppins">{PHONE}</Typography>
                 </a>
               </div>
               <div className="flex items-start gap-3">
                 <EmailIcon iconColor={iconColor} />
                 <a href={`mailto:${EMAIL}`}>
-                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition font-light">{EMAIL}</Typography>
+                  <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition font-normal font-poppins">{EMAIL}</Typography>
                 </a>
               </div>
             </div>
@@ -571,7 +571,7 @@ export default function ContactSection() {
         <div className="max-w-[1400px] mx-auto w-full mt-6 flex flex-col lg:flex-row items-center gap-5 lg:gap-6">
 
           <div className="w-full lg:w-[48%] flex flex-col gap-4 items-center lg:items-start">
-            <Typography variant="body-xl" className="text-white text-center lg:text-left w-full font-normal">
+            <Typography variant="body-xl" className="text-white text-center lg:text-left w-full font-semibold font-poppins">
               Have a question about our service?<br />
               We're here to help, contact us today.
             </Typography>
@@ -603,7 +603,7 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full mt-2 px-10 py-3 bg-[#555555] text-white cursor-pointer"
+                className="w-full mt-2 px-10 py-3 bg-[#555555] text-white cursor-pointer font-montserrat font-semibold"
               >
                 Send Your Message
               </button>

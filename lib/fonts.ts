@@ -28,12 +28,73 @@ export const poppinsExtraLight = localFont({
   display: "swap",
 });
 
+/** Cormorant Garamond — variable weight, normal */
+export const cormorantGaramond = localFont({
+  src: [{ path: "../app/Fonts/CormorantGaramond-VariableFont_wght.ttf", weight: "100 900", style: "normal" }],
+  variable: "--font-cormorant-garamond",
+  display: "swap",
+});
+
+/** Cormorant Garamond Medium — static medium */
+export const cormorantGaramondMedium = localFont({
+  src: [{ path: "../app/Fonts/CormorantGaramond-Medium.ttf", weight: "500", style: "normal" }],
+  variable: "--font-cormorant-garamond-medium",
+  display: "swap",
+});
+
+/** Cormorant Garamond — variable weight, italic */
+export const cormorantGaramondItalic = localFont({
+  src: [{ path: "../app/Fonts/CormorantGaramond-Italic-VariableFont_wght.ttf", weight: "100 900", style: "italic" }],
+  variable: "--font-cormorant-garamond-italic",
+  display: "swap",
+});
+
+/** Roboto Slab — thin through bold */
+export const robotoSlab = localFont({
+  src: [
+    { path: "../app/Fonts/RobotoSlab-Thin.ttf", weight: "100", style: "normal" },
+    { path: "../app/Fonts/RobotoSlab-Light.ttf", weight: "300", style: "normal" },
+    { path: "../app/Fonts/RobotoSlab-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../app/Fonts/RobotoSlab-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-roboto-slab",
+  display: "swap",
+});
+
+/** GFS Didot Regular — elegant serif display */
+export const gfsDidot = localFont({
+  src: [{ path: "../app/Fonts/GFSDidot-Regular.ttf", weight: "400", style: "normal" }],
+  variable: "--font-gfs-didot",
+  display: "swap",
+});
+
+/** The Seasons Light — luxury display */
+export const theSeasonsLight = localFont({
+  src: [{ path: "../app/Fonts/FSP DEMO - The Seasons Light Regular.otf", weight: "300", style: "normal" }],
+  variable: "--font-the-seasons",
+  display: "swap",
+});
+
+/** The Seasons Bold — luxury display emphasis */
+export const theSeasonsBold = localFont({
+  src: [{ path: "../app/Fonts/Fontspring-DEMO-theseasons-bd.otf", weight: "700", style: "normal" }],
+  variable: "--font-the-seasons-bold",
+  display: "swap",
+});
+
 /** Apply on `<html>` — registers CSS variables only; does not set a page-wide font. */
 export const fontVariableClassNames = [
   cormorantSC.variable,
   montserrat.variable,
   poppins.variable,
   poppinsExtraLight.variable,
+  cormorantGaramond.variable,
+  cormorantGaramondMedium.variable,
+  cormorantGaramondItalic.variable,
+  robotoSlab.variable,
+  gfsDidot.variable,
+  theSeasonsLight.variable,
+  theSeasonsBold.variable,
 ].join(" ");
 
 export const FONT_FAMILY_CLASSES = [
@@ -41,4 +102,11 @@ export const FONT_FAMILY_CLASSES = [
   "font-montserrat",
   "font-poppins",
   "font-poppins-light",
+  "font-cormorant-garamond",
+  "font-cormorant-garamond-medium",
+  "font-cormorant-garamond-italic",
+  "font-roboto-slab",
+  "font-gfs-didot",
+  "font-the-seasons",
+  "font-the-seasons-bold",
 ] as const;

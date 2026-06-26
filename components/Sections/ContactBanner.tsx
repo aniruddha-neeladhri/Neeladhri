@@ -30,14 +30,14 @@ export default function ContactBanner() {
         <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 sm:pb-10 md:pb-12 lg:pb-14 px-4 sm:px-6 md:px-10 text-center">
           <Typography
             variant="display-2xl"
-            className="font-normal leading-tight"
+            className="font-light leading-tight font-cormorant-garamond"
             style={{ color: "#D3B898" }}
           >
             Get in Touch
           </Typography>
           <Typography
-            variant="body-xl"
-            className="!text-white font-light leading-relaxed max-w-[920px] mt-3 sm:mt-4 md:mt-5"
+            variant="h3"
+            className="!text-white font-light leading-relaxed max-w-[920px] mt-3 sm:mt-4 md:mt-5 font-cormorant-garamond "
           >
             {LUXURY_BANNER_DESCRIPTION}
           </Typography>
@@ -59,11 +59,11 @@ export default function ContactBanner() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/50" />
 
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* <div className="absolute inset-0 flex items-center justify-center">
         <Typography variant="display-3xl" className="text-white font-semibold tracking-wide font-montserrat">
           Contact Us
         </Typography>
-      </div>
+      </div> */}
     </div>
   );
 }
