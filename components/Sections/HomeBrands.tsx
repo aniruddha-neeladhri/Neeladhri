@@ -21,7 +21,11 @@ export default function BrandsSection() {
         {/* Heading */}
         <Typography
           variant="display-2xl"
-          className="font-normal text-center md:text-left"
+          className={`font-normal text-center md:text-left ${
+            isLuxury
+              ? "font-roboto-slab font-light"
+              : "font-poppins font-medium"
+          }`}
           style={{ color: headingColor }}
         >
           Brands
@@ -48,12 +52,12 @@ export default function BrandsSection() {
                     aria-hidden
                   />
                   <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-1 px-4 py-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]">
-                    <Typography variant="h3" className="font-light text-left" style={{ color: bodyColor }}>
+                    <Typography variant="h3" className="font-cormorant-garamond font-medium text-left" style={{ color: bodyColor }}>
                       {brand.name}
                     </Typography>
                     <Typography
                       variant="body-sm"
-                      className="font-light leading-snug text-left"
+                      className="font-cormorant-garamond font-light leading-snug text-left"
                       style={{ color: bodyColor }}
                     >
                       {brand.description}
@@ -81,12 +85,12 @@ export default function BrandsSection() {
                              transition-all duration-500 ease-out
                              group-hover:-translate-y-2 group-hover:shadow-[0_8px_30px_rgba(247,148,64,0.5)]"
                 >
-                  <Typography variant="h3" className="font-normal" style={{ color: bodyColor }}>
+                  <Typography variant="h3" className="font-montserrat font-medium" style={{ color: bodyColor }}>
                     {brand.name}
                   </Typography>
                   <Typography
                     variant="body-sm"
-                    className="min-h-[2.75rem] flex-1 font-medium leading-snug"
+                    className="min-h-[2.75rem] flex-1 font-poppins font-extralight leading-snug"
                     style={{ color: bodyColor }}
                   >
                     {brand.description}
