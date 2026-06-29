@@ -337,22 +337,22 @@ import { cn } from "@/lib/utils";
 const STEPS = [
   {
     body: "Functional layouts, premium finishes, and a space designed to bring people together effortlessly.",
-    videoSrc: "/landingpage.mp4",
+    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/cd4e7862-0010-49a9-8785-1b9e0368594d.mp4",
     videoTime: 0,
   },
   {
     body: "Calibrated to within a fraction of a millimetre, our tiles achieve seamless joins and a flawless surface that elevates every architectural space.",
-    videoSrc: "/landingpage.mp4",
+    videoSrc:"https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/f6e6ff51-30c4-457a-959f-f30058fcd9c9.mp4",
     videoTime: 5,
   },
   {
     body: "Functional layouts and premium finishes converge — a space designed not just to be seen, but to be deeply, effortlessly experienced each day.",
-    videoSrc: "/landingpage.mp4",
+    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/8b676cb2-64f7-4e89-b6c2-444c1934fdca.mp4",
     videoTime: 10,
   },
   {
     body: "From floor to wall, from intimate bathrooms to grand foyers — our collections bring the quiet luxury of natural stone to every corner of your world.",
-    videoSrc: "/landingpage.mp4",
+    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/80ce74a1-734e-47f5-ae93-95c139b7265f.mp4",
     videoTime: 15,
   },
 ];
