@@ -18,6 +18,7 @@ export default function InsightsHero() {
         className="relative w-[95%] max-w-[1400px] aspect-[16/9] overflow-hidden"
       >
 
+        {/* Dummy Image (replace later) */}
         <Image
           src={currentImages.banner}
           alt="Interior Background"
@@ -38,7 +39,7 @@ export default function InsightsHero() {
         <div className="absolute inset-0 flex items-center justify-center text-center px-6">
           <Typography
             variant="display-xl"
-            className="font-normal leading-snug max-w-[700px]"
+            className={`leading-snug max-w-[700px] ${theme === "luxury" ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"}`}
             style={{ color: currentContent.hero.titleColor }}
           >
             {currentContent.hero.title.split("\n").map((line: string, i: number) => (

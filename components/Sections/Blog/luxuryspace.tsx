@@ -39,7 +39,7 @@ export default function LuxurySpace() {
             <div className="w-full flex flex-col gap-4 sm:gap-5 lg:gap-6 text-left">
               <Typography
                 variant="display-2xl"
-                className="!text-white font-normal leading-tight text-center lg:text-left"
+                className="!text-white font-normal font-cormorant-garamond leading-tight text-center lg:text-left"
               >
                 {luxurySpace.title}
               </Typography>
@@ -48,8 +48,8 @@ export default function LuxurySpace() {
                 {luxurySpace.paragraphs.map((paragraph, i) => (
                   <Typography
                     key={i}
-                    variant="body-lg"
-                    className="!text-white font-light leading-relaxed text-left"
+                    variant="body-xl"
+                    className="!text-white font-normal font-cormorant-garamond leading-relaxed text-left"
                   >
                     {paragraph}
                   </Typography>
