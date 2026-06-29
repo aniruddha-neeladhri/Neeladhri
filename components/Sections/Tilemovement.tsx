@@ -337,22 +337,22 @@ import { cn } from "@/lib/utils";
 const STEPS = [
   {
     body: "Functional layouts, premium finishes, and a space designed to bring people together effortlessly.",
-    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/cd4e7862-0010-49a9-8785-1b9e0368594d.mp4",
+    videoSrc:"https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/3c693341-7ccc-4aae-bb57-4b1836b276d3.mp4",
     videoTime: 0,
   },
   {
     body: "Calibrated to within a fraction of a millimetre, our tiles achieve seamless joins and a flawless surface that elevates every architectural space.",
-    videoSrc:"https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/f6e6ff51-30c4-457a-959f-f30058fcd9c9.mp4",
+    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/a28a5ae0-a3ba-45e6-8380-f08fc9d2bfa7.mp4",
     videoTime: 5,
   },
   {
     body: "Functional layouts and premium finishes converge — a space designed not just to be seen, but to be deeply, effortlessly experienced each day.",
-    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/8b676cb2-64f7-4e89-b6c2-444c1934fdca.mp4",
+    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/daa13807-4da6-4f57-8682-fa34c0119d5d.mp4",
     videoTime: 10,
   },
   {
     body: "From floor to wall, from intimate bathrooms to grand foyers — our collections bring the quiet luxury of natural stone to every corner of your world.",
-    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/80ce74a1-734e-47f5-ae93-95c139b7265f.mp4",
+    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/3e6b8831-5c78-4420-b96d-429f2124f796.mp4",
     videoTime: 15,
   },
 ];
@@ -625,7 +625,7 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
             loop
             playsInline
             className={cn(
-              "absolute inset-0 z-0 h-full w-full object-cover transition-opacity duration-700",
+              "absolute inset-0 z-0 h-full w-full object-contain object-fill transition-opacity duration-700",
               activeStep === i ? "opacity-100" : "opacity-0"
             )}
           />
