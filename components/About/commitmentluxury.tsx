@@ -64,7 +64,7 @@ function LuxuryStatItem({
     <div className="flex flex-col items-center justify-center text-center py-5 md:py-8 px-2 md:px-3 lg:px-4 gap-1.5 md:gap-2">
       <Typography
         variant="display-xl"
-        className="font-semibold leading-none tracking-tight"
+        className="font-normal font-gfs-didot leading-none tracking-tight"
         style={{ color: GOLD }}
       >
         {displayValue}
@@ -72,7 +72,7 @@ function LuxuryStatItem({
       </Typography>
       <Typography
         variant="body-lg"
-        className="!text-white font-light leading-snug max-w-32 md:max-w-36 lg:max-w-44 mx-auto text-balance"
+        className="!text-white font-normal font-gfs-didot leading-snug max-w-32 md:max-w-36 lg:max-w-44 mx-auto text-balance"
         style={{ color: WHITE }}
       >
         {label}
@@ -130,7 +130,7 @@ export default function CommitmentLuxury() {
           <div className="min-w-0 w-full max-lg:text-center">
             <Typography
               variant="display-2xl"
-              className="!text-white font-normal leading-tight tracking-tight text-center lg:text-left"
+              className="!text-white font-medium font-cormorant-garamond leading-tight tracking-tight text-center lg:text-left"
               style={{ color: WHITE }}
             >
               <span className="lg:hidden">Our Commitment</span>
@@ -160,7 +160,7 @@ export default function CommitmentLuxury() {
 
                 <Typography
                   variant="h3"
-                  className="!text-white font-semibold leading-snug text-center w-full lg:text-left"
+                  className="!text-white font-light font-cormorant-garamond leading-snug text-center w-full lg:text-left"
                   style={{ color: WHITE }}
                 >
                   {item.title}
@@ -168,7 +168,7 @@ export default function CommitmentLuxury() {
 
                 <Typography
                   variant="body-lg"
-                  className="!text-white font-light leading-relaxed text-center w-full [text-wrap:pretty] lg:text-left"
+                  className="!text-white font-light font-cormorant-garamond leading-relaxed text-center w-full [text-wrap:pretty] lg:text-left"
                   style={{ color: WHITE }}
                 >
                   {item.description}

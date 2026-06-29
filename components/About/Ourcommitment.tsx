@@ -18,7 +18,7 @@ export default function OurCommitment() {
         {/* Heading */}
         <Typography
           variant="display-xl"
-          className="font-semibold text-center"
+          className="font-semibold  font-poppins text-center"
           style={{ color: textColor }}
         >
           Our Commitment
@@ -45,7 +45,7 @@ export default function OurCommitment() {
               {/* Title */}
               <Typography
                 variant="h2"
-                className="font-normal text-center leading-snug"
+                className="font-normal  font-poppins text-center leading-snug"
                 style={{ color: textColor }}
               >
                 {item.title}
@@ -54,7 +54,7 @@ export default function OurCommitment() {
               {/* Description */}
               <Typography
                 variant="body-xl"
-                className="font-light text-center leading-relaxed"
+                className="font-light  font-poppins text-center leading-relaxed"
                 style={{ color: textColor }}
               >
                 {item.description}

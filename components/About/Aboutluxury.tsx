@@ -32,7 +32,7 @@ export default function AboutLuxury() {
         <div className="max-w-[520px] md:max-w-[580px] flex flex-col items-start gap-4 md:gap-5 lg:gap-6">
           <Typography
             variant="caption"
-            className="normal-case tracking-[0.28em] font-light"
+            className="normal-case tracking-[0.28em] font-light font-cormorant-garamond"
             style={{ color: gold }}
           >
             {tagline}
@@ -40,7 +40,7 @@ export default function AboutLuxury() {
 
           <Typography
             variant="display-3xl"
-            className="!text-white font-medium leading-[1.15] tracking-tight"
+            className="!text-white font-medium leading-[1.15] tracking-tight font-cormorant-garamond"
           >
             {title}{" "}
             <span style={{ color: accent }}>{titleAccent}</span>
@@ -48,7 +48,7 @@ export default function AboutLuxury() {
 
           <Typography
             variant="body-xl"
-            className="!text-[#FFFFFF] font-light leading-relaxed max-w-[480px]"
+            className="!text-[#FFFFFF] font-light font-cormorant-garamond leading-relaxed max-w-[480px]"
           >
             {description}
           </Typography>
@@ -60,7 +60,7 @@ export default function AboutLuxury() {
           >
             <Typography
               variant="caption"
-              className="normal-case tracking-[0.22em] font-light !text-[#FFFFFF]"
+              className="normal-case tracking-[0.22em] font-light font-cormorant-garamond !text-[#FFFFFF]"
             >
               {cta}
             </Typography>
