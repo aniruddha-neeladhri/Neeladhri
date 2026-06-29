@@ -32,6 +32,7 @@ function Cell({
   uniformAspect?: boolean; // tablet: fixed aspect ratio, object-cover
   mobileAspect?: boolean;  // mobile: slightly shorter aspect ratio
 }) {
+  const { theme } = useTheme();
   const inner = (
     <div
       className={`group relative overflow-hidden flex-shrink-0 box-border w-full
@@ -60,7 +61,9 @@ function Cell({
       {label && (
         <Typography
           variant="display-xl"
-          className="absolute top-1/2 left-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 text-white font-light whitespace-nowrap w-full text-center [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]"
+          className={`absolute top-1/2 left-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 text-white font-light whitespace-nowrap w-full text-center [text-shadow:0_2px_10px_rgba(0,0,0,0.7)] ${
+            theme === "luxury" ? "font-cormorant-garamond" : "font-poppins"
+          }`}
         >
           {label}
         </Typography>

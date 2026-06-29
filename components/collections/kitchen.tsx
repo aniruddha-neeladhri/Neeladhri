@@ -125,7 +125,7 @@ export default function Kitchen() {
     <div className="mt-0 md:mt-2 select-none">
       <Typography
         variant="display-3xl"
-        className={`font-normal text-center ${theme === "luxury" ? "text-[#D3B898]" : "text-[#555555]"}`}
+        className={`text-center  ${theme === "luxury" ? "text-[#D3B898] font-cormorant-garamond font-normal" : "text-[#555555] font-cormorant-sc font-medium uppercase"}`}
       >
         Kitchen
       </Typography>
