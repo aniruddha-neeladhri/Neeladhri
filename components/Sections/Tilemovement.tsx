@@ -389,7 +389,7 @@ function AnimatedText({
   return (
     <Typography
       variant="body-lg"
-      className="m-0 w-full max-w-full font-light tracking-[0.01em] !text-white leading-relaxed text-[12px] sm:text-[13px] lg:max-w-[280px] lg:text-[15px]"
+      className="m-0 w-full max-w-full font-montserrat font-normal tracking-[0.01em] !text-white leading-relaxed text-[12px] sm:text-[13px] lg:max-w-[280px] lg:text-[15px]"
     >
       {words.map((word, wi) => {
         // Stagger: 18ms per word, max 300ms

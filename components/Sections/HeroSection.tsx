@@ -45,7 +45,7 @@ export default function HeroSection() {
         <div className="absolute inset-x-0 bottom-0 z-10 flex w-full justify-center px-3 pb-6 sm:px-6 sm:pb-10 md:pb-12 lg:pb-14">
           <Typography
             variant="display-2xl"
-            className="text-center text-white font-normal whitespace-nowrap leading-none tracking-[0.02em]"
+            className="text-center text-white font-medium font-cormorant-garamond whitespace-nowrap leading-none tracking-[0.02em]"
           >
             {INTRO_TEXT}
           </Typography>
