@@ -14,11 +14,11 @@ const stats = [
 
 const highlights = [
   {
-    icon: "/About/houseplan.png",
+    icon:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/49660b27-9445-429c-ba3f-f1286ded2314.png",
     text: "We take pride in offering a well-rounded range of solutions that cater to every aspect of modern interiors.",
   },
   {
-    icon: "/About/security.png",
+    icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/4d228671-7190-4516-aef5-c6322b4f677f.png",
     text: "Our strengths lie in quality selection, design understanding, and customer focused service.",
   },
 ];

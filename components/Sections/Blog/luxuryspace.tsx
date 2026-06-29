@@ -23,13 +23,14 @@ export default function LuxurySpace() {
             <div
               className={`${VIDEO_PLACEHOLDER_CLASS} max-w-[480px] mx-auto lg:mx-0 lg:max-w-none`}
             >
-              {/* When adding video: <video className="absolute inset-0 w-full h-full object-contain object-center" /> */}
-              <Typography
-                variant="caption"
-                className="text-white/45 normal-case tracking-[0.22em] uppercase"
-              >
-                Video
-              </Typography>
+              <video
+                className="absolute inset-0 w-full h-full object-cover"
+                src="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/829477ab-400e-48ef-aa32-f982d5dd9524.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
             </div>
           </div>
 

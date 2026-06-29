@@ -32,7 +32,7 @@ export default function WhatDefinesUs() {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/About/about1.png')" }}
+        style={{ backgroundImage: "url('https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/d43d8918-365e-450a-a452-bd9914467258.png')" }}
       />
 
       {/* Dark overlay */}

@@ -18,9 +18,8 @@ export default function InsightsHero() {
         className="relative w-[95%] max-w-[1400px] aspect-[16/9] overflow-hidden"
       >
 
-        {/* Dummy Image (replace later) */}
         <Image
-          src="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/12ed1f1c-2e9e-48c3-9336-765816378d96.png"
+          src={currentImages.banner}
           alt="Interior Background"
           fill
           priority
