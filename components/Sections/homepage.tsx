@@ -35,7 +35,7 @@ export default function HomePage() {
             <div className="flex flex-col items-center text-center">
               <Typography
                 variant="display-3xl"
-                className="!text-white font-light leading-tight tracking-tight"
+                className="!text-white font-normal font-the-seasons leading-tight tracking-tight"
                 style={{ color: WHITE }}
               >
                 {hero.titleLine1}
@@ -52,7 +52,7 @@ export default function HomePage() {
           >
             <Typography
               variant="caption"
-              className="normal-case tracking-[0.2em] font-light !text-white"
+              className="normal-case tracking-[0.2em] font-light font-poppins !text-white"
               style={{ color: WHITE }}
             >
               {hero.cta}
@@ -76,7 +76,7 @@ export default function HomePage() {
 
                 <Typography
                   variant="caption"
-                  className="normal-case tracking-[0.22em] font-light !text-white leading-relaxed"
+                  className="normal-case tracking-[0.22em] font-extralight font-poppins !text-white leading-relaxed"
                   style={{ color: WHITE }}
                 >
                   {premium.subtitleLine1}
@@ -92,7 +92,7 @@ export default function HomePage() {
               >
                 <Typography
                   variant="caption"
-                  className="normal-case tracking-[0.2em] font-light !text-white"
+                  className="normal-case tracking-[0.2em] font-light font-poppins !text-white"
                   style={{ color: WHITE }}
                 >
                   {premium.cta}
