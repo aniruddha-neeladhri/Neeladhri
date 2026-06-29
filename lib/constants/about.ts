@@ -6,7 +6,7 @@ export const ABOUT_LUXURY_GOLD = "#D8B691";
 
 export const ABOUT_LUXURY_STORY = {
   caption: "Our Story",
-  title: "Where Design meets purpose",
+  title: "Design is where science and art break even",
   description:
     "With over a decade of expertise, Neeladhri Ceramics delivers premium architectural surfaces and interior solutions. We blend refined design with high-performance durability to create elegant, modern living spaces that last.",
   image:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/ee20febe-2931-41e9-9fe4-25fb1df9513c.png",

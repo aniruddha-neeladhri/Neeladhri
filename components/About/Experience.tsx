@@ -77,14 +77,14 @@ function StatItem({
     <div className="flex flex-col items-center w-[48%] md:w-auto md:flex-1 gap-1">
       <Typography
         variant="display-xl"
-        className="text-[#F79440] font-semibold leading-tight text-center"
+        className="text-[#F79440] font-semibold  font-poppins leading-tight text-center"
       >
         {displayValue}
         {suffix}
       </Typography>
       <Typography
         variant="body-xl"
-        className="font-light text-center"
+        className="font-light font-poppins text-center"
         style={{ color: labelColor }}
       >
         {label}
@@ -147,7 +147,7 @@ export default function StatsSection() {
               <Typography
                 variant="body-xl"
                 className={[
-                  "leading-relaxed font-light flex-1",
+                  "leading-relaxed font-light font-poppins flex-1",
                   isLuxury ? "text-white" : "text-[#555555]",
                 ].join(" ")}
               >

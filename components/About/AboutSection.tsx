@@ -44,7 +44,7 @@ export default function AboutSection() {
           <div>
             <Typography
               variant="overline"
-              className="block tracking-[0.2em] uppercase text-center lg:text-left"
+              className="block tracking-[0.2em] uppercase text-center lg:text-left font-normal font-poppins"
               style={{ color: "#F79440" }}
             >
               {content.heading}
@@ -55,7 +55,7 @@ export default function AboutSection() {
           <div>
             <Typography
               variant="h1"
-              className="font-normal leading-snug text-center lg:text-left"
+              className="font-light font-poppins leading-snug text-center lg:text-left"
               style={{ color: textColor }}
             >
               {content.title.split("\n").map((line, i) => (
@@ -72,7 +72,7 @@ export default function AboutSection() {
             <div key={i}>
               <Typography
                 variant="body-lg"
-                className="font-light leading-loose"
+                className="font-light font-poppins leading-loose"
                 style={{ color: textColor }}
               >
                 {para}

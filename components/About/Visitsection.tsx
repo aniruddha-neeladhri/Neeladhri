@@ -22,7 +22,7 @@ export default function ShowroomBanner() {
         <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-5 px-4 pb-8 sm:pb-10 md:pb-12 lg:pb-16 text-center">
           <Typography
             variant="display-xl"
-            className="text-white font-normal leading-snug"
+            className="text-white font-normal font-poppins leading-snug"
           >
             Visit Our Showroom <br />
             We'll Help You Build Spaces That Inspire
@@ -30,7 +30,7 @@ export default function ShowroomBanner() {
 
           <Link href="/contact">
             <button className="mt-1 px-8 py-3 rounded-full bg-[#F79440] cursor-pointer">
-              <Typography variant="body-xl" className="text-white font-light">
+              <Typography variant="body-xl" className="text-white font-light font-poppins">
                 Get started
               </Typography>
             </button>

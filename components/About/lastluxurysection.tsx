@@ -35,7 +35,7 @@ export default function LastLuxurySection() {
             <div className="flex w-full flex-col items-start gap-1 md:gap-1.5">
               <Typography
                 variant="display-2xl"
-                className="!text-white w-full text-left font-light leading-snug"
+                className="!text-white w-full text-left font-light font-cormorant-garamond leading-snug"
                 style={{ color: "#FFFFFF" }}
               >
                 {eyebrow}
@@ -43,7 +43,7 @@ export default function LastLuxurySection() {
 
               <Typography
                 variant="display-2xl"
-                className="!text-white w-full text-left font-light leading-tight tracking-tight"
+                className="!text-white w-full text-left font-light font-cormorant-garamond leading-tight tracking-tight"
                 style={{ color: "#FFFFFF" }}
               >
                 {title}
@@ -57,7 +57,7 @@ export default function LastLuxurySection() {
             >
               <Typography
                 variant="body-xl"
-                className="!text-white font-light normal-case tracking-normal text-left"
+                className="!text-white font-light font-cormorant-garamond normal-case tracking-normal text-left"
                 style={{ color: "#FFFFFF" }}
               >
                 {cta}

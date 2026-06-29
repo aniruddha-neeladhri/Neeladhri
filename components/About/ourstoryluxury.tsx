@@ -35,7 +35,7 @@ export default function OurStoryLuxury() {
             <div className="w-full lg:max-w-[520px] xl:max-w-[560px] flex flex-col items-start gap-1 sm:gap-1.5">
               <Typography
                 variant="body-lg"
-                className="w-full normal-case tracking-[0.12em] font-light"
+                className="w-full normal-case tracking-[0.12em] font-light font-cormorant-garamond"
                 style={{ color: captionColor }}
               >
                 {caption}
@@ -43,15 +43,15 @@ export default function OurStoryLuxury() {
 
               <Typography
                 variant="display-2xl"
-                className="w-full !text-[#FFFFFF] font-normal leading-tight text-[22px] sm:text-[26px] lg:text-inherit"
+                className="w-full !text-[#FFFFFF] font-medium font-cormorant-garamond leading-tight text-[22px] sm:text-[26px] lg:text-inherit"
               >
-                {title.includes(" meets ") ? (
+                {title.includes(" art ") ? (
                   <>
                     <span className="lg:hidden">{title}</span>
                     <span className="hidden lg:inline">
-                      {title.split(" meets ")[0]}
+                      {title.split(" art ")[0]}
                       <br />
-                      meets {title.split(" meets ")[1]}
+                      art {title.split(" art ")[1]}
                     </span>
                   </>
                 ) : (
@@ -61,7 +61,7 @@ export default function OurStoryLuxury() {
 
               <Typography
                 variant="body-xl"
-                className="w-full !text-[#FFFFFF] font-light leading-relaxed text-[14px] sm:text-[15px] lg:text-inherit text-left [text-wrap:pretty]"
+                className="w-full !text-[#FFFFFF] font-light font-cormorant-garamond leading-relaxed text-[14px] sm:text-[15px] lg:text-inherit text-left [text-wrap:pretty]"
                 style={{ color: textColor }}
               >
                 {description}
