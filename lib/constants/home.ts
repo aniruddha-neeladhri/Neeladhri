@@ -6,7 +6,7 @@ export const HOME_HERO = {
     subtitleLine2: "FOR REFINED INTERIORS",
     cta: "EXPLORE COLLECTION →",
     ctaHref: "/collection",
-    image: "/Home/premiumhome.png",
+    image:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/2e949be9-7d51-4e08-904a-ffa388b6f51d.png",
     buttonBg: "#61523A",
   },
   luxury: {
@@ -14,7 +14,7 @@ export const HOME_HERO = {
     titleLine2: "Elevating Everyday Living",
     cta: "EXPLORE COLLECTION →",
     ctaHref: "/collection",
-    image: "/Home/luxuryhome.png",
+    image:"https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/450fed4f-9b9b-4091-b07c-4384ac7207c3.png",
     buttonBg: "#55524E9C",
   },
 } as const;

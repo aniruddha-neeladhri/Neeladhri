@@ -100,25 +100,25 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 
 const offerings = [
   {
-    icon: "/About/tileicon.png",
+    icon:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/8d76079c-5614-4c80-8c7d-ddbd1125c16a.png",
     title: "Versatile Tiles",
     description:
       "A wide range of wall, floor, vitrified, and designer finishes for every space.",
   },
   {
-    icon: "/About/bathroomicon.png",
+    icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/a40c17f1-7c07-4dd3-aa4f-32a4bac453e1.png",
     title: "Complete Bathrooms",
     description:
       "End-to-end solutions including sanitaryware, fittings, and vanities.",
   },
   {
-    icon: "/About/kitchenicon.png",
+    icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/b4ca8f65-4d70-40e1-9c5b-0c28463c117b.png",
     title: "Modern Kitchens",
     description:
       "Functional kitchen essentials with sinks, hobs, and chimneys.",
   },
   {
-    icon: "/About/shelficon.png",
+    icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/24990f98-6c08-4f18-aee8-7b7c38939d73.png",
     title: "Essential Accessories",
     description:
       "Reliable adhesives, grouts, and support for seamless installation.",

@@ -36,39 +36,41 @@ export const BLOG_DISCOVER_HREFS = [
 
 export const BLOG_DISCOVER_GRID_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/4f289c96-52f3-49ba-ab79-a0a5c9cb064b.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/c19b380f-bdf3-497e-8844-4f82850f8a1e.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/3ed0cd68-4ebe-4eb4-a36b-bd21afff0989.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/78d226e2-aad4-4eed-982d-19d0ff07c468.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/f36325f0-2ba5-4a8f-b6bb-fe4da9212617.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/12c5adc1-7509-4e9d-a646-d3bb5d51a9e9.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/5ab9c309-5801-4129-be8f-4ce2accebbcb.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/8fc87091-ac1c-4954-9de2-dc515317536b.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/41def796-b744-4e3c-bff6-2899fdcc8482.png",
-        "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/347106bf-af5e-4bc5-814f-4c6213b4b762.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/c19b380f-bdf3-497e-8844-4f82850f8a1e.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/3ed0cd68-4ebe-4eb4-a36b-bd21afff0989.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/78d226e2-aad4-4eed-982d-19d0ff07c468.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/f36325f0-2ba5-4a8f-b6bb-fe4da9212617.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/12c5adc1-7509-4e9d-a646-d3bb5d51a9e9.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/5ab9c309-5801-4129-be8f-4ce2accebbcb.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/8fc87091-ac1c-4954-9de2-dc515317536b.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/41def796-b744-4e3c-bff6-2899fdcc8482.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/347106bf-af5e-4bc5-814f-4c6213b4b762.png",
 ] as const;
 
 export const BLOG_DISCOVER_GRID_IMAGES_LUXURY = [
-  "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
-        "/Blog/Blog1.webp",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/0341460b-f78f-47d8-9366-04a4cfa34ea6.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/a31f3caf-9eca-4ec6-8dd9-7ea33240073c.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/97441a8d-dcf3-4ac3-9c10-1b290a09f931.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/7d19b600-c26a-4df9-a57f-ed5bece0dd17.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/0daa01c4-b8db-40d3-b67f-e00a4ddffd72.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/2283af85-2d6c-45e4-a21e-f544e3c7a663.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/8de0e0c1-27fa-4d9e-97c2-9dcdaa55f4c9.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/9897ae68-854f-4ab7-b1ad-c6b92781b893.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/aff0b72f-ecba-4030-9b00-1de929287d69.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/09dcfeb2-98d5-47a0-8f15-94e0f35ff15f.png",
 ] as const;
 
 export const BLOG_IMAGES = {
   premium: {
-    banner: "/Blog/Blog_Banner.webp",
+    banner:
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/12ed1f1c-2e9e-48c3-9336-765816378d96.png",
     bannerOverlay: 0,
     blog1: "/Blog/Blog1.webp",
     blog2: "/Blog/Blog2.webp",
   },
   luxury: {
-    banner: "/Blog/blogbannerluxury.png",
+    banner:
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/collection/4e571703-1b1e-40ec-b69a-5e04a3c05b94.png",
     bannerOverlay: 0.55,
     blog1: "/Blog/Blog1.webp",
     blog2: "/Blog/Blog2.webp",
@@ -123,7 +125,7 @@ export const BLOG_CONTENT = {
     //     text: "Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.Dummy content for luxury mode. There's a vast array of living room flooring materials available, each offering unique benefits and styles.",
     //   },
     // },
-    
+
     discover: {
       title: "Discover Spaces that Inspire",
       intro:

@@ -127,7 +127,7 @@ export default function GallerySection() {
 
   const { w, h } = CARD_SIZE[bp];
   const renderOffset = maxOffset + 1;
-  const cardBorderColor = theme === "luxury" ? "#D3B898" : "rgba(255,255,255,0.8)";
+  const cardBorderColor = theme === "luxury" ? "transparent" : "rgba(255,255,255,0.8)";
 
   return (
     <div className="relative w-full overflow-hidden select-none h-dvh">
