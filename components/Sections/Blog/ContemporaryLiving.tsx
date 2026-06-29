@@ -81,7 +81,7 @@ export default function ContemporaryLiving() {
                     : "opacity-0 group-hover:opacity-100 transition-opacity"
                 }`}
               >
-                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase bg-black/35 px-2.5 py-1 group-hover:bg-black/50 transition-colors">
+                <span className="text-white text-[9px] md:text-[11px] tracking-[0.18em] uppercase font-light font-montserrat bg-black/35 px-2.5 py-1 group-hover:bg-black/50 transition-colors">
                   Read Article
                 </span>
               </div>

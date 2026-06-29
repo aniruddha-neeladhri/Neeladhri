@@ -75,13 +75,13 @@ export default function LuxuryDiscover() {
         <div className="flex flex-col items-center text-center gap-4 sm:gap-5 mb-8 sm:mb-10 md:mb-12">
           <Typography
             variant="display-2xl"
-            className="!text-white font-normal leading-tight max-w-[900px]"
+            className="!text-white font-normal font-cormorant-garamond leading-tight max-w-[900px]"
           >
             {discover.title}
           </Typography>
           <Typography
             variant="body-xl"
-            className="!text-white/90 font-light leading-relaxed max-w-[860px]"
+            className="!text-white font-normal font-cormorant-garamond leading-relaxed max-w-[860px]"
           >
             {discover.intro}
           </Typography>
@@ -143,13 +143,13 @@ export default function LuxuryDiscover() {
                     <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 px-2 py-4">
                       <Typography
                         variant="body-lg"
-                        className="!text-white font-light leading-snug text-left line-clamp-3"
+                        className="!text-white font-normal font-cormorant-garamond leading-snug text-left line-clamp-3"
                       >
                         {LUXURY_DISCOVER_TITLES[index]}
                       </Typography>
                       <Typography
                         variant="caption"
-                        className="inline-flex items-center gap-2 !text-white !font-light tracking-[0.14em] group-hover:!text-white transition-colors"
+                        className="inline-flex items-center gap-2 !text-white !font-light font-cormorant-garamond tracking-[0.14em] group-hover:!text-white transition-colors"
                       >
                         Read Artical
                         <span aria-hidden className="text-base leading-none">
