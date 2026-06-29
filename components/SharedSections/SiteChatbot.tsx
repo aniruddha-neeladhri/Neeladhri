@@ -106,7 +106,7 @@ function ContactMenuLink({
       <Typography
         variant="body-lg"
         className={cn(
-          "relative z-10 font-normal normal-case tracking-normal !text-white",
+          "relative z-10 font-normal font-poppins normal-case tracking-normal !text-white",
           "[text-shadow:0_1px_2px_rgba(0,0,0,0.22)]",
           "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
           "group-hover:translate-x-0.5 group-hover:tracking-wide"
