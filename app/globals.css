@@ -26,6 +26,7 @@
   --font-gfs-didot: var(--font-gfs-didot), "GFS Didot", serif;
   --font-the-seasons: var(--font-the-seasons), "The Seasons", serif;
   --font-the-seasons-bold: var(--font-the-seasons-bold), "The Seasons", serif;
+  --font-playfair-display: var(--font-playfair-display), "Playfair Display", serif;
 }
 
 @media (prefers-color-scheme: dark) {

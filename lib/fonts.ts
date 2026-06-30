@@ -82,6 +82,18 @@ export const theSeasonsBold = localFont({
   display: "swap",
 });
 
+/** Playfair Display — regular through bold */
+export const playfairDisplay = localFont({
+  src: [
+    { path: "../app/Fonts/PlayfairDisplay-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../app/Fonts/PlayfairDisplay-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../app/Fonts/PlayfairDisplay-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "../app/Fonts/PlayfairDisplay-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-playfair-display",
+  display: "swap",
+});
+
 /** Apply on `<html>` — registers CSS variables only; does not set a page-wide font. */
 export const fontVariableClassNames = [
   cormorantSC.variable,
@@ -95,6 +107,7 @@ export const fontVariableClassNames = [
   gfsDidot.variable,
   theSeasonsLight.variable,
   theSeasonsBold.variable,
+  playfairDisplay.variable,
 ].join(" ");
 
 export const FONT_FAMILY_CLASSES = [
@@ -109,4 +122,5 @@ export const FONT_FAMILY_CLASSES = [
   "font-gfs-didot",
   "font-the-seasons",
   "font-the-seasons-bold",
+  "font-playfair-display",
 ] as const;
