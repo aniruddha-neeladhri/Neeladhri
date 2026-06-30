@@ -20,6 +20,7 @@ module.exports = {
         "gfs-didot": ["var(--font-gfs-didot)", "GFS Didot", "serif"],
         "the-seasons": ["var(--font-the-seasons)", "The Seasons", "serif"],
         "the-seasons-bold": ["var(--font-the-seasons-bold)", "The Seasons", "serif"],
+        "playfair-display": ["var(--font-playfair-display)", "Playfair Display", "serif"],
       },
     },
   },
