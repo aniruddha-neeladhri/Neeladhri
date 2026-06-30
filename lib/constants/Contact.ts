@@ -24,7 +24,7 @@ export type ContactThemeImages = {
 
 // Contact section images — premium
 export const CONTACT_IMAGES_PREMIUM: ContactThemeImages = {
-  background: "/Contact/Contact_Bg.webp",
+  background:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/contact/7da7f762-d1a9-4c64-8742-08e653965eb7.png",
   contactImage: "/Contact/Contact.webp",
   carousel: [...contactCarouselSliderImages()],
 } as const;
@@ -46,11 +46,11 @@ export function contactCarouselImages(theme: "premium" | "luxury"): string[] {
 
 // Contact banner images
 export const CONTACT_BANNER_IMAGES_PREMIUM = {
-  banner: "/Contact/Contact_Banner.webp",
+  banner:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/contact/ff33f117-2592-49ee-960a-55c81d012890.png",
 } as const;
 
 export const CONTACT_BANNER_IMAGES_LUXURY: { banner: string } = {
-  banner: "/Contact/Contact_Banner.webp",
+  banner: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/contact/ff80c7df-a5ed-4ecf-8448-715fd522bab1.jpg",
 };
 
 export function contactBannerImages(theme: "premium" | "luxury") {
