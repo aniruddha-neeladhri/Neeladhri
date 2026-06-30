@@ -17,6 +17,7 @@ import {
 
 export default function GallerySection() {
   const { theme } = useTheme();
+  const isLuxury = theme === "luxury";
   const images = galleryImages(theme);
   const total = images.length;
   const [center, setCenter]   = useState(0);
@@ -131,14 +132,18 @@ export default function GallerySection() {
 
   return (
     <div className="relative w-full overflow-hidden select-none h-dvh">
-      <Image
-        src="/Gallery/gallerybg.png"
-        alt="Gallery Background"
-        fill
-        className="object-fill"
-        priority
-      />
-      <div className="absolute inset-0 bg-black/50"/>
+      {!isLuxury && (
+        <>
+          <Image
+            src="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/9fe246ce-29f9-4d1b-b370-6fc2367f0a34.jpg"
+            alt="Gallery Background"
+            fill
+            className="object-fill"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/65" />
+        </>
+      )}
 
       <div
         className="absolute inset-0 flex items-center justify-center"
