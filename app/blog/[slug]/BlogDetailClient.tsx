@@ -14,9 +14,11 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
   const borderColor = theme === "luxury" ? "border-[#F79440]" : "border-transparent";
 
   const isVerticalLayout = post.slug === "sustainable-ceramic-tiles";
+  const isLuxury = theme === "luxury";
+  const fontClass = isLuxury ? "font-cormorant-garamond" : "font-poppins";
 
   return (
-    <main className={`min-h-screen pt-24 pb-20 px-6 md:px-12 lg:px-20 bg-inherit ${isVerticalLayout ? "flex flex-col overflow-y-auto" : "h-screen overflow-hidden flex flex-col lg:flex-row"}`}>
+    <main className={`min-h-screen pt-24 pb-20 px-6 md:px-12 lg:px-20 bg-inherit ${fontClass} ${isVerticalLayout ? "flex flex-col overflow-y-auto" : "h-screen overflow-hidden flex flex-col lg:flex-row"}`}>
       
       {isVerticalLayout ? (
         <div className="max-w-[1200px] mx-auto w-full flex flex-col gap-12">
@@ -35,7 +37,7 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
           <div className="flex flex-col gap-8 max-w-[900px] mx-auto">
             <Typography 
               variant="display-xl" 
-              className="font-normal leading-tight text-center"
+              className={`font-normal leading-tight text-center ${fontClass}`}
               style={{ color: textColor }}
             >
               {post.title}
@@ -44,7 +46,7 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
             <div className="space-y-6">
               {post.htmlContent ? (
                 <div 
-                  className="blog-html-content"
+                  className={`blog-html-content ${isLuxury ? "font-cormorant-garamond [&_h1]:!font-cormorant-garamond [&_h2]:!font-cormorant-garamond [&_h3]:!font-cormorant-garamond [&_h4]:!font-cormorant-garamond [&_p]:!font-cormorant-garamond [&_li]:!font-cormorant-garamond [&_td]:!font-cormorant-garamond [&_th]:!font-cormorant-garamond" : "font-poppins [&_h1]:!font-poppins [&_h2]:!font-poppins [&_h3]:!font-poppins [&_h4]:!font-poppins [&_p]:!font-poppins [&_li]:!font-poppins [&_td]:!font-poppins [&_th]:!font-poppins"}`}
                   style={{ 
                     color: textColor,
                     '--theme-text-color': textColor || 'inherit',
@@ -52,7 +54,7 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
                   dangerouslySetInnerHTML={{ __html: post.htmlContent }} 
                 />
               ) : (
-                post.content.map((item, index) => renderContent(item, index, textColor))
+                post.content.map((item, index) => renderContent(item, index, textColor, fontClass))
               )}
             </div>
             
@@ -96,7 +98,7 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
             <div className="flex-1 overflow-y-auto pr-4 lg:pr-8 custom-scrollbar">
               <Typography 
                 variant="display-xl" 
-                className="font-normal leading-tight mb-12"
+                className={`font-normal leading-tight mb-12 ${fontClass}`}
                 style={{ color: textColor }}
               >
                 {post.title}
@@ -105,7 +107,7 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
               <div className="space-y-8 pb-20">
                 {post.htmlContent ? (
                   <div 
-                    className="blog-html-content"
+                    className={`blog-html-content ${isLuxury ? "font-cormorant-garamond [&_h1]:!font-cormorant-garamond [&_h2]:!font-cormorant-garamond [&_h3]:!font-cormorant-garamond [&_h4]:!font-cormorant-garamond [&_p]:!font-cormorant-garamond [&_li]:!font-cormorant-garamond [&_td]:!font-cormorant-garamond [&_th]:!font-cormorant-garamond" : "font-poppins [&_h1]:!font-poppins [&_h2]:!font-poppins [&_h3]:!font-poppins [&_h4]:!font-poppins [&_p]:!font-poppins [&_li]:!font-poppins [&_td]:!font-poppins [&_th]:!font-poppins"}`}
                     style={{ 
                       color: textColor,
                       '--theme-text-color': textColor || 'inherit',
@@ -113,7 +115,7 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
                     dangerouslySetInnerHTML={{ __html: post.htmlContent }} 
                   />
                 ) : (
-                  post.content.map((item, index) => renderContent(item, index, textColor))
+                  post.content.map((item, index) => renderContent(item, index, textColor, fontClass))
                 )}
               </div>
             </div>
@@ -135,14 +137,14 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
   );
 }
 
-function renderContent(item: BlogContentItem, index: number, textColor: string | undefined) {
+function renderContent(item: BlogContentItem, index: number, textColor: string | undefined, fontClass: string) {
   switch (item.type) {
     case "paragraph":
       return (
         <Typography 
           key={index} 
           variant="body-lg" 
-          className="leading-relaxed opacity-90"
+          className={`leading-relaxed opacity-90 ${fontClass}`}
           style={{ color: textColor }}
         >
           {item.text}
@@ -153,7 +155,7 @@ function renderContent(item: BlogContentItem, index: number, textColor: string |
         <Typography 
           key={index} 
           variant="h2" 
-          className="mt-12 mb-6"
+          className={`mt-12 mb-6 ${fontClass}`}
           style={{ color: textColor }}
         >
           {item.text}
@@ -164,7 +166,7 @@ function renderContent(item: BlogContentItem, index: number, textColor: string |
         <Typography 
           key={index} 
           variant="h3" 
-          className="mt-8 mb-4"
+          className={`mt-8 mb-4 ${fontClass}`}
           style={{ color: textColor }}
         >
           {item.text}
@@ -172,10 +174,10 @@ function renderContent(item: BlogContentItem, index: number, textColor: string |
       );
     case "list":
       return (
-        <ul key={index} className="list-disc pl-6 opacity-90 space-y-3" style={{ color: textColor }}>
+        <ul key={index} className={`list-disc pl-6 opacity-90 space-y-3 ${fontClass}`} style={{ color: textColor }}>
           {item.items?.map((listItem, i) => (
             <li key={i}>
-              <Typography variant="body-lg">{listItem}</Typography>
+              <Typography variant="body-lg" className={fontClass}>{listItem}</Typography>
             </li>
           ))}
         </ul>
@@ -183,7 +185,7 @@ function renderContent(item: BlogContentItem, index: number, textColor: string |
     case "table":
       return (
         <div key={index} className="overflow-x-auto my-8">
-          <table className="w-full text-left border-collapse" style={{ color: textColor }}>
+          <table className={`w-full text-left border-collapse ${fontClass}`} style={{ color: textColor }}>
             <thead>
               <tr>
                 {item.headers?.map((header, i) => (
@@ -198,7 +200,7 @@ function renderContent(item: BlogContentItem, index: number, textColor: string |
                 <tr key={i} className="border-b border-current opacity-80 hover:opacity-100 transition-opacity">
                   {row.map((cell, j) => (
                     <td key={j} className="py-4 px-4">
-                      <Typography variant="body-lg">{cell}</Typography>
+                      <Typography variant="body-lg" className={fontClass}>{cell}</Typography>
                     </td>
                   ))}
                 </tr>
