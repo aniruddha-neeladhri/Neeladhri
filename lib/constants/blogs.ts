@@ -2,7 +2,9 @@
 
 import bathroomTileIdeas from "./posts/bathroom-tile-ideas-that-elevate-everyday-spaces.json";
 import biophilicDesignBasics from "./posts/biophilic-design-basics.json";
+import choosingTheRightSanitarywareForStyleComfort from "./posts/choosing-the-right-sanitaryware-for-style-comfort.json";
 import colorPalettesFor2026 from "./posts/color-palettes-for-2026.json";
+import creatingStatementWallsInLivingAreas from "./posts/creating-statement-walls-in-living-areas.json";
 import creatingAWarmAndElegantDiningAmbience from "./posts/creating-a-warm-and-elegant-dining-ambience.json";
 import designingAModernBathroom from "./posts/designing-a-modern-bathroom.json";
 import designingAStylishDiningSpace from "./posts/designing-a-stylish-dining-space.json";
@@ -164,7 +166,9 @@ export type BlogPost = {
 const blogPostsRaw = [
   bathroomTileIdeas,
   biophilicDesignBasics,
+  choosingTheRightSanitarywareForStyleComfort,
   colorPalettesFor2026,
+  creatingStatementWallsInLivingAreas,
   creatingAWarmAndElegantDiningAmbience,
   designingAModernBathroom,
   designingAStylishDiningSpace,

@@ -8,9 +8,9 @@ import Link from "next/link";
 
 const GRID_LAYOUT = [
   { col: 1, row: 1, span: 4, href: "/blog/designing-a-modern-bathroom", alwaysShowCta: true },
-  { col: 1, row: 5, span: 3, href: "/blog/bathroom-tile-ideas-that-elevate-everyday-spaces" },
+  { col: 1, row: 5, span: 3, href: "/blog/creating-statement-walls-in-living-areas" },
   { col: 1, row: 8, span: 5, href: "/blog/flooring-ideas-for-contemporary-living-rooms" },
-  { col: 2, row: 1, span: 3, href: "/blog/modern-bathroom-design-guide" },
+  { col: 2, row: 1, span: 3, href: "/blog/choosing-the-right-sanitaryware-for-style-comfort" },
   { col: 2, row: 4, span: 3, href: "/blog/living-room-design-ideas-with-tiles-and-surfaces" },
   { col: 2, row: 7, span: 3, href: "/blog/designing-a-stylish-dining-space" },
   { col: 2, row: 10, span: 3, href: "/blog/easy-to-maintain-flooring-for-dining-areas" },
