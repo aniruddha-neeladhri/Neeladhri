@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/lib/contexts/ThemeContext";
 
 const CONTACT_ITEMS = [
   { label: "Contact Us", href: "/contact", icon: PhoneIcon },
@@ -66,6 +67,7 @@ function ContactMenuLink({
   icon: Icon,
   index,
   open,
+  isLuxury,
   onNavigate,
 }: {
   label: string;
@@ -73,6 +75,7 @@ function ContactMenuLink({
   icon: () => React.JSX.Element;
   index: number;
   open: boolean;
+  isLuxury: boolean;
   onNavigate: () => void;
 }) {
   return (
@@ -81,14 +84,15 @@ function ContactMenuLink({
       onClick={onNavigate}
       style={{ transitionDelay: open ? `${index * 70}ms` : "0ms" }}
       className={cn(
-        "group relative flex min-w-[168px] items-center gap-3 overflow-hidden rounded-full border-0",
-        "bg-gradient-to-r from-[#9A9690] via-[#5C5854] to-[#2A2825] px-4 py-2.5",
+        "group relative flex min-w-[168px] items-center gap-3 overflow-hidden rounded-full border-0 px-4 py-2.5",
         "shadow-[0_4px_12px_rgba(0,0,0,0.2)]",
         "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
         "hover:-translate-y-0.5",
-        "hover:from-[#A4A099] hover:via-[#666260] hover:to-[#242220]",
         "hover:shadow-[0_6px_18px_rgba(0,0,0,0.24)]",
         "sm:min-w-[180px] sm:px-5 sm:py-3",
+        isLuxury
+          ? "bg-gradient-to-r from-[#CBB9A5] to-[#513B27] hover:from-[#D6C6B4] hover:to-[#5E4630]"
+          : "bg-gradient-to-r from-[#9A9690] via-[#5C5854] to-[#2A2825] hover:from-[#A4A099] hover:via-[#666260] hover:to-[#242220]",
         open ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
       )}
     >
@@ -119,6 +123,8 @@ function ContactMenuLink({
 }
 
 export default function SiteChatbot() {
+  const { theme } = useTheme();
+  const isLuxury = theme === "luxury";
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -138,6 +144,10 @@ export default function SiteChatbot() {
       document.removeEventListener("touchstart", onPointerDown);
     };
   }, [open]);
+
+  const buttonGradient = isLuxury
+    ? "radial-gradient(circle at center, #7B7B7B 0%, #121212 100%)"
+    : "radial-gradient(circle at center, #513B27 0%, #CBB9A5 100%)";
 
   return (
     <div
@@ -159,6 +169,7 @@ export default function SiteChatbot() {
             icon={icon}
             index={index}
             open={open}
+            isLuxury={isLuxury}
             onNavigate={() => setOpen(false)}
           />
         ))}
@@ -170,9 +181,7 @@ export default function SiteChatbot() {
         aria-expanded={open}
         onClick={() => setOpen((prev) => !prev)}
         className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full shadow-[0_6px_20px_rgba(0,0,0,0.35)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 sm:h-16 sm:w-16"
-        style={{
-          background: "radial-gradient(circle at center, #513B27 0%, #CBB9A5 100%)",
-        }}
+        style={{ background: buttonGradient }}
       >
         <Image
           src="/chatbot.png"
