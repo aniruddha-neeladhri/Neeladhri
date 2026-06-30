@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // Images are served from Cloudflare R2; skip Vercel Image Optimization to avoid 402 quota limits.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
