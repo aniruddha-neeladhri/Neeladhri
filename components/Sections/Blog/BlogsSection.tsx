@@ -39,7 +39,7 @@ export default function InsightsHero() {
         <div className="absolute inset-0 flex items-center justify-center text-center px-6">
           <Typography
             variant="display-xl"
-            className={`leading-snug max-w-[700px] ${theme === "luxury" ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"}`}
+            className={`leading-snug max-w-[700px] ${theme === "luxury" ? "font-cormorant-garamond font-normal" : "font-playfair-display font-normal"}`}
             style={{ color: currentContent.hero.titleColor }}
           >
             {currentContent.hero.title.split("\n").map((line: string, i: number) => (

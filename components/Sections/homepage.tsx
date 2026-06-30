@@ -66,7 +66,7 @@ export default function HomePage() {
               <div className="flex w-full flex-col items-start gap-1 md:gap-1.5">
                 <Typography
                   variant="display-3xl"
-                  className="!text-white font-light leading-tight tracking-tight"
+                  className="!text-white font-light font-playfair-display leading-tight tracking-tight"
                   style={{ color: WHITE }}
                 >
                   {premium.titleLine1}
