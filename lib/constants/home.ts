@@ -22,19 +22,19 @@ export const HOME_HERO = {
 export const SPACES_DATA = {
   premium: [
     {
-      src: "/Home/space1.png",
+      src:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/9a51274a-17e8-4966-b880-cf213a054163.png",
       alt: "Living Space",
       label: "Elegant Living for",
       sublabel: "Modern Spaces",
     },
     {
-      src: "/Home/space2.png",
+      src:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/9a51274a-17e8-4966-b880-cf213a054163.png",
       alt: "Kitchen Space",
       label: "Best Dining Room for",
       sublabel: "Modern Homes",
     },
     {
-      src: "/Home/space3.png",
+      src:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/9a51274a-17e8-4966-b880-cf213a054163.png",
       alt: "Bedroom Space",
       label: "Luxury Bathrooms for",
       sublabel: "Serene Living",
@@ -42,19 +42,19 @@ export const SPACES_DATA = {
   ],
   luxury: [
     {
-      src: "/Home/space1.png",
+      src:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/9a51274a-17e8-4966-b880-cf213a054163.png",
       alt: "Luxury Living Space",
       label: "How to Make Your Bathroom",
       sublabel: "Look on a Budget",
     },
     {
-      src: "/Home/space2.png",
+      src:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/9a51274a-17e8-4966-b880-cf213a054163.png",
       alt: "Luxury Dining Space",
       label: "Best Dining Room for",
       sublabel: "Modern Homes",
     },
     {
-      src: "/Home/space3.png",
+      src:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/9a51274a-17e8-4966-b880-cf213a054163.png",
       alt: "Luxury Bedroom Space",
       label: "Minimalist Bedroom Design Ideas for",
       sublabel: "Contemporary Home",

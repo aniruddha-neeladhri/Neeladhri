@@ -427,14 +427,6 @@ export default function ContactSection() {
   if (isLuxury) {
     return (
       <section className="relative w-full overflow-hidden">
-        <Image
-          src={images.background}
-          alt="Contact Background"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/75" aria-hidden />
 
         <div className="relative z-10 w-full flex items-center py-8 sm:py-10 md:py-14 px-4 sm:px-6 md:px-8 lg:px-16">
           <div className="max-w-[1400px] mx-auto w-full flex flex-col lg:flex-row lg:items-center gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
