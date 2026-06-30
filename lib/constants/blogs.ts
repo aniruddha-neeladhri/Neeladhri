@@ -28,12 +28,12 @@ export const BLOG_DISCOVER_HREFS = [
   "/blog/flooring-ideas-for-contemporary-living-rooms",
   "/blog/bathroom-tile-ideas-that-elevate-everyday-spaces",
   "/blog/the-importance-of-quality-tile-accessories-in-finishing",
-  "/blog/modern-bathroom-design-guide",
-  "/blog/living-room-design-ideas-with-tiles-and-surfaces",
-  "/blog/designing-a-stylish-dining-space",
-  "/blog/easy-to-maintain-flooring-for-dining-areas",
-  "/blog/bathroom-tile-ideas-that-elevate-everyday-spaces",
   "/blog/creating-a-warm-and-elegant-dining-ambience",
+  "/blog/choosing-the-right-sanitaryware-for-style-comfort",
+  "/blog/designing-a-stylish-dining-space",
+  "/blog/creating-statement-walls-in-living-areas",
+  "/blog/easy-to-maintain-flooring-for-dining-areas",
+  "/blog/living-room-design-ideas-with-tiles-and-surfaces",
 ] as const;
 
 export const BLOG_DISCOVER_GRID_IMAGES_PREMIUM = [

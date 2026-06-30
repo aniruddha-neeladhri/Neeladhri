@@ -16,12 +16,12 @@ const LUXURY_DISCOVER_TITLES = [
   "Flooring Ideas for Contemporary Living Rooms: Transform Your Space",
   "Bathroom Tile Ideas That Elevate Everyday Spaces",
   "The Importance of Quality Tile Accessories in Finishing",
-  "Living Room Design Ideas with Tiles and Surfaces",
-  "Designing a Stylish Dining Space: Transform Your Space",
-  "Easy-to-Maintain Flooring for Dining Areas",
-  "Bathroom Tile Ideas That Elevate Everyday Spaces",
-  "The Importance of Quality Tile Accessories in Finishing",
   "Creating a Warm and Elegant Dining Ambience",
+  "Choosing the Right Sanitaryware for Style & Comfort",
+  "Designing a Stylish Dining Space:Dining Room Design Ideas for Every Area",
+  "Creating Statement Walls in Living Areas",
+  "Easy-to-Maintain Flooring for Dining Areas",
+  "Living Room Design Ideas with Tiles and Surfaces",
 ] as const;
 
 function getVisibleCount(width: number) {
