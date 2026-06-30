@@ -18,7 +18,9 @@ function blogProseClassName(isLuxury: boolean) {
   return cn(
     "blog-html-content blog-detail-prose font-light",
     "[&_h1]:font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h4]:font-normal [&_th]:font-normal",
-    isLuxury ? "blog-detail-prose-luxury" : "blog-detail-prose-premium",
+    isLuxury 
+      ? "font-cormorant-garamond [&_h1]:!font-cormorant-garamond [&_h2]:!font-cormorant-garamond [&_h3]:!font-cormorant-garamond [&_h4]:!font-cormorant-garamond [&_p]:!font-cormorant-garamond [&_li]:!font-cormorant-garamond [&_td]:!font-cormorant-garamond [&_th]:!font-cormorant-garamond blog-detail-prose-luxury" 
+      : "font-poppins [&_h1]:!font-poppins [&_h2]:!font-poppins [&_h3]:!font-poppins [&_h4]:!font-poppins [&_p]:!font-poppins [&_li]:!font-poppins [&_td]:!font-poppins [&_th]:!font-poppins blog-detail-prose-premium",
     isLuxury ? BLOG_PROSE_TEXT_LUXURY : BLOG_PROSE_TEXT_PREMIUM
   );
 }
@@ -235,18 +237,19 @@ export default function BlogDetailPage() {
   const slugParam = params?.slug;
   const slug = typeof slugParam === "string" ? slugParam : slugParam?.[0];
   const { theme } = useTheme();
+  const isLuxury = theme === "luxury";
+  const fontClass = isLuxury ? "font-cormorant-garamond" : "font-poppins";
 
   const post = slug ? BLOG_POSTS.find((p) => p.slug === slug) : undefined;
 
   if (!post) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
-        <Typography variant="h1">Post not found</Typography>
+      <div className={`min-h-screen flex items-center justify-center px-4 ${fontClass}`}>
+        <Typography variant="h1" className={fontClass}>Post not found</Typography>
       </div>
     );
   }
 
-  const isLuxury = theme === "luxury";
   const textColor = isLuxury ? "#FFFFFF" : "#555555";
   const colors: BlogDetailColors = isLuxury
     ? { heading: textColor, body: textColor, mutedBorder: "rgba(255,255,255,0.2)" }
@@ -265,7 +268,7 @@ export default function BlogDetailPage() {
 
   return (
     <main
-      className={`w-full bg-inherit box-border ${
+      className={`w-full bg-inherit box-border ${fontClass} ${
         isVerticalLayout
           ? "overflow-y-auto pt-8 pb-8 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20"
           : `pt-2 pb-8 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 ${splitMainHeight} lg:overflow-hidden lg:flex lg:flex-col`
@@ -284,6 +287,7 @@ export default function BlogDetailPage() {
               variant="display-xl"
               className={cn(
                 "font-normal leading-tight text-center sm:text-left",
+                fontClass,
                 isLuxury ? "!text-white" : "!text-[#555555]"
               )}
               style={{ color: textColor }}
@@ -320,6 +324,7 @@ export default function BlogDetailPage() {
               variant="display-xl"
               className={cn(
                 "font-normal leading-[1.1] tracking-tight mb-4 sm:mb-5 text-left max-w-xl text-[26px] sm:text-[34px] md:text-[38px] lg:text-[42px]",
+                fontClass,
                 isLuxury ? "!text-white" : "!text-[#555555]"
               )}
               style={{ color: textColor }}
