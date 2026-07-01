@@ -2,6 +2,7 @@ import HeroSection from "@/components/Sections/HeroSection";
 import HomePage from "@/components/Sections/homepage";
 import HomeBrands from "@/components/Sections/HomeBrands";
 import ModernSpace from "@/components/Sections/ModernSpace";
+import ReelsSection from "@/components/Sections/Reelssection";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <HomePage />
         <HomeBrands />
         <ModernSpace />
+        <ReelsSection />
       </div>
     </>
   );
