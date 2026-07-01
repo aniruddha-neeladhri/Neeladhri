@@ -48,7 +48,7 @@ export default function HomePage() {
 
           <Link
             href={hero.ctaHref}
-            className="absolute bottom-6 left-1/2 z-20 inline-flex -translate-x-1/2 items-center justify-center px-6 py-3 transition-opacity duration-200 hover:opacity-90 max-md:bottom-8 md:left-auto md:right-10 md:translate-x-0 md:bottom-10 lg:bottom-12 lg:right-12 md:px-8 md:py-3.5"
+            className="absolute bottom-6 left-1/2 z-20 inline-flex -translate-x-1/2 items-center justify-center px-3 py-3 whitespace-nowrap transition-opacity duration-200 hover:opacity-90 max-md:bottom-8 md:left-auto md:right-10 md:translate-x-0 md:bottom-10 lg:bottom-12 lg:right-12 md:px-8 md:py-3.5"
             style={{ backgroundColor: hero.buttonBg }}
           >
             <Typography
