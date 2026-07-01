@@ -493,7 +493,7 @@ export default function BlogDetailPage() {
               not one layer pinned on top of another.
                < lg : fixed 260x260 square, centered, at the top.
                ≥ lg : fills the right column, full height of the row. */}
-          <div className="order-1 lg:order-2 w-full lg:flex-1 lg:min-w-0 flex flex-col shrink-0">
+          <div className="order-1 lg:order-2 w-full lg:flex-1 lg:min-w-0 flex flex-col shrink-0 pb-5 lg:pb-0">
             <div
               className="relative w-[260px] h-[260px] mx-auto lg:w-full lg:h-auto lg:mx-0 lg:aspect-auto lg:flex-1 lg:min-h-[280px] overflow-hidden shadow-md lg:shadow-xl"
             >
