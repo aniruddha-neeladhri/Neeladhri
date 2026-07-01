@@ -161,6 +161,9 @@ export type BlogPost = {
   image: string;
   content: BlogContentItem[];
   htmlContent?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  sectionImages?: Record<string, string>;
 };
 
 const blogPostsRaw = [

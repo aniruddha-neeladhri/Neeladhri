@@ -27,6 +27,8 @@
   --font-the-seasons: var(--font-the-seasons), "The Seasons", serif;
   --font-the-seasons-bold: var(--font-the-seasons-bold), "The Seasons", serif;
   --font-playfair-display: var(--font-playfair-display), "Playfair Display", serif;
+  --color-forest: #2D4A3E;
+  --color-canyon: #C45C26;
 }
 
 @media (prefers-color-scheme: dark) {

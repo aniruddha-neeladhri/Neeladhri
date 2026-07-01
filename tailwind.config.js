@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        forest: "#2D4A3E",
+        canyon: "#C45C26",
+      },
       fontFamily: {
         cormorant: ["var(--font-cormorant-sc)", "Cormorant SC", "serif"],
         montserrat: ["var(--font-montserrat)", "Montserrat", "sans-serif"],
