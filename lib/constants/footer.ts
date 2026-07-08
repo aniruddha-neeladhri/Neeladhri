@@ -18,10 +18,10 @@ export const PRODUCT_LINKS = [
 ];
 
 export const SOCIAL = [
-  { name: "Facebook", href: "#", icon: "/footericons/facebook.png" },
-  { name: "Instagram", href: "#", icon: "/footericons/instagram.png" },
-  { name: "Twitter", href: "#", icon: "/footericons/twitter.png" },
-  { name: "LinkedIn", href: "#", icon: "/footericons/likedin.png" },
+  { name: "Facebook", href: "https://www.facebook.com/share/1EUDcbVyip/?mibextid=wwXIfr", icon: "/footericons/facebook.png" },
+  { name: "Instagram", href: "https://www.instagram.com/neeladhriceramics?igsh=ajM2aXVqdWNqMnJp", icon: "/footericons/instagram.png" },
+  { name: "Twitter", href: "https://x.com/neeladhricera?s=20", icon: "/footericons/twitter.png" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/neeladhri-ceramics", icon: "/footericons/likedin.png" },
 ];
 
 export const PHONE = "+91 080 26772477";
