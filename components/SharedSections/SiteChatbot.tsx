@@ -10,8 +10,8 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 const CONTACT_ITEMS = [
   { label: "Contact Us", href: "/contact", icon: PhoneIcon },
   { label: "WhatsApp", href: "#", icon: WhatsAppIcon },
-  { label: "Instagram", href: "#", icon: InstagramIcon },
-  { label: "LinkedIn", href: "#", icon: LinkedInIcon },
+  { label: "Instagram", href: "https://www.instagram.com/neeladhriceramics?igsh=ajM2aXVqdWNqMnJp", icon: InstagramIcon },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/neeladhri-ceramics", icon: LinkedInIcon },
 ] as const;
 
 function ContactIcon({ children }: { children: React.ReactNode }) {
