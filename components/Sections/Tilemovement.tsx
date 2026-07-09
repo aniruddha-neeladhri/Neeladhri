@@ -7,22 +7,22 @@ import { cn } from "@/lib/utils";
 
 const STEPS = [
   {
-    body: "Functional layouts, premium finishes, and a space designed to bring people together effortlessly.",
+    body: "Warm underfoot and effortless to maintain, our tiles turn the living area into a space where comfort and craftsmanship meet.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/ac9026dc-6ae6-4eb0-8f7b-4fd3c05deb3d.mp4",
     videoTime: 0,
   },
   {
-    body: "Calibrated to within a fraction of a millimetre, our tiles achieve seamless joins and a flawless surface that elevates every architectural space.",
+    body: "Built to withstand spills, heat, and daily rhythm, our kitchen tiles pair everyday resilience with an uncompromising finish.",
     videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/728d2819-3ac6-49f5-981a-4e50ef909071.mp4",
     videoTime: 5,
   },
   {
-    body: "Functional layouts and premium finishes converge — a space designed not just to be seen, but to be deeply, effortlessly experienced each day.",
+    body:"Calibrated to within a fraction of a millimetre, our tiles achieve seamless joins — setting the stage for a dining area made for gathering.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/b442df59-ddf2-4ded-aab8-bc49bfb67ee3.mp4",
     videoTime: 10,
   },
   {
-    body: "From floor to wall, from intimate bathrooms to grand foyers — our collections bring the quiet luxury of natural stone to every corner of your world.",
+    body: "From floor to wall, our collections bring the quiet luxury of natural stone into the bathroom — where every detail is felt.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/4632c787-53da-424f-9fae-65aa3b182254.mp4",
     videoTime: 15,
   },
