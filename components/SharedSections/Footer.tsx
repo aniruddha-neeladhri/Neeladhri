@@ -10,9 +10,9 @@ import {
   SOCIAL,
   TAGLINE,
 } from "@/lib/constants/footer";
-const MAP_URL =
-  "https://www.google.com/maps/place/?q=place_id:ChIJa73RAJ0VrjsRBZJOu5kscy4";
-  
+const MAP_EMBED_URL =
+  "https://www.google.com/maps?q=Neeladhri+Ceramics,+Skanda+Mansion,+JSS+Circle+748/41,+Kanakapura+Rd,+7th+Block,+Jayanagar+Bangalore,+Karnataka+560070,+India&z=16&output=embed";
+
 export default function Footer() {
   return (
     <footer className="w-full bg-[#262626] text-white">
@@ -32,17 +32,26 @@ export default function Footer() {
 
         {/* Contact Info */}
         <div className="flex flex-col items-center gap-4">
-          <a
-            href={MAP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-start justify-center gap-2 transition hover:opacity-80"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-[3px] shrink-0 text-neutral-400"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <Typography variant="body-sm" className="text-white leading-relaxed max-w-[240px]">
-              Skanda Mansion, JSS Circle 748/41, Kanakapura&nbsp;Rd, 7th&nbsp;Block, Jayanagar Bangalore, India
-            </Typography>
-          </a>
+          <div className="flex flex-col items-center gap-3">
+            <div className="flex items-start justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-[3px] shrink-0 text-neutral-400"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <Typography variant="body-sm" className="text-white leading-relaxed max-w-[240px]">
+                Skanda Mansion, JSS Circle 748/41, Kanakapura&nbsp;Rd, 7th&nbsp;Block, Jayanagar Bangalore, India
+              </Typography>
+            </div>
+            <div className="w-full max-w-[280px] rounded-lg overflow-hidden border border-neutral-700">
+              <iframe
+                src={MAP_EMBED_URL}
+                width="100%"
+                height="160"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Neeladhri Ceramics Location"
+              />
+            </div>
+          </div>
           <div className="flex items-center justify-center gap-8">
             <div className="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -106,7 +115,7 @@ export default function Footer() {
 
       {/* DESKTOP FOOTER (>= lg) */}
       <div className="hidden lg:block">
-        <div className="mx-auto px-6 lg:px-8 xl:px-22 py-16">
+        <div className="mx-auto px-6 lg:px-8 xl:px-12 py-4">
           <div className="grid grid-cols-1 gap-y-10 gap-x-10 text-left sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
             {/* Brand */}
             <div className="flex flex-col space-y-5">
@@ -139,13 +148,13 @@ export default function Footer() {
             </div>
 
             {/* About Us */}
-            <div className="space-y-4">
+            <div className="space-y-5">
               <Typography variant="body-lg" className="text-white">
                 <Link href="/about" className="transition hover:text-neutral-300 font-medium font-montserrat">
                   About Us
                 </Link>
               </Typography>
-              <ul className="space-y-3">
+              <ul className="space-y-5">
                 {ABOUT_LINKS.map(({ label, href }) => (
                   <li key={label}>
                     <Link href={href} className="text-[15px] text-white transition hover:text-neutral-300">
@@ -157,11 +166,11 @@ export default function Footer() {
             </div>
 
             {/* Products */}
-            <div className="space-y-4">
+            <div className="space-y-5">
               <Typography variant="body-lg" className="text-white font-medium font-montserrat">
                 Products
               </Typography>
-              <ul className="space-y-3">
+              <ul className="space-y-5">
                 {PRODUCT_LINKS.map(({ label, href }) => (
                   <li key={label}>
                     <Link href={href} className="text-[15px] text-white transition hover:text-neutral-300">
@@ -180,17 +189,24 @@ export default function Footer() {
               <ul className="space-y-4 text-[15px] text-white">
                 <li className="flex items-start gap-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-white"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  <a
-                    href={MAP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transition hover:text-neutral-300"
-                  >
-                    <Typography variant="body-lg" className="max-w-[280px] leading-relaxed text-white font-medium font-montserrat">
-                      Skanda Mansion, JSS Circle 748/41, Kanakapura&nbsp;Rd, 7th&nbsp;Block,
-                      Jayanagar Bangalore, Karnataka 560070, India
-                    </Typography>
-                  </a>
+                  <Typography variant="body-lg" className="max-w-[280px] leading-relaxed text-white font-medium font-montserrat">
+                    Skanda Mansion, JSS Circle 748/41, Kanakapura Rd, 7th Block,
+                    Jayanagar Bangalore, Karnataka 560070, India
+                  </Typography>
+                </li>
+                <li>
+                  <div className="ml-[30px] w-full max-w-[280px] rounded-lg overflow-hidden border border-neutral-700">
+                    <iframe
+                      src={MAP_EMBED_URL}
+                      width="100%"
+                      height="160"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Neeladhri Ceramics Location"
+                    />
+                  </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-white"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>

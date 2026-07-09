@@ -52,11 +52,11 @@ export default function BrandsSection() {
                     aria-hidden
                   />
                   <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-1 px-4 py-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]">
-                    <Typography variant="h3" className="font-cormorant-garamond font-medium text-left" style={{ color: bodyColor }}>
+                    <Typography variant="h2" className="font-cormorant-garamond font-medium text-left" style={{ color: bodyColor }}>
                       {brand.name}
                     </Typography>
                     <Typography
-                      variant="body-sm"
+                      variant="body-lg"
                       className="font-cormorant-garamond font-light leading-snug text-left"
                       style={{ color: bodyColor }}
                     >

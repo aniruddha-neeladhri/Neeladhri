@@ -34,7 +34,7 @@ export default function OurStoryLuxury() {
           <div className="w-full flex items-center justify-center lg:justify-start">
             <div className="w-full lg:max-w-[520px] xl:max-w-[560px] flex flex-col items-start gap-1 sm:gap-1.5">
               <Typography
-                variant="body-lg"
+                variant="body-xl"
                 className="w-full normal-case tracking-[0.12em] font-light font-cormorant-garamond"
                 style={{ color: captionColor }}
               >
@@ -60,7 +60,7 @@ export default function OurStoryLuxury() {
               </Typography>
 
               <Typography
-                variant="body-xl"
+                variant="h4"
                 className="w-full !text-[#FFFFFF] font-light font-cormorant-garamond leading-relaxed text-[14px] sm:text-[15px] lg:text-inherit text-left [text-wrap:pretty]"
                 style={{ color: textColor }}
               >

@@ -9,7 +9,7 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 
 const CONTACT_ITEMS = [
   { label: "Contact Us", href: "/contact", icon: PhoneIcon },
-  { label: "WhatsApp", href: "#", icon: WhatsAppIcon },
+  { label: "WhatsApp", href: "https://wa.me/918050078367", icon: WhatsAppIcon },
   { label: "Instagram", href: "https://www.instagram.com/neeladhriceramics?igsh=ajM2aXVqdWNqMnJp", icon: InstagramIcon },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/neeladhri-ceramics", icon: LinkedInIcon },
 ] as const;
