@@ -56,7 +56,7 @@ export default function LastLuxurySection() {
               style={{ borderColor }}
             >
               <Typography
-                variant="body-xl"
+                variant="h4"
                 className="!text-white font-light font-cormorant-garamond normal-case tracking-normal text-left"
                 style={{ color: "#FFFFFF" }}
               >

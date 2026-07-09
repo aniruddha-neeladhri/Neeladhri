@@ -71,7 +71,7 @@ function LuxuryStatItem({
         {suffix}
       </Typography>
       <Typography
-        variant="body-lg"
+        variant="body-xl"
         className="!text-white font-normal font-gfs-didot leading-snug max-w-32 md:max-w-36 lg:max-w-44 mx-auto text-balance"
         style={{ color: WHITE }}
       >
@@ -159,7 +159,7 @@ export default function CommitmentLuxury() {
                 </div>
 
                 <Typography
-                  variant="h3"
+                  variant="h2"
                   className="!text-white font-light font-cormorant-garamond leading-snug text-center w-full lg:text-left"
                   style={{ color: WHITE }}
                 >
@@ -167,7 +167,7 @@ export default function CommitmentLuxury() {
                 </Typography>
 
                 <Typography
-                  variant="body-lg"
+                  variant="body-xl"
                   className="!text-white font-light font-cormorant-garamond leading-relaxed text-center w-full [text-wrap:pretty] lg:text-left"
                   style={{ color: WHITE }}
                 >

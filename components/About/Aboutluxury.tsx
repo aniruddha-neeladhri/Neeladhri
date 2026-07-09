@@ -47,7 +47,7 @@ export default function AboutLuxury() {
           </Typography>
 
           <Typography
-            variant="body-xl"
+            variant="h4"
             className="!text-[#FFFFFF] font-light font-cormorant-garamond leading-relaxed max-w-[480px]"
           >
             {description}
@@ -59,7 +59,7 @@ export default function AboutLuxury() {
             style={{ borderColor: gold }}
           >
             <Typography
-              variant="caption"
+              variant="body-sm"
               className="normal-case tracking-[0.22em] font-light font-cormorant-garamond !text-[#FFFFFF]"
             >
               {cta}
