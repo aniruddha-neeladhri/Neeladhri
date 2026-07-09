@@ -55,7 +55,7 @@ export default function AboutLuxury() {
 
           <Link
             href={ctaHref}
-            className="mt-2 md:mt-4 inline-flex items-center justify-center border px-8 py-3 md:px-10 md:py-3.5 transition-colors duration-200 hover:bg-[#D8B691]/10"
+            className="mt-2 md:mt-4 inline-flex items-center justify-center border px-8 py-3 md:px-10 md:py-3.5 transition-colors duration-200"
             style={{ borderColor: gold }}
           >
             <Typography

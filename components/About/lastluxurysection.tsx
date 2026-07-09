@@ -52,7 +52,7 @@ export default function LastLuxurySection() {
 
             <Link
               href={ctaHref}
-              className="mt-4 md:mt-5 inline-flex items-center justify-center self-start rounded-full border px-8 py-3 md:px-10 md:py-3.5 transition-colors duration-200 hover:bg-white/5"
+              className="mt-4 md:mt-5 inline-flex items-center justify-center self-start rounded-full border px-8 py-3 md:px-10 md:py-3.5 transition-colors duration-200"
               style={{ borderColor }}
             >
               <Typography
