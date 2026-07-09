@@ -114,7 +114,7 @@ function TextBlock({
   direction: 1 | -1;
 }) {
   return (
-    <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none px-5 sm:px-7 md:px-8 lg:px-14">
+    <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none px-5 pt-16 sm:px-7 sm:pt-0 md:px-8 lg:px-14">
       <AnimatedText
         text={step.body}
         active={active}
@@ -297,8 +297,8 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
           />
         ))}
 
-        {/* Overlay — w-[42%] mobile, w-[30%] sm+, w-[28%] lg+ */}
-        <div className="absolute top-0 left-0 z-10 h-full w-[42%] overflow-hidden bg-black/[0.72] sm:w-[30%] lg:w-[28%]">
+        {/* Overlay — w-[50%] below 480px, w-[46%] 480-639px, w-[30%] sm+, w-[28%] lg+ */}
+        <div className="absolute top-0 left-0 z-10 h-full w-[50%] overflow-hidden bg-black/[0.72] min-[480px]:w-[46%] sm:w-[30%] lg:w-[28%]">
           {STEPS.map((s, i) => (
             <TextBlock
               key={i}
@@ -312,7 +312,8 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
 
         {/*
           Tile:
-          < 640px : overlay=42%, tile=108px, left=calc(42%-54px) — centers tile on overlay edge
+          < 480px : overlay=50%, tile=108px, left=calc(50%-54px) — centers tile on overlay edge
+          480-639 : overlay=46%, left=calc(46%-54px)
           sm+     : overlay=30%, original sizes restored
           md+     : original
           lg+     : original
@@ -324,8 +325,11 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
             "drop-shadow-[0_12px_32px_rgba(0,0,0,0.6)]",
             "transition-transform duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
 
-            // < 640px — matches 42% overlay, 108/2=54px offset
-            "left-[calc(42%-54px)] w-[108px]",
+            // < 480px — matches 50% overlay, 108/2=54px offset
+            "left-[calc(50%-54px)] w-[108px]",
+
+            // 480-639px — matches 46% overlay
+            "min-[480px]:left-[calc(46%-54px)]",
 
             // sm (640px+) — original
             "sm:left-[calc(30%-58px)] sm:w-[clamp(108px,20vw,128px)]",
