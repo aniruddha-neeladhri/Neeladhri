@@ -6,19 +6,19 @@ export type Reel = {
 };
 
 export const premiumReels: Reel[] = [
- { id: "premium-reel-1",videoSrc: "https://www.instagram.com/reel/DYZullap9LC/?igsh=MW4xMXV2Y3R1Z2NvOQ=="  },
-  { id: "premium-reel-2",videoSrc: "https://www.instagram.com/reel/DWgwNhvCWo1/?igsh=MW9nNmxzMjFiZGNmcA=="  },
-  { id: "premium-reel-3",videoSrc: "https://www.instagram.com/reel/DJ-6vxdyvmd/?igsh=MWw4cXpkaWpteGFsMA=="  },
-  { id: "premium-reel-4",videoSrc: "https://www.instagram.com/reel/DPoBP4pCYua/?igsh=aDkyZ3R1aGR6cjdv"  },
-  { id: "premium-reel-5", videoSrc: "https://www.instagram.com/reel/DTPZZaqkfrU/?igsh=cWgzdGRzYzV2cjdz" },
+ { id: "premium-reel-1",videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/a2175cd1-b1cf-48dc-8b39-8cf853327c2f.mp4" },
+  { id: "premium-reel-2",videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/46dfca35-34be-4109-8480-d0e14ec8a82d.mp4"  },
+  { id: "premium-reel-3",videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/04156481-2d1a-46a6-bc3a-e8e4ff75d2e5.mp4"},
+  { id: "premium-reel-4",videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/c5460795-f0b9-4549-a5b0-dc0d728d62d6.mp4" },
+  { id: "premium-reel-5", videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/b0b05967-5114-41b7-a8c8-478b8d95a70b.mp4" },
 ];
 
 export const luxuryReels: Reel[] = [
-  { id: "luxury-reel-1",videoSrc: "https://www.instagram.com/reel/DYZullap9LC/?igsh=MW4xMXV2Y3R1Z2NvOQ=="  },
-  { id: "luxury-reel-2",videoSrc: "https://www.instagram.com/reel/DWgwNhvCWo1/?igsh=MW9nNmxzMjFiZGNmcA=="  },
-  { id: "luxury-reel-3",videoSrc: "https://www.instagram.com/reel/DJ-6vxdyvmd/?igsh=MWw4cXpkaWpteGFsMA=="  },
-  { id: "luxury-reel-4",videoSrc: "https://www.instagram.com/reel/DPoBP4pCYua/?igsh=aDkyZ3R1aGR6cjdv"  },
-  { id: "luxury-reel-5", videoSrc: "https://www.instagram.com/reel/DTPZZaqkfrU/?igsh=cWgzdGRzYzV2cjdz" },
+  { id: "luxury-reel-1",videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/a2175cd1-b1cf-48dc-8b39-8cf853327c2f.mp4" },
+  { id: "luxury-reel-2",videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/46dfca35-34be-4109-8480-d0e14ec8a82d.mp4"  },
+  { id: "luxury-reel-3",videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/04156481-2d1a-46a6-bc3a-e8e4ff75d2e5.mp4"},
+  { id: "luxury-reel-4",videoSrc:"https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/c5460795-f0b9-4549-a5b0-dc0d728d62d6.mp4" },
+  { id: "luxury-reel-5", videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/b0b05967-5114-41b7-a8c8-478b8d95a70b.mp4" },
 ];
 export const reelsTheme = {
   premium: {
