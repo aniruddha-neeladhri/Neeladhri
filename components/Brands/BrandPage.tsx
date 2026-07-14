@@ -101,13 +101,31 @@ export default function BrandPage({ brand }: BrandPageProps) {
         >
           {/* Header */}
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
-            <Typography variant="display-2xl" className={`font-semibold mb-2 lg:mb-6 ${textAlign} tracking-wide`} style={{ color: brandNameColor }}>
+            <Typography 
+              variant="display-2xl" 
+              className={`mb-2 lg:mb-6 ${textAlign} tracking-wide ${
+                theme === "luxury" ? "font-cormorant-garamond font-light" : "font-montserrat font-normal"
+              }`} 
+              style={{ color: brandNameColor }}
+            >
               {brand.name}
             </Typography>
-            <Typography variant="h1" className={`font-medium mb-2 lg:mb-8 ${textAlign}`} style={{ color: bodyTextColor }}>
+            <Typography 
+              variant="h1" 
+              className={`font-medium mb-2 lg:mb-8 ${textAlign} ${
+                theme === "luxury" ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"
+              }`} 
+              style={{ color: bodyTextColor }}
+            >
               {brand.tagline}
             </Typography>
-            <Typography variant="h2" className={`font-light ${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed`} style={{ color: bodyTextColor }}>
+            <Typography 
+              variant="h2" 
+              className={`font-light ${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed ${
+                theme === "luxury" ? "font-cormorant-garamond font-normal" : "font-poppins font-light"
+              }`} 
+              style={{ color: bodyTextColor }}
+            >
               {brand.description}
             </Typography>
           </div>
