@@ -3,9 +3,8 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Typography from "@/lib/Typography";
-import { BrandData, brandsDataLuxury } from "@/lib/constants/brands";
-
-const LUXURY_BRAND_IDS = new Set(Object.values(brandsDataLuxury).map((b) => b.id));
+import { BrandData } from "@/lib/constants/brands";
+import { useTheme } from "@/lib/contexts/ThemeContext";
 
 interface BrandPageProps {
   brand?: BrandData;
@@ -15,6 +14,11 @@ export default function BrandPage({ brand }: BrandPageProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+
+  // Theme now follows the global Premium/Luxury toggle (ThemeContext), not the
+  // brand's own category. Called unconditionally, alongside the other hooks,
+  // before any early return (Rules of Hooks).
+  const { theme } = useTheme();
 
   const updateScrollState = useCallback(() => {
     const container = scrollRef.current;
@@ -50,7 +54,9 @@ export default function BrandPage({ brand }: BrandPageProps) {
     );
   }
 
-  const theme: "luxury" | "premium" = LUXURY_BRAND_IDS.has(brand.id) ? "luxury" : "premium";
+  // isLuxury/colors are derived from the global theme toggle. Images, copy,
+  // and layout below are identical regardless of theme — only these values
+  // (and the transition classes) change.
   const isLuxury = theme === "luxury";
   const accentColor = isLuxury ? "#D3B898" : "#7E7669";
   const arrowColor = isLuxury ? "#D3B898" : "#555555";
@@ -58,6 +64,11 @@ export default function BrandPage({ brand }: BrandPageProps) {
   const bodyTextColor = isLuxury ? "#FFFFFF" : "#555555";
   const textAlign = isLuxury ? "text-left" : "text-center";
   const flexAlign = isLuxury ? "items-start" : "items-center";
+
+  // Shared transition classes so any theme swap animates smoothly instead of
+  // snapping instantly between premium <-> luxury colors.
+  const colorTransition = "transition-colors duration-500 ease-in-out";
+  const borderTransition = "transition-[border-color] duration-500 ease-in-out";
 
   const scroll = (direction: "left" | "right") => {
     const container = scrollRef.current;
@@ -96,41 +107,41 @@ export default function BrandPage({ brand }: BrandPageProps) {
       `}</style>
       <div className={`flex flex-col ${flexAlign} justify-center px-4 md:px-8 mt-2 mb-12 pop-up`}>
         <div
-          className={`w-full p-2 md:p-10 ${isLuxury ? "" : "rounded-[4.5rem]"}`}
+          className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[4.5rem]"}`}
           style={{ border: `2px solid ${accentColor}` }}
         >
           {/* Header */}
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
-            <Typography 
-              variant="display-2xl" 
-              className={`mb-2 lg:mb-6 ${textAlign} tracking-wide ${
-                theme === "luxury" ? "font-cormorant-garamond font-light" : "font-montserrat font-normal"
-              }`} 
+            <Typography
+              variant="display-2xl"
+              className={`mb-2 lg:mb-6 ${textAlign} tracking-wide ${colorTransition} ${
+                isLuxury ? "font-cormorant-garamond font-light" : "font-montserrat font-normal"
+              }`}
               style={{ color: brandNameColor }}
             >
               {brand.name}
             </Typography>
-            <Typography 
-              variant="h1" 
-              className={`font-medium mb-2 lg:mb-8 ${textAlign} ${
-                theme === "luxury" ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"
-              }`} 
+            <Typography
+              variant="h1"
+              className={`font-medium mb-2 lg:mb-8 ${textAlign} ${colorTransition} ${
+                isLuxury ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"
+              }`}
               style={{ color: bodyTextColor }}
             >
               {brand.tagline}
             </Typography>
-            <Typography 
-              variant="h2" 
-              className={`font-light ${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed ${
-                theme === "luxury" ? "font-cormorant-garamond font-normal" : "font-poppins font-light"
-              }`} 
+            <Typography
+              variant="h2"
+              className={`font-light ${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed ${colorTransition} ${
+                isLuxury ? "font-cormorant-garamond font-normal" : "font-poppins font-light"
+              }`}
               style={{ color: bodyTextColor }}
             >
               {brand.description}
             </Typography>
           </div>
 
-          {/* Images — carousel on small, grid on md+ */}
+          {/* Images — carousel on small, grid on md+ (identical for every theme) */}
           <div className="relative w-full mb-2 lg:mb-6">
             {/* Mobile: arrows flanking image with 2px gap */}
             <div className="md:hidden flex w-full items-center justify-center gap-[12px]">
@@ -152,6 +163,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  className={colorTransition}
                 >
                   <polyline points="15 18 9 12 15 6" />
                 </svg>
@@ -172,7 +184,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                       alt={`${brand.name} ${index + 1}`}
                       width={400}
                       height={300}
-                      className="h-auto w-full object-contain border-4 rounded-[2.5rem] sm:rounded-[5rem]"
+                      className={`h-auto w-full object-contain border-4 rounded-[2.5rem] sm:rounded-[5rem] ${borderTransition}`}
                       style={{ borderColor: accentColor }}
                     />
                   </div>
@@ -185,7 +197,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                 disabled={!canScrollRight}
                 className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${
                   canScrollRight ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
-                }`}              
+                }`}
                 aria-label="Next image"
               >
                 <svg
@@ -197,6 +209,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  className={colorTransition}
                 >
                   <polyline points="9 18 15 12 9 6" />
                 </svg>
@@ -212,7 +225,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                   alt={`${brand.name} ${index + 1}`}
                   width={400}
                   height={300}
-                  className="w-full h-auto object-contain border-4 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem]"
+                  className={`w-full h-auto object-contain border-4 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem] ${borderTransition}`}
                   style={{ borderColor: accentColor }}
                 />
               ))}
