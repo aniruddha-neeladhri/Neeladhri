@@ -56,7 +56,7 @@ export default function WhatDefinesUs() {
               key={i}
               className={[
                 "group flex flex-col gap-3 px-6 py-6 md:px-8 md:py-8",
-                "cursor-pointer transition-all duration-300 ease-out",
+                "transition-all duration-300 ease-out",
                 "hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(247,148,64,0.3)] rounded-lg",
               ].join(" ")}
               style={{ border: "2px solid #F7944080" }}
