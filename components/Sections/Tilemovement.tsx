@@ -7,22 +7,26 @@ import { cn } from "@/lib/utils";
 
 const STEPS = [
   {
-    body: "Living Room\nSpaces that reflect your style.\nFind flooring and wall solutions that transform everyday living into something extraordinary.",
+    heading: "Living Room",
+    body: "Spaces that reflect your style.\nFind flooring and wall solutions that transform everyday living into something extraordinary.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/ac9026dc-6ae6-4eb0-8f7b-4fd3c05deb3d.mp4",
     videoTime: 0,
   },
   {
-    body: "Kitchen\nCook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
+    heading: "Kitchen",
+    body: "Cook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
     videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/728d2819-3ac6-49f5-981a-4e50ef909071.mp4",
     videoTime: 5,
   },
   {
-    body: "Dining Room\nMade for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
+    heading: "Dining Room",
+    body: "Made for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/b442df59-ddf2-4ded-aab8-bc49bfb67ee3.mp4",
     videoTime: 10,
   },
   {
-    body: "Bathroom\nEvery detail matters.Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
+    heading: "Bathroom",
+    body: "Every detail matters.Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/4632c787-53da-424f-9fae-65aa3b182254.mp4",
     videoTime: 15,
   },
@@ -45,6 +49,82 @@ function getTileTranslateY(step: number, vh: number, tileH: number) {
   );
 }
 
+function renderWordLines(
+  lines: string[][],
+  active: boolean,
+  exiting: boolean,
+  direction: 1 | -1,
+  keyPrefix: string
+) {
+  const translateIn  = direction === 1 ? "translateY(110%)" : "translateY(-110%)";
+  const translateOut = direction === 1 ? "translateY(-110%)" : "translateY(110%)";
+
+  let wordIndex = 0;
+  return lines.map((words, li) => (
+    <span key={`${keyPrefix}-${li}`} style={{ display: "block" }}>
+      {words.map((word, wi) => {
+        const idx = wordIndex++;
+        const delay = active
+          ? `${Math.min(idx * 18, 300)}ms`
+          : `${Math.min(idx * 8, 120)}ms`;
+
+        return (
+          <span
+            key={wi}
+            style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}
+          >
+            <span
+              style={{
+                display: "inline-block",
+                transform: active
+                  ? "translateY(0)"
+                  : exiting
+                  ? translateOut
+                  : translateIn,
+                opacity: active ? 1 : exiting ? 0 : 0,
+                transition: `transform 650ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease`,
+                transitionDelay: delay,
+                filter: active ? "blur(0px)" : exiting ? "blur(2px)" : "blur(0px)",
+              }}
+            >
+              {word}
+            </span>
+            {wi < words.length - 1 && (
+              <span style={{ display: "inline-block", width: "0.3em" }} />
+            )}
+          </span>
+        );
+      })}
+    </span>
+  ));
+}
+
+function AnimatedHeading({
+  text,
+  active,
+  exiting,
+  direction,
+}: {
+  text: string;
+  active: boolean;
+  exiting: boolean;
+  direction: 1 | -1;
+}) {
+  // Heading is always a single line, never wraps, regardless of screen size.
+  const lines = [text.trim().split(" ").filter(Boolean)];
+
+  return (
+    <Typography
+      variant="body-lg"
+      className="m-0 mb-1.5 sm:mb-2 w-full max-w-full whitespace-nowrap font-montserrat font-bold tracking-[0.01em] !text-white text-[15px] sm:text-[17px] md:text-[19px] lg:text-[22px]"
+    >
+      <span className="block whitespace-nowrap">
+        {renderWordLines(lines, active, exiting, direction, "h")}
+      </span>
+    </Typography>
+  );
+}
+
 function AnimatedText({
   text,
   active,
@@ -56,50 +136,6 @@ function AnimatedText({
   exiting: boolean;
   direction: 1 | -1;
 }) {
-  const translateIn  = direction === 1 ? "translateY(110%)" : "translateY(-110%)";
-  const translateOut = direction === 1 ? "translateY(-110%)" : "translateY(110%)";
-
-  const renderLines = (lines: string[][], keyPrefix: string) => {
-    let wordIndex = 0;
-    return lines.map((words, li) => (
-      <span key={`${keyPrefix}-${li}`} style={{ display: "block" }}>
-        {words.map((word, wi) => {
-          const idx = wordIndex++;
-          const delay = active
-            ? `${Math.min(idx * 18, 300)}ms`
-            : `${Math.min(idx * 8, 120)}ms`;
-
-          return (
-            <span
-              key={wi}
-              style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}
-            >
-              <span
-                style={{
-                  display: "inline-block",
-                  transform: active
-                    ? "translateY(0)"
-                    : exiting
-                    ? translateOut
-                    : translateIn,
-                  opacity: active ? 1 : exiting ? 0 : 0,
-                  transition: `transform 650ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease`,
-                  transitionDelay: delay,
-                  filter: active ? "blur(0px)" : exiting ? "blur(2px)" : "blur(0px)",
-                }}
-              >
-                {word}
-              </span>
-              {wi < words.length - 1 && (
-                <span style={{ display: "inline-block", width: "0.3em" }} />
-              )}
-            </span>
-          );
-        })}
-      </span>
-    ));
-  };
-
   // Below 640px: ignore the manual \n breaks entirely, one continuous run that wraps naturally.
   const mobileLines = [text.replace(/\n/g, " ").trim().split(" ").filter(Boolean)];
   // sm and up: honor the manual \n breaks as forced line breaks.
@@ -110,8 +146,8 @@ function AnimatedText({
       variant="body-lg"
       className="m-0 w-full max-w-full font-montserrat font-normal tracking-[0.01em] !text-white leading-relaxed text-[12px] sm:text-[13px] lg:max-w-[280px] lg:text-[15px]"
     >
-      <span className="block sm:hidden">{renderLines(mobileLines, "m")}</span>
-      <span className="hidden sm:block">{renderLines(desktopLines, "d")}</span>
+      <span className="block sm:hidden">{renderWordLines(mobileLines, active, exiting, direction, "m")}</span>
+      <span className="hidden sm:block">{renderWordLines(desktopLines, active, exiting, direction, "d")}</span>
     </Typography>
   );
 }
@@ -129,12 +165,20 @@ function TextBlock({
 }) {
   return (
     <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none px-5 pt-16 sm:px-7 sm:pt-0 md:px-8 lg:px-14">
-      <AnimatedText
-        text={step.body}
-        active={active}
-        exiting={exiting}
-        direction={direction}
-      />
+      <div className="w-full max-w-full lg:max-w-[280px]">
+        <AnimatedHeading
+          text={step.heading}
+          active={active}
+          exiting={exiting}
+          direction={direction}
+        />
+        <AnimatedText
+          text={step.body}
+          active={active}
+          exiting={exiting}
+          direction={direction}
+        />
+      </div>
     </div>
   );
 }
