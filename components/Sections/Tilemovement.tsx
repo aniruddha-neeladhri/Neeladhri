@@ -7,22 +7,22 @@ import { cn } from "@/lib/utils";
 
 const STEPS = [
   {
-    body: "Warm underfoot and effortless to maintain, our tiles turn the living area into a space where comfort and craftsmanship meet.",
+    body: "Spaces that reflect your style.\nFind flooring and wall solutions that transform everyday living into something extraordinary.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/ac9026dc-6ae6-4eb0-8f7b-4fd3c05deb3d.mp4",
     videoTime: 0,
   },
   {
-    body: "Built to withstand spills, heat, and daily rhythm, our kitchen tiles pair everyday resilience with an uncompromising finish.",
+    body: "Cook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
     videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/728d2819-3ac6-49f5-981a-4e50ef909071.mp4",
     videoTime: 5,
   },
   {
-    body:"Calibrated to within a fraction of a millimetre, our tiles achieve seamless joins — setting the stage for a dining area made for gathering.",
+    body:"Made for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/b442df59-ddf2-4ded-aab8-bc49bfb67ee3.mp4",
     videoTime: 10,
   },
   {
-    body: "From floor to wall, our collections bring the quiet luxury of natural stone into the bathroom — where every detail is felt.",
+    body: "Every detail matters.Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/4632c787-53da-424f-9fae-65aa3b182254.mp4",
     videoTime: 15,
   },
@@ -56,48 +56,68 @@ function AnimatedText({
   exiting: boolean;
   direction: 1 | -1;
 }) {
-  const words = text.split(" ");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // Below 640px, ignore the manual \n breaks and let the text wrap naturally;
+  // at sm and up, honor the manual \n breaks as forced line breaks.
+  const rawLines = isMobile ? [text.replace(/\n/g, " ")] : text.split("\n");
+  const lines = rawLines.map((line) => line.trim().split(" ").filter(Boolean));
+
+  const translateIn  = direction === 1 ? "translateY(110%)" : "translateY(-110%)";
+  const translateOut = direction === 1 ? "translateY(-110%)" : "translateY(110%)";
+
+  let wordIndex = 0;
 
   return (
     <Typography
       variant="body-lg"
       className="m-0 w-full max-w-full font-montserrat font-normal tracking-[0.01em] !text-white leading-relaxed text-[12px] sm:text-[13px] lg:max-w-[280px] lg:text-[15px]"
     >
-      {words.map((word, wi) => {
-        const delay = active
-          ? `${Math.min(wi * 18, 300)}ms`
-          : `${Math.min(wi * 8, 120)}ms`;
+      {lines.map((words, li) => (
+        <span key={li} style={{ display: "block" }}>
+          {words.map((word, wi) => {
+            const idx = wordIndex++;
+            const delay = active
+              ? `${Math.min(idx * 18, 300)}ms`
+              : `${Math.min(idx * 8, 120)}ms`;
 
-        const translateIn  = direction === 1 ? "translateY(110%)" : "translateY(-110%)";
-        const translateOut = direction === 1 ? "translateY(-110%)" : "translateY(110%)";
-
-        return (
-          <span
-            key={wi}
-            style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}
-          >
-            <span
-              style={{
-                display: "inline-block",
-                transform: active
-                  ? "translateY(0)"
-                  : exiting
-                  ? translateOut
-                  : translateIn,
-                opacity: active ? 1 : exiting ? 0 : 0,
-                transition: `transform 650ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease`,
-                transitionDelay: delay,
-                filter: active ? "blur(0px)" : exiting ? "blur(2px)" : "blur(0px)",
-              }}
-            >
-              {word}
-            </span>
-            {wi < words.length - 1 && (
-              <span style={{ display: "inline-block", width: "0.3em" }} />
-            )}
-          </span>
-        );
-      })}
+            return (
+              <span
+                key={wi}
+                style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}
+              >
+                <span
+                  style={{
+                    display: "inline-block",
+                    transform: active
+                      ? "translateY(0)"
+                      : exiting
+                      ? translateOut
+                      : translateIn,
+                    opacity: active ? 1 : exiting ? 0 : 0,
+                    transition: `transform 650ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease`,
+                    transitionDelay: delay,
+                    filter: active ? "blur(0px)" : exiting ? "blur(2px)" : "blur(0px)",
+                  }}
+                >
+                  {word}
+                </span>
+                {wi < words.length - 1 && (
+                  <span style={{ display: "inline-block", width: "0.3em" }} />
+                )}
+              </span>
+            );
+          })}
+        </span>
+      ))}
     </Typography>
   );
 }
@@ -146,7 +166,9 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
     if (!tile) return;
     const vh = window.innerHeight;
     const tileH = tile.offsetHeight;
-    tile.style.transform = `translateY(${getTileTranslateY(step, vh, tileH)}px)`;
+    // translateX(-50%) keeps the tile perfectly centered on its `left` anchor
+    // (the overlay boundary) regardless of the tile's own responsive width.
+    tile.style.transform = `translateX(-50%) translateY(${getTileTranslateY(step, vh, tileH)}px)`;
   }, []);
 
   const applyStep = useCallback((step: number, force = false) => {
@@ -297,8 +319,12 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
           />
         ))}
 
-        {/* Overlay — w-[50%] below 480px, w-[46%] 480-639px, w-[30%] sm+, w-[28%] lg+ */}
-        <div className="absolute top-0 left-0 z-10 h-full w-[50%] overflow-hidden bg-black/[0.72] min-[480px]:w-[46%] sm:w-[30%] lg:w-[28%]">
+        {/*
+          Overlay:
+          340px - 1279px (below xl) : w-50% for every screen in this range
+          1280px+ (xl)              : w-28%
+        */}
+        <div className="absolute top-0 left-0 z-10 h-full w-[50%] overflow-hidden bg-black/[0.72] xl:w-[28%]">
           {STEPS.map((s, i) => (
             <TextBlock
               key={i}
@@ -312,11 +338,9 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
 
         {/*
           Tile:
-          < 480px : overlay=50%, tile=108px, left=calc(50%-54px) — centers tile on overlay edge
-          480-639 : overlay=46%, left=calc(46%-54px)
-          sm+     : overlay=30%, original sizes restored
-          md+     : original
-          lg+     : original
+          `left` is always set to the overlay's right-edge percentage, and the JS-driven
+          transform includes translateX(-50%), so the tile is exactly centered on that
+          boundary line no matter how wide the tile itself is at a given breakpoint.
         */}
         <div
           ref={tileRef}
@@ -325,23 +349,20 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
             "drop-shadow-[0_12px_32px_rgba(0,0,0,0.6)]",
             "transition-transform duration-[600ms] ease-[cubic-bezier(0.4,0,0.2,1)]",
 
-            // < 480px — matches 50% overlay, 108/2=54px offset
-            "left-[calc(50%-54px)] w-[108px]",
+            // < 640px — overlay boundary at 50%
+            "left-[50%] w-[108px]",
 
-            // 480-639px — matches 46% overlay
-            "min-[480px]:left-[calc(46%-54px)]",
+            // sm (640-767px) — overlay boundary still at 50%
+            "sm:w-[clamp(120px,22vw,145px)]",
 
-            // sm (640px+) — original
-            "sm:left-[calc(30%-58px)] sm:w-[clamp(108px,20vw,128px)]",
+            // md (768-1023px) — overlay boundary still at 50%
+            "md:w-[clamp(118px,16vw,140px)]",
 
-            // md
-            "md:left-[calc(30%-64px)] md:w-[clamp(118px,16vw,140px)]",
+            // lg (1024-1279px) — overlay boundary still at 50%
+            "lg:w-[clamp(140px,12vw,175px)] lg:drop-shadow-[0_16px_40px_rgba(0,0,0,0.6)]",
 
-            // lg
-            "lg:left-[calc(28%-80px)] lg:w-[clamp(140px,12vw,175px)] lg:drop-shadow-[0_16px_40px_rgba(0,0,0,0.6)]",
-
-            // xl
-            "xl:[transform:translateY(6vh)]"
+            // xl (1280px+) — overlay boundary moves to 28%
+            "xl:left-[28%]"
           )}
         >
           <Image
