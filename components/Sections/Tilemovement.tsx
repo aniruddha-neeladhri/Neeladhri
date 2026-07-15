@@ -7,22 +7,22 @@ import { cn } from "@/lib/utils";
 
 const STEPS = [
   {
-    body: "Spaces that reflect your style.\nFind flooring and wall solutions that transform everyday living into something extraordinary.",
+    body: "Living Room\nSpaces that reflect your style.\nFind flooring and wall solutions that transform everyday living into something extraordinary.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/ac9026dc-6ae6-4eb0-8f7b-4fd3c05deb3d.mp4",
     videoTime: 0,
   },
   {
-    body: "Cook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
+    body: "Kitchen\nCook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
     videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/728d2819-3ac6-49f5-981a-4e50ef909071.mp4",
     videoTime: 5,
   },
   {
-    body:"Made for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
+    body: "Dining Room\nMade for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/b442df59-ddf2-4ded-aab8-bc49bfb67ee3.mp4",
     videoTime: 10,
   },
   {
-    body: "Every detail matters.Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
+    body: "Bathroom\nEvery detail matters.Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/4632c787-53da-424f-9fae-65aa3b182254.mp4",
     videoTime: 15,
   },
@@ -56,68 +56,62 @@ function AnimatedText({
   exiting: boolean;
   direction: 1 | -1;
 }) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 639px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  // Below 640px, ignore the manual \n breaks and let the text wrap naturally;
-  // at sm and up, honor the manual \n breaks as forced line breaks.
-  const rawLines = isMobile ? [text.replace(/\n/g, " ")] : text.split("\n");
-  const lines = rawLines.map((line) => line.trim().split(" ").filter(Boolean));
-
   const translateIn  = direction === 1 ? "translateY(110%)" : "translateY(-110%)";
   const translateOut = direction === 1 ? "translateY(-110%)" : "translateY(110%)";
 
-  let wordIndex = 0;
+  const renderLines = (lines: string[][], keyPrefix: string) => {
+    let wordIndex = 0;
+    return lines.map((words, li) => (
+      <span key={`${keyPrefix}-${li}`} style={{ display: "block" }}>
+        {words.map((word, wi) => {
+          const idx = wordIndex++;
+          const delay = active
+            ? `${Math.min(idx * 18, 300)}ms`
+            : `${Math.min(idx * 8, 120)}ms`;
+
+          return (
+            <span
+              key={wi}
+              style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}
+            >
+              <span
+                style={{
+                  display: "inline-block",
+                  transform: active
+                    ? "translateY(0)"
+                    : exiting
+                    ? translateOut
+                    : translateIn,
+                  opacity: active ? 1 : exiting ? 0 : 0,
+                  transition: `transform 650ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease`,
+                  transitionDelay: delay,
+                  filter: active ? "blur(0px)" : exiting ? "blur(2px)" : "blur(0px)",
+                }}
+              >
+                {word}
+              </span>
+              {wi < words.length - 1 && (
+                <span style={{ display: "inline-block", width: "0.3em" }} />
+              )}
+            </span>
+          );
+        })}
+      </span>
+    ));
+  };
+
+  // Below 640px: ignore the manual \n breaks entirely, one continuous run that wraps naturally.
+  const mobileLines = [text.replace(/\n/g, " ").trim().split(" ").filter(Boolean)];
+  // sm and up: honor the manual \n breaks as forced line breaks.
+  const desktopLines = text.split("\n").map((line) => line.trim().split(" ").filter(Boolean));
 
   return (
     <Typography
       variant="body-lg"
       className="m-0 w-full max-w-full font-montserrat font-normal tracking-[0.01em] !text-white leading-relaxed text-[12px] sm:text-[13px] lg:max-w-[280px] lg:text-[15px]"
     >
-      {lines.map((words, li) => (
-        <span key={li} style={{ display: "block" }}>
-          {words.map((word, wi) => {
-            const idx = wordIndex++;
-            const delay = active
-              ? `${Math.min(idx * 18, 300)}ms`
-              : `${Math.min(idx * 8, 120)}ms`;
-
-            return (
-              <span
-                key={wi}
-                style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}
-              >
-                <span
-                  style={{
-                    display: "inline-block",
-                    transform: active
-                      ? "translateY(0)"
-                      : exiting
-                      ? translateOut
-                      : translateIn,
-                    opacity: active ? 1 : exiting ? 0 : 0,
-                    transition: `transform 650ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease`,
-                    transitionDelay: delay,
-                    filter: active ? "blur(0px)" : exiting ? "blur(2px)" : "blur(0px)",
-                  }}
-                >
-                  {word}
-                </span>
-                {wi < words.length - 1 && (
-                  <span style={{ display: "inline-block", width: "0.3em" }} />
-                )}
-              </span>
-            );
-          })}
-        </span>
-      ))}
+      <span className="block sm:hidden">{renderLines(mobileLines, "m")}</span>
+      <span className="hidden sm:block">{renderLines(desktopLines, "d")}</span>
     </Typography>
   );
 }
@@ -321,10 +315,11 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
 
         {/*
           Overlay:
-          340px - 1279px (below xl) : w-50% for every screen in this range
+          340px - 767px (below md)  : w-50%
+          768px - 1279px (md & lg)  : w-40%
           1280px+ (xl)              : w-28%
         */}
-        <div className="absolute top-0 left-0 z-10 h-full w-[50%] overflow-hidden bg-black/[0.72] xl:w-[28%]">
+        <div className="absolute top-0 left-0 z-10 h-full w-[50%] overflow-hidden bg-black/[0.72] md:w-[40%] xl:w-[28%]">
           {STEPS.map((s, i) => (
             <TextBlock
               key={i}
@@ -355,13 +350,13 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
             // sm (640-767px) — overlay boundary still at 50%
             "sm:w-[clamp(120px,22vw,145px)]",
 
-            // md (768-1023px) — overlay boundary still at 50%
-            "md:w-[clamp(118px,16vw,140px)]",
+            // md (768-1023px) — overlay boundary at 40%
+            "md:left-[40%] md:w-[clamp(118px,16vw,140px)]",
 
-            // lg (1024-1279px) — overlay boundary still at 50%
+            // lg (1024-1279px) — overlay boundary still at 40%
             "lg:w-[clamp(140px,12vw,175px)] lg:drop-shadow-[0_16px_40px_rgba(0,0,0,0.6)]",
 
-            // xl (1280px+) — overlay boundary moves to 28%
+            // xl (1280px+) — overlay boundary at 28%
             "xl:left-[28%]"
           )}
         >
