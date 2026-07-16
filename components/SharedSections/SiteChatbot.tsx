@@ -152,7 +152,15 @@ export default function SiteChatbot() {
   return (
     <div
       ref={rootRef}
-      className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 z-[9998] flex flex-col items-end gap-3 sm:bottom-8 sm:right-6 md:bottom-10 md:right-10 lg:bottom-12 lg:right-12"
+      className={cn(
+        "fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] right-4 z-[9998] flex flex-col items-end gap-3 sm:bottom-8 sm:right-6 md:bottom-10 md:right-10 lg:bottom-12 lg:right-12",
+        // The wrapper spans the full button+menu column even when the menu
+        // is closed (for the open/close transition), so without this it
+        // silently blocks clicks on whatever sits underneath it (e.g.
+        // buttons in other sections). Disable hit-testing on the wrapper
+        // when closed, then re-enable it just for the toggle button below.
+        open ? "pointer-events-auto" : "pointer-events-none"
+      )}
     >
       <div
         className={cn(
@@ -180,7 +188,7 @@ export default function SiteChatbot() {
         aria-label={open ? "Close contact menu" : "Open contact menu"}
         aria-expanded={open}
         onClick={() => setOpen((prev) => !prev)}
-        className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full shadow-[0_6px_20px_rgba(0,0,0,0.35)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 sm:h-16 sm:w-16"
+        className="pointer-events-auto relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full shadow-[0_6px_20px_rgba(0,0,0,0.35)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 sm:h-16 sm:w-16"
         style={{ background: buttonGradient }}
       >
         <Image
