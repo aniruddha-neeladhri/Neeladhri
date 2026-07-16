@@ -78,7 +78,7 @@ export default function ReelsSection() {
 
   // z-20 keeps controls above reel cards (cards were stealing edge clicks)
   const controlClass =
-    "relative z-20 mb-1 flex h-8 w-8 shrink-0 touch-manipulation items-center justify-center rounded-full transition-opacity";
+    "relative z-20 mb-1 flex h-6 w-6 shrink-0 touch-manipulation items-center justify-center rounded-full transition-opacity";
 
   return (
     <section
@@ -108,7 +108,7 @@ export default function ReelsSection() {
 
 
         {/* Design: controls outside the strip, bottom-aligned, small gap */}
-        <div className="isolate grid w-full max-w-[360px] grid-cols-[2rem_minmax(0,1fr)_2rem] items-end gap-3 md:max-w-none md:w-auto md:grid-cols-[2rem_720px_2rem] md:gap-4 lg:grid-cols-[2rem_812px_2rem] xl:grid-cols-[2rem_872px_2rem]">
+        <div className="isolate grid w-full max-w-[360px] grid-cols-[2rem_minmax(0,1fr)_2rem] items-end gap-3 md:max-w-none md:w-auto md:grid-cols-[2rem_720px_2rem] md:gap-0 lg:grid-cols-[2rem_812px_2rem] lg:gap-4 xl:grid-cols-[2rem_872px_2rem]">
           <button
             type="button"
             onClick={(e) => {
@@ -159,7 +159,7 @@ export default function ReelsSection() {
                             ? "Mute this video"
                             : "Unmute this video"
                         }
-                        className="absolute bottom-3 right-3 z-10 flex h-8 w-8 touch-manipulation items-center justify-center rounded-full bg-black/55 backdrop-blur-sm transition-opacity hover:bg-black/70"
+                        className="absolute bottom-3 right-3 z-10 flex h-6 w-6 touch-manipulation items-center justify-center rounded-full bg-black/55 backdrop-blur-sm transition-opacity hover:bg-black/70"
                       >
                         <MuteIcon muted={unmutedId !== reel.id} />
                       </button>
