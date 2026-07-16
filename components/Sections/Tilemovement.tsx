@@ -336,7 +336,9 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
       <div
         className={cn(
           "h-screen w-full overflow-hidden",
-          pinMode === "pinned" && "fixed top-0 left-0 right-0 z-0",
+          // pointer-events-none: when pinned this layer covers the viewport and
+          // must not steal clicks from sections below (e.g. reels controls).
+          pinMode === "pinned" && "fixed top-0 left-0 right-0 z-0 pointer-events-none",
           pinMode === "after"  && "absolute bottom-0 left-0 right-0 z-0",
           pinMode === "before" && "relative z-0"
         )}

@@ -257,6 +257,7 @@ export const brandsDataLuxury: Record<string, BrandData> = {
       "/Brands/brandsimg.png",
     ],
   },
+  
   atlasConcorde: {
     id: "atlas-concorde",
     name: "Atlas Concorde",
