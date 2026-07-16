@@ -98,6 +98,7 @@ export default function ReelsSection() {
           </Typography>
         </span>
 
+
         {/* Design: controls outside the strip, bottom-aligned, small gap */}
         <div className="isolate grid w-full max-w-[360px] grid-cols-[2rem_minmax(0,1fr)_2rem] items-end gap-3 md:max-w-none md:w-auto md:grid-cols-[2rem_720px_2rem] md:gap-4 lg:grid-cols-[2rem_812px_2rem] xl:grid-cols-[2rem_872px_2rem]">
           <button
