@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 import { premiumReels, luxuryReels, reelsTheme } from "@/lib/constants/reels";
@@ -8,179 +8,127 @@ import { premiumReels, luxuryReels, reelsTheme } from "@/lib/constants/reels";
 const INSTAGRAM_URL =
   "https://www.instagram.com/neeladhriceramics?igsh=ajM2aXVqdWNqMnJp";
 
-function getStepWidth(track: HTMLDivElement) {
-  const card = track.querySelector<HTMLElement>("[data-reel-card]");
-  if (!card) return track.clientWidth;
-
-  const styles = getComputedStyle(track);
-  const gap = Number.parseFloat(styles.columnGap || styles.gap || "0") || 0;
-  return card.getBoundingClientRect().width + gap;
-}
-
-function getVisibleCount(track: HTMLDivElement) {
-  const step = getStepWidth(track);
-  if (step <= 0) return 1;
-  return Math.max(1, Math.round(track.clientWidth / step));
-}
-
-function getMaxIndex(track: HTMLDivElement) {
-  const total = track.querySelectorAll("[data-reel-card]").length;
-  return Math.max(0, total - getVisibleCount(track));
-}
-
-function getActiveIndex(track: HTMLDivElement) {
-  const step = getStepWidth(track);
-  if (step <= 0) return 0;
-  return Math.min(getMaxIndex(track), Math.max(0, Math.round(track.scrollLeft / step)));
-}
-
-function Chevron({ direction }: { direction: "prev" | "next" }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="w-4 h-4"
-      aria-hidden
-    >
-      {direction === "prev" ? (
-        <polyline points="15 18 9 12 15 6" />
-      ) : (
-        <polyline points="9 18 15 12 9 6" />
-      )}
-    </svg>
-  );
-}
-
+/**
+ * Native scroll-snap strip (swipe works by itself).
+ * Corner controls only call step(±1) → scrollTo the next snap card.
+ */
 export default function ReelsSection() {
   const { theme } = useTheme();
   const isLuxury = theme === "luxury";
   const reels = isLuxury ? luxuryReels : premiumReels;
   const colors = isLuxury ? reelsTheme.luxury : reelsTheme.premium;
 
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [canGoPrev, setCanGoPrev] = useState(false);
-  const [canGoNext, setCanGoNext] = useState(true);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
 
-  const syncControls = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const index = getActiveIndex(track);
-    const maxIndex = getMaxIndex(track);
-    setCanGoPrev(index > 0);
-    setCanGoNext(index < maxIndex);
+  const syncEdges = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setAtStart(el.scrollLeft <= 2);
+    setAtEnd(max <= 2 || el.scrollLeft >= max - 2);
   }, []);
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    syncControls();
-
-    track.addEventListener("scroll", syncControls, { passive: true });
-    window.addEventListener("resize", syncControls);
-
-    const resizeObserver = new ResizeObserver(syncControls);
-    resizeObserver.observe(track);
-
+    const el = scrollerRef.current;
+    if (!el) return;
+    syncEdges();
+    el.addEventListener("scroll", syncEdges, { passive: true });
+    const ro = new ResizeObserver(syncEdges);
+    ro.observe(el);
     return () => {
-      track.removeEventListener("scroll", syncControls);
-      window.removeEventListener("resize", syncControls);
-      resizeObserver.disconnect();
+      el.removeEventListener("scroll", syncEdges);
+      ro.disconnect();
     };
-  }, [syncControls, reels.length, theme]);
+  }, [reels.length, syncEdges]);
 
-  const goToIndex = useCallback((index: number) => {
-    const track = trackRef.current;
-    if (!track) return;
+  const step = (delta: -1 | 1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const cards = Array.from(el.children) as HTMLElement[];
+    if (!cards.length) return;
 
-    const maxIndex = getMaxIndex(track);
-    const nextIndex = Math.min(maxIndex, Math.max(0, index));
-    const step = getStepWidth(track);
+    let active = 0;
+    let best = Infinity;
+    for (let i = 0; i < cards.length; i++) {
+      const d = Math.abs(cards[i].offsetLeft - el.scrollLeft);
+      if (d < best) {
+        best = d;
+        active = i;
+      }
+    }
 
-    track.scrollTo({
-      left: nextIndex * step,
-      behavior: "smooth",
-    });
-
-    setCanGoPrev(nextIndex > 0);
-    setCanGoNext(nextIndex < maxIndex);
-  }, []);
-
-  const goPrev = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const track = trackRef.current;
-    if (!track) return;
-    goToIndex(getActiveIndex(track) - 1);
+    const target =
+      cards[Math.max(0, Math.min(cards.length - 1, active + delta))];
+    el.scrollTo({ left: target.offsetLeft, behavior: "smooth" });
   };
 
-  const goNext = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const track = trackRef.current;
-    if (!track) return;
-    goToIndex(getActiveIndex(track) + 1);
-  };
-
-  const openInstagram = () => {
+  const goToInstagram = () => {
     window.open(INSTAGRAM_URL, "_blank", "noopener,noreferrer");
   };
 
-  const arrowClassName =
-    "pointer-events-auto flex items-center justify-center w-7 h-7 md:w-6 md:h-6 rounded-full border transition-all duration-200 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-30 disabled:pointer-events-none hover:enabled:scale-105 active:enabled:scale-95";
-
-  const arrowStyle = {
-    backgroundColor: colors.arrowBg,
-    borderColor: colors.arrowBorder,
-    color: colors.arrowColor,
-  };
+  // z-20 keeps controls above reel cards (cards were stealing edge clicks)
+  const controlClass =
+    "relative z-20 mb-1 flex h-8 w-8 shrink-0 touch-manipulation items-center justify-center rounded-full transition-opacity";
 
   return (
     <section
       id="homereels"
-      className="relative z-[101] w-full py-2 md:py-2 lg:py-2 px-3 md:px-4 lg:px-8"
+      className="relative z-[101] w-full py-2 px-3 md:px-4 lg:px-8"
     >
-      <div className="max-w-[1400px] mx-auto flex flex-col items-center gap-6 md:gap-1 lg:gap-10 rounded-3xl p-3 md:p-4 lg:p-6">
-        <button
-          type="button"
-          onClick={openInstagram}
-          className="cursor-pointer"
-          aria-label="Open Neeladhri Ceramics on Instagram"
+      <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-6 rounded-3xl p-3 md:gap-8 md:p-4 lg:gap-10 lg:p-6">
+        <span
+          onClick={goToInstagram}
+          role="link"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") goToInstagram();
+          }}
+          className="inline-block cursor-pointer"
         >
           <Typography
             variant="display-xl"
             className={`text-center tracking-wide ${
               isLuxury ? "font-roboto-slab font-light" : "font-poppins font-light"
             }`}
-            style={{ color: colors.handleColor }}
+            style={{ color: colors.headingColor }}
           >
             @neeladhriceramics
           </Typography>
-        </button>
+        </span>
 
-        {/*
-          Side gutters keep arrows at the bottom corners (outside the cards)
-          without negative offsets that get covered by neighboring hit targets.
-        */}
-        <div className="relative isolate w-full max-w-[320px] md:max-w-none md:w-[768px] lg:w-[876px] xl:w-[952px] px-9 md:px-6 lg:px-12 pt-2 md:pt-6 lg:pt-2">
-          <div className="overflow-hidden w-full">
+        {/* Design: controls outside the strip, bottom-aligned, small gap */}
+        <div className="isolate grid w-full max-w-[360px] grid-cols-[2rem_minmax(0,1fr)_2rem] items-end gap-3 md:max-w-none md:w-auto md:grid-cols-[2rem_720px_2rem] md:gap-4 lg:grid-cols-[2rem_812px_2rem] xl:grid-cols-[2rem_872px_2rem]">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              step(-1);
+            }}
+            aria-label="Show previous reels"
+            className={`${controlClass} ${atStart ? "opacity-35" : "opacity-100"}`}
+            style={{ backgroundColor: colors.arrowBg }}
+          >
+            <Chevron dir="prev" color={colors.arrowColor} />
+          </button>
+
+          <div className="min-w-0 overflow-hidden">
             <div
-              ref={trackRef}
-              className="flex gap-3 md:gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              ref={scrollerRef}
+              className="relative flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain scroll-smooth md:gap-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              style={{ WebkitOverflowScrolling: "touch" }}
             >
               {reels.map((reel) => (
-                <button
+                <div
                   key={reel.id}
-                  type="button"
-                  data-reel-card
-                  onClick={openInstagram}
-                  aria-label="View reel on Instagram"
-                  className="relative shrink-0 snap-center md:snap-start w-full md:w-[230px] lg:w-[260px] xl:w-[280px] aspect-[9/16] overflow-hidden shadow-lg flex items-center justify-center cursor-pointer p-0 border-0"
+                  onClick={goToInstagram}
+                  role="link"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") goToInstagram();
+                  }}
+                  className="relative aspect-[9/16] w-full min-w-full shrink-0 snap-start cursor-pointer overflow-hidden shadow-lg md:w-[230px] md:min-w-[230px] lg:w-[260px] lg:min-w-[260px] xl:w-[280px] xl:min-w-[280px]"
                   style={{ backgroundColor: colors.cardBg }}
                 >
                   {reel.videoSrc ? (
@@ -191,50 +139,69 @@ export default function ReelsSection() {
                       muted
                       loop
                       playsInline
-                      className="w-full h-full object-contain pointer-events-none"
+                      className="pointer-events-none h-full w-full object-contain"
                     />
                   ) : (
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke={colors.arrowColor}
-                      strokeWidth={1.5}
-                      className="w-10 h-10 md:w-12 md:h-12 opacity-40 pointer-events-none"
-                      aria-hidden
-                    >
-                      <polygon points="5 3 19 12 5 21 5 3" />
-                    </svg>
+                    <div className="flex h-full w-full items-center justify-center">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke={colors.arrowColor}
+                        strokeWidth={1.5}
+                        className="h-10 w-10 opacity-40 md:h-12 md:w-12"
+                        aria-hidden
+                      >
+                        <polygon points="5 3 19 12 5 21 5 3" />
+                      </svg>
+                    </div>
                   )}
-                </button>
+                </div>
               ))}
             </div>
           </div>
 
-          <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-30 flex items-end justify-between px-0">
-            <button
-              type="button"
-              aria-label="Previous reels"
-              onClick={goPrev}
-              disabled={!canGoPrev}
-              className={arrowClassName}
-              style={arrowStyle}
-            >
-              <Chevron direction="prev" />
-            </button>
-
-            <button
-              type="button"
-              aria-label="Next reels"
-              onClick={goNext}
-              disabled={!canGoNext}
-              className={arrowClassName}
-              style={arrowStyle}
-            >
-              <Chevron direction="next" />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              step(1);
+            }}
+            aria-label="Show more reels"
+            className={`${controlClass} ${atEnd ? "opacity-35" : "opacity-100"}`}
+            style={{ backgroundColor: colors.arrowBg }}
+          >
+            <Chevron dir="next" color={colors.arrowColor} />
+          </button>
         </div>
       </div>
     </section>
+  );
+}
+
+function Chevron({
+  dir,
+  color,
+}: {
+  dir: "prev" | "next";
+  color: string;
+}) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      {dir === "prev" ? (
+        <polyline points="15 18 9 12 15 6" />
+      ) : (
+        <polyline points="9 18 15 12 9 6" />
+      )}
+    </svg>
   );
 }
