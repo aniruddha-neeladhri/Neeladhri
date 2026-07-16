@@ -21,6 +21,8 @@ export default function ReelsSection() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  // Per-reel unmute: only the clicked video plays sound (others stay muted).
+  const [unmutedId, setUnmutedId] = useState<string | null>(null);
 
   const syncEdges = useCallback(() => {
     const el = scrollerRef.current;
@@ -66,6 +68,12 @@ export default function ReelsSection() {
 
   const goToInstagram = () => {
     window.open(INSTAGRAM_URL, "_blank", "noopener,noreferrer");
+  };
+
+  const toggleMute = (e: React.MouseEvent, reelId: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setUnmutedId((current) => (current === reelId ? null : reelId));
   };
 
   // z-20 keeps controls above reel cards (cards were stealing edge clicks)
@@ -133,15 +141,29 @@ export default function ReelsSection() {
                   style={{ backgroundColor: colors.cardBg }}
                 >
                   {reel.videoSrc ? (
-                    <video
-                      src={reel.videoSrc}
-                      poster={reel.poster}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="pointer-events-none h-full w-full object-contain"
-                    />
+                    <>
+                      <video
+                        src={reel.videoSrc}
+                        poster={reel.poster}
+                        autoPlay
+                        muted={unmutedId !== reel.id}
+                        loop
+                        playsInline
+                        className="pointer-events-none h-full w-full object-contain"
+                      />
+                      <button
+                        type="button"
+                        onClick={(e) => toggleMute(e, reel.id)}
+                        aria-label={
+                          unmutedId === reel.id
+                            ? "Mute this video"
+                            : "Unmute this video"
+                        }
+                        className="absolute bottom-3 right-3 z-10 flex h-8 w-8 touch-manipulation items-center justify-center rounded-full bg-black/55 backdrop-blur-sm transition-opacity hover:bg-black/70"
+                      >
+                        <MuteIcon muted={unmutedId !== reel.id} />
+                      </button>
+                    </>
                   ) : (
                     <div className="flex h-full w-full items-center justify-center">
                       <svg
@@ -176,6 +198,36 @@ export default function ReelsSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function MuteIcon({ muted }: { muted: boolean }) {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#FFFFFF"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      {muted ? (
+        <>
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <line x1="23" y1="9" x2="17" y2="15" />
+          <line x1="17" y1="9" x2="23" y2="15" />
+        </>
+      ) : (
+        <>
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        </>
+      )}
+    </svg>
   );
 }
 
