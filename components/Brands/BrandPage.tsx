@@ -108,33 +108,30 @@ export default function BrandPage({ brand }: BrandPageProps) {
       <div className={`flex flex-col ${flexAlign} justify-center px-4 md:px-8 mt-2 mb-12 pop-up`}>
         <div
           className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[4.5rem]"}`}
-          style={{ border: `2px solid ${accentColor}` }}
+          style={{ border: `${isLuxury ? "2px" : "5px"} solid ${accentColor}` }}
         >
           {/* Header */}
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
             <Typography
               variant="display-2xl"
-              className={`mb-2 lg:mb-6 ${textAlign} tracking-wide ${colorTransition} ${
-                isLuxury ? "font-cormorant-garamond font-light" : "font-montserrat font-normal"
-              }`}
+              className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
+                }`}
               style={{ color: brandNameColor }}
             >
               {brand.name}
             </Typography>
             <Typography
               variant="h1"
-              className={`font-medium mb-2 lg:mb-8 ${textAlign} ${colorTransition} ${
-                isLuxury ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"
-              }`}
+              className={`font-medium mb-2 ${textAlign} ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"
+                }`}
               style={{ color: bodyTextColor }}
             >
               {brand.tagline}
             </Typography>
             <Typography
               variant="h2"
-              className={`font-light ${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed ${colorTransition} ${
-                isLuxury ? "font-cormorant-garamond font-normal" : "font-poppins font-light"
-              }`}
+              className={`${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
+                }`}
               style={{ color: bodyTextColor }}
             >
               {brand.description}
@@ -149,9 +146,8 @@ export default function BrandPage({ brand }: BrandPageProps) {
                 type="button"
                 onClick={() => scroll("left")}
                 disabled={!canScrollLeft}
-                className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${
-                  canScrollLeft ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
-                }`}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${canScrollLeft ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
+                  }`}
                 aria-label="Previous image"
               >
                 <svg
@@ -195,9 +191,8 @@ export default function BrandPage({ brand }: BrandPageProps) {
                 type="button"
                 onClick={() => scroll("right")}
                 disabled={!canScrollRight}
-                className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${
-                  canScrollRight ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
-                }`}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${canScrollRight ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
+                  }`}
                 aria-label="Next image"
               >
                 <svg
