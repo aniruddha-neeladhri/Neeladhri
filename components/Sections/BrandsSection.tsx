@@ -34,14 +34,12 @@ export default function BrandsSection() {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
-  // Sync scroll position with animation position
   const syncScrollPosition = () => {
     if (scrollRef.current) {
       posRef.current = scrollRef.current.scrollLeft;
     }
   };
 
-  // Update hover handlers to immediately sync position
   const handleMouseEnter = () => {
     syncScrollPosition();
     isHoveredRef.current = true;
@@ -52,7 +50,6 @@ export default function BrandsSection() {
     isHoveredRef.current = false;
   };
 
-  // Drag on the container (empty space between cards)
   const onMouseDown = (e: React.MouseEvent) => {
     isDraggingRef.current = true;
     hasDraggedRef.current = false;
@@ -130,10 +127,6 @@ export default function BrandsSection() {
                 fill
                 draggable={false}
                 className="object-contain"
-              />
-              <div
-                className="absolute inset-0 z-10 bg-black/50 pointer-events-none opacity-100 transition-opacity duration-500 group-hover:opacity-0"
-                aria-hidden
               />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <Typography 
