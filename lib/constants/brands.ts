@@ -60,7 +60,7 @@ export function brandImages(theme: "premium" | "luxury"): readonly string[] {
 export const BRAND_BG_PREMIUM = "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a14cc8ba-786b-4845-a33c-cd8e7933dfc0.png";
 
 /** Swap this for the actual luxury background URL when available */
-export const BRAND_BG_LUXURY =  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3a7f3b6b-7c4f-46db-b0cf-7cf763c1d837.png";
+export const BRAND_BG_LUXURY = "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3a7f3b6b-7c4f-46db-b0cf-7cf763c1d837.png";
 
 export function brandBgImage(theme: "premium" | "luxury"): string {
   return theme === "luxury" ? BRAND_BG_LUXURY : BRAND_BG_PREMIUM;
@@ -262,11 +262,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Artistry in Every Surface",
     description: "Bisazza transforms spaces through iconic mosaic designs that blur the line between art and architecture. Each piece brings character, color, and craftsmanship into refined living environments.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/06f52cdc-381e-46d9-a186-c6f46d08f8ff.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/4774681c-d624-4443-8bfd-ce77401bef0b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/44be601c-d855-467f-a1a9-7599e219d2bf.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/12435fba-c3f9-48ba-8e93-184dfdb5f273.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7bc145e7-1d92-40cd-9d37-793882ba09ab.png",
     ],
   },
   atlasConcorde: {
@@ -275,11 +275,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Italian Surfaces, Timeless Design",
     description: "Atlas Concorde offers premium ceramic and porcelain surfaces inspired by natural materials. Designed in Italy, each collection reflects elegance, durability, and contemporary sophistication.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/21c78547-152c-48fc-a24c-e92dc70c7847.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/161a63af-592d-4019-b383-87743ed72fe7.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f96af0b8-24fa-401b-af03-75dc65b61d99.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/98b3ef32-b74c-45b9-ad46-9d412b13b9c1.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d0838a1c-4238-48f6-a5dd-585d3c0cff24.png",
     ],
   },
   neotra: {
@@ -288,11 +288,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Minimalism, Perfected",
     description: "Neotra delivers clean, modern surface solutions that prioritize simplicity and balance. Its understated aesthetic creates calm, refined spaces with lasting visual impact.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e5868908-010c-4470-a948-b6c7b5b741c2.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/cb42dfd3-84e9-4b69-8628-2c8cf84a6aa9.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0526642a-ea9c-45f2-a31f-3c609285b82b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/bea0db24-a928-4237-b101-fc2508c5a0e4.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/07efb2bb-5735-47b7-9a78-49d4f6e3323f.png",
     ],
   },
   dekton: {
@@ -301,11 +301,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Engineered for Extraordinary Living",
     description: "Dekton is an ultra-compact surface designed for high performance and striking aesthetics. Resistant, versatile, and visually bold, it defines luxury through innovation.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c03fdd97-4b63-43d2-b77a-25143cb8830d.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/36a175b2-0d83-4501-bf4a-aa24d5e6c94a.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/08bbbe4c-e181-4a08-828f-ba291a4a29aa.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2f795982-8479-4310-87a8-e29cc5c2a4a2.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5b1faa19-1bf1-4655-b102-da433736abb6.png",
     ],
   },
   opButler: {
@@ -314,11 +314,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Refined Dining, Redefined",
     description: "OP Butler curates elegant solutions that elevate dining experiences. With a focus on detail and presentation, it blends functionality with understated luxury.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/781594f9-e1d3-4385-ac22-2365a120ee88.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2062f9f4-d4bd-4d00-8f8b-9b3cbe30af73.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/491c83dd-80b7-40e8-95ea-cb17a418a24f.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/66d6526a-6577-42d0-8289-51433c7ffe59.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/73bdc593-5de8-4331-8738-60118fe5cccc.png",
     ],
   },
   perrinRowe: {
@@ -327,11 +327,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "British Craftsmanship, Timeless Luxury",
     description: "Handcrafted in the UK, Perrin & Rowe fittings combine traditional techniques with refined design. Every detail reflects precision, heritage, and enduring elegance.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2236cd98-1ac9-423c-a04c-f3919b26ccf0.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5d42844e-b9b9-48c3-ab5f-55de0644f897.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d898e1e4-6082-49cb-be56-74b30fa2bd39.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5f2997d3-4fe3-44d9-91ee-cbdbf56119ff.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d9f6d8bf-766c-475f-93c1-d36af1b4a721.png",
     ],
   },
   houseOfRohl: {
@@ -340,11 +340,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "A Collective of Iconic Luxury",
     description: "Smack provides reliable kitchen appliances designed to simplify daily cooking. Combining functionality with modern design, it supports a smooth and efficient kitchen experience.House of Rohl brings together globally renowned brands to create exceptional bathroom experiences. Rooted in craftsmanship, it represents the pinnacle of curated luxury.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b57080c9-2b8f-4a88-8ae8-094b8d376e21.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f9c62ee7-bb6a-44bd-964d-d9fc6193fe86.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/083e3765-38b8-4819-8492-c6a42bf2d047.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3608e3b3-4e95-46c9-a36f-72e9056bdec0.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8e153349-6f5a-4c4c-bc00-8e54258006a9.png",
     ],
   },
   treemme: {
@@ -353,11 +353,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Contemporary Italian Innovation",
     description: "Treemme reimagines bathroom fittings through bold design and advanced engineering. Clean lines and modern aesthetics define its distinctive identity.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/efd7810d-d26d-489b-b52a-0799c0aa3129.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/bbc72051-f1ae-4896-b85c-9f0ffaf06d1c.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1d5c7a75-0e07-498f-bdfa-3164ee0500f2.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/74730a50-5c7b-4651-90a2-c5973a0c2d39.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/19b76992-5972-460f-a3ef-20c72a598af0.png",
     ],
   },
   galassia: {
@@ -366,11 +366,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Ceramic Design with Character",
     description: "Galassia combines Italian craftsmanship with expressive design to create unique sanitaryware. Its collections bring personality and elegance into modern bathrooms.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0d7ff29b-1218-4e23-8f35-c97d0130d4dd.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5f952204-e1b1-475b-828d-5c6ca4583813.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/04fdb750-80d0-41c2-b27b-9c85a87a99b2.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ab57d5dd-fc8f-4c41-ab3c-040defa52957.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/82e43394-e0d7-49a1-98a0-7f1676438df9.png",
     ],
   },
   victoriaAlbert: {
@@ -379,11 +379,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Sculptural Bathing Experiences",
     description: "Victoria + Albert is known for beautifully crafted freestanding baths and basins. Each piece is designed to be both functional and a striking visual centerpiece.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1ca984cd-9af8-471d-b31d-37248c8a37ac.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/bea4532c-ece1-4f8a-ac64-7c6177a73c42.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a6ca6e4f-dc18-40a3-a51c-c3cb85f60ac2.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/96889f43-84f0-482c-99f4-535c7311ccd6.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/77d8d8c5-790e-48e4-80f9-21755a7e1e1b.png",
     ],
   },
   decorWalther: {
@@ -392,11 +392,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Accessories, Perfected",
     description: "Décor Walther elevates bathroom accessories through precision and minimal design. Every detail is refined to complement luxury spaces effortlessly.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d1c706bc-3106-4d60-a347-fa41d3b83b38.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ceb180f7-a5c9-4dd6-9a93-45af27e40a9b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/138c6641-c4f3-4a5a-a37d-7f91e7d8752e.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e9f08195-8eae-4140-95a7-281b9cef5236.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/fc12ee65-a9f9-4980-8f33-fd5144e640be.png",
     ],
   },
   sunshower: {
@@ -405,11 +405,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Wellness Meets Innovation",
     description: "Sunshower integrates light therapy into bathroom spaces, creating a unique wellness experience. It combines technology and design for a new level of comfort.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5a3d5818-5b1f-45d6-be3f-094f9753ed59.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d8106dae-a82c-4e52-b0b7-c2e6d2ca9026.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c992cb99-e9ac-4ab6-a78a-e448557acb44.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ce937390-4e5e-4736-80d1-caa907023968.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a0bc9dee-0d3d-43ef-b0b7-8f4f606c4272.png",
     ],
   },
   armadiArt: {
@@ -418,11 +418,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Italian Vanity, Reimagined",
     description: "Armadi Art offers contemporary bathroom furniture with a focus on elegance and functionality. Designed in Italy, it brings modern sophistication to everyday spaces.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/26f8fe52-2511-44ab-af43-b6d7b7ee3fac.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/4555fad8-d194-4271-9734-920bc1d6ba8b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f65dcea6-1b46-4e1f-8579-85884cdb17fa.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/bd5dd90b-8ac5-4f72-af0b-313232ed1b2b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/dc4739ee-6523-407c-aadc-8706888a79ae.png",
     ],
   },
   tab: {
@@ -431,11 +431,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Precision in Kitchen Design",
     description: "Tab delivers refined kitchen solutions that balance performance and aesthetics. Designed for modern lifestyles, it emphasizes efficiency with a premium finish.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/39cc36bd-63f7-45b6-8011-2b72e23e5b2c.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8ecd34bd-b468-4dd4-b71e-b24a745956d0.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/038c5210-4bbb-49eb-8e23-df01a0231d97.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/466b3eb8-9095-442e-857d-634883b894a3.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0a3dc8cf-c1d7-4ce2-83cf-ab64c44e9471.png",
     ],
   },
   specta: {
@@ -444,11 +444,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Surfaces that Define Kitchens",
     description: "Specta offers high-quality engineered surfaces crafted for durability and visual appeal. Its designs enhance the overall character of contemporary kitchens.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/42ae7ee7-d9f9-424c-9de6-f2e05ef0d209.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/04f82810-3162-4faa-8768-e9f5ad9c9446.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/6aafa0aa-c75b-4867-b32d-b17701f2ea5a.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a840aacb-dfdd-43c2-bdd6-218fa168f7be.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3a2a8cec-e36c-43c4-a928-958ba7d62095.png",
     ],
   },
   miraak: {
@@ -457,11 +457,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Modern Kitchens, Elevated",
     description: "Miraak focuses on sleek, design-forward kitchen solutions that combine functionality with refined aesthetics. Built for seamless integration into luxury homes.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/31aa18d4-37f4-4b13-aa8a-cb7e49c3f9fc.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/74254ef3-b692-445d-9694-20d969cbf1d9.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c52b5016-9cf9-4b93-a8e0-41d25ff18a12.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/64f0750d-a60c-4433-b8e6-9ac772c3e9bc.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b2ed7b70-522f-4adc-97bf-6eafe3331bb6.png",
     ],
   },
   crava: {
@@ -470,11 +470,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Designed for Everyday Elegance",
     description: "Crava brings together thoughtful design and practical innovation to create kitchens that feel both stylish and efficient.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2bb9ff4f-782f-4ecf-aa29-55261a1fbe56.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/714db3e0-d4e3-4ca6-a2e7-0e9a9a0dd826.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8691cf06-c1df-4fd8-9c98-f2e3dd01a0e3.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d0e7e85e-11b3-4ae2-a8b7-62afe799b58b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d91ab865-a681-4cf4-acfc-58a77af306a8.png",
     ],
   },
   viaan: {
@@ -483,11 +483,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Health-Focused Hydration",
     description: "Viaan offers advanced alkaline water solutions designed to support a healthier lifestyle. Clean design meets functional innovation.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5343ef03-7781-4839-8ba7-c05f941649a3.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d2f475c1-8ea1-4fcc-95c2-c2394fe0feae.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/23218f52-5ac5-4403-a191-e81f48e6a50a.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/6ed05950-1909-4575-9e2d-39d5b02ca37a.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0aaa2b91-91c5-45cd-89a0-44680c789002.png",
     ],
   },
   waterPurifiers: {
@@ -496,11 +496,11 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     tagline: "Health-Focused HydrationAdvanced Filtration You Can Trust",
     description: "3M delivers reliable water purification systems built on proven technology. Designed for safety, purity, and everyday confidence.",
     images: [
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
-      "/Brands/brandsimg.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/75c0bb51-aac0-4d0b-b9aa-cbfc8059f799.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/96faa594-0925-4959-b5ee-f5c9824ef108.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/169c65bf-d2a3-4eb3-a5fb-c03f856c2337.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c5a68f78-cfc7-4c2d-bb22-ce6828ff9a1d.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/08f858bd-e054-4ee0-ae6a-6cfe1cbe03df.png",
     ],
   },
 };
