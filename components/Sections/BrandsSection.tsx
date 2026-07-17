@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
-import { brandImages, brandNames, brandRoutes } from "@/lib/constants/brands";
+import { brandImages, brandNames, brandRoutes, brandBgImage } from "@/lib/constants/brands";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 
 export default function BrandsSection() {
@@ -94,7 +94,7 @@ export default function BrandsSection() {
   return (
     <section className="relative w-full mt-0 h-screen">
       <div className="absolute inset-0 z-0">
-        <Image src="/Brands/brandbg1.png" alt="Background" fill className="object-cover" priority />
+        <Image src={brandBgImage(theme)} alt="Background" fill className="object-cover" priority />
       </div>
       <div className="absolute inset-0 bg-black/50 z-0" />
 

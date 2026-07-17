@@ -54,6 +54,18 @@ export function brandImages(theme: "premium" | "luxury"): readonly string[] {
   return theme === "luxury" ? BRAND_IMAGES_LUXURY : BRAND_IMAGES_PREMIUM;
 }
 
+// =====================
+// Section Background Image
+// =====================
+export const BRAND_BG_PREMIUM = "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a14cc8ba-786b-4845-a33c-cd8e7933dfc0.png";
+
+/** Swap this for the actual luxury background URL when available */
+export const BRAND_BG_LUXURY =  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3a7f3b6b-7c4f-46db-b0cf-7cf763c1d837.png";
+
+export function brandBgImage(theme: "premium" | "luxury"): string {
+  return theme === "luxury" ? BRAND_BG_LUXURY : BRAND_BG_PREMIUM;
+}
+
 export const BRAND_NAMES_PREMIUM = [
   "AUGA", "Simpolo", "Bellissimo", "Roca", "Hansgrohe",
   "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc",
@@ -234,10 +246,10 @@ export const brandsDataPremium: Record<string, BrandData> = {
     description: "Wesmarc doors combine strength, durability, and elegant design to create lasting impressions. Built with precision, they enhance both the security and style of modern spaces.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d1dc9a1b-04c2-4ce3-91ae-d48a25dace21.png",
-     "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7ac228e4-e909-49d9-b2f8-13411c0c4429.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7ac228e4-e909-49d9-b2f8-13411c0c4429.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/df6ab743-2a74-4387-9ce5-9a6653532a2d.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0ff894b8-0a25-49b8-9d73-4c61fa5ec0f5.png",
-     "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c74837e1-f662-403a-823b-c57bec179f52.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c74837e1-f662-403a-823b-c57bec179f52.png",
     ],
   },
 };
@@ -257,7 +269,6 @@ export const brandsDataLuxury: Record<string, BrandData> = {
       "/Brands/brandsimg.png",
     ],
   },
-
   atlasConcorde: {
     id: "atlas-concorde",
     name: "Atlas Concorde",
