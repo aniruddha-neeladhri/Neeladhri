@@ -136,7 +136,7 @@ export default function LuxuryDiscover() {
                     />
 
                     <div
-                      className="absolute inset-0 z-[1] bg-black/50 pointer-events-none opacity-100 transition-opacity duration-500 group-hover:opacity-0"
+                      className="hidden sm:block absolute inset-0 z-[1] bg-black/50 pointer-events-none opacity-100 transition-opacity duration-500 group-hover:opacity-0"
                       aria-hidden
                     />
 
