@@ -7,10 +7,14 @@ import Typography from "@/lib/Typography";
 import { brandImages, brandNames, brandRoutes, brandBgImage } from "@/lib/constants/brands";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 
+// Module-level (outside the component) so it survives unmount/remount
+// e.g. when the user navigates to a brand page and comes back.
+let lastScrollPos = 0;
+
 export default function BrandsSection() {
   const { theme } = useTheme();
   const scrollRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef(0);
+  const posRef = useRef(lastScrollPos); // <-- resume from last known position
   const isHoveredRef = useRef(false);
   const isDraggingRef = useRef(false);
   const dragStartXRef = useRef(0);
@@ -20,6 +24,10 @@ export default function BrandsSection() {
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
+
+    // On mount, jump the scroll container to wherever the user left off
+    el.scrollLeft = posRef.current;
+
     let rafId: number;
     const animate = () => {
       if (!isHoveredRef.current && !isDraggingRef.current) {
@@ -27,16 +35,22 @@ export default function BrandsSection() {
         posRef.current += 1;
         if (posRef.current >= maxScroll) posRef.current = 0;
         el.scrollLeft = posRef.current;
+        lastScrollPos = posRef.current; // keep module var updated
       }
       rafId = requestAnimationFrame(animate);
     };
     rafId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafId);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lastScrollPos = posRef.current; // persist on unmount too
+    };
   }, []);
 
   const syncScrollPosition = () => {
     if (scrollRef.current) {
       posRef.current = scrollRef.current.scrollLeft;
+      lastScrollPos = posRef.current;
     }
   };
 
@@ -64,9 +78,13 @@ export default function BrandsSection() {
     const newScroll = dragStartScrollRef.current + delta;
     scrollRef.current.scrollLeft = newScroll;
     posRef.current = newScroll;
+    lastScrollPos = newScroll;
   };
 
-  const onMouseUp = () => { isDraggingRef.current = false; };
+  const onMouseUp = () => {
+    isDraggingRef.current = false;
+    lastScrollPos = posRef.current;
+  };
 
   const onTouchStart = (e: React.TouchEvent) => {
     isDraggingRef.current = true;
@@ -82,9 +100,13 @@ export default function BrandsSection() {
     const newScroll = dragStartScrollRef.current + delta;
     scrollRef.current.scrollLeft = newScroll;
     posRef.current = newScroll;
+    lastScrollPos = newScroll;
   };
 
-  const onTouchEnd = () => { isDraggingRef.current = false; };
+  const onTouchEnd = () => {
+    isDraggingRef.current = false;
+    lastScrollPos = posRef.current;
+  };
 
   const currentImages = brandImages(theme);
   const currentNames = brandNames(theme);
@@ -129,8 +151,8 @@ export default function BrandsSection() {
                 className="object-contain"
               />
               <div className="absolute inset-0 flex items-center justify-center z-20">
-                <Typography 
-                  variant="display-xl" 
+                <Typography
+                  variant="display-xl"
                   className={`text-white text-xl font-light text-center px-2 ${
                     theme === "luxury" ? "font-roboto-slab" : "font-montserrat"
                   }`}
