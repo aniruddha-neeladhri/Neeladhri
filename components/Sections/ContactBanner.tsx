@@ -47,7 +47,7 @@ export default function ContactBanner() {
   }
 
   return (
-    <div className="relative w-full aspect-1920/600 overflow-hidden">
+    <div className="relative w-full aspect-[3/2] md:aspect-[4/2] lg:aspect-1920/600 overflow-hidden">
       <Image
         src={images.banner}
         alt="Contact Us Banner"
