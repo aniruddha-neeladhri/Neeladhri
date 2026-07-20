@@ -18,7 +18,7 @@ export default function Footer() {
     <footer className="w-full bg-[#262626] text-white">
 
       {/* MOBILE & TABLET FOOTER (< lg) */}
-      <div className="lg:hidden flex flex-col items-center text-center px-4 py-12 gap-y-5 bg-[#262626]">
+      <div className="lg:hidden flex flex-col items-center text-center px-4 py-4 gap-y-5 bg-[#262626]">
 
         {/* Brand */}
         <div className="flex flex-col items-center gap-3">
