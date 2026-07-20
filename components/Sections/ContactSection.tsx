@@ -136,16 +136,22 @@ function GlowField({
   );
 }
 
-function LuxuryMessageField({ inputClass }: { inputClass: string }) {
-  const [message, setMessage] = useState("");
+type MessageFieldProps = {
+  inputClass: string;
+  value: string;
+  onChange: (value: string) => void;
+  disabled?: boolean;
+};
+
+function LuxuryMessageField({ inputClass, value, onChange, disabled }: MessageFieldProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const remaining = MAX_CHARS - message.length;
+  const remaining = MAX_CHARS - value.length;
   const isNearLimit = remaining <= 20;
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = e.target.value;
     if (val.length > MAX_CHARS) return;
-    setMessage(val);
+    onChange(val);
     const ta = textareaRef.current;
     if (ta) {
       ta.style.height = "auto";
@@ -157,10 +163,13 @@ function LuxuryMessageField({ inputClass }: { inputClass: string }) {
     <div className="w-full">
       <textarea
         ref={textareaRef}
-        value={message}
+        name="message"
+        value={value}
         onChange={handleChange}
         placeholder="Message"
         rows={3}
+        disabled={disabled}
+        required
         className={`${inputClass} resize-none block overflow-hidden min-h-[120px]`}
         style={{ height: "auto" }}
       />
@@ -177,8 +186,7 @@ function LuxuryMessageField({ inputClass }: { inputClass: string }) {
   );
 }
 
-function PremiumMessageField({ inputClass }: { inputClass: string }) {
-  const [message, setMessage] = useState("");
+function PremiumMessageField({ inputClass, value, onChange, disabled }: MessageFieldProps) {
   const textareaRef           = useRef<HTMLTextAreaElement>(null);
   const wrapRef               = useRef<HTMLDivElement>(null);
   const canvasRef             = useRef<HTMLCanvasElement>(null);
@@ -188,7 +196,7 @@ function PremiumMessageField({ inputClass }: { inputClass: string }) {
 
   const borderColor = "#ffffff";
   const glowColor   = "#ffffff";
-  const remaining   = MAX_CHARS - message.length;
+  const remaining   = MAX_CHARS - value.length;
   const isNearLimit = remaining <= 20;
 
   const draw = useCallback(() => {
@@ -215,7 +223,7 @@ function PremiumMessageField({ inputClass }: { inputClass: string }) {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const val = e.target.value;
     if (val.length > MAX_CHARS) return;
-    setMessage(val);
+    onChange(val);
     const ta = textareaRef.current;
     if (ta) {
       ta.style.height = "auto";
@@ -250,12 +258,15 @@ function PremiumMessageField({ inputClass }: { inputClass: string }) {
         <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-10" />
         <textarea
           ref={textareaRef}
-          value={message}
+          name="message"
+          value={value}
           onChange={handleChange}
           onFocus={onFocus}
           onBlur={onBlur}
           placeholder="Message"
           rows={3}
+          disabled={disabled}
+          required
           className={`${inputClass} resize-none block overflow-hidden min-h-[120px]`}
           style={{ height: "auto" }}
         />
@@ -418,11 +429,65 @@ export default function ContactSection() {
   const images    = contactImages(theme);
   const carouselImages = contactCarouselImages(theme);
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setMessage("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "sending") return;
+
+    setStatus("sending");
+    setStatusMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, message }),
+      });
+
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
+      if (!res.ok) {
+        setStatus("error");
+        setStatusMessage(data.error || "Failed to send your message. Please try again.");
+        return;
+      }
+
+      setStatus("success");
+      setStatusMessage("Thank you! Your message has been sent.");
+      resetForm();
+    } catch {
+      setStatus("error");
+      setStatusMessage("Network error. Please check your connection and try again.");
+    }
+  };
+
+  const isSending = status === "sending";
+
   const premiumInputClass =
-    "w-full min-h-[52px] bg-transparent border-0 px-4 py-4 text-white placeholder:text-white/80 focus:outline-none font-poppins font-normal";
+    "w-full min-h-[52px] bg-transparent border-0 px-4 py-4 text-white placeholder:text-white/80 focus:outline-none font-poppins font-normal disabled:opacity-60";
 
   const luxuryInputClass =
-    "w-full min-h-[48px] sm:min-h-[56px] bg-[#E5E1DC] border-0 px-4 sm:px-5 py-3.5 sm:py-4 !text-black !caret-black placeholder:!text-black focus:outline-none font-normal font-cormorant-garamond";
+    "w-full min-h-[48px] sm:min-h-[56px] bg-[#E5E1DC] border-0 px-4 sm:px-5 py-3.5 sm:py-4 !text-black !caret-black placeholder:!text-black focus:outline-none font-normal font-cormorant-garamond disabled:opacity-60";
+
+  const statusClass =
+    status === "success"
+      ? "text-emerald-300"
+      : status === "error"
+        ? "text-red-300"
+        : "text-white/70";
 
   if (isLuxury) {
     return (
@@ -444,30 +509,56 @@ export default function ContactSection() {
                 </Typography>
               </div>
 
-              <form className="space-y-4 sm:space-y-5 md:space-y-6 w-full max-w-xl mx-auto lg:mx-0">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6 w-full max-w-xl mx-auto lg:mx-0">
                 <input
                   type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Your Name"
                   className={luxuryInputClass}
+                  required
+                  disabled={isSending}
                 />
                 <input
                   type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your Email"
                   className={luxuryInputClass}
+                  required
+                  disabled={isSending}
                 />
                 <input
                   type="tel"
+                  name="phone"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   placeholder="Phone Number"
                   className={luxuryInputClass}
+                  disabled={isSending}
                 />
-                <LuxuryMessageField inputClass={luxuryInputClass} />
+                <LuxuryMessageField
+                  inputClass={luxuryInputClass}
+                  value={message}
+                  onChange={setMessage}
+                  disabled={isSending}
+                />
+
+                {statusMessage && (
+                  <p className={`text-sm font-cormorant-garamond ${statusClass}`} role="status">
+                    {statusMessage}
+                  </p>
+                )}
 
                 <button
                   type="submit"
-                  className="w-full sm:w-auto mt-1 sm:mt-2 px-8 sm:px-12 py-3 sm:py-3.5 bg-transparent border border-[#D3B898] text-white cursor-pointer"
+                  disabled={isSending}
+                  className="w-full sm:w-auto mt-1 sm:mt-2 px-8 sm:px-12 py-3 sm:py-3.5 bg-transparent border border-[#D3B898] text-white cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Typography variant="h3" className="!text-white font-light font-cormorant-garamond font-normal">
-                    Send Your Message
+                    {isSending ? "Sending..." : "Send Your Message"}
                   </Typography>
                 </button>
               </form>
@@ -568,36 +659,77 @@ export default function ContactSection() {
               We're here to help, contact us today.
             </Typography>
 
-            <form className="space-y-6 w-full max-w-lg mx-auto lg:mx-0">
+            <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-lg mx-auto lg:mx-0">
 
               <GlowField isLuxury={false}>
                 {({ onFocus, onBlur }) => (
-                  <input type="text" placeholder="Your Name"
-                    className={premiumInputClass} onFocus={onFocus} onBlur={onBlur} />
+                  <input
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your Name"
+                    className={premiumInputClass}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    required
+                    disabled={isSending}
+                  />
                 )}
               </GlowField>
 
               <GlowField isLuxury={false}>
                 {({ onFocus, onBlur }) => (
-                  <input type="email" placeholder="Your Email"
-                    className={premiumInputClass} onFocus={onFocus} onBlur={onBlur} />
+                  <input
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your Email"
+                    className={premiumInputClass}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    required
+                    disabled={isSending}
+                  />
                 )}
               </GlowField>
 
               <GlowField isLuxury={false}>
                 {({ onFocus, onBlur }) => (
-                  <input type="tel" placeholder="Phone Number"
-                    className={premiumInputClass} onFocus={onFocus} onBlur={onBlur} />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Phone Number"
+                    className={premiumInputClass}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    disabled={isSending}
+                  />
                 )}
               </GlowField>
 
-              <PremiumMessageField inputClass={premiumInputClass} />
+              <PremiumMessageField
+                inputClass={premiumInputClass}
+                value={message}
+                onChange={setMessage}
+                disabled={isSending}
+              />
+
+              {statusMessage && (
+                <p className={`text-sm font-poppins ${statusClass}`} role="status">
+                  {statusMessage}
+                </p>
+              )}
 
               <button
                 type="submit"
-                className="w-full mt-2 px-10 py-3 bg-[#555555] text-white cursor-pointer font-montserrat font-semibold"
+                disabled={isSending}
+                className="w-full mt-2 px-10 py-3 bg-[#555555] text-white cursor-pointer font-montserrat font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send Your Message
+                {isSending ? "Sending..." : "Send Your Message"}
               </button>
             </form>
           </div>
