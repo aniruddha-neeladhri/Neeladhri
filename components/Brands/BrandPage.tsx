@@ -112,11 +112,22 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
         .pop-up {
           animation: popUp 0.5s ease-out;
         }
+        .brand-shell {
+          border: 2px solid;
+        }
+        .luxury-shell {
+          border-width: 2px !important;
+        }
+        @media (min-width: 768px) {
+          .brand-shell:not(.luxury-shell) {
+            border-width: 4px;
+          }
+        }
       `}</style>
       <div className={`flex flex-col ${flexAlign} justify-center px-4 md:px-8 mt-2 mb-12 pop-up`}>
         <div
-          className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[4.5rem]"}`}
-          style={{ border: `${isLuxury ? "2px" : "5px"} solid ${accentColor}` }}
+          className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[4.5rem]"} brand-shell ${isLuxury ? "luxury-shell" : ""} border-solid`}
+          style={{ borderColor: accentColor }}
         >
           {/* Header */}
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
@@ -129,15 +140,15 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
               {selectedBrand.name}
             </Typography>
             <Typography
-              variant="h1"
-              className={`font-medium mb-2 ${textAlign} ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"
+              variant="h2"
+              className={`font-normal mb-2 ${textAlign} ${colorTransition} ${isLuxury ? "font-cormorant-garamond" : "font-poppins"
                 }`}
               style={{ color: bodyTextColor }}
             >
               {selectedBrand.tagline}
             </Typography>
             <Typography
-              variant="h2"
+              variant="h4"
               className={`${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
                 }`}
               style={{ color: bodyTextColor }}
