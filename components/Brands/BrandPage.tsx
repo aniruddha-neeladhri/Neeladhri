@@ -243,6 +243,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
                       alt={`${selectedBrand.name} ${index + 1}`}
                       width={400}
                       height={300}
+                      priority
                       className={`h-auto w-full object-contain border-4 rounded-[2.5rem] sm:rounded-[5rem] ${borderTransition}`}
                       style={{ borderColor: accentColor }}
                     />
@@ -283,6 +284,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
                   alt={`${selectedBrand.name} ${index + 1}`}
                   width={400}
                   height={300}
+                  priority
                   className={`w-full h-auto object-contain border-4 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem] ${borderTransition}`}
                   style={{ borderColor: accentColor }}
                 />

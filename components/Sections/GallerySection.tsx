@@ -205,6 +205,7 @@ export default function GallerySection() {
                   fill
                   className="object-cover object-center"
                   draggable={false}
+                  priority
                   sizes="(max-width:639px) clamp(230px,72vw,320px), (max-width:767px) clamp(160px,42vw,250px), (max-width:1023px) clamp(110px,18vw,200px), clamp(140px,18vw,300px)"
                 />
               </div>

@@ -215,6 +215,7 @@ export default function Dining() {
                       height={1200}
                       sizes="90vw"
                       draggable={false}
+                      priority
                       className={`max-h-full max-w-full object-contain ${borderOnImage}`}
                       style={borderStyle}
                     />
@@ -225,6 +226,7 @@ export default function Dining() {
                       fill
                       sizes="100vw"
                       draggable={false}
+                      priority
                       className={`object-center object-cover ${borderOnImage}`}
                       style={borderStyle}
                     />
