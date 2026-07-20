@@ -16,9 +16,6 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
-  // Theme now follows the global Premium/Luxury toggle (ThemeContext), not the
-  // brand's own category. Called unconditionally, alongside the other hooks,
-  // before any early return (Rules of Hooks).
   const { theme } = useTheme();
 
   const selectedBrandId = brandId ?? brand?.id;
@@ -62,9 +59,6 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
     );
   }
 
-  // isLuxury/colors are derived from the global theme toggle. Images, copy,
-  // and layout below are identical regardless of theme — only these values
-  // (and the transition classes) change.
   const isLuxury = theme === "luxury";
   const accentColor = isLuxury ? "#D3B898" : "#7E7669";
   const arrowColor = isLuxury ? "#D3B898" : "#555555";
@@ -73,8 +67,6 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
   const textAlign = isLuxury ? "text-left" : "text-center";
   const flexAlign = isLuxury ? "items-start" : "items-center";
 
-  // Shared transition classes so any theme swap animates smoothly instead of
-  // snapping instantly between premium <-> luxury colors.
   const colorTransition = "transition-colors duration-500 ease-in-out";
   const borderTransition = "transition-[border-color] duration-500 ease-in-out";
 
@@ -112,34 +104,97 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
         .pop-up {
           animation: popUp 0.5s ease-out;
         }
+        .brand-shell {
+          border: 2px solid;
+        }
+        .luxury-shell {
+          border-width: 2px !important;
+        }
+        @media (min-width: 768px) {
+          .brand-shell:not(.luxury-shell) {
+            border-width: 4px;
+          }
+        }
+        /* Mobile carousel tweaks: ONLY between 340px and 640px viewports.
+           Lock the image to a fixed 256x267 box so it never shrinks with
+           the viewport, and keep the arrows tight against it (4px gap). */
+        @media (min-width: 340px) and (max-width: 640px) {
+          .mobile-carousel-row {
+            gap: 4px !important;
+            justify-content: center !important;
+          }
+          .mobile-arrow-btn {
+            height: 2rem !important;
+            width: 2rem !important;
+          }
+          .mobile-img-container {
+            width: 256px !important;
+            flex: 0 0 256px !important;
+          }
+          .mobile-img-container > div {
+            width: 256px !important;
+            flex: 0 0 256px !important;
+          }
+          .mobile-img-container img {
+            width: 256px !important;
+            height: 267px !important;
+            max-width: none !important;
+            object-fit: cover !important;
+          }
+        }
       `}</style>
       <div className={`flex flex-col ${flexAlign} justify-center px-4 md:px-8 mt-2 mb-12 pop-up`}>
         <div
-          className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[4.5rem]"}`}
-          style={{ border: `${isLuxury ? "2px" : "5px"} solid ${accentColor}` }}
+          className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[4.5rem]"} brand-shell ${isLuxury ? "luxury-shell" : ""} border-solid`}
+          style={{ borderColor: accentColor }}
         >
           {/* Header */}
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
             <Typography
-              variant="display-2xl"
+              variant="h2"
               className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
-                }`}
+                } sm:hidden`}
               style={{ color: brandNameColor }}
             >
               {selectedBrand.name}
             </Typography>
             <Typography
-              variant="h1"
-              className={`font-medium mb-2 ${textAlign} ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-normal" : "font-poppins font-normal"
-                }`}
+              variant="body-xl"
+              className={`font-normal mb-2 ${textAlign} ${colorTransition} ${isLuxury ? "font-cormorant-garamond" : "font-poppins"
+                } sm:hidden`}
               style={{ color: bodyTextColor }}
             >
               {selectedBrand.tagline}
             </Typography>
             <Typography
-              variant="h2"
+              variant="body-sm"
               className={`${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
-                }`}
+                } sm:hidden`}
+              style={{ color: bodyTextColor }}
+            >
+              {selectedBrand.description}
+            </Typography>
+
+            <Typography
+              variant="h2"
+              className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
+                } hidden sm:block`}
+              style={{ color: brandNameColor }}
+            >
+              {selectedBrand.name}
+            </Typography>
+            <Typography
+              variant="h3"
+              className={`font-normal mb-2 ${textAlign} ${colorTransition} ${isLuxury ? "font-cormorant-garamond" : "font-poppins"
+                } hidden sm:block`}
+              style={{ color: bodyTextColor }}
+            >
+              {selectedBrand.tagline}
+            </Typography>
+            <Typography
+              variant="h4"
+              className={`${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
+                } hidden sm:block`}
               style={{ color: bodyTextColor }}
             >
               {selectedBrand.description}
@@ -148,13 +203,13 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
 
           {/* Images — carousel on small, grid on md+ (identical for every theme) */}
           <div className="relative w-full mb-2 lg:mb-6">
-            {/* Mobile: arrows flanking image with 2px gap */}
-            <div className="md:hidden flex w-full items-center justify-center gap-[12px]">
+            {/* Mobile: arrows flanking image */}
+            <div className="mobile-carousel-row md:hidden flex w-full items-center justify-center gap-[12px]">
               <button
                 type="button"
                 onClick={() => scroll("left")}
                 disabled={!canScrollLeft}
-                className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${canScrollLeft ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
+                className={`mobile-arrow-btn flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${canScrollLeft ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
                   }`}
                 aria-label="Previous image"
               >
@@ -175,7 +230,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
 
               <div
                 ref={scrollRef}
-                className="flex w-[40vw] snap-x snap-mandatory overflow-x-auto"
+                className="mobile-img-container flex w-[40vw] snap-x snap-mandatory overflow-x-auto"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
                 {selectedBrand.images.map((src, index) => (
@@ -199,7 +254,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
                 type="button"
                 onClick={() => scroll("right")}
                 disabled={!canScrollRight}
-                className={`flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${canScrollRight ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
+                className={`mobile-arrow-btn flex h-9 w-9 shrink-0 items-center justify-center transition-opacity ${canScrollRight ? "cursor-pointer opacity-100" : "cursor-default opacity-35"
                   }`}
                 aria-label="Next image"
               >
