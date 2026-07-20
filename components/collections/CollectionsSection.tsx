@@ -50,6 +50,7 @@ function Cell({
         alt={label}
         fill
         sizes={sizes}
+        priority
         className={`transition-transform duration-700 ease-out group-hover:scale-105
           ${uniformAspect || mobileAspect ? "object-cover" : "object-fill"}
         `}
