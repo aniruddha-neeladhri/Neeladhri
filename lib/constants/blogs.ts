@@ -27,7 +27,7 @@ export const BLOG_DISCOVER_HREFS = [
 
 export const BLOG_DISCOVER_GRID_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/4f289c96-52f3-49ba-ab79-a0a5c9cb064b.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/c19b380f-bdf3-497e-8844-4f82850f8a1e.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/8d2f5fcd-aacc-4cbc-9a6f-3d0676486e94.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/3ed0cd68-4ebe-4eb4-a36b-bd21afff0989.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/78d226e2-aad4-4eed-982d-19d0ff07c468.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/f36325f0-2ba5-4a8f-b6bb-fe4da9212617.png",
@@ -35,7 +35,7 @@ export const BLOG_DISCOVER_GRID_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/5ab9c309-5801-4129-be8f-4ce2accebbcb.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/8fc87091-ac1c-4954-9de2-dc515317536b.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/41def796-b744-4e3c-bff6-2899fdcc8482.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/347106bf-af5e-4bc5-814f-4c6213b4b762.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/blog/c3c26f29-ccb2-4b33-a6fc-62ccb34d5250.png",
 ] as const;
 
 export const BLOG_DISCOVER_GRID_IMAGES_LUXURY = [
