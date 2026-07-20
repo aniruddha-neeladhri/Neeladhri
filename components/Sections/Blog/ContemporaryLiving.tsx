@@ -70,7 +70,7 @@ export default function ContemporaryLiving() {
                 src={cell.image}
                 alt="Design journal inspiration"
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                className="object-cover transition-transform duration-700 ease-out will-change-transform group-hover:scale-110"
                 sizes="(max-width: 1280px) 33vw, 20vw"
                 priority={index === 0}
               />
