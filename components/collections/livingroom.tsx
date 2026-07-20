@@ -24,6 +24,8 @@ export default function LivingRoom() {
   );
   const [index, setIndex] = useState<number>(LIVING_IMAGES_PREMIUM.length);
   const [isMobile, setIsMobile] = useState(false);
+  const [isMd, setIsMd] = useState(false); // 768px – 1023px only
+  const [isXl, setIsXl] = useState(false); // 1280px and up
 
   const dragStart = useRef<number | null>(null);
   const dragMoved = useRef(false);
@@ -33,11 +35,27 @@ export default function LivingRoom() {
   const [cw, setCw] = useState(0);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    const mqMobile = window.matchMedia("(max-width: 767px)");
+    const mqMd = window.matchMedia("(min-width: 768px) and (max-width: 1023px)");
+    const mqXl = window.matchMedia("(min-width: 1280px)");
+
+    setIsMobile(mqMobile.matches);
+    setIsMd(mqMd.matches);
+    setIsXl(mqXl.matches);
+
+    const handleMobile = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    const handleMd = (e: MediaQueryListEvent) => setIsMd(e.matches);
+    const handleXl = (e: MediaQueryListEvent) => setIsXl(e.matches);
+
+    mqMobile.addEventListener("change", handleMobile);
+    mqMd.addEventListener("change", handleMd);
+    mqXl.addEventListener("change", handleXl);
+
+    return () => {
+      mqMobile.removeEventListener("change", handleMobile);
+      mqMd.removeEventListener("change", handleMd);
+      mqXl.removeEventListener("change", handleXl);
+    };
   }, []);
 
   useEffect(() => {
@@ -82,6 +100,19 @@ export default function LivingRoom() {
   const translateX = cw > 0
     ? (isMobile ? getTranslateX_mobile() : getTranslateX_desktop())
     : 0;
+
+  // Container height:
+  // - below-md keeps its 4:3-derived height
+  // - md gets a reduced height (45vh)
+  // - lg (1024–1279) gets a slightly reduced height (65vh)
+  // - xl+ (1280px and up) keeps the original 75vh
+  const containerHeight = isMobile
+    ? mobileHeight
+    : isMd
+    ? "45vh"
+    : isXl
+    ? "75vh"
+    : "65vh";
 
   const goTo = (next: number) => {
     if (isAnimating.current) return;
@@ -133,7 +164,7 @@ export default function LivingRoom() {
         ref={containerRef}
         className="w-full overflow-hidden cursor-grab active:cursor-grabbing"
         style={{
-          height: isMobile ? mobileHeight : "75vh",
+          height: containerHeight,
           touchAction: "pan-y",
         }}
         onPointerDown={onPointerDown}
@@ -193,9 +224,7 @@ export default function LivingRoom() {
                       fill
                       sizes="100vw"
                       draggable={false}
-                      className={`object-center ${borderOnImage} ${
-                        isCenter ? "object-fill" : "object-cover"
-                      }`}
+                      className={`object-center object-cover ${borderOnImage}`}
                       style={borderStyle}
                     />
                   )}
