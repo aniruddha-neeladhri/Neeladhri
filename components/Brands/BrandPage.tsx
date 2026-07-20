@@ -3,14 +3,15 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Typography from "@/lib/Typography";
-import { BrandData } from "@/lib/constants/brands";
+import { BrandData, brandsDataPremium, brandsDataLuxury } from "@/lib/constants/brands";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 
 interface BrandPageProps {
   brand?: BrandData;
+  brandId?: string;
 }
 
-export default function BrandPage({ brand }: BrandPageProps) {
+export default function BrandPage({ brand, brandId }: BrandPageProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -19,6 +20,13 @@ export default function BrandPage({ brand }: BrandPageProps) {
   // brand's own category. Called unconditionally, alongside the other hooks,
   // before any early return (Rules of Hooks).
   const { theme } = useTheme();
+
+  const selectedBrandId = brandId ?? brand?.id;
+  const selectedBrand = selectedBrandId
+    ? theme === "luxury"
+      ? brandsDataLuxury[selectedBrandId] ?? brandsDataPremium[selectedBrandId] ?? brand
+      : brandsDataPremium[selectedBrandId] ?? brandsDataLuxury[selectedBrandId] ?? brand
+    : brand;
 
   const updateScrollState = useCallback(() => {
     const container = scrollRef.current;
@@ -42,9 +50,9 @@ export default function BrandPage({ brand }: BrandPageProps) {
       container.removeEventListener("scroll", updateScrollState);
       observer.disconnect();
     };
-  }, [brand?.images.length, updateScrollState]);
+  }, [selectedBrand?.images.length, updateScrollState]);
 
-  if (!brand) {
+  if (!selectedBrand) {
     return (
       <div className="flex flex-col items-center justify-center px-4 md:px-8 mt-2 mb-12">
         <Typography variant="h1" className="font-medium mb-8 text-center" style={{ color: "#7E7669" }}>
@@ -118,7 +126,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                 }`}
               style={{ color: brandNameColor }}
             >
-              {brand.name}
+              {selectedBrand.name}
             </Typography>
             <Typography
               variant="h1"
@@ -126,7 +134,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                 }`}
               style={{ color: bodyTextColor }}
             >
-              {brand.tagline}
+              {selectedBrand.tagline}
             </Typography>
             <Typography
               variant="h2"
@@ -134,7 +142,7 @@ export default function BrandPage({ brand }: BrandPageProps) {
                 }`}
               style={{ color: bodyTextColor }}
             >
-              {brand.description}
+              {selectedBrand.description}
             </Typography>
           </div>
 
@@ -170,14 +178,14 @@ export default function BrandPage({ brand }: BrandPageProps) {
                 className="flex w-[40vw] snap-x snap-mandatory overflow-x-auto"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
-                {brand.images.map((src, index) => (
+                {selectedBrand.images.map((src, index) => (
                   <div
                     key={index}
                     className="flex w-full shrink-0 snap-center justify-center"
                   >
                     <Image
                       src={src}
-                      alt={`${brand.name} ${index + 1}`}
+                      alt={`${selectedBrand.name} ${index + 1}`}
                       width={400}
                       height={300}
                       className={`h-auto w-full object-contain border-4 rounded-[2.5rem] sm:rounded-[5rem] ${borderTransition}`}
@@ -213,11 +221,11 @@ export default function BrandPage({ brand }: BrandPageProps) {
 
             {/* Desktop: grid */}
             <div className="hidden md:grid md:grid-cols-5 gap-3 w-full">
-              {brand.images.map((src, index) => (
+              {selectedBrand.images.map((src, index) => (
                 <Image
                   key={index}
                   src={src}
-                  alt={`${brand.name} ${index + 1}`}
+                  alt={`${selectedBrand.name} ${index + 1}`}
                   width={400}
                   height={300}
                   className={`w-full h-auto object-contain border-4 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem] ${borderTransition}`}
