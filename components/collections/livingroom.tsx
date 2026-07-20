@@ -214,6 +214,7 @@ export default function LivingRoom() {
                       height={1200}
                       sizes="90vw"
                       draggable={false}
+                      priority
                       className={`max-h-full max-w-full object-contain ${borderOnImage}`}
                       style={borderStyle}
                     />
@@ -224,6 +225,7 @@ export default function LivingRoom() {
                       fill
                       sizes="100vw"
                       draggable={false}
+                      priority
                       className={`object-center object-cover ${borderOnImage}`}
                       style={borderStyle}
                     />

@@ -106,11 +106,6 @@ export default function SpacesShowcase() {
   }, [getNearestIndex]);
 
   // ── Light, smooth swipe-style drag (mouse only — touch already scrolls natively) ──
-  // A small drag past SWIPE_THRESHOLD moves exactly one slide with an eased
-  // animation, regardless of how far the mouse traveled — no more heavy dragging.
-  // CSS scroll-snap stays ON for native wheel/trackpad scrolling (so one scroll
-  // gesture = one slide) and is only switched OFF mid-drag so the custom drag
-  // math isn't fighting the browser's own snapping.
   const [isSnapEnabled, setIsSnapEnabled] = useState(true);
   const isDragging = useRef(false);
   const hasDragged = useRef(false);
@@ -137,8 +132,6 @@ export default function SpacesShowcase() {
     if (!isDragging.current || !container) return;
     let delta = e.pageX - dragStartX.current;
     if (Math.abs(delta) > 4) hasDragged.current = true;
-    // Soft cap so it can't be dragged more than ~1 slide away — keeps it light,
-    // gives a gentle resistance feel instead of free heavy scrolling.
     const cap = slotWidth.current;
     delta = Math.max(-cap, Math.min(cap, delta));
     container.scrollLeft = dragStartScrollLeft.current - delta;
@@ -158,7 +151,6 @@ export default function SpacesShowcase() {
     scrollToIndex(target, true);
   };
 
-  // Prevent the image underneath from registering a click right after a drag
   const handleClickCapture = (e: React.MouseEvent) => {
     if (hasDragged.current) {
       e.preventDefault();
@@ -209,6 +201,7 @@ export default function SpacesShowcase() {
                 src={spaces[activeIndex].src}
                 alt={spaces[activeIndex].alt}
                 fill
+                priority
                 className="object-contain object-center"
               />
             </div>
@@ -268,6 +261,7 @@ export default function SpacesShowcase() {
                     alt={space.alt}
                     fill
                     draggable={false}
+                    priority
                     className="object-cover object-center pointer-events-none transition-transform duration-700 ease-in-out group-hover:scale-105"
                   />
                 </div>
