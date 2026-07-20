@@ -15,6 +15,8 @@ import {
   CARD_SIZE,
 } from "@/lib/constants/Gallery";
 
+const MOBILE_VERTICAL_SPACE = 96; // total px space added top+bottom on xs/mobile (16px each side)
+
 export default function GallerySection() {
   const { theme } = useTheme();
   const isLuxury = theme === "luxury";
@@ -130,8 +132,22 @@ export default function GallerySection() {
   const renderOffset = maxOffset + 1;
   const cardBorderColor = theme === "luxury" ? "transparent" : "rgba(255,255,255,0.8)";
 
+  // Container height per breakpoint:
+  // - xs/mobile: shrink to card height + small padding (tight, no leftover h-dvh space)
+  // - tablet (md, 768–1023px): slightly reduced from full viewport height
+  // - desktop (lg+): full viewport height, unchanged
+  const isMobileBp = bp === "xs" || bp === "mobile";
+  const containerHeight = isMobileBp
+    ? `calc(${h} + ${MOBILE_VERTICAL_SPACE}px)`
+    : bp === "tablet"
+    ? "85dvh"
+    : "100dvh";
+
   return (
-    <div className="relative w-full overflow-hidden select-none h-dvh">
+    <div
+      className="relative w-full overflow-hidden select-none"
+      style={{ height: containerHeight }}
+    >
       {!isLuxury && (
         <>
           <Image
