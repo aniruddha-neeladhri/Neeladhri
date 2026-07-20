@@ -149,7 +149,7 @@ export default function WhatWeOffer() {
             <div key={i} className="flex flex-col gap-3 sm:gap-4">
 
               {/* Icon */}
-              <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 transform translate-x-10 lg:translate-x-0">
                 <Image
                   src={item.icon}
                   alt={item.title}

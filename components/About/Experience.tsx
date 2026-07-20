@@ -117,7 +117,7 @@ export default function StatsSection() {
     : "bg-[#F5EFE6]";
 
   return (
-    <section className="w-full py-6 md:py-10 lg:py-14 px-6 lg:px-20">
+    <section className="w-full pb-6 md:py-10 lg:py-14 px-6 lg:px-20">
       <div className="max-w-[1400px] mx-auto flex flex-col gap-10 md:gap-14">
 
         {/* ── Highlight Cards ── */}

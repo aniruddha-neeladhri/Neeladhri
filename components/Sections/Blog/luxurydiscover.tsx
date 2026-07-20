@@ -140,7 +140,7 @@ export default function LuxuryDiscover() {
                       aria-hidden
                     />
 
-                    <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 px-2 py-4">
+                    <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 px-2 py-4 bg-black/30 lg:bg-transparent">
                       <Typography
                         variant="body-lg"
                         className="!text-white font-normal font-cormorant-garamond leading-snug text-left line-clamp-3"
@@ -149,7 +149,7 @@ export default function LuxuryDiscover() {
                       </Typography>
                       <Typography
                         variant="caption"
-                        className="inline-flex items-center gap-2 !text-white !font-light font-cormorant-garamond tracking-[0.14em] group-hover:!text-white transition-colors"
+                        className="inline-flex items-center gap-2 !text-white !font-normal font-cormorant-garamond tracking-[0.14em] group-hover:!text-white transition-colors"
                       >
                         Read Artical
                         <span aria-hidden className="text-base leading-none">
