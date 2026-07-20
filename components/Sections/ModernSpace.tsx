@@ -167,7 +167,7 @@ export default function SpacesShowcase() {
   };
 
   return (
-    <section className={`w-full py-8 md:py-14 lg:py-20 ${bg}`}>
+    <section className={`w-full pb-8 md:py-14 lg:py-20 ${bg}`}>
       {/* ── MOBILE: single-image carousel (< 768px) ── */}
       <div className="md:hidden px-2">
         <div className="flex items-center gap-2">

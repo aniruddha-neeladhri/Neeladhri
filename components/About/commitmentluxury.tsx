@@ -103,7 +103,7 @@ export default function CommitmentLuxury() {
 
   return (
     <section className="w-full bg-black overflow-x-hidden">
-      <div className="max-w-[1400px] mx-auto px-4 py-10 sm:px-6 sm:py-12 lg:px-12 lg:py-14 xl:px-20 flex flex-col gap-10 md:gap-14 lg:gap-16">
+      <div className="max-w-[1400px] mx-auto px-4 pb-5 sm:px-6 sm:py-12 lg:px-12 lg:py-14 xl:px-20 flex flex-col gap-10 md:gap-14 lg:gap-16">
         {/* Stats */}
         <div
           ref={statsRef}

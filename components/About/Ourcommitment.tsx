@@ -12,7 +12,7 @@ export default function OurCommitment() {
   const textColor = isLuxury ? "#FFFFFF" : "#555555";
 
   return (
-    <section className="w-full py-2 px-4 sm:px-8 md:px-20 lg:px-8 xl:px-24 mb-4 lg:mb-8">
+    <section className="w-full px-4 sm:px-8 md:px-20 lg:px-8 xl:px-24 pb-4 lg:mb-8">
       <div className="w-full flex flex-col items-center gap-8 md:gap-10 lg:gap-12">
 
         {/* Heading */}
