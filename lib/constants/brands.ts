@@ -11,9 +11,9 @@ export interface BrandData {
 // =====================
 export const BRAND_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c480598e-5771-4b81-8447-e18b96bfb987.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/425c24f3-f8d3-46f0-8b92-1a9b51ce74e0.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/480d55e8-e1ba-4ba2-9029-8af875f2b8d1.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3c257593-a0f4-44d0-b4b9-85f29a8b3fa1.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/12843d3d-becb-4f4d-a1f2-cca28919ad0b.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3799d6dc-e34c-45c7-81ce-c1bb0030dd5c.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/72199a5d-1be9-4089-9297-f5110b90e262.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/201e9e03-9ac6-4781-a8ab-fa7f69899b36.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/49e474c3-3dd2-47e4-a72e-138dd0d68bfb.png",
@@ -21,6 +21,8 @@ export const BRAND_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c5fe70f3-37a4-48c9-87b2-2e9fa152f854.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/564f553e-1302-4261-a523-63ec27bbcfa8.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9a945e83-8987-4bd3-8f9c-f818806fc186.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/24fdd431-18b4-4dd9-8bc0-6ba968261bed.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/28e36a8f-344c-48a3-91c9-e66bd9155b18.png",
 ] as const;
 
 // =====================
@@ -36,8 +38,8 @@ export const BRAND_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7652c328-5ad4-48f7-8818-45c74ddd10f2.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/90d86db3-0d5b-4972-83c9-2cd631280006.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/48a28e6c-9274-4798-bccd-c60fd991af83.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9c4acc4e-6b79-4ebc-86f5-10049295a200.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/46edbee6-9cdf-4617-94d7-165406a2de6d.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/241d95fd-390e-41df-aede-cf3f53eb26b4.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/02f822bf-d904-4f23-a966-a8d3d4862aec.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/cbe31ad3-556b-4f7b-b31a-97d42714a60f.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/13057783-23bb-4f93-aa9f-48246a01c28c.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ed43ff6d-6eed-4f0b-9a6a-4bfc48b2d87a.png",
@@ -48,6 +50,9 @@ export const BRAND_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3c2953e1-dddb-46da-9a30-43188474b514.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/84d74dc7-f206-4405-8ae7-c39c3550e265.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9e02eafa-8ad1-48fd-ba5d-f985d031cf62.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/28e36a8f-344c-48a3-91c9-e66bd9155b18.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b3fd70ea-c275-4f90-9ada-fad17d509750.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/4453fc64-7c2d-4861-9b77-7644606a5673.png",
 ];
 
 export function brandImages(theme: "premium" | "luxury"): readonly string[] {
@@ -68,7 +73,7 @@ export function brandBgImage(theme: "premium" | "luxury"): string {
 
 export const BRAND_NAMES_PREMIUM = [
   "AUGA", "Simpolo", "Bellissimo", "Roca", "Hansgrohe",
-  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc",
+  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaguar", "Insinkerator",
 ] as const;
 
 /** Luxury brand names – same as premium until you customize */
@@ -76,7 +81,7 @@ export const BRAND_NAMES_LUXURY: readonly string[] = [
   "Bisazza", "Atlas Concorde", "Neotra", "Dekton", "OP Butler",
   "Perrin & Rowe", "House of Rohl", "Treemme", "Galassia", "Victoria + Albert",
   "Décor Walther", "Sunshower", "Armadi Art", "Tab", "Specta",
-  "Miraak", "Crava", "Viaan", "Water Purifiers",
+  "Miraak", "Crava", "Viaan", "Water Purifiers", "Insinkerator", "Inda", "Jee o",
 ];
 
 export function brandNames(theme: "premium" | "luxury"): readonly string[] {
@@ -86,7 +91,7 @@ export function brandNames(theme: "premium" | "luxury"): readonly string[] {
 export const BRAND_ROUTES_PREMIUM = [
   "/brands/auga", "/brands/simpolo", "/brands/bellissimo", "/brands/roca",
   "/brands/hansgrohe", "/brands/carysil", "/brands/smack", "/brands/ifb",
-  "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc",
+  "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc", "/brands/jaguar", "/brands/insinkerator",
 ] as const;
 
 /** Luxury brand routes – same as premium until you customize */
@@ -95,7 +100,7 @@ export const BRAND_ROUTES_LUXURY: readonly string[] = [
   "/brands/op-butler", "/brands/perrin-rowe", "/brands/house-of-rohl", "/brands/treemme",
   "/brands/galassia", "/brands/victoria-albert", "/brands/decor-walther", "/brands/sunshower",
   "/brands/armadi-art", "/brands/tab", "/brands/specta", "/brands/miraak",
-  "/brands/crava", "/brands/viaan", "/brands/water-purifiers",
+  "/brands/crava", "/brands/viaan", "/brands/water-purifiers", "/brands/insinkerator", "/brands/inda", "/brands/jee-o",
 ];
 
 export function brandRoutes(theme: "premium" | "luxury"): readonly string[] {
@@ -250,6 +255,32 @@ export const brandsDataPremium: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/df6ab743-2a74-4387-9ce5-9a6653532a2d.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0ff894b8-0a25-49b8-9d73-4c61fa5ec0f5.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c74837e1-f662-403a-823b-c57bec179f52.png",
+    ],
+  },
+  "jaguar": {
+    id: "jaguar",
+    name: "Jaguar",
+    tagline: "Elevating Everyday Bathrooms",
+    description: "Jaguar offers complete bathroom solutions that combine contemporary design with reliable performance. Designed for everyday comfort and seamless functionality, it creates spaces that are both elegant and enduring.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/24f75fd7-c7d6-45a0-b811-9f05fef6c3bd.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/52a41da3-fe6d-4225-8032-46da8f28d03f.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/54f76f06-0bb8-4e9f-bdcf-3c87d4fb71de.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5ba8831a-6c9f-46e9-b4cf-09cc352bdbae.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c3c68ef7-bf69-4938-8b4f-04b4a32e9733.png",
+    ],
+  },
+  "insinkerator": {
+    id: "insinkerator",
+    name: "Insinkerator",
+    tagline: "Smarter Kitchen Innovation",
+    description: "Insinkerator delivers advanced food waste disposal solutions that enhance kitchen efficiency and hygiene. Designed for effortless performance, it keeps kitchens cleaner, quieter, and more convenient every day.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ca79a88e-3d5b-4aaa-9774-469ea11a496b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ff31734e-cbd6-476b-85c5-a4f08e9ecac3.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9ff00326-4acf-449f-aa85-66543bbaeb58.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3bd7921b-99b2-49b2-9d9a-3b3f25e7183a.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/670467d5-806f-48d1-8851-95552b35b1d9.png",
     ],
   },
 };
@@ -501,6 +532,45 @@ export const brandsDataLuxury: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/169c65bf-d2a3-4eb3-a5fb-c03f856c2337.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c5a68f78-cfc7-4c2d-bb22-ce6828ff9a1d.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/08f858bd-e054-4ee0-ae6a-6cfe1cbe03df.png",
+    ],
+  },
+  "insinkerator": {
+    id: "insinkerator",
+    name: "Insinkerator",
+    tagline: "Smarter Kitchen Innovation",
+    description: "Insinkerator delivers advanced food waste disposal solutions that enhance kitchen efficiency and hygiene. Designed for effortless performance, it keeps kitchens cleaner, quieter, and more convenient every day.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ca79a88e-3d5b-4aaa-9774-469ea11a496b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ff31734e-cbd6-476b-85c5-a4f08e9ecac3.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9ff00326-4acf-449f-aa85-66543bbaeb58.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3bd7921b-99b2-49b2-9d9a-3b3f25e7183a.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/670467d5-806f-48d1-8851-95552b35b1d9.png",
+    ],
+  },
+  "inda": {
+    id: "inda",
+    name: "Inda",
+    tagline: "Italian Elegance for Every Bathroom",
+    description: "Inda offers premium bathroom accessories that combine Italian craftsmanship with timeless elegance. Designed for modern interiors, each collection enhances functionality while creating refined and sophisticated spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7a413334-f48c-4ac7-86f7-7b8594ad7b59.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/82694972-6dba-4146-8896-75a693697a86.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/52e67e56-8d44-43b8-bfb0-a4b1d8238d7d.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ceefd525-7e83-45e8-a84e-7c58acec00a6.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/500c02f2-bcf0-4c51-ac90-caff1a82e8cd.png",
+    ],
+  },
+  "jee-o": {
+    id: "jee-o",
+    name: "Jee O",
+    tagline: "Where Nature Meets Luxury",
+    description: "Jee-o creates luxury bathroom collections inspired by nature and contemporary architecture. Designed with exceptional craftsmanship, every piece delivers timeless elegance, comfort, and a distinctive wellness experience.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/121ce31e-9292-484a-b5f3-f0720ec5f089.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c228884d-d070-40dd-9d15-80827ba6b469.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/aa179124-2ff9-45e8-b38e-207f5b1e2269.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/56de21ef-8808-4a2b-933f-c11297fc0562.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f63fcdb0-3360-43bd-808e-1d90881534ea.png",
     ],
   },
 };
