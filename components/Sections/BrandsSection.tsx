@@ -151,6 +151,10 @@ export default function BrandsSection() {
                 priority
                 className="object-contain"
               />
+
+              {/* Black overlay on each brand image */}
+              <div className="absolute inset-0 bg-black/40 z-10" />
+
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <Typography
                   variant="display-xl"
