@@ -156,7 +156,7 @@ export default function AlliedAccessories() {
     <div className="mt-0 md:mt-2 pb-2 lg:pb-4 select-none">
       <Typography
         variant="display-3xl"
-        className={`text-center  ${theme === "luxury" ? "text-[#D3B898] font-cormorant-garamond font-normal" : "text-[#555555] font-cormorant-sc font-medium uppercase"}`}
+        className={`text-center  ${theme === "luxury" ? "text-[#D3B898] font-cormorant-garamond font-normal" : "text-[#555555] font-cormorant-garamond font-medium uppercase"}`}
       >
         Allied Accessories
       </Typography>

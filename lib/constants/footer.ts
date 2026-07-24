@@ -25,7 +25,7 @@ export const SOCIAL = [
 ];
 
 export const PHONE = "+91 080 26772477";
-export const EMAIL = "info@neeladhri.com";
+export const EMAIL = "hello@neeladhri.com";
 
 export const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/#privacy" },
