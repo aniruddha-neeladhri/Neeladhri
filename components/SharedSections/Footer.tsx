@@ -61,8 +61,8 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-400"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <a href="mailto:info@neeladhri.com" className="transition hover:text-neutral-300">
-                <Typography variant="body-sm" className="text-white">info@neeladhri.com</Typography>
+              <a href="mailto:hello@neeladhri.com" className="transition hover:text-neutral-300">
+                <Typography variant="body-sm" className="text-white">hello@neeladhri.com</Typography>
               </a>
             </div>
           </div>

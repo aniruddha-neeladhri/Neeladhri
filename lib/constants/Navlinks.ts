@@ -5,5 +5,5 @@ export const NAV_LINKS = [
   { text: "Brands", href: "/brands" },
   { text: "Gallery", href: "/gallery" },
   { text: "Blog", href: "/blog" },
-  { text: "ContactUs", href: "/contact" },
+  { text: "Contact Us", href: "/contact" },
 ];
