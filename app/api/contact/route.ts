@@ -227,6 +227,7 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from,
       to: [to],
+      cc: ["hello@neeladhri.com"],
       replyTo: email,
       subject: `New contact enquiry from ${name}`,
       html: buildContactEmailHtml({ name, email, phone, message }),
