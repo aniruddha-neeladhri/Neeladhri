@@ -36,7 +36,7 @@ function Cell({
   const inner = (
     <div
       className={`group relative overflow-hidden flex-shrink-0 box-border w-full
-        ${borderColor ? "border-4" : "border-0"}
+        ${borderColor ? "border-2" : "border-0"}
         ${mobileAspect ? "aspect-[5/3]" : uniformAspect ? "aspect-[4/3]" : height ? "" : "aspect-[4/3]"}
         ${href ? "cursor-pointer" : ""}
       `}
