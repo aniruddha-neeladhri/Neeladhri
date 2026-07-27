@@ -8,7 +8,7 @@ import { contactImages, contactCarouselImages } from "@/lib/constants/Contact";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons";
 
 const PHONE     = "+91 080 26772477";
-const EMAIL     = "hello@needladri.com";
+const EMAIL     = "hello@neeladhri.com";
 const CAROUSEL_INTERVAL_MS = 3000;
 const CAROUSEL_ACTIVE_DOT = "#F79440";
 const BORDER_W  = 1.5;
