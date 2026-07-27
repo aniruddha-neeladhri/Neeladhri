@@ -8,7 +8,7 @@ import { contactImages, contactCarouselImages } from "@/lib/constants/Contact";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons";
 
 const PHONE     = "+91 080 26772477";
-const EMAIL     = "info@needladri.com";
+const EMAIL     = "hello@needladri.com";
 const CAROUSEL_INTERVAL_MS = 3000;
 const CAROUSEL_ACTIVE_DOT = "#F79440";
 const BORDER_W  = 1.5;
@@ -591,7 +591,7 @@ export default function ContactSection() {
           <Typography variant="body-xl" className="text-white leading-relaxed font-normal font-poppins">
             Whether you're designing a home, a commercial space, or sourcing high-quality tiles.
             <br className="hidden md:block" />
-            Needladri Ceramics is here to support your vision with precision and style.
+            Neeladhri Ceramics is here to support your vision with precision and style.
           </Typography>
         </div>
 

@@ -156,7 +156,7 @@ export default function Kitchen() {
     <div className="mt-0 md:mt-2 select-none">
       <Typography
         variant="display-3xl"
-        className={`text-center  ${theme === "luxury" ? "text-[#D3B898] font-cormorant-garamond font-normal" : "text-[#555555] font-cormorant-sc font-medium uppercase"}`}
+        className={`text-center  ${theme === "luxury" ? "text-[#D3B898] font-cormorant-garamond font-normal" : "text-[#555555] font-cormorant-garamond font-medium uppercase"}`}
       >
         Kitchen
       </Typography>
@@ -195,10 +195,10 @@ export default function Kitchen() {
               const borderStyle = {
                 borderColor: collectionImageBorderColor(theme),
                 borderStyle: "solid" as const,
-                borderTopWidth: 4,
-                borderBottomWidth: 4,
-                borderLeftWidth: isLeftPeek ? 0 : 4,
-                borderRightWidth: isRightPeek ? 0 : 4,
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                borderLeftWidth: isLeftPeek ? 0 : 1,
+                borderRightWidth: isRightPeek ? 0 : 1,
               };
 
               return (
