@@ -85,7 +85,7 @@ export default function BrandsSection() {
                              transition-all duration-500 ease-out
                              group-hover:-translate-y-2 group-hover:shadow-[0_8px_30px_rgba(247,148,64,0.5)]"
                 >
-                  <Typography variant="h3" className="font-montserrat font-medium" style={{ color: bodyColor }}>
+                  <Typography variant="h3" className="font-poppins font-medium" style={{ color: bodyColor }}>
                     {brand.name}
                   </Typography>
                   <Typography
