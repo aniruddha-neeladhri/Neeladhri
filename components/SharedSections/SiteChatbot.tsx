@@ -9,9 +9,24 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 
 const CONTACT_ITEMS = [
   { label: "Contact Us", href: "/contact", icon: PhoneIcon },
-  { label: "WhatsApp", href: "https://wa.me/918050078367", icon: WhatsAppIcon },
-  { label: "Instagram", href: "https://www.instagram.com/neeladhriceramics?igsh=ajM2aXVqdWNqMnJp", icon: InstagramIcon },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/neeladhri-ceramics", icon: LinkedInIcon },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/918050078367",
+    icon: WhatsAppIcon,
+    openInNewTab: true,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/neeladhriceramics?igsh=ajM2aXVqdWNqMnJp",
+    icon: InstagramIcon,
+    openInNewTab: true,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/neeladhri-ceramics",
+    icon: LinkedInIcon,
+    openInNewTab: true,
+  },
 ] as const;
 
 function ContactIcon({ children }: { children: React.ReactNode }) {
@@ -68,6 +83,7 @@ function ContactMenuLink({
   index,
   open,
   isLuxury,
+  openInNewTab,
   onNavigate,
 }: {
   label: string;
@@ -76,11 +92,14 @@ function ContactMenuLink({
   index: number;
   open: boolean;
   isLuxury: boolean;
+  openInNewTab?: boolean;
   onNavigate: () => void;
 }) {
   return (
     <Link
       href={href}
+      target={openInNewTab ? "_blank" : undefined}
+      rel={openInNewTab ? "noopener noreferrer" : undefined}
       onClick={onNavigate}
       style={{ transitionDelay: open ? `${index * 70}ms` : "0ms" }}
       className={cn(
@@ -169,15 +188,16 @@ export default function SiteChatbot() {
         )}
         aria-hidden={!open}
       >
-        {CONTACT_ITEMS.map(({ label, href, icon }, index) => (
+        {CONTACT_ITEMS.map((item, index) => (
           <ContactMenuLink
-            key={label}
-            label={label}
-            href={href}
-            icon={icon}
+            key={item.label}
+            label={item.label}
+            href={item.href}
+            icon={item.icon}
             index={index}
             open={open}
             isLuxury={isLuxury}
+            openInNewTab={"openInNewTab" in item ? item.openInNewTab : undefined}
             onNavigate={() => setOpen(false)}
           />
         ))}

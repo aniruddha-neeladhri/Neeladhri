@@ -8,7 +8,7 @@ import { contactImages, contactCarouselImages } from "@/lib/constants/Contact";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons";
 
 const PHONE     = "+91 080 26772477";
-const EMAIL     = "hello@needladri.com";
+const EMAIL     = "hello@neeladhri.com";
 const CAROUSEL_INTERVAL_MS = 3000;
 const CAROUSEL_ACTIVE_DOT = "#F79440";
 const BORDER_W  = 1.5;
@@ -577,7 +577,7 @@ export default function ContactSection() {
       <Image src={images.background} alt="Contact Background" fill priority className="object-cover" />
       <div className="absolute inset-0 bg-black/75" aria-hidden />
 
-      <div className="relative z-10 w-full min-h-screen flex flex-col justify-between py-10 md:py-14 px-4 sm:px-8 lg:px-16">
+      <div className="relative z-10 w-full min-h-screen flex flex-col justify-between pt-10 md:py-14 px-4 sm:px-8 lg:px-16">
 
         {/* ROW 1 — Heading */}
         <div className="max-w-[1400px] mx-auto w-full text-center lg:text-left">
