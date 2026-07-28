@@ -72,16 +72,28 @@ export const ABOUT_LUXURY_HERO = {
   gold: ABOUT_LUXURY_GOLD,
 };
 
-export const ABOUT_CONTENT = {
+export type AboutContent = {
+  heading: string;
+  title: string;
+  paragraphs: string[];
+  titleAccent?: string;
+  paragraphsAccent?: string[];
+  image: string;
+  textColor: string;
+};
+
+export const ABOUT_CONTENT: Record<string, AboutContent> = {
   premium: {
     heading: "About Us",
-    title: "We Create Spaces, \n That Define Modern Living",
+    title: "Building Beautiful Spaces Since 2004",
     paragraphs: [
-      "Neeladhri Ceramics blends quality, design, and functionality to create modern living spaces. With 10+ years of expertise, we deliver curated solutions that combine elegance, performance, and lasting value.",
-      "Neeladhri Ceramics is a trusted name in home interiors and architectural surface solutions, offering a seamless blend of quality, functionality, and aesthetic excellence backed by over a decade of experience.",
-      "We curate products that enhance both the visual appeal and durability of spaces, delivering solutions that combine practicality with refined design.",
+      "For over 22 years, Neeladhri Ceramics has been helping homeowners, architects, interior designers, and builders create spaces that are timeless, functional, and beautifully designed. Founded by Mr. Badrinath C. R., the company was built on a simple philosophy—offer quality products, honest guidance, and exceptional service. Today, under the leadership of Mr. Aniruddha Setty, Neeladhri Ceramics continues to evolve by combining this legacy of trust with innovation, technical expertise, and a carefully curated selection of luxury bath fittings, sanitaryware, tiles, and wellness solutions that bring together performance, aesthetics, and everyday comfort.",
     ],
-    image:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/c97aa7b1-9907-4235-8550-d5a5042bfa3b.png",
+    titleAccent: "What We Stand For",
+    paragraphsAccent: [
+      "At Neeladhri Ceramics, we believe every space deserves thoughtful design and uncompromising quality. Our modern showroom showcases an extensive collection from some of the world's leading brands, giving customers the opportunity to experience products firsthand and make informed choices. From expert consultation to personalized service, we are committed to delivering solutions that are innovative, functional, and crafted to elevate every home and commercial space.",
+    ],
+    image: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/db31a08b-89a9-4dd0-8125-d0b88bb3436a.png",
     textColor: "#555555",
   },
   luxury: {
