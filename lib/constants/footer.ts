@@ -24,7 +24,7 @@ export const SOCIAL = [
   { name: "LinkedIn", href: "https://www.linkedin.com/company/neeladhri-ceramics", icon: "/footericons/likedin.png" },
 ];
 
-export const PHONE = "+91 080 26772477";
+export const PHONE = "+91 80267 72477";
 export const EMAIL = "hello@neeladhri.com";
 
 export const LEGAL_LINKS = [

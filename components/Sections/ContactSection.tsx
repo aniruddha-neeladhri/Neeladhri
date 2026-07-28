@@ -7,7 +7,7 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 import { contactImages, contactCarouselImages } from "@/lib/constants/Contact";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons";
 
-const PHONE     = "+91 080 26772477";
+const PHONE     = "+91 80267 72477";
 const EMAIL     = "hello@neeladhri.com";
 const CAROUSEL_INTERVAL_MS = 3000;
 const CAROUSEL_ACTIVE_DOT = "#F79440";
