@@ -23,6 +23,10 @@ export const BRAND_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9a945e83-8987-4bd3-8f9c-f818806fc186.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/24fdd431-18b4-4dd9-8bc0-6ba968261bed.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/28e36a8f-344c-48a3-91c9-e66bd9155b18.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/94f43ef2-7ae9-4cb0-87e1-1e389479b133.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/985726a1-ae7c-4668-8da1-261959c23683.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1ed6b68c-f8eb-43b7-b26d-6e7fd2557aa3.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/78baba02-a0a3-4aa6-ae37-42ad7493e545.png",
 ] as const;
 
 // =====================
@@ -53,6 +57,7 @@ export const BRAND_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/28e36a8f-344c-48a3-91c9-e66bd9155b18.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b3fd70ea-c275-4f90-9ada-fad17d509750.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/4453fc64-7c2d-4861-9b77-7644606a5673.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/16deda42-ee93-4682-a8fd-177b4507a6c6.png",
 ];
 
 export function brandImages(theme: "premium" | "luxury"): readonly string[] {
@@ -73,7 +78,7 @@ export function brandBgImage(theme: "premium" | "luxury"): string {
 
 export const BRAND_NAMES_PREMIUM = [
   "AUGA", "Simpolo", "Bellissimo", "Roca", "Hansgrohe",
-  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaguar", "Insinkerator",
+  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaguar", "Insinkerator", "Lioli", "Ruff", "Cera", "Huliot",
 ] as const;
 
 /** Luxury brand names – same as premium until you customize */
@@ -81,7 +86,7 @@ export const BRAND_NAMES_LUXURY: readonly string[] = [
   "Bisazza", "Atlas Concorde", "Neotra", "Dekton", "OP Butler",
   "Perrin & Rowe", "House of Rohl", "Treemme", "Galassia", "Victoria + Albert",
   "Décor Walther", "Sunshower", "Armadi Art", "Tab", "Specta",
-  "Miraak", "Crava", "Viaan", "Water Purifiers", "Insinkerator", "Inda", "Jee o",
+  "Miraak", "Crava", "Viaan", "Water Purifiers", "Insinkerator", "Inda", "Jee o", "Alpi",
 ];
 
 export function brandNames(theme: "premium" | "luxury"): readonly string[] {
@@ -91,7 +96,8 @@ export function brandNames(theme: "premium" | "luxury"): readonly string[] {
 export const BRAND_ROUTES_PREMIUM = [
   "/brands/auga", "/brands/simpolo", "/brands/bellissimo", "/brands/roca",
   "/brands/hansgrohe", "/brands/carysil", "/brands/smack", "/brands/ifb",
-  "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc", "/brands/jaguar", "/brands/insinkerator",
+  "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc", "/brands/jaguar", "/brands/insinkerator", "/brands/lioli", "/brands/roff",
+  "/brands/cera", "/brands/huliot",
 ] as const;
 
 /** Luxury brand routes – same as premium until you customize */
@@ -100,7 +106,7 @@ export const BRAND_ROUTES_LUXURY: readonly string[] = [
   "/brands/op-butler", "/brands/perrin-rowe", "/brands/house-of-rohl", "/brands/treemme",
   "/brands/galassia", "/brands/victoria-albert", "/brands/decor-walther", "/brands/sunshower",
   "/brands/armadi-art", "/brands/tab", "/brands/specta", "/brands/miraak",
-  "/brands/crava", "/brands/viaan", "/brands/water-purifiers", "/brands/insinkerator", "/brands/inda", "/brands/jee-o",
+  "/brands/crava", "/brands/viaan", "/brands/water-purifiers", "/brands/insinkerator", "/brands/inda", "/brands/jee-o", "/brands/alpi",
 ];
 
 export function brandRoutes(theme: "premium" | "luxury"): readonly string[] {
