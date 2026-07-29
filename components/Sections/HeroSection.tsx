@@ -5,7 +5,8 @@ import Typography from "@/lib/Typography";
 import TileScrollSection from "./Tilemovement";
 import { cn } from "@/lib/utils";
 
-const INTRO_TEXT = "Enter a new world of Curated Spaces";
+const INTRO_TEXT_LINE_1 = "Enter a new world of";
+const INTRO_TEXT_LINE_2 = "Curated Spaces";
 const FADE_MS = 400;
 
 export default function HeroSection() {
@@ -48,12 +49,15 @@ export default function HeroSection() {
             variant="display-2xl"
             className={cn(
               "text-center text-white font-medium font-cormorant-garamond leading-tight tracking-[0.02em]",
-              "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl",
+              "text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl",
               "max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
+              "lg:whitespace-nowrap",
               "[text-shadow:0_2px_16px_rgba(0,0,0,0.55)]"
             )}
           >
-            {INTRO_TEXT}
+            {INTRO_TEXT_LINE_1}{" "}
+            <br className="lg:hidden" />
+            {INTRO_TEXT_LINE_2}
           </Typography>
         </div>
       </div>
