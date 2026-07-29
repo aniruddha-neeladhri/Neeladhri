@@ -11,6 +11,7 @@ import Whatweoffer from "@/components/About/Whatweoffer";
 import Ourcommitment from "@/components/About/Ourcommitment";
 import Visitsection from "@/components/About/Visitsection";
 import { useTheme } from "@/lib/contexts/ThemeContext";
+import Ourstory from "@/components/About/ourstory";
 
 export default function AboutPageContent() {
   const { theme } = useTheme();
@@ -19,7 +20,8 @@ export default function AboutPageContent() {
     return (
       <>
         <AboutLuxury />
-        <OurStoryLuxury />
+        <Ourstory />
+        {/* <OurStoryLuxury /> */}
         <CommitmentLuxury />
         <LastLuxurySection />
       </>
