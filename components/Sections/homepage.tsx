@@ -39,8 +39,6 @@ export default function HomePage() {
                 className="!text-white font-normal font-the-seasons leading-tight tracking-tight"
                 style={{ color: WHITE }}
               >
-                {hero.titleLine1}
-                <br />
                 {hero.titleLine2}
               </Typography>
             </div>

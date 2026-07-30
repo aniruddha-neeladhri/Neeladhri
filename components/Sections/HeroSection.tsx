@@ -51,12 +51,11 @@ export default function HeroSection() {
               "text-center text-white font-medium font-cormorant-garamond leading-tight tracking-[0.02em]",
               "text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl",
               "max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
-              "lg:whitespace-nowrap",
               "[text-shadow:0_2px_16px_rgba(0,0,0,0.55)]"
             )}
           >
-            {INTRO_TEXT_LINE_1}{" "}
-            <br className="lg:hidden" />
+            {INTRO_TEXT_LINE_1}
+            <br />
             {INTRO_TEXT_LINE_2}
           </Typography>
         </div>
