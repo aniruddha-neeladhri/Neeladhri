@@ -19,7 +19,7 @@ export default function AboutPageContent() {
   if (theme === "luxury") {
     return (
       <>
-        <AboutLuxury />
+        {/* <AboutLuxury /> */}
         <Ourstory />
         {/* <OurStoryLuxury /> */}
         <CommitmentLuxury />
