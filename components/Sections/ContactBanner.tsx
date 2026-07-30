@@ -6,7 +6,7 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 import { contactBannerImages } from "@/lib/constants/Contact";
 
 const LUXURY_BANNER_DESCRIPTION =
-  "Whether you're designing a home, a commercial space, or sourcing high-quality tiles. Neeladhri Ceramics is here to support your vision with precision and style.";
+  "Whether you're designing a home or commercial space, or sourcing high-quality tiles, Neeladhri Ceramics is here to support your vision with precision and style.";
 
 export default function ContactBanner() {
   const { theme } = useTheme();

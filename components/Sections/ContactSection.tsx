@@ -589,7 +589,7 @@ export default function ContactSection() {
         {/* ROW 2 — Paragraph */}
         <div className="max-w-[1400px] mx-auto w-full mt-4 text-center lg:text-left">
           <Typography variant="body-xl" className="text-white leading-relaxed font-normal font-poppins">
-            Whether you're designing a home, a commercial space, or sourcing high-quality tiles.
+            Whether you're designing a home, a commercial space, or sourcing high-quality tiles,
             <br className="hidden md:block" />
             Neeladhri Ceramics is here to support your vision with precision and style.
           </Typography>
