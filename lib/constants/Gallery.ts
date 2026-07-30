@@ -43,6 +43,13 @@ export const GALLERY_IMAGES_PREMIUM: readonly string[] = [
 
 /** Luxury gallery – same paths as premium until you swap assets */
 export const GALLERY_IMAGES_LUXURY: readonly string[] = [
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/63dcfe70-c81a-4cc4-b8a4-0231416fb55d.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/3994fc4b-f7f1-4e2c-99b4-c74d8180caef.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/130bde2d-88c5-418c-8208-28ecf18fa763.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/60808f20-6b2b-46b3-be11-b3ada8a2a872.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/0f4b931e-9d71-459a-be48-1d1f7de85bf6.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/d81a7c95-1840-4679-abca-118b4c990907.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/7467f4a0-c4ea-4777-8751-a9a2b469b0df.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/24340c55-3d6d-4651-a22d-b9011c2261dc.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/a97e27b1-2ad2-418b-9fba-702cbe1e709c.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/670ae73a-6a5b-4fa3-8384-630a7c9b3f3e.png",
@@ -53,16 +60,6 @@ export const GALLERY_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/09564d86-755b-4165-8650-f94fc97ca609.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/cc7b030f-ed9b-4d35-9a65-2f0fcf97b6f6.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/5b230612-9d53-4c1a-bc62-04bf0405e454.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/96798b9d-fdcb-4132-8d31-e56285ac5a3f.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/28ab3a25-9062-428f-8edd-45bc6cc7e648.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/f8150476-9508-41e8-991c-134c7e7e1a4f.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/63dcfe70-c81a-4cc4-b8a4-0231416fb55d.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/3994fc4b-f7f1-4e2c-99b4-c74d8180caef.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/130bde2d-88c5-418c-8208-28ecf18fa763.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/60808f20-6b2b-46b3-be11-b3ada8a2a872.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/0f4b931e-9d71-459a-be48-1d1f7de85bf6.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/d81a7c95-1840-4679-abca-118b4c990907.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/7467f4a0-c4ea-4777-8751-a9a2b469b0df.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/a1590e74-6d52-4a85-9fd3-eac7a0973124.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/468808d8-560d-4e0e-8eb0-0d8633b9a197.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/cb730a60-3eb3-45c1-8b0a-8f124262ea6e.png",
@@ -93,6 +90,9 @@ export const GALLERY_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/352831c2-4a88-4577-8bc2-843b5b9f532d.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/dd5815dc-0620-4a15-80b6-26bfea5b0544.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/9d6f89e9-26cf-437e-aaec-da764528edfb.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/96798b9d-fdcb-4132-8d31-e56285ac5a3f.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/28ab3a25-9062-428f-8edd-45bc6cc7e648.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/gallery/f8150476-9508-41e8-991c-134c7e7e1a4f.png",
 ];
 
 export function galleryImages(theme: "premium" | "luxury"): readonly string[] {
