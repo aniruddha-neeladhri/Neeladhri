@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
+import { Volume2, VolumeX } from "lucide-react";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
 
@@ -9,25 +10,25 @@ const STEPS = [
   {
     heading: "Living Room",
     body: "Spaces that reflect your style.\nFind flooring and wall solutions that transform everyday living into something extraordinary.",
-    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/ac9026dc-6ae6-4eb0-8f7b-4fd3c05deb3d.mp4",
+    videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/dc42b44c-f3ce-4206-98f2-ea7e67ca890b.mp4",
     videoTime: 0,
   },
   {
     heading: "Kitchen",
     body: "Cook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
-    videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/728d2819-3ac6-49f5-981a-4e50ef909071.mp4",
+    videoSrc:   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/24ad9e06-4fc6-48d8-880a-ebb74963441a.mp4",
     videoTime: 5,
   },
   {
     heading: "Dining Room",
     body: "Made for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
-    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/b442df59-ddf2-4ded-aab8-bc49bfb67ee3.mp4",
+    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/10fac9df-5445-47e3-834c-49f68bb3a7db.mp4",
     videoTime: 10,
   },
   {
     heading: "Bathroom",
     body: "Every detail matters.Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
-    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/4632c787-53da-424f-9fae-65aa3b182254.mp4",
+    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/df96c5d9-2037-4625-bc08-47fb1382de5d.mp4",
     videoTime: 15,
   },
 ];
@@ -194,10 +195,76 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
   const [activeStep, setActiveStep] = useState(0);
   const [exitStep,   setExitStep]   = useState<number | null>(null);
   const [direction,  setDirection]  = useState<1 | -1>(1);
+  const [isMuted,    setIsMuted]    = useState(true);
 
   const currentStepRef  = useRef(0);
   const isAnimatingRef  = useRef(false);
   const isPinnedRef     = useRef(false);
+  const isMutedRef      = useRef(true);
+
+  const applyMuteToAll = useCallback((muted: boolean) => {
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+      // Only the currently active video should ever be audible — every
+      // other video stays muted regardless of the global mute state, so
+      // there's no way to end up hearing more than one at once.
+      v.muted = i === currentStepRef.current ? muted : true;
+    });
+  }, []);
+
+  // Same best-effort approach as the hero video:
+  // 1) Try unmuted playback immediately — succeeds for returning/engaged
+  //    visitors, or within a session after any earlier interaction.
+  // 2) If blocked, fall back to muted (guaranteed to play) and auto-unmute
+  //    on the very first interaction anywhere on the page (click, tap,
+  //    key, scroll, or even mouse movement), so sound kicks in as fast as
+  //    physically possible without requiring the user to hit the button.
+  const attemptSoundOn = useCallback((video: HTMLVideoElement | null) => {
+    if (!video) return;
+
+    video.muted = false;
+    isMutedRef.current = false;
+    setIsMuted(false);
+
+    video.play()
+      .then(() => {
+        applyMuteToAll(false);
+      })
+      .catch(() => {
+        video.muted = true;
+        isMutedRef.current = true;
+        setIsMuted(true);
+        applyMuteToAll(true);
+        video.play().catch(() => {});
+
+        let unmuted = false;
+        const events = ["click"];
+        const tryUnmute = () => {
+          if (unmuted) return;
+          unmuted = true;
+          const active = videoRefs.current[currentStepRef.current];
+          isMutedRef.current = false;
+          setIsMuted(false);
+          applyMuteToAll(false);
+          active?.play().catch(() => {});
+          events.forEach((evt) => document.removeEventListener(evt, tryUnmute));
+        };
+
+        events.forEach((evt) =>
+          document.addEventListener(evt, tryUnmute, { passive: true })
+        );
+      });
+  }, [applyMuteToAll]);
+
+  const toggleMute = useCallback(() => {
+    const next = !isMutedRef.current;
+    isMutedRef.current = next;
+    setIsMuted(next);
+    applyMuteToAll(next);
+    if (!next) {
+      videoRefs.current[currentStepRef.current]?.play().catch(() => {});
+    }
+  }, [applyMuteToAll]);
 
   const moveTile = useCallback((step: number) => {
     const tile = tileRef.current;
@@ -226,8 +293,10 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
       if (!v) return;
       if (i === step) {
         v.currentTime = STEPS[i].videoTime;
+        v.muted = isMutedRef.current;
         v.play().catch(() => {});
       } else {
+        v.muted = true;
         v.pause();
       }
     });
@@ -322,8 +391,8 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
     setActiveStep(0);
     setExitStep(null);
     moveTile(0);
-    videoRefs.current[0]?.play().catch(() => {});
-  }, [introReady, moveTile]);
+    attemptSoundOn(videoRefs.current[0]);
+  }, [introReady, moveTile, attemptSoundOn]);
 
   useEffect(() => {
     const onResize = () => moveTile(currentStepRef.current);
@@ -347,9 +416,11 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
         {STEPS.map((s, i) => (
           <video
             key={i}
-            ref={(el) => { videoRefs.current[i] = el; }}
+            ref={(el) => {
+              videoRefs.current[i] = el;
+              if (el) el.muted = isMutedRef.current;
+            }}
             src={s.videoSrc}
-            muted
             loop
             playsInline
             className={cn(
@@ -414,6 +485,27 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
             sizes="(max-width: 640px) 108px, (max-width: 1024px) 128px, 175px"
           />
         </div>
+
+        {/* Mute / unmute toggle — fixed to the bottom-right corner, same as HeroSection */}
+        <button
+          type="button"
+          onClick={toggleMute}
+          aria-label={isMuted ? "Unmute video" : "Mute video"}
+          className={cn(
+            "fixed z-[9997] pointer-events-auto",
+            "right-4 sm:right-6 md:right-10 lg:right-12",
+            "bottom-[max(0.25rem,env(safe-area-inset-bottom))] sm:bottom-2 md:bottom-3 lg:bottom-4",
+            "flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full",
+            "bg-black/40 text-white backdrop-blur-sm transition-colors",
+            "hover:bg-black/60"
+          )}
+        >
+          {isMuted ? (
+            <VolumeX className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          ) : (
+            <Volume2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          )}
+        </button>
       </div>
     </div>
   );
