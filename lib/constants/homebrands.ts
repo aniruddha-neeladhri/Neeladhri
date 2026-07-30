@@ -49,7 +49,7 @@ export const brands: Brand[] = [
     href: "/brands/cera",
   },
    {
-    image: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/052a7374-0c2f-4be5-87c9-788c221e5e19.png",
+    image:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/36958b6b-27a7-426a-94ed-5502ed93e787.png",
     name: "Huliot",
     description: "Smart infrastructure for dependable water systems.",
     href: "/brands/huliot",
