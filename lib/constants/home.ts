@@ -10,7 +10,6 @@ export const HOME_HERO = {
     buttonBg: "#61523A",
   },
   luxury: {
-    titleLine1: "Dark Luxury Style",
     titleLine2: "Elevating Everyday Living",
     cta: "EXPLORE COLLECTION →",
     ctaHref: "/collection",
