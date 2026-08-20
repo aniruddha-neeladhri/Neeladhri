@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
@@ -11,9 +11,16 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 // e.g. when the user navigates to a brand page and comes back.
 let lastScrollPos = 0;
 
+// The row sits on a barrel: cards stay flat-facing, only their size follows the
+// curve — full size at the centre, tapering towards both ends.
+const MIN_SCALE = 0.74;    // size at the very edge (centre stays 1)
+const MIN_BRIGHTNESS = 0.6;
+const GAP_PULL = 0.6;      // how much of the lost width is taken back from the gaps
+
 export default function BrandsSection() {
   const { theme } = useTheme();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const posRef = useRef(lastScrollPos); // <-- resume from last known position
   const isHoveredRef = useRef(false);
   const isDraggingRef = useRef(false);
@@ -21,12 +28,40 @@ export default function BrandsSection() {
   const dragStartScrollRef = useRef(0);
   const hasDraggedRef = useRef(false);
 
+  // Curve the whole row by size alone: each card is scaled by its distance from
+  // the centre and pulled in by the same factor so the gaps stay proportional.
+  const applyCurvature = useCallback(() => {
+    const el = scrollRef.current;
+    const track = trackRef.current;
+    if (!el || !track) return;
+
+    const viewportCenter = el.clientWidth / 2;
+    const half = viewportCenter || 1;
+
+    for (const child of Array.from(track.children) as HTMLElement[]) {
+      const cardCenter = child.offsetLeft - el.scrollLeft + child.offsetWidth / 2;
+      const ratio = Math.max(-1, Math.min(1, (cardCenter - viewportCenter) / half));
+      const distance = Math.abs(ratio);
+
+      const curve = Math.cos((ratio * Math.PI) / 2); // 1 at the centre, 0 at the ends
+      const scale = MIN_SCALE + (1 - MIN_SCALE) * curve;
+      // Pull the card towards the centre by the amount it shrank, so neighbours
+      // keep an even gap instead of drifting apart.
+      const shiftX = (viewportCenter - cardCenter) * (1 - scale) * GAP_PULL;
+
+      child.style.transform = `translateX(${shiftX}px) scale(${scale})`;
+      child.style.filter = `brightness(${MIN_BRIGHTNESS + (1 - MIN_BRIGHTNESS) * curve})`;
+      child.style.zIndex = String(100 - Math.round(distance * 100));
+    }
+  }, []);
+
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
 
     // On mount, jump the scroll container to wherever the user left off
     el.scrollLeft = posRef.current;
+    applyCurvature();
 
     let rafId: number;
     const animate = () => {
@@ -37,15 +72,20 @@ export default function BrandsSection() {
         el.scrollLeft = posRef.current;
         lastScrollPos = posRef.current; // keep module var updated
       }
+      applyCurvature();
       rafId = requestAnimationFrame(animate);
     };
     rafId = requestAnimationFrame(animate);
 
+    const observer = new ResizeObserver(applyCurvature);
+    observer.observe(el);
+
     return () => {
       cancelAnimationFrame(rafId);
+      observer.disconnect();
       lastScrollPos = posRef.current; // persist on unmount too
     };
-  }, []);
+  }, [applyCurvature]);
 
   const syncScrollPosition = () => {
     if (scrollRef.current) {
@@ -79,6 +119,7 @@ export default function BrandsSection() {
     scrollRef.current.scrollLeft = newScroll;
     posRef.current = newScroll;
     lastScrollPos = newScroll;
+    applyCurvature();
   };
 
   const onMouseUp = () => {
@@ -101,6 +142,7 @@ export default function BrandsSection() {
     scrollRef.current.scrollLeft = newScroll;
     posRef.current = newScroll;
     lastScrollPos = newScroll;
+    applyCurvature();
   };
 
   const onTouchEnd = () => {
@@ -114,7 +156,7 @@ export default function BrandsSection() {
   const allImages = [...currentImages, ...currentImages];
 
   return (
-    <section className="relative w-full mt-0 h-screen">
+    <section className="relative w-full mt-0 h-screen overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image src={brandBgImage(theme)} alt="Background" fill className="object-cover" priority />
       </div>
@@ -132,7 +174,10 @@ export default function BrandsSection() {
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <div className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-6 md:px-8">
+        <div
+          ref={trackRef}
+          className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-6 md:px-8"
+        >
           {allImages.map((src, index) => (
             <Link
               key={`brand-${index}`}
@@ -141,6 +186,7 @@ export default function BrandsSection() {
               onClick={(e) => { if (hasDraggedRef.current) e.preventDefault(); }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
+              style={{ willChange: "transform" }}
               className={`group flex-shrink-0 w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[350px] lg:h-[350px] xl:w-[400px] xl:h-[400px] relative border-2 rounded-4xl overflow-hidden ${theme === "luxury" ? "border-[#D3B898]" : "border-white"}`}
             >
               <Image

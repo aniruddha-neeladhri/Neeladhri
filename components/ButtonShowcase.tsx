@@ -178,7 +178,7 @@ export default function ButtonShowcase() {
                 Fill erupts from wherever mouse enters
               </p>
               <div className="flex justify-center">
-                <CursorFillButton>Get In Touch</CursorFillButton>
+                <CursorFillButton>Request a call back</CursorFillButton>
               </div>
             </div>
 

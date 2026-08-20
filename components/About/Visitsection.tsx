@@ -31,7 +31,7 @@ export default function ShowroomBanner() {
           <Link href="/contact">
             <button className="mt-1 px-8 py-3 rounded-full bg-[#F79440] cursor-pointer">
               <Typography variant="body-xl" className="text-white font-light font-poppins">
-                Get started
+                Get Started
               </Typography>
             </button>
           </Link>

@@ -6,12 +6,12 @@ const features = [
   {
     title: "Proven Expertise",
     description:
-      "A decade of experience in delivering trusted interior and surface solutions.",
+      "More than Two decades of experience in delivering trusted interior and surface solutions.",
   },
   {
     title: "Curated Selection",
     description:
-      "A thoughtfully chosen range of tiles, sanitaryware, and allied products.",
+      "A thoughtfully chosen range of Tiles, Sanitaryware, bath fittings and allied accessories",
   },
   {
     title: "Quality First",

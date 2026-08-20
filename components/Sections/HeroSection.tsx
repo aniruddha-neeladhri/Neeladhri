@@ -104,7 +104,7 @@ export default function HeroSection() {
           <Typography
             variant="display-2xl"
             className={cn(
-              "text-center text-white font-medium font-cormorant-garamond leading-tight tracking-[0.02em]",
+              "text-center text-white font-normal font-playfair-display leading-tight tracking-[0.02em]",
               "text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl",
               "max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
               "[text-shadow:0_2px_16px_rgba(0,0,0,0.55)]"

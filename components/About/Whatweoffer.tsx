@@ -100,22 +100,22 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 
 const offerings = [
   {
-    icon:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/8d76079c-5614-4c80-8c7d-ddbd1125c16a.png",
-    title: "Versatile Tiles",
+    icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/a40c17f1-7c07-4dd3-aa4f-32a4bac453e1.png",
+    title: "Complete Bathroom Solutions",
     description:
-      "A wide range of wall, floor, vitrified, and designer finishes for every space.",
+      "Everything your bathroom needs, from premium plumbing solutions to sanitaryware, bath fittings, and elegant vanities.",
   },
   {
-    icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/a40c17f1-7c07-4dd3-aa4f-32a4bac453e1.png",
-    title: "Complete Bathrooms",
+    icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/8d76079c-5614-4c80-8c7d-ddbd1125c16a.png",
+    title: "Wide Range of Tiles",
     description:
-      "End-to-end solutions including sanitaryware, fittings, and vanities.",
+      "An extensive collection of wall, floor, vitrified and designer tiles.",
   },
   {
     icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/b4ca8f65-4d70-40e1-9c5b-0c28463c117b.png",
-    title: "Modern Kitchens",
+    title: "Wellness Collection",
     description:
-      "Functional kitchen essentials with sinks, hobs, and chimneys.",
+      "Experience wellness with saunas, steam rooms and whirlpool baths.",
   },
   {
     icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/24990f98-6c08-4f18-aee8-7b7c38939d73.png",
@@ -144,12 +144,12 @@ export default function WhatWeOffer() {
         </Typography>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-8 sm:gap-y-10 gap-x-8 sm:gap-x-10 md:gap-x-12 lg:gap-x-14 xl:gap-x-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-y-8 sm:gap-y-10 gap-x-8 sm:gap-x-10 md:gap-x-12 xl:gap-x-14">
           {offerings.map((item, i) => (
-            <div key={i} className="flex flex-col gap-3 sm:gap-4">
+            <div key={i} className="flex flex-col gap-3 sm:gap-4 items-start text-left">
 
               {/* Icon */}
-              <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 transform translate-x-10 lg:translate-x-0">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
                 <Image
                   src={item.icon}
                   alt={item.title}
@@ -162,7 +162,7 @@ export default function WhatWeOffer() {
               {/* Title */}
               <Typography
                 variant="h2"
-                className="font-normal font-poppins leading-snug"
+                className="font-normal font-poppins leading-snug text-lg sm:text-xl xl:text-2xl sm:min-h-[2.4em] text-balance"
                 style={{ color: textColor }}
               >
                 {item.title}
@@ -171,7 +171,7 @@ export default function WhatWeOffer() {
               {/* Description */}
               <Typography
                 variant="body-xl"
-                className="font-light font-poppins leading-relaxed"
+                className="font-light font-poppins leading-relaxed text-sm sm:text-base xl:text-lg"
                 style={{ color: textColor }}
               >
                 {item.description}

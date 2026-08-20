@@ -25,7 +25,7 @@ export default function OurCommitment() {
         </Typography>
 
         {/* Grid */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-y-12 gap-x-8 sm:gap-x-12 md:gap-x-16 lg:gap-x-10 xl:gap-x-14">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-y-10 sm:gap-y-12 gap-x-8 sm:gap-x-12 md:gap-x-16 xl:gap-x-10">
           {commitments.map((item, i) => (
             <div
               key={i}
@@ -45,7 +45,7 @@ export default function OurCommitment() {
               {/* Title */}
               <Typography
                 variant="h2"
-                className="font-normal  font-poppins text-center leading-snug"
+                className="font-normal font-poppins text-center leading-snug text-lg sm:text-xl xl:text-2xl text-balance sm:min-h-[2.4em]"
                 style={{ color: textColor }}
               >
                 {item.title}
@@ -54,7 +54,7 @@ export default function OurCommitment() {
               {/* Description */}
               <Typography
                 variant="body-xl"
-                className="font-light  font-poppins text-center leading-relaxed"
+                className="font-light font-poppins text-center leading-relaxed text-sm sm:text-base xl:text-lg"
                 style={{ color: textColor }}
               >
                 {item.description}

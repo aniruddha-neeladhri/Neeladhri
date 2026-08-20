@@ -6,7 +6,7 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 import { contactBannerImages } from "@/lib/constants/Contact";
 
 const LUXURY_BANNER_DESCRIPTION =
-  "Whether you're designing a home, or commercial space, or sourcing high-quality tiles, Neeladhri Ceramics is here to support your vision with precision and style.";
+  "Whether you're designing a home, or commercial space, or sourcing high quality tiles, Neeladhri Ceramics is here to support your vision with precision and style.";
 
 export default function ContactBanner() {
   const { theme } = useTheme();
@@ -33,7 +33,7 @@ export default function ContactBanner() {
             className="font-light leading-tight font-cormorant-garamond"
             style={{ color: "#D3B898" }}
           >
-            Get in Touch
+            Request a call back
           </Typography>
           <Typography
             variant="h3"

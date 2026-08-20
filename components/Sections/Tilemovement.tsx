@@ -27,7 +27,7 @@ const STEPS = [
   },
   {
     heading: "Bathroom",
-    body: "Every detail matters.Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
+    body: "Every detail matters. Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
     videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/df96c5d9-2037-4625-bc08-47fb1382de5d.mp4",
     videoTime: 15,
   },

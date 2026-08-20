@@ -53,7 +53,7 @@ export const ABOUT_LUXURY_CTA_BORDER = "#A98F76";
 export const ABOUT_LUXURY_LAST_SECTION = {
   eyebrow: "Visit Our Showroom",
   title: "We Help You Build Spaces That Inspire",
-  cta: "Get started",
+  cta: "Get Started",
   ctaHref: "/contact",
   image:"https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/2a01207e-12f8-4d75-a516-5c5874ae711b.png",
   borderColor: ABOUT_LUXURY_CTA_BORDER,
@@ -84,10 +84,10 @@ export type AboutContent = {
 
 export const ABOUT_CONTENT: Record<string, AboutContent> = {
   premium: {
-    heading: "About Us",
+    heading: "What defines us",
     title: "Building Beautiful Spaces Since 2004",
     paragraphs: [
-      "For over 22 years, Neeladhri Ceramics has been helping homeowners, architects, interior designers, and builders create spaces that are timeless, functional, and beautifully designed. Founded by Mr. Badrinath C. R., the company was built on a simple philosophy—offer quality products, honest guidance, and exceptional service. Today, under the leadership of Mr. Aniruddha Setty, Neeladhri Ceramics continues to evolve by combining this legacy of trust with innovation, technical expertise, and a carefully curated selection of luxury bath fittings, sanitaryware, tiles, and wellness solutions that bring together performance, aesthetics, and everyday comfort.",
+      "For over 22 years, Neeladhri Ceramics has been helping homeowners, architects, interior designers, and builders create spaces that are timeless, functional, and beautifully designed. Founded by Mr. Badrinath C. R., the company was built on a simple philosophy offer quality products, honest guidance, and exceptional service. Today, under the leadership of Mr. Aniruddha Setty, Neeladhri Ceramics continues to evolve by combining this legacy of trust with innovation, technical expertise, and a carefully curated selection of luxury bath fittings, sanitaryware, tiles, and wellness solutions that bring together performance, aesthetics, and everyday comfort.",
     ],
     titleAccent: "What We Stand For",
     paragraphsAccent: [
@@ -97,10 +97,10 @@ export const ABOUT_CONTENT: Record<string, AboutContent> = {
     textColor: "#555555",
   },
   luxury: {
-   heading: "About Us",
+   heading: "What defines us",
     title: "Building Beautiful Spaces Since 2004",
     paragraphs: [
-      "For over 22 years, Neeladhri Ceramics has been helping homeowners, architects, interior designers, and builders create spaces that are timeless, functional, and beautifully designed. Founded by Mr. Badrinath C. R., the company was built on a simple philosophy—offer quality products, honest guidance, and exceptional service. Today, under the leadership of Mr. Aniruddha Setty, Neeladhri Ceramics continues to evolve by combining this legacy of trust with innovation, technical expertise, and a carefully curated selection of luxury bath fittings, sanitaryware, tiles, and wellness solutions that bring together performance, aesthetics, and everyday comfort.",
+      "For over 22 years, Neeladhri Ceramics has been helping homeowners, architects, interior designers, and builders create spaces that are timeless, functional, and beautifully designed. Founded by Mr. Badrinath C. R., the company was built on a simple philosophy offer quality products, honest guidance, and exceptional service. Today, under the leadership of Mr. Aniruddha Setty, Neeladhri Ceramics continues to evolve by combining this legacy of trust with innovation, technical expertise, and a carefully curated selection of luxury bath fittings, sanitaryware, tiles, and wellness solutions that bring together performance, aesthetics, and everyday comfort.",
     ],
     titleAccent: "What We Stand For",
     paragraphsAccent: [
@@ -115,18 +115,18 @@ export const COMMITMENTS_DATA = {
   premium: [
     {
       icon:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/37fe4a4a-1b33-426c-a326-eff017291106.png",
-      title: "Versatile Tiles",
+      title: "Quality Without Compromise",
       description: "Delivering reliable quality and exceptional value in every offering.",
     },
     {
-      icon:"https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/2a4af6fe-2bcd-4185-902c-e728adfce934.png",
-      title: "Seamless Experience",
+      icon:"https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/b3198d5b-3db1-4868-9c54-45b10ba6dd27.png",
+      title: "Expert Guidance",
       description: "Ensuring a smooth, guided journey from selection to completion.",
     },
     {
-      icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/b3198d5b-3db1-4868-9c54-45b10ba6dd27.png",
-      title: "Design Forward",
-      description: "Staying aligned with modern trends and evolving innovations.",
+      icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/2a4af6fe-2bcd-4185-902c-e728adfce934.png",
+      title: "Customer-First Approach",
+      description: "Putting your needs first at every step, from planning to after-sales.",
     },
     {
       icon: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/about/eda2754a-ad2d-4622-933b-dab56d17ecab.png",
@@ -137,18 +137,18 @@ export const COMMITMENTS_DATA = {
   luxury: [
     {
       icon: "/About/qualityluxury.png",
-      title: "Versatile Tiles",
+      title: "Quality Without Compromise",
       description: "Delivering reliable quality and exceptional value in every offering.",
     },
     {
-      icon: "/About/reviewluxury.png",
-      title: "Seamless Experience",
+      icon: "/About/forwardluxury.png",
+      title: "Expert Guidance",
       description: "Ensuring a smooth, guided journey from selection to completion.",
     },
     {
-      icon: "/About/forwardluxury.png",
-      title: "Design Forward",
-      description: "Staying aligned with modern trends and evolving innovations.",
+      icon: "/About/reviewluxury.png",
+      title: "Customer-First Approach",
+      description: "Putting your needs first at every step, from planning to after-sales.",
     },
     {
       icon: "/About/trustluxury.png",

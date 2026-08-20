@@ -1,5 +1,5 @@
 export const TAGLINE =
-  "Elevating spaces with premium ceramic excellence since 1995.";
+  "Your trusted destination for premium tiles, bath solutions, sanitaryware, and thoughtfully designed living spaces";
 
 export const ABOUT_LINKS = [
   { label: "Collections", href: "/collection" },
@@ -24,7 +24,7 @@ export const SOCIAL = [
   { name: "LinkedIn", href: "https://www.linkedin.com/company/neeladhri-ceramics", icon: "/footericons/likedin.png" },
 ];
 
-export const PHONE = "+91 80267 72477";
+export const PHONE = "+91 80500 78367";
 export const EMAIL = "hello@neeladhri.com";
 
 export const LEGAL_LINKS = [

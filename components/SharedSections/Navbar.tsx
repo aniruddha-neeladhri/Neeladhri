@@ -66,7 +66,7 @@ function ThemeToggle({ size = "md" }: { size?: "sm" | "md" }) {
             isLuxuryNav ? "!text-white" : "!text-black",
           ].join(" ")}
         >
-          Premium
+          Essentials
         </Typography>
       </button>
 
@@ -87,7 +87,7 @@ function ThemeToggle({ size = "md" }: { size?: "sm" | "md" }) {
             "!text-white",
           ].join(" ")}
         >
-          Luxury
+          Bespoke
         </Typography>
       </button>
     </div>
