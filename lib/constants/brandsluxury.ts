@@ -239,7 +239,7 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "specta",
     name: "Specta",
     tagline: "Surfaces that Define Kitchens",
-    description: "Specta offers high-quality engineered surfaces crafted for durability and visual appeal. Its designs enhance the overall character of contemporary kitchens.",
+    description: "Specta offers high quality engineered surfaces crafted for durability and visual appeal. Its designs enhance the overall character of contemporary kitchens.",
     images: [
       "/Brands/Wesmarc/wesmarc1.png",
       "/Brands/Wesmarc/wesmarc2.png",

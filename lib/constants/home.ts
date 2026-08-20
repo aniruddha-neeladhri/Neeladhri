@@ -2,8 +2,8 @@ export const HOME_HERO = {
   premium: {
     titleLine1: "Crafted to",
     titleLine2: "Inspire",
-    subtitleLine1: "PREMIUM CERAMIC DECOR",
-    subtitleLine2: "FOR REFINED INTERIORS",
+    subtitleLine1: "PREMIUM FLOORING THAT",
+    subtitleLine2: "INSPIRE EVERY SPACE",
     cta: "EXPLORE COLLECTION →",
     ctaHref: "/collection",
     image:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/2e949be9-7d51-4e08-904a-ffa388b6f51d.png",

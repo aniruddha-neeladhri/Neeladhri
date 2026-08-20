@@ -9,7 +9,7 @@ const stats = [
   { value: 22, suffix: "+", label: "Years Of Experience" },
   { value: 10000, suffix: "+", label: "Projects Supported" },
   { value: 97.6, suffix: "%", label: "Satisfied Customers" },
-  { value: 70, suffix: "+", label: "Premium Brands" },
+  { value: 100, suffix: "+", label: "Premium Brands" },
 ];
 
 const highlights = [

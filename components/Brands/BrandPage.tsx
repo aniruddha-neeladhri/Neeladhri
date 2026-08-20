@@ -108,11 +108,11 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
           border: 2px solid;
         }
         .luxury-shell {
-          border-width: 2px !important;
+          border-width: 1px !important;
         }
         @media (min-width: 768px) {
           .brand-shell:not(.luxury-shell) {
-            border-width: 4px;
+            border-width: 2px;
           }
         }
         /* Mobile carousel tweaks: ONLY between 340px and 640px viewports.
@@ -145,7 +145,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
       `}</style>
       <div className={`flex flex-col ${flexAlign} justify-center px-4 md:px-8 mt-2 mb-12 pop-up`}>
         <div
-          className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[4.5rem]"} brand-shell ${isLuxury ? "luxury-shell" : ""} border-solid`}
+          className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[2.5rem]"} brand-shell ${isLuxury ? "luxury-shell" : ""} border-solid`}
           style={{ borderColor: accentColor }}
         >
           {/* Header */}
@@ -167,15 +167,6 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
               {selectedBrand.tagline}
             </Typography>
             <Typography
-              variant="body-sm"
-              className={`${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
-                } sm:hidden`}
-              style={{ color: bodyTextColor }}
-            >
-              {selectedBrand.description}
-            </Typography>
-
-            <Typography
               variant="h2"
               className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
                 } hidden sm:block`}
@@ -190,14 +181,6 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
               style={{ color: bodyTextColor }}
             >
               {selectedBrand.tagline}
-            </Typography>
-            <Typography
-              variant="h4"
-              className={`${textAlign} mb-0 md:mb-4 lg:mb-14 leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
-                } hidden sm:block`}
-              style={{ color: bodyTextColor }}
-            >
-              {selectedBrand.description}
             </Typography>
           </div>
 
@@ -244,7 +227,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
                       width={400}
                       height={300}
                       priority
-                      className={`h-auto w-full object-contain border-4 rounded-[2.5rem] sm:rounded-[5rem] ${borderTransition}`}
+                      className={`h-auto w-full object-contain border-2 rounded-[2.5rem] sm:rounded-[5rem] ${borderTransition}`}
                       style={{ borderColor: accentColor }}
                     />
                   </div>
@@ -285,11 +268,31 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
                   width={400}
                   height={300}
                   priority
-                  className={`w-full h-auto object-contain border-4 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem] ${borderTransition}`}
+                  className={`w-full h-auto object-contain border-2 rounded-[1rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[4rem] ${borderTransition}`}
                   style={{ borderColor: accentColor }}
                 />
               ))}
             </div>
+          </div>
+
+          {/* Description */}
+          <div className={`flex flex-col ${flexAlign} w-full mt-6 md:mt-8`}>
+            <Typography
+              variant="body-sm"
+              className={`${textAlign} leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
+                } sm:hidden`}
+              style={{ color: bodyTextColor }}
+            >
+              {selectedBrand.description}
+            </Typography>
+            <Typography
+              variant="h4"
+              className={`${textAlign} leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
+                } hidden sm:block`}
+              style={{ color: bodyTextColor }}
+            >
+              {selectedBrand.description}
+            </Typography>
           </div>
         </div>
       </div>

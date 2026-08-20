@@ -78,7 +78,7 @@ export function brandBgImage(theme: "premium" | "luxury"): string {
 
 export const BRAND_NAMES_PREMIUM = [
   "AUGA", "Simpolo", "Bellissimo", "Roca", "Hansgrohe",
-  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaguar", "Insinkerator", "Lioli", "Ruff", "Cera", "Huliot",
+  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaguar", "Insinkerator", "Lioli", "Roff", "Cera", "Huliot",
 ] as const;
 
 /** Luxury brand names – same as premium until you customize */
@@ -124,7 +124,8 @@ export const brandsDataPremium: Record<string, BrandData> = {
     id: "auga",
     name: "AUGA",
     tagline: "Complete Bathroom Solutions",
-    description: "AUGA offers coordinated bathroom solutions that blend functionality with modern aesthetics. Designed for seamless integration, it helps create spaces that feel both practical and visually refined.",
+    description:
+      "Auga is a home and bathroom solutions brand focused on combining contemporary design with everyday functionality. Its range is designed to bring a refined, modern look to residential spaces, with products that balance aesthetics, practicality, and ease of use. Auga is suited for customers looking for stylish solutions that complement modern interiors while maintaining quality and functionality.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8921b6e5-deb7-4553-b79a-ad01bc139698.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a0c062f9-247a-41f1-9567-e8f76f484f60.png",
@@ -137,7 +138,8 @@ export const brandsDataPremium: Record<string, BrandData> = {
     id: "simpolo",
     name: "SIMPOLO",
     tagline: "Design-Led Tiles for Every Space",
-    description: "Simpolo brings together style, durability, and versatility through a wide range of designer tiles. From bold patterns to subtle textures, each collection is crafted to elevate floors and walls across living spaces, dining areas, and beyond.",
+    description:
+      "Simpolo Tiles & Bathware is an Indian brand offering a comprehensive range of premium tiles and bathware solutions. Established in 1977, the brand combines innovative manufacturing technology with contemporary design to create durable and stylish surfaces for residential and commercial spaces. Its portfolio includes vitrified tiles, large-format slabs, outdoor tiles, sanitaryware, basins, and other bathware solutions, making it a versatile choice for modern interiors.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/21dd523d-701a-4b52-8d2d-37120a0b5e4b.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/02bf92ca-dc6b-4a76-ae3f-e33e39f7c4b2.png",
@@ -149,8 +151,9 @@ export const brandsDataPremium: Record<string, BrandData> = {
   bellissimo: {
     id: "bellissimo",
     name: "BELLISSIMO",
-    tagline: "Smart Storage. Seamless Living.",
-    description: "Bellissimo focuses on intelligent storage solutions that enhance both function and aesthetics. With smooth mechanisms and thoughtfully designed systems, it transforms everyday spaces into organized, clutter-free environments.",
+    tagline: "Italian Craftsmanship in Tiles & Surfaces",
+    description:
+      "Bellissimo is a premium Italian tiles and surfaces brand that combines Italian craftsmanship with advanced ceramic technology. Its collections include sophisticated marble, stone, wood, and contemporary surfaces, along with large format porcelain slabs designed for high-end architectural and interior applications.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/bbfffab5-1288-40a5-858f-0b0722499174.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/da511daa-e778-41f3-a874-2c244ed3a539.png",
@@ -163,7 +166,8 @@ export const brandsDataPremium: Record<string, BrandData> = {
     id: "roca",
     name: "ROCA",
     tagline: "Refined Surfaces with European Elegance",
-    description: "Roca delivers sophisticated bathroom and surface solutions inspired by modern European design. Clean lines, premium finishes, and timeless appeal make it ideal for spaces that value subtle luxury.",
+    description:
+      "Roca is a globally recognised bathroom solutions brand with over a century of experience in design, manufacturing, and innovation. Its extensive portfolio includes sanitaryware, basins, faucets, showers, bathtubs, bathroom furniture, mirrors, accessories, installation systems, and smart toilets. Roca brings together functionality, contemporary design, quality, and sustainability to create complete bathroom spaces suited to modern lifestyles.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/392964d8-cc52-47f5-b347-1be38d245bf2.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0977bd5b-1b8a-4dd4-a535-eb0342290146.png",
@@ -176,7 +180,8 @@ export const brandsDataPremium: Record<string, BrandData> = {
     id: "hansgrohe",
     name: "Hansgrohe",
     tagline: "Luxury in Every Drop",
-    description: "Hansgrohe redefines water experiences with precision-engineered faucets and shower systems. Combining innovation with elegant design, it brings comfort, performance, and indulgence into everyday routines.",
+    description:
+      "Hansgrohe is a premium bathroom and kitchen solutions brand known for combining innovative technology, elegant design, and exceptional functionality. Its range includes faucets, mixers, showers, shower systems, thermostatic mixers, kitchen fittings, sinks, bathroom accessories, and more. With a strong focus on water efficiency, comfort, and design, Hansgrohe creates products that turn everyday bathroom and kitchen routines into refined experiences.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1c97729b-d8b1-4c90-9c23-4fb4009e48c4.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/503c481e-10f5-437b-9779-6e354c5cd8fd.png",
@@ -189,7 +194,7 @@ export const brandsDataPremium: Record<string, BrandData> = {
     id: "carysil",
     name: "Carysil",
     tagline: "Engineered for Modern Kitchens",
-    description: "Carysil specializes in high-quality kitchen sinks and solutions built for daily performance. With durable materials and sleek designs, it enhances both efficiency and style in contemporary kitchens.",
+    description: "Carysil specializes in high quality kitchen sinks and solutions built for daily performance. With durable materials and sleek designs, it enhances both efficiency and style in contemporary kitchens.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/6f882e6e-f59d-4c63-b59a-24f60e708971.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ee7a8c25-7eef-48a2-9fc8-09380519611a.png",
@@ -202,7 +207,8 @@ export const brandsDataPremium: Record<string, BrandData> = {
     id: "smack",
     name: "Smack",
     tagline: "Built for Everyday Cooking",
-    description: "Smack provides reliable kitchen appliances designed to simplify daily cooking. Combining functionality with modern design, it supports a smooth and efficient kitchen experience.",
+    description:
+      "Smack specialises in premium kitchen sinks designed to combine functionality, durability, and contemporary aesthetics. Its range is created for modern kitchens, offering thoughtfully designed sink solutions that are practical, easy to use, and suited to everyday requirements. With a focus on quality, refined finishes, and contemporary styling, Smack sinks are designed to complement a wide range of modern kitchen interiors while delivering dependable performance.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/82df3b80-3074-4140-8b86-180e8202e9f3.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8aaa172a-3614-4b9a-816b-0511b689d07e.png",
@@ -293,7 +299,8 @@ export const brandsDataPremium: Record<string, BrandData> = {
     id: "lioli",
     name: "Lioli",
     tagline: "Luxury Large-Format Surfaces",
-    description: "Premium large-format porcelain slabs that combine elegance, durability, and cutting-edge design. Perfect for floors, walls, countertops, and modern architectural spaces.",
+    description:
+      "Lioli Ceramica specialises in large-format porcelain slabs and premium porcelain surfaces designed for contemporary interiors. Known for its advanced manufacturing technology and large slab formats, Lioli offers surfaces that combine sophisticated aesthetics, durability, and versatility. Its range can be used across floors, walls, facades, countertops, and other architectural applications, making it a strong choice for creating seamless and statement-making spaces.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/cd147ceb-b954-4548-8077-5a9df7a05bac.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/fb47a4a5-6a3e-4770-b4d5-80310a73c2cd.png",
@@ -306,7 +313,8 @@ export const brandsDataPremium: Record<string, BrandData> = {
     id: "roff",
     name: "Roff",
     tagline: "Advanced Tile & Stone Solutions",
-    description: "High-performance adhesives, grouts, waterproofing, and construction chemicals designed to ensure long-lasting tile installations and superior protection.",
+    description:
+      "Roff, from the house of Pidilite, is a leading brand in tile and stone fixing solutions, offering technologically advanced products for modern construction and home improvement. Its range includes tile adhesives, epoxy grouts, tile joint fillers, stone-fixing solutions, tile cleaners, and after-care products. Designed for applications ranging from bathrooms and kitchens to living spaces, terraces, and outdoor areas, Roff focuses on strong, durable, and reliable tile and stone installation.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/549d577f-e9cd-464d-8e48-4b8008171ea5.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/f827b75f-2b61-439f-b19e-a1b248b8a652.png",
@@ -401,7 +409,8 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "op-butler",
     name: "OP Butler",
     tagline: "Refined Dining, Redefined",
-    description: "OP Butler curates elegant solutions that elevate dining experiences. With a focus on detail and presentation, it blends functionality with understated luxury.",
+    description:
+      "OP Butler offers premium bathroom and home solutions designed to bring together contemporary aesthetics, functionality, and comfort. Its products are suited to modern interiors where thoughtful design and reliable everyday performance are equally important.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/781594f9-e1d3-4385-ac22-2365a120ee88.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2062f9f4-d4bd-4d00-8f8b-9b3cbe30af73.png",
@@ -427,7 +436,8 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "house-of-rohl",
     name: "House of Rohl",
     tagline: "A Collective of Iconic Luxury",
-    description: "Smack provides reliable kitchen appliances designed to simplify daily cooking. Combining functionality with modern design, it supports a smooth and efficient kitchen experience.House of Rohl brings together globally renowned brands to create exceptional bathroom experiences. Rooted in craftsmanship, it represents the pinnacle of curated luxury.",
+    description:
+      "House of Rohl brings together a collection of luxury kitchen and bathroom brands known for craftsmanship, timeless design, and exceptional quality. Its portfolio includes faucets, sinks, showers, bathtubs, and accessories that add character and refined detailing to sophisticated spaces.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b57080c9-2b8f-4a88-8ae8-094b8d376e21.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f9c62ee7-bb6a-44bd-964d-d9fc6193fe86.png",
@@ -492,7 +502,8 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "sunshower",
     name: "Sunshower",
     tagline: "Wellness Meets Innovation",
-    description: "Sunshower integrates light therapy into bathroom spaces, creating a unique wellness experience. It combines technology and design for a new level of comfort.",
+    description:
+      "Sunshower is an innovative Dutch wellness brand that brings the benefits of sunlight into the everyday shower experience. Its advanced shower systems combine infrared warmth with carefully dosed UV light, creating a relaxing and revitalising wellness experience while supporting natural vitamin D production. Designed to blend seamlessly into modern bathrooms, Sunshower offers built in, surface mounted, and corner mounted solutions that combine technology, wellbeing, and contemporary design.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5a3d5818-5b1f-45d6-be3f-094f9753ed59.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d8106dae-a82c-4e52-b0b7-c2e6d2ca9026.png",
@@ -505,7 +516,8 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "armadi-art",
     name: "Armadi Art",
     tagline: "Italian Vanity, Reimagined",
-    description: "Armadi Art offers contemporary bathroom furniture with a focus on elegance and functionality. Designed in Italy, it brings modern sophistication to everyday spaces.",
+    description:
+      "Armadi Art specialises in Italian designed bathroom furniture that combines craftsmanship, functionality, and contemporary aesthetics. Its collections offer a wide range of styles, colours, finishes, and configurations, allowing bathroom spaces to be customised to individual tastes and interiors.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/26f8fe52-2511-44ab-af43-b6d7b7ee3fac.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/4555fad8-d194-4271-9734-920bc1d6ba8b.png",
@@ -518,7 +530,8 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "tab",
     name: "Tab",
     tagline: "Precision in Kitchen Design",
-    description: "Tab delivers refined kitchen solutions that balance performance and aesthetics. Designed for modern lifestyles, it emphasizes efficiency with a premium finish.",
+    description:
+      "TABQUARTZ is a premium engineered quartz surface by TAB, combining high density with advanced Luster Technology for a refined, high gloss finish. Designed for interior applications such as kitchen countertops, bathroom vanities, and wall surfaces, TABQUARTZ offers durable, low maintenance surfaces in a wide range of colours and designs.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/39cc36bd-63f7-45b6-8011-2b72e23e5b2c.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8ecd34bd-b468-4dd4-b71e-b24a745956d0.png",
@@ -531,7 +544,7 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "specta",
     name: "Specta",
     tagline: "Surfaces that Define Kitchens",
-    description: "Specta offers high-quality engineered surfaces crafted for durability and visual appeal. Its designs enhance the overall character of contemporary kitchens.",
+    description: "Specta offers high quality engineered surfaces crafted for durability and visual appeal. Its designs enhance the overall character of contemporary kitchens.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/42ae7ee7-d9f9-424c-9de6-f2e05ef0d209.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/04f82810-3162-4faa-8768-e9f5ad9c9446.png",
@@ -544,7 +557,8 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "miraak",
     name: "Miraak",
     tagline: "Modern Kitchens, Elevated",
-    description: "Miraak focuses on sleek, design-forward kitchen solutions that combine functionality with refined aesthetics. Built for seamless integration into luxury homes.",
+    description:
+      "Miraak is a premium quartz surfaces brand backed by over 35 years of experience in the stone industry. Its engineered quartz surfaces combine innovative design, meticulous craftsmanship, and durability, offering a versatile range of colours, patterns, and finishes for kitchens, bathrooms, offices, restaurants, and other interior spaces.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/31aa18d4-37f4-4b13-aa8a-cb7e49c3f9fc.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/74254ef3-b692-445d-9694-20d969cbf1d9.png",
@@ -557,7 +571,8 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "crava",
     name: "Crava",
     tagline: "Designed for Everyday Elegance",
-    description: "Crava brings together thoughtful design and practical innovation to create kitchens that feel both stylish and efficient.",
+    description:
+      "Crava is a stone brand offering an extensive selection of natural and engineered surfaces, including exclusive quartz slabs for kitchen countertops. Its quartz collection features carefully selected designs developed with international trends in mind, offering colour consistency, easy maintenance, and resistance to scratches and stains for kitchens, bathrooms, and other spaces.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2bb9ff4f-782f-4ecf-aa29-55261a1fbe56.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/714db3e0-d4e3-4ca6-a2e7-0e9a9a0dd826.png",
@@ -570,7 +585,8 @@ export const brandsDataLuxury: Record<string, BrandData> = {
     id: "viaan",
     name: "Viaan",
     tagline: "Health-Focused Hydration",
-    description: "Viaan offers advanced alkaline water solutions designed to support a healthier lifestyle. Clean design meets functional innovation.",
+    description:
+      "Viaan Water Science Pvt Ltd is dedicated to promoting holistic wellbeing by introducing an innovative solution that aims to revolutionize our perspective and usage of water for health and wellness. Today's modern lifestyle focuses on symptom relief rather than addressing the root causes of ailments, leading to a significant gap between effective treatment and sustainable wellness.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5343ef03-7781-4839-8ba7-c05f941649a3.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d2f475c1-8ea1-4fcc-95c2-c2394fe0feae.png",

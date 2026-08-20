@@ -7,7 +7,7 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 import { contactImages, contactCarouselImages } from "@/lib/constants/Contact";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons";
 
-const PHONE     = "+91 80267 72477";
+const PHONE     = "+91 80500 78367";
 const EMAIL     = "hello@neeladhri.com";
 const CAROUSEL_INTERVAL_MS = 3000;
 const CAROUSEL_ACTIVE_DOT = "#F79440";
@@ -502,10 +502,7 @@ export default function ContactSection() {
             <div className="w-full lg:w-1/2 flex flex-col justify-center gap-6 sm:gap-8 lg:pl-4 xl:pl-8">
               <div className="space-y-1.5 sm:space-y-2 text-center lg:text-left">
                 <Typography variant="h1" className="!text-white font-normal font-cormorant-garamond leading-snug">
-                  Have a question about our service?
-                </Typography>
-                <Typography variant="h1" className="!text-white font-normal font-cormorant-garamond leading-snug">
-                  We&apos;re here to help, contact us today.
+                  Contact Us
                 </Typography>
               </div>
 
@@ -582,14 +579,16 @@ export default function ContactSection() {
         {/* ROW 1 — Heading */}
         <div className="max-w-[1400px] mx-auto w-full text-center lg:text-left">
           <Typography variant="display-xl" className="text-white font-semibold font-poppins">
-            Get in Touch
+            Request a call back
           </Typography>
         </div>
 
         {/* ROW 2 — Paragraph */}
         <div className="max-w-[1400px] mx-auto w-full mt-4 text-center lg:text-left">
           <Typography variant="body-xl" className="text-white leading-relaxed font-normal font-poppins">
-            Whether you're designing a home, or commercial space, or sourcing high-quality tiles,
+            Whether you're designing a home, or commercial space, or sourcing high quality tiles,{" "}
+            <br className="hidden md:block" />
+            sanitaryware, bath fittings and premium wellness solutions,{" "}
             <br className="hidden md:block" />
             Neeladhri Ceramics is here to support your vision with precision and style.
           </Typography>
@@ -602,7 +601,7 @@ export default function ContactSection() {
           <div className="flex flex-col gap-4 md:hidden w-full items-center">
             <div className="flex items-start gap-3 w-full max-w-xs">
               <LocationIcon iconColor={iconColor} />
-              <Typography variant="body-sm" className="text-white leading-relaxed font-normal font-poppins">
+              <Typography variant="body-lg" className="text-white leading-relaxed font-normal font-poppins">
                 Skanda Mansion, JSS Circle<br />
                 748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
                 Bangalore, Karnataka 560070, India
@@ -611,13 +610,13 @@ export default function ContactSection() {
             <div className="flex items-center gap-3 w-full max-w-xs">
               <PhoneIcon iconColor={iconColor} />
               <a href={`tel:${PHONE.replace(/\s/g, "")}`}>
-                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition font-normal font-poppins">{PHONE}</Typography>
+                <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition font-normal font-poppins">{PHONE}</Typography>
               </a>
             </div>
             <div className="flex items-center gap-3 w-full max-w-xs">
               <EmailIcon iconColor={iconColor} />
               <a href={`mailto:${EMAIL}`}>
-                <Typography variant="body-sm" className="text-white hover:text-neutral-300 transition font-normal font-poppins">{EMAIL}</Typography>
+                <Typography variant="body-lg" className="text-white hover:text-neutral-300 transition font-normal font-poppins">{EMAIL}</Typography>
               </a>
             </div>
           </div>
@@ -655,8 +654,7 @@ export default function ContactSection() {
 
           <div className="w-full lg:w-[48%] flex flex-col gap-4 items-center lg:items-start">
             <Typography variant="body-xl" className="text-white text-center lg:text-left w-full font-semibold font-poppins">
-              Have a question about our service?<br />
-              We're here to help, contact us today.
+              Contact Us
             </Typography>
 
             <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-lg mx-auto lg:mx-0">
