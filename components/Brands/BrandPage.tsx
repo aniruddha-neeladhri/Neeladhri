@@ -189,28 +189,12 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
               {selectedBrand.name}
             </Typography>
             <Typography
-              variant="body-xl"
-              className={`font-normal mb-2 ${textAlign} ${colorTransition} ${isLuxury ? "font-cormorant-garamond" : "font-poppins"
-                } sm:hidden`}
-              style={{ color: bodyTextColor }}
-            >
-              {selectedBrand.tagline}
-            </Typography>
-            <Typography
               variant="h2"
               className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
                 } hidden sm:block`}
               style={{ color: brandNameColor }}
             >
               {selectedBrand.name}
-            </Typography>
-            <Typography
-              variant="h3"
-              className={`font-normal mb-2 ${textAlign} ${colorTransition} ${isLuxury ? "font-cormorant-garamond" : "font-poppins"
-                } hidden sm:block`}
-              style={{ color: bodyTextColor }}
-            >
-              {selectedBrand.tagline}
             </Typography>
           </div>
 

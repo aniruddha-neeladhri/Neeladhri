@@ -17,7 +17,6 @@ export const BRAND_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/72199a5d-1be9-4089-9297-f5110b90e262.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/201e9e03-9ac6-4781-a8ab-fa7f69899b36.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/49e474c3-3dd2-47e4-a72e-138dd0d68bfb.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/59bcd6a9-dcaf-46af-9236-9b33ce91076b.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c5fe70f3-37a4-48c9-87b2-2e9fa152f854.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/564f553e-1302-4261-a523-63ec27bbcfa8.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9a945e83-8987-4bd3-8f9c-f818806fc186.png",
@@ -93,7 +92,7 @@ export function brandBgImage(theme: "premium" | "luxury"): string {
 
 export const BRAND_NAMES_PREMIUM = [
   "AUGA", "Simpolo", "Bellissimo", "Roca", "Hansgrohe",
-  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaquar", "Insinkerator", "Lioli", "Roff", "Cera", "Huliot", "Specta",
+  "Carysil", "Smack", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaquar", "Insinkerator", "Lioli", "Roff", "Cera", "Huliot", "Specta",
   "Miraak", "Crava", "Filcoten", "Lunos", "Trebema", "Provent Systems", "Geberit",
 ] as const;
 
@@ -112,7 +111,7 @@ export function brandNames(theme: "premium" | "luxury"): readonly string[] {
 
 export const BRAND_ROUTES_PREMIUM = [
   "/brands/auga", "/brands/simpolo", "/brands/bellissimo", "/brands/roca",
-  "/brands/hansgrohe", "/brands/carysil", "/brands/smack", "/brands/ifb",
+  "/brands/hansgrohe", "/brands/carysil", "/brands/smack",
   "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc", "/brands/jaquar", "/brands/insinkerator", "/brands/lioli", "/brands/roff",
   "/brands/cera", "/brands/huliot", "/brands/specta", "/brands/miraak",
   "/brands/crava", "/brands/filcoten", "/brands/lunos", "/brands/trebema", "/brands/provent-systems", "/brands/geberit", "/brands/motto",
@@ -236,19 +235,7 @@ export const brandsDataPremium: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d97fe085-5505-49ac-be78-3a1ab986e2cd.png",
     ],
   },
-  ifb: {
-    id: "ifb",
-    name: "IFB",
-    tagline: "Innovation Meets Performance",
-    description: "IFB brings advanced technology into the kitchen with a range of premium appliances. Designed for convenience and efficiency, it delivers performance that fits seamlessly into modern lifestyles.",
-    images: [
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b2e32e95-c37f-40b7-b184-aaf705a5b46c.png",
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8eb3cc10-7aa9-449d-a278-8b571a2571da.png",
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/eaa66105-68b8-43f2-9239-b6c39288ead2.png",
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1abaf516-6a04-4e86-8bf0-7d3f9f8ac13a.png",
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7404aa78-cdf2-4a2a-9e86-a43dae461fd8.png",
-    ],
-  },
+  
   hafele: {
     id: "hafele",
     name: "Häfele",
