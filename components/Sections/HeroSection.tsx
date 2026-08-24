@@ -14,8 +14,21 @@ export default function HeroSection() {
   const [introDone, setIntroDone] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const introDoneRef = useRef(false);
 
   const finishIntro = useCallback(() => {
+    if (introDoneRef.current) return;
+    introDoneRef.current = true;
+
+    const video = videoRef.current;
+    if (video) {
+      video.pause();
+      video.muted = true;
+    }
+
+    // Land at the top of the site so the tile section starts normally
+    // (not mid-scroll from the intro wheel gesture).
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     setIntroDone(true);
   }, []);
 
@@ -24,6 +37,38 @@ export default function HeroSection() {
       new CustomEvent(introDone ? "homepage-intro-complete" : "homepage-intro-start")
     );
   }, [introDone]);
+
+  // Skip intro on scroll / swipe → enter the website immediately.
+  useEffect(() => {
+    if (introDone) return;
+
+    const skip = () => finishIntro();
+
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) < 8 && Math.abs(e.deltaX) < 8) return;
+      e.preventDefault();
+      skip();
+    };
+
+    let touchStartY = 0;
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0]?.clientY ?? 0;
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      const y = e.changedTouches[0]?.clientY ?? touchStartY;
+      if (Math.abs(touchStartY - y) < 24) return;
+      skip();
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [introDone, finishIntro]);
 
   // Try to autoplay with sound first; if the browser blocks it, fall back to muted autoplay.
   useEffect(() => {
