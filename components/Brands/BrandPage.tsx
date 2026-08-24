@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Typography from "@/lib/Typography";
 import { BrandData, brandsDataPremium, brandsDataLuxury } from "@/lib/constants/brands";
 import { useTheme } from "@/lib/contexts/ThemeContext";
@@ -12,6 +13,7 @@ interface BrandPageProps {
 }
 
 export default function BrandPage({ brand, brandId }: BrandPageProps) {
+  const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -151,9 +153,31 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
       `}</style>
       <div className={`flex flex-col ${flexAlign} justify-center px-4 md:px-8 mt-2 mb-12 pop-up`}>
         <div
-          className={`w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[2.5rem]"} brand-shell ${isLuxury ? "luxury-shell" : ""} border-solid`}
+          className={`relative w-full p-2 md:p-10 ${borderTransition} ${isLuxury ? "" : "rounded-[2.5rem]"} brand-shell ${isLuxury ? "luxury-shell" : ""} border-solid`}
           style={{ borderColor: accentColor }}
         >
+          <button
+            type="button"
+            onClick={() => router.back()}
+            aria-label="Close brand page"
+            className="absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center text-[#555555] transition-opacity hover:opacity-70"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+
           {/* Header */}
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
             <Typography
@@ -233,7 +257,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
                       width={400}
                       height={300}
                       priority
-                      className={`h-auto w-full object-contain border-2 rounded-[2.5rem] sm:rounded-[5rem] ${borderTransition}`}
+                      className={`h-auto w-full object-contain border-2 rounded-xl ${borderTransition}`}
                       style={{ borderColor: accentColor }}
                     />
                   </div>
@@ -274,7 +298,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
                   width={400}
                   height={300}
                   priority
-                  className={`w-full h-auto object-contain border-2 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem] ${borderTransition}`}
+                  className={`w-full h-auto object-contain border-2 rounded-xl ${borderTransition}`}
                   style={{ borderColor: accentColor }}
                 />
               ))}

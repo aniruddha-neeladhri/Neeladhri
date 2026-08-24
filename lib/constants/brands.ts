@@ -27,6 +27,15 @@ export const BRAND_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/985726a1-ae7c-4668-8da1-261959c23683.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1ed6b68c-f8eb-43b7-b26d-6e7fd2557aa3.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/78baba02-a0a3-4aa6-ae37-42ad7493e545.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/38740c23-a8b6-4afe-aacd-3c4d10a4a814.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/faab7e4b-4360-44fb-848e-55bf958e6b2c.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3c2953e1-dddb-46da-9a30-43188474b514.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/901d24c8-63d1-45e0-8c8a-633ac7a81cfa.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/551d7a97-9e2d-4249-96da-7b8ccf737f1b.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3063830d-42d4-4fda-ac8e-19ef0268dbfa.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2f631ba5-a9e6-4f1b-a205-08e5b0e85d31.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/52620cd3-9823-453f-abaf-10408221d2af.png",
+
 ] as const;
 
 // =====================
@@ -49,15 +58,21 @@ export const BRAND_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/af0b5ebd-4a83-402a-af60-2b8616f94aa1.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f2137444-0f7d-4258-9f27-35681dccd3fe.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/24820326-1754-4c49-9e9b-ba4d52d83a40.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/38740c23-a8b6-4afe-aacd-3c4d10a4a814.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/faab7e4b-4360-44fb-848e-55bf958e6b2c.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3c2953e1-dddb-46da-9a30-43188474b514.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/84d74dc7-f206-4405-8ae7-c39c3550e265.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9e02eafa-8ad1-48fd-ba5d-f985d031cf62.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/28e36a8f-344c-48a3-91c9-e66bd9155b18.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b3fd70ea-c275-4f90-9ada-fad17d509750.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/4453fc64-7c2d-4861-9b77-7644606a5673.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/16deda42-ee93-4682-a8fd-177b4507a6c6.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/bdf60290-48c4-4dec-9a03-ec1eb9ab7aa4.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/28f6bcf9-3f5d-43f0-86ca-15e09bc2bc50.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e21ec08f-09d6-429f-b25c-fb7a33384057.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3262140c-98ac-45ef-a86a-0cb980b35f88.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9b4ac292-a5b9-45ba-8a84-0b6bd83aa0f2.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8d2faeb3-6ef9-434c-a1fd-d2ea0a93c8d5.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2482005b-e5b5-4b62-b1b4-e1fcd644e489.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/702faad5-b035-40b3-84bf-c8c991e272ac.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e4c199f3-15b4-49b3-bdba-a1a510a765d2.png",
 ];
 
 export function brandImages(theme: "premium" | "luxury"): readonly string[] {
@@ -78,15 +93,17 @@ export function brandBgImage(theme: "premium" | "luxury"): string {
 
 export const BRAND_NAMES_PREMIUM = [
   "AUGA", "Simpolo", "Bellissimo", "Roca", "Hansgrohe",
-  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaguar", "Insinkerator", "Lioli", "Roff", "Cera", "Huliot",
+  "Carysil", "Smack", "IFB", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaquar", "Insinkerator", "Lioli", "Roff", "Cera", "Huliot", "Specta",
+  "Miraak", "Crava", "Filcoten", "Lunos", "Trebema", "Provent Systems", "Geberit",
 ] as const;
 
 /** Luxury brand names – same as premium until you customize */
 export const BRAND_NAMES_LUXURY: readonly string[] = [
   "Bisazza", "Atlas Concorde", "Neotra", "Dekton", "OP Butler",
   "Perrin & Rowe", "House of Rohl", "Treemme", "Galassia", "Victoria + Albert",
-  "Décor Walther", "Sunshower", "Armadi Art", "Tab", "Specta",
-  "Miraak", "Crava", "Viaan", "Water Purifiers", "Insinkerator", "Inda", "Jee o", "Alpi",
+  "Décor Walther", "Sunshower", "Armadi Art", "TAB",
+  "Viaan", "Water Purifiers", "Insinkerator", "Inda", "Jee o", "Alpi", "Blanco", "Ego", "Perk", "Kalingastone", "Ceramic Fashion Studio", "Varmora",
+  "Weber", "Oyster", "Motto",
 ];
 
 export function brandNames(theme: "premium" | "luxury"): readonly string[] {
@@ -96,8 +113,9 @@ export function brandNames(theme: "premium" | "luxury"): readonly string[] {
 export const BRAND_ROUTES_PREMIUM = [
   "/brands/auga", "/brands/simpolo", "/brands/bellissimo", "/brands/roca",
   "/brands/hansgrohe", "/brands/carysil", "/brands/smack", "/brands/ifb",
-  "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc", "/brands/jaguar", "/brands/insinkerator", "/brands/lioli", "/brands/roff",
-  "/brands/cera", "/brands/huliot",
+  "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc", "/brands/jaquar", "/brands/insinkerator", "/brands/lioli", "/brands/roff",
+  "/brands/cera", "/brands/huliot", "/brands/specta", "/brands/miraak",
+  "/brands/crava", "/brands/filcoten", "/brands/lunos", "/brands/trebema", "/brands/provent-systems", "/brands/geberit", "/brands/motto",
 ] as const;
 
 /** Luxury brand routes – same as premium until you customize */
@@ -105,8 +123,9 @@ export const BRAND_ROUTES_LUXURY: readonly string[] = [
   "/brands/bisazza", "/brands/atlas-concorde", "/brands/neotra", "/brands/dekton",
   "/brands/op-butler", "/brands/perrin-rowe", "/brands/house-of-rohl", "/brands/treemme",
   "/brands/galassia", "/brands/victoria-albert", "/brands/decor-walther", "/brands/sunshower",
-  "/brands/armadi-art", "/brands/tab", "/brands/specta", "/brands/miraak",
-  "/brands/crava", "/brands/viaan", "/brands/water-purifiers", "/brands/insinkerator", "/brands/inda", "/brands/jee-o", "/brands/alpi",
+  "/brands/armadi-art", "/brands/tab", "/brands/viaan", "/brands/water-purifiers", "/brands/insinkerator", "/brands/inda", "/brands/jee-o", "/brands/alpi",
+  "/brands/blanco", "/brands/ego", "/brands/perk", "/brands/kalingastone", "/brands/ceramicfashion", "/brands/varmora",
+  "/brands/weber", "/brands/oyster",
 ];
 
 export function brandRoutes(theme: "premium" | "luxury"): readonly string[] {
@@ -269,11 +288,11 @@ export const brandsDataPremium: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c74837e1-f662-403a-823b-c57bec179f52.png",
     ],
   },
-  "jaguar": {
-    id: "jaguar",
-    name: "Jaguar",
+  "jaquar": {
+    id: "jaquar",
+    name: "Jaquar",
     tagline: "Elevating Everyday Bathrooms",
-    description: "Jaguar offers complete bathroom solutions that combine contemporary design with reliable performance. Designed for everyday comfort and seamless functionality, it creates spaces that are both elegant and enduring.",
+    description: "Jaquar offers complete bathroom solutions that combine contemporary design with reliable performance. Designed for everyday comfort and seamless functionality, it creates spaces that are both elegant and enduring.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/24f75fd7-c7d6-45a0-b811-9f05fef6c3bd.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/52a41da3-fe6d-4225-8032-46da8f28d03f.png",
@@ -347,6 +366,76 @@ export const brandsDataPremium: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/4333c05a-f5b1-4846-b06c-7e97b63184ff.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/68bf1ab3-d685-4890-bce5-0effe159a318.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/8e2b2bd4-937e-4088-bd0d-8a9284c16c42.png",
+    ],
+  },
+  filcoten: {
+    id: "filcoten",
+    name: "Filcoten",
+    tagline: "Complete Bathroom Solutions",
+    description:
+      "FILCOTEN by BG Graspointner specialises in high performance drainage systems designed for efficient water management across residential, commercial, landscaping, and infrastructure projects. Its drainage channels are known for their strength, durability, lightweight construction, and sustainable material technology.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b5292694-a5bf-4a86-824d-2534a2dfc633.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/fbac3612-5446-421a-8985-17bebd7ffc47.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/31b4eab9-867c-4976-b2a2-8fd383310ab7.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2bd1b32c-7caa-481a-b3af-bf316318c2c8.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/82883ce4-c05a-4a01-b886-9905f4ca8568.png",
+    ],
+  },
+  lunos: {
+    id: "lunos",
+    name: "Lunos",
+    tagline: "Complete Bathroom Solutions",
+    description:
+      "LUNOS is a specialist ventilation brand offering decentralised ventilation systems for residential and commercial spaces. Its solutions are designed to provide continuous fresh air, improve indoor air quality, and manage moisture while maintaining energy efficiency and comfortable living environments.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/742269f3-31b7-4d92-b698-ca19805fec0e.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/896f9ad5-eef1-4018-8140-e8f30eea6cc7.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3078e5c6-df09-4193-9b18-af8720913c4c.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/8b4ef7e4-90b8-4b9e-a798-b5a2a1221447.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b5eb5eea-9928-4b6e-965d-50364a341cf1.png",
+    ],
+  },
+  trebema: {
+    id: "trebema",
+    name: "Trebema",
+    tagline: "Complete Bathroom Solutions",
+    description:
+      "Trebema Aqua Decalcifiers are electronic lime-dissolving water treatment units. They use an electromagnetic field to split calcium particles. This stops new scale from sticking to pipes and creates trace carbonic acid to slowly dissolve old buildup without altering overall water quality.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5b10181b-4069-4909-aec8-6d0419f779dc.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/17df479a-7e1a-4428-83e3-5fd9a85e53cf.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e9bb32fc-5bba-498e-a973-dfdcbe48f251.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/fae2c11a-cd11-4343-9154-c9d5b3971c18.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0b973a34-b66c-400d-94ca-b99ff7a4a349.png",
+    ],
+  },
+  proventsystems: {
+    id: "proventsystems",
+    name: "ProVent Systems",
+    tagline: "Complete Bathroom Solutions",
+    description:
+      "ProVent Systems specialises in ventilation and air management solutions designed to improve indoor air circulation and comfort. Its systems are suitable for residential and commercial applications, with an emphasis on efficient airflow,reliable performance, and practical installation.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2a070dd2-b772-443e-9ecd-5392a5f2ff83.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2e305584-7fe2-418f-bcf6-fc23da0f6d40.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/50b83634-eae0-460d-87ba-c1073e51085b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e0094e50-5cb8-4574-b530-2e896e072dd9.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/6b71adb2-301f-4dc1-9861-fdcf9752440a.png",
+    ],
+  },
+  geberit: {
+    id: "geberit",
+    name: "Geberit",
+    tagline: "Complete Bathroom Solutions",
+    description:
+      "Geberit is a globally recognised brand specialising in sanitary technology and bathroom solutions. Its portfolio includes concealed cisterns, installation systems, drainage solutions, toilets, and bathroom products, combining engineering expertise, reliability, water efficiency, and contemporary design.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/02d5052b-f698-41bd-a6d9-a3f827210e4b.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e52ed427-145c-42bf-b9af-6de91abb678d.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/cfbd052c-9115-4986-bbfb-e661fad8c00c.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a1f47132-e250-4f27-ae4d-e65318ce1d9d.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7ce17628-cb4a-42e4-a4ac-d77e8850f912.png",
     ],
   },
 };
@@ -528,7 +617,7 @@ export const brandsDataLuxury: Record<string, BrandData> = {
   },
   tab: {
     id: "tab",
-    name: "Tab",
+    name: "TAB",
     tagline: "Precision in Kitchen Design",
     description:
       "TABQUARTZ is a premium engineered quartz surface by TAB, combining high density with advanced Luster Technology for a refined, high gloss finish. Designed for interior applications such as kitchen countertops, bathroom vanities, and wall surfaces, TABQUARTZ offers durable, low maintenance surfaces in a wide range of colours and designs.",
@@ -658,6 +747,123 @@ export const brandsDataLuxury: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/ac2eb8db-84b1-4b9d-9cff-a68601b9985f.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/c6400d1b-62de-498d-89c8-e7e688410723.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/defdd6fd-736b-4938-9977-c044aacbe44c.png",
+    ],
+  },
+  blanco: {
+    id: "blanco",
+    name: "Blanco",
+    tagline: "Artistry in Every Surface",
+    description: "BLANCO is a premium kitchen brand specialising in high quality kitchen sinks and faucets that combine elegant design with everyday functionality. Its range features thoughtfully engineered sinks and beautifully designed faucets, created with a focus on durability, ergonomics, innovation, and seamless integration into modern kitchen spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ceb1938b-9a46-4a6d-86ee-a23af6436987.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e24de07b-21ea-49e3-9ad9-6c6c89bd35c1.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/fd3fbcc8-87fe-4395-9883-01ea1ea49cb0.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f3be8324-c02d-4832-9d5e-a060d5dd1bc2.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1c4808ed-1d69-41bc-9f72-ea9000b86ade.png",
+    ],
+  },
+  ego: {
+    id: "ego",
+    name: "Ego",
+    tagline: "Artistry in Every Surface",
+    description: "EGO is a premier name in the Indian flooring industry, recognised for its quality, innovation, and service excellence.With over 20 years of experience and a strong presence across India, the brand has earned the trust of architects,interior designers, retailers, and end users. EGO offers a curated range of Wooden Flooring, Laminate Flooring, SPC Flooring, Vinyl Flooring, and WPC Deck Flooring, bringing together durability, contemporary design, and dependable performance for modern spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d0c5f4fb-7e13-4a14-be01-9f7d78d7ca3f.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ec4ed480-83ba-44d6-babe-f5ad788a2781.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b870435b-aa01-4271-b3ef-353a8cbfb3dd.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f3023f6e-4c91-4c0b-b783-ae29a7bd7edb.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e7b0e68c-d4b0-4c96-84c9-9c497bd051df.png"
+    ],
+  },
+  perk: {
+    id: "perk",
+    name: "Perk",
+    tagline: "Artistry in Every Surface",
+    description: "Perk specialises in premium bathroom accessories and hygiene solutions, offering products such as bathroom fittings,accessories, grab bars, dispensers, holders, and storage solutions. Its products combine quality materials,contemporary design, ergonomics, and functionality for residential and commercial spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/65180ebf-7c11-4f0f-881d-4aed57de80ba.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/76fe373b-85e9-4821-91e3-a0da4e3a1704.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e04091bc-7e62-4a83-ab71-e17f26361237.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/be97d958-9043-4467-b59a-c7c4cde3d88f.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/fe548481-3572-4cce-baab-f12de0e2c911.png",
+    ],
+  },
+  kalingastone: {
+    id: "kalingastone",
+    name: "Kalingastone",
+    tagline: "Artistry in Every Surface",
+    description: "Kalingastone specialises in premium quartz surfaces for kitchen countertops and thin porcelain slabs designed for architectural applications such as facades. Its surfaces combine refined aesthetics, durability, and advanced technology, offering versatile solutions for modern residential and commercial spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ae81f1f3-cbd5-4018-ade5-3ab6bfc561a6.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/4d90fed1-7598-442a-a51d-80c1c68dc788.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a1a6811f-25e5-4d69-a738-3de281457741.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/06361f53-b40b-4e66-9821-c3a7e422aa69.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0370c934-ec09-4ded-8f92-75d953a9491d.png",
+    ],
+  },
+  ceramicfashion: {
+    id: "ceramicfashion",
+    name: "Ceramicfashion",
+    tagline: "Artistry in Every Surface",
+    description: "Ceramic Fashion Studio specialisesi n decorative ceramic and vitrified tile surfaces, with expertise in third firing technology and surface embellishment. The brand focuses on creating distinctive decorative tiles that bring colour,texture, detail, and character to interior spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/48c07417-699b-4d18-8554-415fe37fd483.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/13429dd3-539f-4c99-8d1b-f45e3aff8bc5.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f5ce743a-b8b3-4c2d-aa3e-8af9c1e91906.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3fcddf6d-1665-41d8-9502-8f34c17a9fa7.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/96a4e5ab-3b05-4fc0-a9f3-9b6f1632b269.png",
+    ],
+  },
+  varmora: {
+    id: "varmora",
+    name: "Varmora",
+    tagline: "Artistry in Every Surface",
+    description: "Varmoraisan Indian tiles and bathware brand offering a wide range of surfaces and bathroom solutions for contemporary spaces. Its portfolio includes tiles, large format slabs, and bathware, combining modern designs, versatile applications, and durable materials for residential and commercial interiors.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5f4f93ef-d8c7-48d8-b6c0-7416d183dc02.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/518375c3-d959-40ed-a6fb-5e3fb356b295.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a333f446-5a3c-49c8-8db2-cf8ec73fe8c5.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/befb1210-8077-43e4-8095-090f83963dcb.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/175f302f-93bc-4251-a547-91e64f3ac58d.png",
+    ],
+  },
+  weber: {
+    id: "weber",
+    name: "Weber",
+    tagline: "Artistry in Every Surface",
+    description: "Weber by Saint Gobain specialises in construction and building solutions, including tile fixing, grouts, waterproofing,flooring, and other surface preparation products. Its solutions are developed to deliver reliable installation, durability,and high performance across residential, commercial, and infrastructure projects.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0c04e4da-5052-42ba-86a6-df6c50d50b02.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/309615a1-9986-4d2f-8934-62d702840f2a.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5475f5d0-c74a-4f0c-9f0a-fdd4fd67f6eb.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e1be724a-13d9-4c06-b226-b08eb86faebd.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/48c395b0-10b9-4aeb-9a8f-d85a5b1bb34e.png",
+    ],
+  },
+  oyster: {
+    id: "oyster",
+    name: "Oyster",
+    tagline: "Artistry in Every Surface",
+    description: "Oysteris a premium wellness brand focused on creating sophisticated bathroom experiences. Its range combines contemporary design, innovation, quality, and functionality, with products created for homeowners, architects, and designers seeking refined bathroom solutions.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/745df0a2-bbe2-4268-9630-46eab4a3ee8c.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/38165c7b-1dcd-4194-ad5c-cd0130b9e193.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1174f3ad-1f29-4770-b413-cda624586ac0.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1ddc803c-15af-4bbe-87d8-8642aa3ec682.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/88ae226c-2733-4a8c-b3b3-a82e222302ff.png",
+    ],
+  },
+  motto: {
+    id: "motto",
+    name: "Motto",
+    tagline: "Artistry in Every Surface",
+    description: "Motto isan Indian manufacturer and exporter of ceramic and vitrified tiles, combining modern technology with contemporary design and quality. Its range includes ceramic tiles, digital wall tiles, GVT, PGVT, double charge tiles, and large format surfaces, offering stylish and durable solutions for residential and commercial spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/6d4e0927-50c7-4948-a44c-6e43fac906cf.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/ca3fb94c-e1b2-42d8-b10c-3878c24df174.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9413dd77-01a3-4417-b839-47ce36166700.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9451e0be-b9d8-4dae-a6d0-b760a5e06c39.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/69dfa3c6-56be-48b7-af88-26ef69c600e7.png",
     ],
   },
 };
