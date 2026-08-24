@@ -186,7 +186,13 @@ function TextBlock({
 
 type PinMode = "before" | "pinned" | "after";
 
-export default function TileScrollSection({ introReady = true }: { introReady?: boolean }) {
+export default function TileScrollSection({
+  introReady = true,
+  skipIntroReset = false,
+}: {
+  introReady?: boolean;
+  skipIntroReset?: boolean;
+}) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const tileRef    = useRef<HTMLDivElement>(null);
   const videoRefs  = useRef<(HTMLVideoElement | null)[]>([]);
@@ -314,17 +320,28 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
   useEffect(() => {
     const onWheel = (e: WheelEvent) => {
       if (!isPinnedRef.current) return;
+      if (isAnimatingRef.current) {
+        // Hold native scroll only while a step transition is in flight.
+        e.preventDefault();
+        return;
+      }
+
+      const dir = e.deltaY > 0 ? 1 : -1;
+      const current = currentStepRef.current;
+      const next = Math.min(STEP_COUNT - 1, Math.max(0, current + dir));
+
+      // At first/last tile: do NOT preventDefault — let the page scroll
+      // into the previous/next section. Previously preventDefault ran
+      // before this check, so the last tile trapped laptop wheel scroll.
+      if (next === current) return;
+
       e.preventDefault();
-      if (isAnimatingRef.current) return;
-
-      const dir  = e.deltaY > 0 ? 1 : -1;
-      const next = Math.min(STEP_COUNT - 1, Math.max(0, currentStepRef.current + dir));
-      if (next === currentStepRef.current) return;
-
       isAnimatingRef.current = true;
       applyStep(next);
       scrollToStep(next);
-      setTimeout(() => { isAnimatingRef.current = false; }, 700);
+      setTimeout(() => {
+        isAnimatingRef.current = false;
+      }, 700);
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
@@ -334,28 +351,34 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
   useEffect(() => {
     let touchStartY = 0;
 
-    const onTouchStart = (e: TouchEvent) => { touchStartY = e.touches[0].clientY; };
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
 
     const onTouchEnd = (e: TouchEvent) => {
-      if (!isPinnedRef.current) return;
+      if (!isPinnedRef.current || isAnimatingRef.current) return;
       const diff = touchStartY - e.changedTouches[0].clientY;
-      if (Math.abs(diff) < 30 || isAnimatingRef.current) return;
+      if (Math.abs(diff) < 30) return;
 
-      const dir  = diff > 0 ? 1 : -1;
-      const next = Math.min(STEP_COUNT - 1, Math.max(0, currentStepRef.current + dir));
-      if (next === currentStepRef.current) return;
+      const dir = diff > 0 ? 1 : -1;
+      const current = currentStepRef.current;
+      const next = Math.min(STEP_COUNT - 1, Math.max(0, current + dir));
+      // Same edge release as wheel — don't hijack when there's no next step.
+      if (next === current) return;
 
       isAnimatingRef.current = true;
       applyStep(next);
       scrollToStep(next);
-      setTimeout(() => { isAnimatingRef.current = false; }, 700);
+      setTimeout(() => {
+        isAnimatingRef.current = false;
+      }, 700);
     };
 
     window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchend",   onTouchEnd,   { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
     return () => {
       window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchend",   onTouchEnd);
+      window.removeEventListener("touchend", onTouchEnd);
     };
   }, [applyStep, scrollToStep]);
 
@@ -363,13 +386,15 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
     const rect = wrapper.getBoundingClientRect();
-    const vh   = window.innerHeight;
+    const vh = window.innerHeight;
 
     if (rect.top > 0) {
       isPinnedRef.current = false;
       setPinMode("before");
       applyStep(0);
-    } else if (rect.bottom > vh) {
+    } else if (rect.bottom > vh + 1) {
+      // +1px slack so subpixel rounding at the last step doesn't keep
+      // the section "pinned" forever and fight exit scrolls.
       isPinnedRef.current = true;
       setPinMode("pinned");
     } else {
@@ -379,6 +404,31 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
     }
   }, [applyStep]);
 
+  // Once the tile section is fully scrolled past (homepage in view),
+  // mute + pause all step videos so audio doesn't keep playing underneath.
+  useEffect(() => {
+    if (pinMode === "after") {
+      isMutedRef.current = true;
+      setIsMuted(true);
+      videoRefs.current.forEach((v) => {
+        if (!v) return;
+        v.muted = true;
+        v.pause();
+      });
+      return;
+    }
+
+    // Scrolled back into the tile section — resume the active clip (stays muted
+    // until the user unmutes again).
+    if (pinMode === "pinned" || pinMode === "before") {
+      const active = videoRefs.current[currentStepRef.current];
+      if (active) {
+        active.muted = true;
+        active.play().catch(() => {});
+      }
+    }
+  }, [pinMode]);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
@@ -387,12 +437,24 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
 
   useEffect(() => {
     if (!introReady) return;
+
+    if (skipIntroReset) {
+      // Returning from a homepage brand — keep scroll position and sync pin state.
+      handleScroll();
+      return;
+    }
+
+    // Always start the tile sequence from step 0 at the top — never
+    // resume mid-section after skipping the intro.
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     currentStepRef.current = 0;
     setActiveStep(0);
     setExitStep(null);
+    setPinMode("before");
+    isPinnedRef.current = false;
     moveTile(0);
     attemptSoundOn(videoRefs.current[0]);
-  }, [introReady, moveTile, attemptSoundOn]);
+  }, [introReady, skipIntroReset, handleScroll, moveTile, attemptSoundOn]);
 
   useEffect(() => {
     const onResize = () => moveTile(currentStepRef.current);
@@ -486,26 +548,28 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
           />
         </div>
 
-        {/* Mute / unmute toggle — fixed to the bottom-right corner, same as HeroSection */}
-        <button
-          type="button"
-          onClick={toggleMute}
-          aria-label={isMuted ? "Unmute video" : "Mute video"}
-          className={cn(
-            "fixed z-[9997] pointer-events-auto",
-            "right-4 sm:right-6 md:right-10 lg:right-12",
-            "bottom-[max(0.25rem,env(safe-area-inset-bottom))] sm:bottom-2 md:bottom-3 lg:bottom-4",
-            "flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full",
-            "bg-black/40 text-white backdrop-blur-sm transition-colors",
-            "hover:bg-black/60"
-          )}
-        >
-          {isMuted ? (
-            <VolumeX className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-          ) : (
-            <Volume2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-          )}
-        </button>
+        {/* Mute / unmute — only while the tile section is on screen */}
+        {pinMode !== "after" && (
+          <button
+            type="button"
+            onClick={toggleMute}
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+            className={cn(
+              "fixed z-[9997] pointer-events-auto",
+              "right-4 sm:right-6 md:right-10 lg:right-12",
+              "bottom-[max(0.25rem,env(safe-area-inset-bottom))] sm:bottom-2 md:bottom-3 lg:bottom-4",
+              "flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full",
+              "bg-black/40 text-white backdrop-blur-sm transition-colors",
+              "hover:bg-black/60"
+            )}
+          >
+            {isMuted ? (
+              <VolumeX className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            ) : (
+              <Volume2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            )}
+          </button>
+        )}
       </div>
     </div>
   );

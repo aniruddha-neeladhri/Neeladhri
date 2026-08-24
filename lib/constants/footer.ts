@@ -26,9 +26,11 @@ export const SOCIAL = [
 
 export const PHONE = "+91 80500 78367";
 export const EMAIL = "hello@neeladhri.com";
+export const ADDRESS =
+  "#748/41, Skanda Mansion, JSS Circle, Kanakapura Road, Jayanagar 7th Block, Bangalore, Karnataka – 560070, India";
 
 export const LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "/#privacy" },
-  { label: "Terms of Service", href: "/#terms" },
-  { label: "Sitemap", href: "/#sitemap" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Sitemap", href: "/sitemap" },
 ];

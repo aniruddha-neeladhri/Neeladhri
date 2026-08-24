@@ -5,6 +5,10 @@ import Link from "next/link";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 import { brands, luxuryBrands, type Brand } from "@/lib/constants/homebrands";
+import {
+  cancelHomepageSectionScroll,
+  setHomepageScrollTarget,
+} from "@/lib/homepageNavigation";
 
 export default function BrandsSection() {
   const { theme } = useTheme();
@@ -12,6 +16,11 @@ export default function BrandsSection() {
   const data: Brand[] = isLuxury ? luxuryBrands : brands;
   const headingColor = isLuxury ? "#D3B898" : "#555555";
   const bodyColor = isLuxury ? "#FFFFFF" : "#555555";
+
+  const handleBrandNavigate = () => {
+    cancelHomepageSectionScroll();
+    setHomepageScrollTarget("homebrands");
+  };
 
   return (
     <section id="homebrands" className="relative z-[101] w-full min-h-screen py-4 md:py-6 lg:py-8 px-4 md:px-2 lg:px-20">
@@ -38,6 +47,7 @@ export default function BrandsSection() {
               <Link
                 href={brand.href}
                 key={i}
+                onClick={handleBrandNavigate}
                 className="group relative block h-full w-full max-w-[320px] mx-auto sm:max-w-none overflow-hidden"
               >
                 <div className="relative w-full aspect-[3/4]">
@@ -69,6 +79,7 @@ export default function BrandsSection() {
               <Link
                 href={brand.href}
                 key={i}
+                onClick={handleBrandNavigate}
                 className="group flex h-full w-full max-w-[320px] mx-auto sm:max-w-none flex-col"
               >
                 <div className="relative w-full aspect-[3/4] overflow-hidden shrink-0">

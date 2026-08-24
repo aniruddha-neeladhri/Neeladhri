@@ -6,9 +6,7 @@ import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 import { contactImages, contactCarouselImages } from "@/lib/constants/Contact";
 import { LocationIcon, PhoneIcon, EmailIcon } from "@/lib/constants/ContactIcons";
-
-const PHONE     = "+91 80500 78367";
-const EMAIL     = "hello@neeladhri.com";
+import { EMAIL, PHONE } from "@/lib/constants/footer";
 const CAROUSEL_INTERVAL_MS = 3000;
 const CAROUSEL_ACTIVE_DOT = "#F79440";
 const BORDER_W  = 1.5;
@@ -602,9 +600,9 @@ export default function ContactSection() {
             <div className="flex items-start gap-3 w-full max-w-xs">
               <LocationIcon iconColor={iconColor} />
               <Typography variant="body-lg" className="text-white leading-relaxed font-normal font-poppins">
-                Skanda Mansion, JSS Circle<br />
-                748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
-                Bangalore, Karnataka 560070, India
+                #748/41, Skanda Mansion, JSS Circle<br />
+                Kanakapura Road, Jayanagar 7th Block<br />
+                Bangalore, Karnataka – 560070, India
               </Typography>
             </div>
             <div className="flex items-center gap-3 w-full max-w-xs">
@@ -626,9 +624,9 @@ export default function ContactSection() {
             <div className="flex items-start gap-3">
               <LocationIcon iconColor={iconColor} />
               <Typography variant="body-lg" className="text-white leading-relaxed font-normal font-poppins">
-                Skanda Mansion, JSS Circle<br />
-                748/41, Kanakapura Rd, 7th Block, Jayanagar<br />
-                Bangalore, Karnataka 560070, India
+                #748/41, Skanda Mansion, JSS Circle<br />
+                Kanakapura Road, Jayanagar 7th Block<br />
+                Bangalore, Karnataka – 560070, India
               </Typography>
             </div>
             <div className="flex flex-col gap-3">

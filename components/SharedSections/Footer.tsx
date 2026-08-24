@@ -3,6 +3,7 @@ import Link from "next/link";
 import Typography from "@/lib/Typography";
 import {
   ABOUT_LINKS,
+  ADDRESS,
   EMAIL,
   LEGAL_LINKS,
   PHONE,
@@ -35,8 +36,8 @@ export default function Footer() {
           <div className="flex flex-col items-center gap-3">
             <div className="flex items-start justify-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-[3px] shrink-0 text-neutral-400"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              <Typography variant="body-sm" className="text-white leading-relaxed max-w-[240px]">
-                Skanda Mansion, JSS Circle 748/41, Kanakapura&nbsp;Rd, 7th&nbsp;Block, Jayanagar Bangalore, India
+              <Typography variant="body-sm" className="text-white leading-relaxed max-w-[280px]">
+                {ADDRESS}
               </Typography>
             </div>
             <div className="w-full max-w-[280px] rounded-lg overflow-hidden border border-neutral-700">
@@ -55,8 +56,8 @@ export default function Footer() {
           <div className="flex items-center justify-center gap-8">
             <div className="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-neutral-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              <a href="tel:+918062279027" className="transition hover:text-neutral-300">
-                <Typography variant="body-sm" className="text-white">+91 806 227 9027</Typography>
+              <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="transition hover:text-neutral-300">
+                <Typography variant="body-sm" className="text-white">{PHONE}</Typography>
               </a>
             </div>
             <div className="flex items-center gap-2">
@@ -190,8 +191,7 @@ export default function Footer() {
                 <li className="flex items-start gap-3">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0 text-white"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   <Typography variant="body-lg" className="max-w-[280px] leading-relaxed text-white font-medium font-montserrat">
-                     #748/41, Skanda Mansion, JSS Circle, Kanakapura Road, Jayanagar 7th Block, Bangalore, Karnataka – 560070,
-India
+                    {ADDRESS}
                   </Typography>
                 </li>
                 <li>

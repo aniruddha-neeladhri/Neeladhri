@@ -167,7 +167,7 @@ export const brandsDataPremium: Record<string, BrandData> = {
     name: "ROCA",
     tagline: "Refined Surfaces with European Elegance",
     description:
-      "Roca is a globally recognised bathroom solutions brand with over a century of experience in design, manufacturing, and innovation. Its extensive portfolio includes sanitaryware, basins, faucets, showers, bathtubs, bathroom furniture, mirrors, accessories, installation systems, and smart toilets. Roca brings together functionality, contemporary design, quality, and sustainability to create complete bathroom spaces suited to modern lifestyles.",
+      "Roca delivers sophisticated bathroom solutions inspired by modern European design, offering premium sanitaryware and bath fittings that combine refined aesthetics, quality craftsmanship, and everyday functionality.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/392964d8-cc52-47f5-b347-1be38d245bf2.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0977bd5b-1b8a-4dd4-a535-eb0342290146.png",
@@ -300,7 +300,7 @@ export const brandsDataPremium: Record<string, BrandData> = {
     name: "Lioli",
     tagline: "Luxury Large-Format Surfaces",
     description:
-      "Lioli Ceramica specialises in large-format porcelain slabs and premium porcelain surfaces designed for contemporary interiors. Known for its advanced manufacturing technology and large slab formats, Lioli offers surfaces that combine sophisticated aesthetics, durability, and versatility. Its range can be used across floors, walls, facades, countertops, and other architectural applications, making it a strong choice for creating seamless and statement-making spaces.",
+      "Lioli brings premium large-format porcelain surfaces with sophisticated design, durability, and versatility for modern spaces.",
     images: [
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/cd147ceb-b954-4548-8077-5a9df7a05bac.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/fb47a4a5-6a3e-4770-b4d5-80310a73c2cd.png",
