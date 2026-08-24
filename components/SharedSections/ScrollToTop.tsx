@@ -1,23 +1,38 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
+import {
+  cancelHomepageSectionScroll,
+  clearHomepageScrollTarget,
+  isReturningToHomeBrands,
+  pinPageToTop,
+  recordPathChange,
+} from "@/lib/homepageNavigation";
 
 export default function ScrollToTop() {
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Disable scroll restoration
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
+  useLayoutEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
     }
-  }, []);
 
-  useEffect(() => {
-    // Force scroll to top on route change
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    recordPathChange(pathname);
+
+    if (pathname === "/" && isReturningToHomeBrands()) {
+      cancelHomepageSectionScroll();
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    cancelHomepageSectionScroll();
+
+    if (pathname !== "/" && !pathname.startsWith("/brands/")) {
+      clearHomepageScrollTarget();
+    }
+
+    pinPageToTop();
   }, [pathname]);
 
   return null;

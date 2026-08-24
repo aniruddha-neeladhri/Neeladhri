@@ -25,6 +25,12 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
       : brandsDataPremium[selectedBrandId] ?? brandsDataLuxury[selectedBrandId] ?? brand
     : brand;
 
+  // Tell the homepage to skip the intro video and land on the brands section
+  // when the user goes back from here.
+  useEffect(() => {
+    sessionStorage.setItem("neeladhri:return-to", "homebrands");
+  }, []);
+
   const updateScrollState = useCallback(() => {
     const container = scrollRef.current;
     if (!container) return;
@@ -105,7 +111,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
           animation: popUp 0.5s ease-out;
         }
         .brand-shell {
-          border: 2px solid;
+          border: 1px solid;
         }
         .luxury-shell {
           border-width: 1px !important;
@@ -268,7 +274,7 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
                   width={400}
                   height={300}
                   priority
-                  className={`w-full h-auto object-contain border-2 rounded-[1rem] lg:rounded-[2rem] xl:rounded-[3rem] 2xl:rounded-[4rem] ${borderTransition}`}
+                  className={`w-full h-auto object-contain border-2 rounded-[2rem] lg:rounded-[3rem] xl:rounded-[4rem] 2xl:rounded-[5rem] ${borderTransition}`}
                   style={{ borderColor: accentColor }}
                 />
               ))}

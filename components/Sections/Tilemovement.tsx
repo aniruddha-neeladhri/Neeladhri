@@ -186,7 +186,13 @@ function TextBlock({
 
 type PinMode = "before" | "pinned" | "after";
 
-export default function TileScrollSection({ introReady = true }: { introReady?: boolean }) {
+export default function TileScrollSection({
+  introReady = true,
+  skipIntroReset = false,
+}: {
+  introReady?: boolean;
+  skipIntroReset?: boolean;
+}) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const tileRef    = useRef<HTMLDivElement>(null);
   const videoRefs  = useRef<(HTMLVideoElement | null)[]>([]);
@@ -431,6 +437,13 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
 
   useEffect(() => {
     if (!introReady) return;
+
+    if (skipIntroReset) {
+      // Returning from a homepage brand — keep scroll position and sync pin state.
+      handleScroll();
+      return;
+    }
+
     // Always start the tile sequence from step 0 at the top — never
     // resume mid-section after skipping the intro.
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -441,7 +454,7 @@ export default function TileScrollSection({ introReady = true }: { introReady?: 
     isPinnedRef.current = false;
     moveTile(0);
     attemptSoundOn(videoRefs.current[0]);
-  }, [introReady, moveTile, attemptSoundOn]);
+  }, [introReady, skipIntroReset, handleScroll, moveTile, attemptSoundOn]);
 
   useEffect(() => {
     const onResize = () => moveTile(currentStepRef.current);

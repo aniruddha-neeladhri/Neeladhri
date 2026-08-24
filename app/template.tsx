@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 import { usePathname } from "next/navigation";
 
@@ -66,11 +66,6 @@ export function AnimatedItem({ children }: { children: ReactNode }) {
 export default function Template({ children }: TemplateProps) {
   const { theme } = useTheme();
   const pathname = usePathname();
-
-  useEffect(() => {
-    // Scroll to top on page navigation
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
 
   return (
     <motion.div
