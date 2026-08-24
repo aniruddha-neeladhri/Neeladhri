@@ -32,11 +32,11 @@ export default function HomePage() {
 
       {isLuxury ? (
         <>
-          <div className="relative z-10 flex lg:min-h-[100dvh] min-h-[80dvh] w-full flex-col items-center justify-end px-4 pb-28 sm:px-6 sm:pb-32 md:pb-36">
+          <div className="relative z-10 flex lg:min-h-[100dvh] min-h-[80dvh] w-full flex-col items-center justify-end px-4 pb-20 sm:px-6 sm:pb-24 md:pb-28">
             <div className="flex flex-col items-center text-center">
               <Typography
                 variant="display-3xl"
-                className="!text-white font-normal font-the-seasons leading-tight tracking-tight"
+                className="!text-white font-normal font-playfair-display leading-tight tracking-tight uppercase"
                 style={{ color: WHITE }}
               >
                 {hero.titleLine2}
@@ -46,7 +46,7 @@ export default function HomePage() {
 
           <Link
             href={hero.ctaHref}
-            className="absolute bottom-6 left-1/2 z-20 inline-flex -translate-x-1/2 items-center justify-center px-3 py-3 whitespace-nowrap transition-opacity duration-200 hover:opacity-90 max-md:bottom-8 md:left-auto md:right-10 md:translate-x-0 md:bottom-10 lg:bottom-12 lg:right-12 md:px-8 md:py-3.5"
+            className="absolute bottom-6 left-1/2 z-20 inline-flex -translate-x-1/2 items-center justify-center px-3 py-3 whitespace-nowrap transition-opacity duration-200 hover:opacity-90 max-md:bottom-8 md:bottom-10 lg:bottom-12 md:px-8 md:py-3.5"
             style={{ backgroundColor: hero.buttonBg }}
           >
             <Typography

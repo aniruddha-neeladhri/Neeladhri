@@ -26,8 +26,8 @@ export default function Footer() {
           <Link href="/">
             <Image src="/logo.png" alt="Neeladhri Ceramics" width={160} height={60} className="h-16 w-auto object-contain" />
           </Link>
-          <Typography variant="body-sm" className="text-white mt-1">
-            Elevating spaces with premium ceramic excellence since 1996.
+          <Typography variant="body-sm" className="mt-1 max-w-[280px] text-white">
+            Your trusted destination for premium tiles, bath solutions, sanitaryware, and thoughtfully designed living spaces.
           </Typography>
         </div>
 

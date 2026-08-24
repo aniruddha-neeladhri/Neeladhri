@@ -6,7 +6,7 @@ const features = [
   {
     title: "Proven Expertise",
     description:
-      "More than Two decades of experience in delivering trusted interior and surface solutions.",
+      "Over two decades of delivering quality, innovation, and trusted solutions.",
   },
   {
     title: "Curated Selection",

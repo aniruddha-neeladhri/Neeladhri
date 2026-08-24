@@ -1,6 +1,6 @@
 import BrandPage from "@/components/Brands/BrandPage";
 import { brandsData } from "@/lib/constants/brands";
 
-export default function Jaguar() {
-  return <BrandPage brand={brandsData["jaguar"]} />;
+export default function WeberPage() {
+  return <BrandPage brand={brandsData.weber} />;
 }

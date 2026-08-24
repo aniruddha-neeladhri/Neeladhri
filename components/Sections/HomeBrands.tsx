@@ -112,6 +112,13 @@ export default function BrandsSection() {
           )}
         </div>
 
+        <Link
+          href="/brands"
+          className="mx-auto inline-flex items-center justify-center bg-[#F79440] px-6 py-3 font-poppins text-sm font-medium text-white transition-opacity hover:opacity-90"
+        >
+          View More
+        </Link>
+
       </div>
     </section>
   );
