@@ -12,23 +12,24 @@ interface TemplateProps {
 const pageVariants = {
   initial: {
     opacity: 0,
-    y: 40,
+    y: 24,
   },
   animate: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
-      staggerChildren: 0.08,
-      delayChildren: 0.05,
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1] as const,
+      staggerChildren: 0.06,
+      delayChildren: 0.04,
     },
   },
   exit: {
     opacity: 0,
-    y: -20,
+    y: -12,
     transition: {
-      duration: 0.3,
+      duration: 0.28,
+      ease: "easeIn" as const,
     },
   },
 };
@@ -36,14 +37,14 @@ const pageVariants = {
 const itemVariants = {
   initial: {
     opacity: 0,
-    y: 60,
+    y: 32,
   },
   animate: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
-      ease: "easeOut" as const,
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 };
@@ -51,9 +52,9 @@ const itemVariants = {
 export function AnimatedItem({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
   return (
-    <motion.div 
-      key={theme} 
-      variants={itemVariants} 
+    <motion.div
+      key={theme}
+      variants={itemVariants}
       className="w-full"
       initial="initial"
       animate="animate"
@@ -64,12 +65,13 @@ export function AnimatedItem({ children }: { children: ReactNode }) {
 }
 
 export default function Template({ children }: TemplateProps) {
-  const { theme } = useTheme();
   const pathname = usePathname();
 
+  // Key by route only — theme changes must not remount the page
+  // (that remount was causing the toggle glitch on the homepage).
   return (
     <motion.div
-      key={`${pathname}-${theme}`}
+      key={pathname}
       variants={pageVariants}
       initial="initial"
       animate="animate"

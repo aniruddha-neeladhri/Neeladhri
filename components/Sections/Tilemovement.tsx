@@ -207,6 +207,8 @@ export default function TileScrollSection({
   const isAnimatingRef  = useRef(false);
   const isPinnedRef     = useRef(false);
   const isMutedRef      = useRef(true);
+  const introReadyRef   = useRef(introReady);
+  introReadyRef.current = introReady;
 
   const applyMuteToAll = useCallback((muted: boolean) => {
     videoRefs.current.forEach((v, i) => {
@@ -383,6 +385,10 @@ export default function TileScrollSection({
   }, [applyStep, scrollToStep]);
 
   const handleScroll = useCallback(() => {
+    // Ignore leftover page scroll while the landing intro is still playing
+    // (e.g. theme toggle remount mid-page) — otherwise we jump to the last tile.
+    if (!introReadyRef.current) return;
+
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
     const rect = wrapper.getBoundingClientRect();
@@ -444,17 +450,30 @@ export default function TileScrollSection({
       return;
     }
 
-    // Always start the tile sequence from step 0 at the top — never
-    // resume mid-section after skipping the intro.
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    currentStepRef.current = 0;
-    setActiveStep(0);
-    setExitStep(null);
-    setPinMode("before");
-    isPinnedRef.current = false;
-    moveTile(0);
+    // Always start the tile sequence from step 0 at the top after the landing video.
+    const resetToFirstTile = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      currentStepRef.current = 0;
+      setActiveStep(0);
+      setExitStep(null);
+      setPinMode("before");
+      isPinnedRef.current = false;
+      moveTile(0);
+    };
+
+    resetToFirstTile();
     attemptSoundOn(videoRefs.current[0]);
-  }, [introReady, skipIntroReset, handleScroll, moveTile, attemptSoundOn]);
+
+    // One more frame after scroll settles so handleScroll cannot re-apply the last tile.
+    const raf = requestAnimationFrame(() => {
+      resetToFirstTile();
+      applyStep(0, true);
+    });
+
+    return () => cancelAnimationFrame(raf);
+  }, [introReady, skipIntroReset, handleScroll, moveTile, attemptSoundOn, applyStep]);
 
   useEffect(() => {
     const onResize = () => moveTile(currentStepRef.current);

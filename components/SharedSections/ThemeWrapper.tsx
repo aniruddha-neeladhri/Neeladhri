@@ -21,6 +21,11 @@ export default function ThemeWrapper() {
     root.style.setProperty("--theme-page-bg", bg);
     root.style.setProperty("--foreground", fg);
     root.style.colorScheme = theme === "luxury" ? "dark" : "light";
+
+    if (!body.style.transition.includes("background-color")) {
+      body.style.transition =
+        "background-color 0.55s cubic-bezier(0.22, 1, 0.36, 1), color 0.55s cubic-bezier(0.22, 1, 0.36, 1)";
+    }
     body.style.backgroundColor = bg;
     body.style.color = fg;
   }, [theme]);
