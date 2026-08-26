@@ -5,35 +5,74 @@ import Image from "next/image";
 import { Volume2, VolumeX } from "lucide-react";
 import Typography from "@/lib/Typography";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/lib/contexts/ThemeContext";
 
-const STEPS = [
+type TileStep = {
+  heading: string;
+  body: string;
+  videoSrc: string;
+  videoTime: number;
+};
+
+const STEPS_PREMIUM: TileStep[] = [
   {
     heading: "Living Room",
     body: "Spaces that reflect your style.\nFind flooring and wall solutions that transform everyday living into something extraordinary.",
-    videoSrc:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/dc42b44c-f3ce-4206-98f2-ea7e67ca890b.mp4",
+    videoSrc:
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/dc42b44c-f3ce-4206-98f2-ea7e67ca890b.mp4",
     videoTime: 0,
   },
   {
     heading: "Kitchen",
     body: "Cook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
-    videoSrc:   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/24ad9e06-4fc6-48d8-880a-ebb74963441a.mp4",
+    videoSrc:
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/24ad9e06-4fc6-48d8-880a-ebb74963441a.mp4",
     videoTime: 5,
   },
   {
     heading: "Dining Room",
     body: "Made for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
-    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/10fac9df-5445-47e3-834c-49f68bb3a7db.mp4",
+    videoSrc:
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/10fac9df-5445-47e3-834c-49f68bb3a7db.mp4",
     videoTime: 10,
   },
   {
     heading: "Bathroom",
     body: "Every detail matters. Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
-    videoSrc: "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/df96c5d9-2037-4625-bc08-47fb1382de5d.mp4",
+    videoSrc:
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/df96c5d9-2037-4625-bc08-47fb1382de5d.mp4",
     videoTime: 15,
   },
 ];
 
-const STEP_COUNT = STEPS.length;
+const STEPS_LUXURY: TileStep[] = [
+  {
+    heading: "Living Room",
+    body: "Spaces of signature living.\nDiscover bespoke surfaces and distinctive finishes, curated to bring character, elegance and timeless luxury to your living space.",
+    videoSrc: STEPS_PREMIUM[0].videoSrc,
+    videoTime: 0,
+  },
+  {
+    heading: "Kitchen",
+    body: "Designed for a signature lifestyle.\nExplore bespoke surfaces, luxury fittings and refined finishes, thoughtfully curated to create a kitchen of exceptional style and sophistication.",
+    videoSrc: STEPS_PREMIUM[1].videoSrc,
+    videoTime: 5,
+  },
+  {
+    heading: "Dining Room",
+    body: "Dining, elevated to an art.\nSignature surfaces and bespoke collections come together to create an elegant setting defined by luxury, character and timeless appeal.",
+    videoSrc: STEPS_PREMIUM[2].videoSrc,
+    videoTime: 10,
+  },
+  {
+    heading: "Bathroom",
+    body: "A sanctuary of signature luxury.\nFrom bespoke surfaces to statement sanitaryware and fittings, discover exquisite details crafted to create a bathroom of timeless elegance.",
+    videoSrc: STEPS_PREMIUM[3].videoSrc,
+    videoTime: 15,
+  },
+];
+
+const STEP_COUNT = STEPS_PREMIUM.length;
 const TILE_Y_FRACTIONS = [0.06, 0.30, 0.54, 0.78] as const;
 const XL_BREAKPOINT_PX = 1280;
 
@@ -159,7 +198,7 @@ function TextBlock({
   exiting,
   direction,
 }: {
-  step: (typeof STEPS)[0];
+  step: TileStep;
   active: boolean;
   exiting: boolean;
   direction: 1 | -1;
@@ -193,6 +232,9 @@ export default function TileScrollSection({
   introReady?: boolean;
   skipIntroReset?: boolean;
 }) {
+  const { theme } = useTheme();
+  const STEPS = theme === "luxury" ? STEPS_LUXURY : STEPS_PREMIUM;
+
   const wrapperRef = useRef<HTMLDivElement>(null);
   const tileRef    = useRef<HTMLDivElement>(null);
   const videoRefs  = useRef<(HTMLVideoElement | null)[]>([]);
@@ -300,7 +342,7 @@ export default function TileScrollSection({
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
       if (i === step) {
-        v.currentTime = STEPS[i].videoTime;
+        v.currentTime = STEPS_PREMIUM[i].videoTime;
         v.muted = isMutedRef.current;
         v.play().catch(() => {});
       } else {
@@ -520,7 +562,7 @@ export default function TileScrollSection({
         <div className="absolute top-0 left-0 z-10 h-full w-[50%] overflow-hidden bg-black/[0.72] md:w-[40%] xl:w-[28%]">
           {STEPS.map((s, i) => (
             <TextBlock
-              key={i}
+              key={`${theme}-${i}`}
               step={s}
               active={activeStep === i}
               exiting={exitStep === i}
