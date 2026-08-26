@@ -74,6 +74,7 @@ export const BRAND_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/702faad5-b035-40b3-84bf-c8c991e272ac.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e4c199f3-15b4-49b3-bdba-a1a510a765d2.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/710061cd-46bd-4752-9eaa-0f6bf9999399.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9a945e83-8987-4bd3-8f9c-f818806fc186.png",
 ];
 
 export function brandImages(theme: "premium" | "luxury"): readonly string[] {
@@ -104,7 +105,7 @@ export const BRAND_NAMES_LUXURY: readonly string[] = [
   "Perrin & Rowe", "House of Rohl", "Treemme", "Galassia", "Victoria + Albert",
   "Décor Walther", "Sunshower", "Armadi Art", "TAB",
   "Viaan", "Water Purifiers", "Insinkerator", "Inda", "Jee o", "Alpi", "Blanco", "Ego", "Perk", "Kalingastone", "Ceramic Fashion Studio", "Varmora",
-  "Weber", "Oyster", "Motto", "AO Smith",
+  "Weber", "Oyster", "Motto", "AO Smith", "Wesmarc",
 ];
 
 export function brandNames(theme: "premium" | "luxury"): readonly string[] {
@@ -126,7 +127,7 @@ export const BRAND_ROUTES_LUXURY: readonly string[] = [
   "/brands/galassia", "/brands/victoria-albert", "/brands/decor-walther", "/brands/sunshower",
   "/brands/armadi-art", "/brands/tab", "/brands/viaan", "/brands/water-purifiers", "/brands/insinkerator", "/brands/inda", "/brands/jee-o", "/brands/alpi",
   "/brands/blanco", "/brands/ego", "/brands/perk", "/brands/kalingastone", "/brands/ceramicfashion", "/brands/varmora",
-  "/brands/weber", "/brands/oyster", "/brands/motto", "/brands/ao-smith",
+  "/brands/weber", "/brands/oyster", "/brands/motto", "/brands/ao-smith", "/brands/wesmarc",
 ];
 
 export function brandRoutes(theme: "premium" | "luxury"): readonly string[] {
@@ -881,6 +882,20 @@ export const brandsDataLuxury: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d24132ce-0473-45ba-899a-0c67ec9c8704.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/cbfa0669-13bd-454c-9b74-a9e47b63cacc.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/00c749e8-a421-460e-ac1b-d38d44e6a4b8.png",
+    ],
+  },
+  wesmarc: {
+    id: "wesmarc",
+    name: "Wesmarc",
+    tagline: "Crafted Entrances That Last",
+    description:
+      "Wesmarc doors combine strength, durability, and elegant design to create lasting impressions. Built with precision, they enhance both the security and style of modern spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d1dc9a1b-04c2-4ce3-91ae-d48a25dace21.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7ac228e4-e909-49d9-b2f8-13411c0c4429.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/df6ab743-2a74-4387-9ce5-9a6653532a2d.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0ff894b8-0a25-49b8-9d73-4c61fa5ec0f5.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c74837e1-f662-403a-823b-c57bec179f52.png",
     ],
   },
 };
