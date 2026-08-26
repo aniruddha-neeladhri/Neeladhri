@@ -34,6 +34,7 @@ export const BRAND_IMAGES_PREMIUM = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/3063830d-42d4-4fda-ac8e-19ef0268dbfa.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2f631ba5-a9e6-4f1b-a205-08e5b0e85d31.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/52620cd3-9823-453f-abaf-10408221d2af.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a98345ee-807b-44a7-8ff9-beecf8435dc8.png",
 
 ] as const;
 
@@ -57,7 +58,7 @@ export const BRAND_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/af0b5ebd-4a83-402a-af60-2b8616f94aa1.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/f2137444-0f7d-4258-9f27-35681dccd3fe.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/24820326-1754-4c49-9e9b-ba4d52d83a40.png",
-  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/84d74dc7-f206-4405-8ae7-c39c3550e265.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0f270083-4077-4724-b323-fd7b5156137e.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9e02eafa-8ad1-48fd-ba5d-f985d031cf62.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/28e36a8f-344c-48a3-91c9-e66bd9155b18.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/b3fd70ea-c275-4f90-9ada-fad17d509750.png",
@@ -72,6 +73,7 @@ export const BRAND_IMAGES_LUXURY: readonly string[] = [
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/2482005b-e5b5-4b62-b1b4-e1fcd644e489.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/702faad5-b035-40b3-84bf-c8c991e272ac.png",
   "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e4c199f3-15b4-49b3-bdba-a1a510a765d2.png",
+  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/710061cd-46bd-4752-9eaa-0f6bf9999399.png",
 ];
 
 export function brandImages(theme: "premium" | "luxury"): readonly string[] {
@@ -93,7 +95,7 @@ export function brandBgImage(theme: "premium" | "luxury"): string {
 export const BRAND_NAMES_PREMIUM = [
   "AUGA", "Simpolo", "Bellissimo", "Roca", "Hansgrohe",
   "Carysil", "Smack", "Häfele", "3M Water Purifiers", "Wesmarc", "Jaquar", "Insinkerator", "Lioli", "Roff", "Cera", "Huliot", "Specta",
-  "Miraak", "Crava", "Filcoten", "Lunos", "Trebema", "Provent Systems", "Geberit",
+  "Miraak", "Crava", "Filcoten", "Lunos", "Trebema", "Provent Systems", "Geberit", "Pare",
 ] as const;
 
 /** Luxury brand names – same as premium until you customize */
@@ -102,7 +104,7 @@ export const BRAND_NAMES_LUXURY: readonly string[] = [
   "Perrin & Rowe", "House of Rohl", "Treemme", "Galassia", "Victoria + Albert",
   "Décor Walther", "Sunshower", "Armadi Art", "TAB",
   "Viaan", "Water Purifiers", "Insinkerator", "Inda", "Jee o", "Alpi", "Blanco", "Ego", "Perk", "Kalingastone", "Ceramic Fashion Studio", "Varmora",
-  "Weber", "Oyster", "Motto",
+  "Weber", "Oyster", "Motto", "AO Smith",
 ];
 
 export function brandNames(theme: "premium" | "luxury"): readonly string[] {
@@ -114,7 +116,7 @@ export const BRAND_ROUTES_PREMIUM = [
   "/brands/hansgrohe", "/brands/carysil", "/brands/smack",
   "/brands/hafele", "/brands/3m-water-purifiers", "/brands/wesmarc", "/brands/jaquar", "/brands/insinkerator", "/brands/lioli", "/brands/roff",
   "/brands/cera", "/brands/huliot", "/brands/specta", "/brands/miraak",
-  "/brands/crava", "/brands/filcoten", "/brands/lunos", "/brands/trebema", "/brands/provent-systems", "/brands/geberit", "/brands/motto",
+  "/brands/crava", "/brands/filcoten", "/brands/lunos", "/brands/trebema", "/brands/provent-systems", "/brands/geberit", "/brands/pare",
 ] as const;
 
 /** Luxury brand routes – same as premium until you customize */
@@ -124,7 +126,7 @@ export const BRAND_ROUTES_LUXURY: readonly string[] = [
   "/brands/galassia", "/brands/victoria-albert", "/brands/decor-walther", "/brands/sunshower",
   "/brands/armadi-art", "/brands/tab", "/brands/viaan", "/brands/water-purifiers", "/brands/insinkerator", "/brands/inda", "/brands/jee-o", "/brands/alpi",
   "/brands/blanco", "/brands/ego", "/brands/perk", "/brands/kalingastone", "/brands/ceramicfashion", "/brands/varmora",
-  "/brands/weber", "/brands/oyster",
+  "/brands/weber", "/brands/oyster", "/brands/motto", "/brands/ao-smith",
 ];
 
 export function brandRoutes(theme: "premium" | "luxury"): readonly string[] {
@@ -425,6 +427,20 @@ export const brandsDataPremium: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/7ce17628-cb4a-42e4-a4ac-d77e8850f912.png",
     ],
   },
+  pare: {
+    id: "pare",
+    name: "PARE",
+    tagline: "Premium Interior & Exterior Surfaces",
+    description:
+      "PARE offers premium interior and exterior surface solutions designed for contemporary homes and commercial spaces. Its portfolio includes luxury wall panels, SPC and LVT flooring, exterior cladding, and ceiling systems that combine sophisticated design, durability, and functionality. With a presence across 500+ cities and 7,000+ projects, PARE has built a strong reputation for delivering stylish and versatile solutions for modern spaces.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/480b5d10-3409-4a5a-acb8-0e909b3f6da3.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0c9c2370-55d2-4347-b57c-6396ceb00286.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/1e67af6d-6c2a-4d63-a82d-88ad235136f4.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0d1ac586-6171-43dc-adaf-0b916e57c5cc.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/a98345ee-807b-44a7-8ff9-beecf8435dc8.png",
+    ],
+  },
 };
 
 /** Luxury brand data – same as premium until you customize */
@@ -660,15 +676,15 @@ export const brandsDataLuxury: Record<string, BrandData> = {
   viaan: {
     id: "viaan",
     name: "Viaan",
-    tagline: "Health-Focused Hydration",
+    tagline: "Water for Health & Wellness",
     description:
-      "Viaan Water Science Pvt Ltd is dedicated to promoting holistic wellbeing by introducing an innovative solution that aims to revolutionize our perspective and usage of water for health and wellness. Today's modern lifestyle focuses on symptom relief rather than addressing the root causes of ailments, leading to a significant gap between effective treatment and sustainable wellness.",
+      "ViaanWaterScience Pvt Ltd is dedicated to promoting holistic wellbeing by introducing an innovative solution that aims to revolutionize our perspective and usage of water for health and wellness. Today's modern lifestyle focuses on symptom relief rather than addressing the root causes of ailments, leading to a significant gap between effective treatment and sustainable wellness.",
     images: [
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/5343ef03-7781-4839-8ba7-c05f941649a3.png",
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d2f475c1-8ea1-4fcc-95c2-c2394fe0feae.png",
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/23218f52-5ac5-4403-a191-e81f48e6a50a.png",
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/6ed05950-1909-4575-9e2d-39d5b02ca37a.png",
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0aaa2b91-91c5-45cd-89a0-44680c789002.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9c2b02a0-9720-46c3-9ebd-745ce7cfdac0.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/bbc14078-1a4a-46e7-bdbd-b49daa96f4fd.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/e0c190d4-38e0-4dd9-b96a-bbd071ce7277.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/0f270083-4077-4724-b323-fd7b5156137e.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/c6046e97-924a-4f03-b9e1-bd2ec420ffd5.png",
     ],
   },
   waterPurifiers: {
@@ -851,6 +867,20 @@ export const brandsDataLuxury: Record<string, BrandData> = {
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9413dd77-01a3-4417-b839-47ce36166700.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/9451e0be-b9d8-4dae-a6d0-b760a5e06c39.png",
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/69dfa3c6-56be-48b7-af88-26ef69c600e7.png",
+    ],
+  },
+  "ao-smith": {
+    id: "ao-smith",
+    name: "AO Smith",
+    tagline: "Advanced Water Technology",
+    description:
+      "A. O. Smith is a leading water technology brand offering advanced water heating and water treatment solutions. Its range includes instant, storage, and tankless water heaters along with water purifiers and other water management products, focusing on energy efficiency, performance, safety, and modern technology.",
+    images: [
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/710061cd-46bd-4752-9eaa-0f6bf9999399.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/205a9903-dd2b-4ae4-ac0b-bd1946193ce2.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/d24132ce-0473-45ba-899a-0c67ec9c8704.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/cbfa0669-13bd-454c-9b74-a9e47b63cacc.png",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/brands/00c749e8-a421-460e-ac1b-d38d44e6a4b8.png",
     ],
   },
 };
