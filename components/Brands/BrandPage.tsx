@@ -4,7 +4,8 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Typography from "@/lib/Typography";
-import { BrandData, brandsDataPremium, brandsDataLuxury } from "@/lib/constants/brands";
+import type { BrandData } from "@/types/brand";
+import { brandsDataPremium, brandsDataLuxury } from "@/lib/constants/brands";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 
 interface BrandPageProps {

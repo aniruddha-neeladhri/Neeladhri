@@ -8,7 +8,7 @@ import { brands, luxuryBrands, type Brand } from "@/lib/constants/homebrands";
 import {
   cancelHomepageSectionScroll,
   setHomepageScrollTarget,
-} from "@/lib/homepageNavigation";
+} from "@/lib/navigation/homepage";
 
 export default function BrandsSection() {
   const { theme } = useTheme();

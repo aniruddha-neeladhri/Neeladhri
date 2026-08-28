@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Neeladhri Ceramics
 
-## Getting Started
+Marketing website for Neeladhri Ceramics — premium ceramic, tile, and bath solutions. The site runs two themes: **Essentials** and **Bespoke**, toggled site-wide without a full page reload.
 
-First, run the development server:
+## Tech stack
+
+- Next.js 16 (App Router) · React 19 · TypeScript
+- Tailwind CSS 4 · Framer Motion · GSAP · React Three Fiber
+- Cloudflare R2 (media) · Resend (contact form)
+
+## Prerequisites
+
+- Node.js 20+
+- npm
+
+## Setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create `.env.local` with the variables listed below before using the contact form or file uploads.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment variables
 
-## Learn More
+Create `.env.local` in the project root:
 
-To learn more about Next.js, take a look at the following resources:
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `RESEND_API_KEY` | Yes (contact) | Resend API key for the contact form |
+| `CONTACT_TO_EMAIL` | No | Inbox for form submissions (default: `aniruddha@neeladhri.com`) |
+| `CONTACT_FROM_EMAIL` | No | Sender address shown in Resend |
+| `R2_ENDPOINT` | Yes (uploads) | Cloudflare R2 S3-compatible endpoint |
+| `R2_ACCESS_KEY_ID` | Yes (uploads) | R2 access key |
+| `R2_SECRET_ACCESS_KEY` | Yes (uploads) | R2 secret key |
+| `R2_BUCKET_NAME` | Yes (uploads) | R2 bucket name |
+| `R2_PUBLIC_URL` | Yes (uploads) | Public CDN base URL for uploaded files |
+| `NEXT_PUBLIC_TINYMCE_API_KEY` | No | TinyMCE key (admin blog editor only) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The production build runs without R2 credentials; they are only required when using file uploads.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Production server |
+| `npm run lint` | ESLint |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/                  Routes and API handlers
+components/
+  layout/             Navbar, footer, theme wrapper, chatbot
+  Brands/             Brand detail page
+  Collections/        Collection page carousels
+  About/              About page sections
+  Legal/              Terms and privacy
+  Sections/           Homepage and marketing sections
+lib/
+  config/             Service configuration (R2)
+  constants/          Site content and data
+  contexts/           React providers (theme)
+  data/               Data helpers (brand slug registry)
+  navigation/         Homepage scroll behaviour
+  services/           Server integrations (R2 uploads)
+  utils/              Shared utilities
+types/                Shared TypeScript types
+public/               Static assets
+scripts/              Maintenance scripts
+```
+
+## Where to edit content
+
+| Content | Location |
+|---------|----------|
+| Brands | `lib/constants/brands.ts` |
+| Homepage | `lib/constants/home.ts`, `homebrands.ts` |
+| Blog posts | `lib/constants/posts/*.json`, registry in `blogs.ts` |
+| Collections | `lib/constants/collections.ts` |
+| Legal text | `lib/constants/legal.ts` |
+| Navigation links | `lib/constants/Navlinks.ts` |
+| Footer | `lib/constants/footer.ts` |
+
+Brand detail pages are served from a single route: `app/brands/[slug]/page.tsx`. Slug mapping lives in `lib/data/brands/slugs.ts`.
+
+## Themes
+
+- Theme state: `lib/contexts/ThemeContext.tsx`
+- Essentials / Bespoke content is defined separately in `lib/constants/` (e.g. `BRAND_NAMES_PREMIUM` / `BRAND_NAMES_LUXURY`).
+
+## API routes
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/contact` | POST | Contact form submission |
+| `/api/uploads` | POST | File upload to R2 |
+| `/api/blogs/[slug]` | GET | Blog post data |
+| `/api/openapi` | GET | OpenAPI specification |
+
+## Deployment
+
+1. Set all required environment variables on the host.
+2. Run `npm run build` then `npm run start`, or deploy to a Next.js-compatible platform (e.g. Vercel).
+3. Confirm R2 image domains are listed in `next.config.ts`.

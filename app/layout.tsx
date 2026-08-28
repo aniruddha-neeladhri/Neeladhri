@@ -71,11 +71,11 @@ export const metadata: Metadata = {
   },
 };
 
-import ScrollTriggeredNavbar from "@/components/SharedSections/ScrollTriggeredNavbar";
-import Footer from "@/components/SharedSections/Footer";
-import SiteChatbot from "@/components/SharedSections/SiteChatbot";
-import ThemeWrapper from "@/components/SharedSections/ThemeWrapper";
-import ScrollToTop from "@/components/SharedSections/ScrollToTop";
+import ScrollTriggeredNavbar from "@/components/layout/ScrollTriggeredNavbar";
+import Footer from "@/components/layout/Footer";
+import SiteChatbot from "@/components/layout/SiteChatbot";
+import ThemeWrapper from "@/components/layout/ThemeWrapper";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 import { ThemeProvider } from "@/lib/contexts/ThemeContext";
 
 export default function RootLayout({

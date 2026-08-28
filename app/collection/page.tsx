@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import AlliedAccessories from "@/components/collections/alliedAccessories";
-import Bathroom from "@/components/collections/bathroom";
-import CollectionsSection from "@/components/collections/CollectionsSection";
-import Dining from "@/components/collections/dining";
-import Kitchen from "@/components/collections/kitchen";
-import LivingRoom from "@/components/collections/livingroom";
+import AlliedAccessories from "@/components/Collections/alliedAccessories";
+import Bathroom from "@/components/Collections/bathroom";
+import CollectionsSection from "@/components/Collections/CollectionsSection";
+import Dining from "@/components/Collections/dining";
+import Kitchen from "@/components/Collections/kitchen";
+import LivingRoom from "@/components/Collections/livingroom";
 
 export default function CollectionsPage() {
   useEffect(() => {
