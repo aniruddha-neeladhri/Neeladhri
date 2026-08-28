@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { parseUploadSection } from '@/lib/dto/upload.dto';
-import { uploadFileToR2 } from '@/lib/dto/uploads.service';
+import { uploadFileToR2 } from "@/lib/services/uploads.service";
 import { UploadSection } from '@/lib/enums/section.enum';
 
 export const runtime = 'nodejs';

@@ -108,7 +108,7 @@ export default function ReelsSection() {
 
 
         {/* Design: controls outside the strip, bottom-aligned, small gap */}
-        <div className="isolate grid w-full max-w-[360px] grid-cols-[2rem_minmax(0,1fr)_2rem] items-center gap-3 md:max-w-none md:w-auto md:grid-cols-[2rem_720px_2rem] md:gap-0 lg:grid-cols-[2rem_812px_2rem] lg:gap-4 xl:grid-cols-[2rem_872px_2rem]">
+        <div className="isolate grid w-full max-w-[360px] grid-cols-[2rem_minmax(0,1fr)_2rem] items-end gap-3 md:max-w-none md:w-auto md:grid-cols-[2rem_720px_2rem] md:gap-0 lg:grid-cols-[2rem_812px_2rem] lg:gap-4 xl:grid-cols-[2rem_872px_2rem]">
           <button
             type="button"
             onClick={(e) => {

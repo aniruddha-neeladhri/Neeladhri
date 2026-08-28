@@ -218,7 +218,7 @@ export async function POST(request: Request) {
     }
 
     const to =
-      process.env.CONTACT_TO_EMAIL?.trim() || "sachin@thegeekonomy.com";
+      process.env.CONTACT_TO_EMAIL?.trim() || "aniruddha@neeladhri.com";
     const from =
       process.env.CONTACT_FROM_EMAIL?.trim() ||
       "Neeladhri <noreply@neeladhri.com>";

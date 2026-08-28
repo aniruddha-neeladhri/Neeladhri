@@ -1,10 +1,6 @@
-export interface BrandData {
-  id: string;
-  name: string;
-  tagline: string;
-  description: string;
-  images: string[];
-}
+import type { BrandData } from "@/types/brand";
+
+export type { BrandData };
 
 // =====================
 // PREMIUM (Brands)
