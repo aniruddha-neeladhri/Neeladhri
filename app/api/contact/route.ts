@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { getSiteHostname, getSiteUrl } from "@/lib/site";
 
 export const runtime = "nodejs";
 
@@ -40,6 +41,8 @@ function buildContactEmailHtml({
   const safeEmail = escapeHtml(email);
   const safePhone = escapeHtml(phone || "Not provided");
   const safeMessage = escapeHtml(message);
+  const siteUrl = getSiteUrl();
+  const siteHostname = getSiteHostname();
   const submittedAt = new Date().toLocaleString("en-IN", {
     dateStyle: "medium",
     timeStyle: "short",
@@ -133,7 +136,7 @@ function buildContactEmailHtml({
                 Submitted on ${submittedAt} (IST)
               </p>
               <p style="margin:0;font-size:12px;color:#7a7a7a;font-family:Arial,Helvetica,sans-serif;">
-                <a href="https://neeladhri.com" style="color:#c46f1f;text-decoration:none;">neeladhri.com</a>
+                <a href="${siteUrl}" style="color:#c46f1f;text-decoration:none;">${siteHostname}</a>
               </p>
             </td>
           </tr>
@@ -161,6 +164,7 @@ function buildContactEmailText({
     timeStyle: "short",
     timeZone: "Asia/Kolkata",
   });
+  const siteUrl = getSiteUrl();
 
   return [
     "NEELADHRI CERAMICS",
@@ -176,7 +180,7 @@ function buildContactEmailText({
     "",
     "────────────────────────────",
     `Submitted: ${submittedAt} (IST)`,
-    "https://neeladhri.com",
+    siteUrl,
   ].join("\n");
 }
 

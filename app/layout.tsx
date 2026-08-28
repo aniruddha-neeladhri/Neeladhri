@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { fontVariableClassNames } from "@/lib/fonts";
+import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: "Neeladhri Ceramics - Premium Ceramic Solutions",
   description:
     "Neeladhri Ceramics delivers premium quality ceramic products crafted with precision, durability, and elegance.",
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     title: "Neeladhri Ceramics - Premium Ceramic Solutions",
     description:
       "Premium ceramic products crafted with precision and durability.",
-    // url: "https://yourdomain.com",
+    url: getSiteUrl(),
     siteName: "Neeladhri Ceramics",
     images: [
       {

@@ -74,6 +74,8 @@ function useGlow(isLuxury: boolean) {
   const borderColor = isLuxury ? "#F79440" : "#ffffff";
   const glowColor   = isLuxury ? "#F79440" : "#ffffff";
 
+  const tickRef = useRef<() => void>(() => {});
+
   const draw = useCallback(() => {
     if (canvasRef.current)
       drawCanvas(canvasRef.current, active.current, progress.current, borderColor, glowColor);
@@ -83,8 +85,12 @@ function useGlow(isLuxury: boolean) {
     if (!active.current) { draw(); return; }
     progress.current = (progress.current + SPEED) % 1;
     draw();
-    rafRef.current = requestAnimationFrame(tick);
+    rafRef.current = requestAnimationFrame(() => tickRef.current());
   }, [draw]);
+
+  useEffect(() => {
+    tickRef.current = tick;
+  }, [tick]);
 
   const resize = useCallback(() => {
     const canvas = canvasRef.current;
@@ -197,6 +203,8 @@ function PremiumMessageField({ inputClass, value, onChange, disabled }: MessageF
   const remaining   = MAX_CHARS - value.length;
   const isNearLimit = remaining <= 20;
 
+  const tickRef = useRef<() => void>(() => {});
+
   const draw = useCallback(() => {
     if (canvasRef.current)
       drawCanvas(canvasRef.current, active.current, progress.current, borderColor, glowColor);
@@ -206,8 +214,12 @@ function PremiumMessageField({ inputClass, value, onChange, disabled }: MessageF
     if (!active.current) { draw(); return; }
     progress.current = (progress.current + SPEED) % 1;
     draw();
-    rafRef.current = requestAnimationFrame(tick);
+    rafRef.current = requestAnimationFrame(() => tickRef.current());
   }, [draw]);
+
+  useEffect(() => {
+    tickRef.current = tick;
+  }, [tick]);
 
   const syncCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -584,7 +596,7 @@ export default function ContactSection() {
         {/* ROW 2 — Paragraph */}
         <div className="max-w-[1400px] mx-auto w-full mt-4 text-center lg:text-left">
           <Typography variant="body-xl" className="text-white leading-relaxed font-normal font-poppins">
-            Whether you're designing a home, or commercial space, or sourcing high quality tiles,{" "}
+            Whether you&apos;re designing a home, or commercial space, or sourcing high quality tiles,{" "}
             <br className="hidden md:block" />
             sanitaryware, bath fittings and premium wellness solutions,{" "}
             <br className="hidden md:block" />
@@ -730,7 +742,7 @@ export default function ContactSection() {
             </form>
           </div>
 
-          <div className="w-full max-w-lg mx-auto lg:mx-0 lg:max-w-none lg:w-[52%] relative h-[400px] sm:h-[440px] md:h-[440px] lg:h-[540px]">
+          <div className="w-full max-w-lg mx-auto lg:mx-0 lg:max-w-none py-5 sm:py-0 lg:w-[52%] relative h-[400px] sm:h-[440px] md:h-[440px] lg:h-[540px]">
             <ContactImageCarousel images={carouselImages} />
           </div>
 

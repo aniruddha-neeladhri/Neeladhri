@@ -24,7 +24,7 @@ export default function ShowroomBanner() {
             variant="display-xl"
             className="text-white font-normal font-poppins leading-snug"
           >
-            Get in touch and <br />let's build something Beautiful together. 
+            Get in touch and <br />let&apos;s build something Beautiful together. 
           </Typography>
 
           <Link href="/contact">

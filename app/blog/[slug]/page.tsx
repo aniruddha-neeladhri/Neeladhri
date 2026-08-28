@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { BLOG_POSTS, BlogContentItem, BlogPost } from "@/lib/constants/blogs";
+import { BLOG_POSTS, BlogPost } from "@/lib/constants/blogs";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
@@ -236,25 +236,6 @@ function renderStructuredBody(post: BlogPost, colors: BlogDetailColors, theme: s
   );
 }
 
-function _unused(item: BlogContentItem) {
-  // keep file compiling if BlogContentItem import is otherwise unused in future edits
-  return item;
-}
-
-function renderContentItem(
-  item: BlogContentItem,
-  index: number,
-  colors: BlogDetailColors,
-  theme: string
-) {
-  // legacy: no longer used (structured posts now use the same `.blog-html-content` styles)
-  void item;
-  void index;
-  void colors;
-  void theme;
-  return null;
-}
-
 /**
  * How close (in px) a heading's top edge needs to be to the top of the
  * scroll container before it's considered "active". Tweak to taste —
@@ -279,7 +260,7 @@ function useActiveSectionImage(
 
   // Reset whenever we navigate to a different post.
   useEffect(() => {
-    setActiveImage(fallbackImage);
+    queueMicrotask(() => setActiveImage(fallbackImage));
   }, [post.slug, fallbackImage]);
 
   useEffect(() => {
@@ -340,7 +321,6 @@ function useActiveSectionImage(
       const matchedImage = normalizedLookup.get(text);
 
       if (!matchedImage && process.env.NODE_ENV !== "production") {
-        // eslint-disable-next-line no-console
         console.warn(
           "[useActiveSectionImage] No sectionImages match for heading:",
           JSON.stringify(current.textContent),
@@ -398,7 +378,6 @@ function useActiveSectionImage(
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerRef, post.slug, post.htmlContent, post.sectionImages, fallbackImage]);
 
   return activeImage;

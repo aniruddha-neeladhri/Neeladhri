@@ -1,11 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { Volume2, VolumeX } from "lucide-react";
 import Typography from "@/lib/Typography";
-import TileScrollSection from "./Tilemovement";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/lib/contexts/ThemeContext";
+
+const TileScrollSection = dynamic(() => import("./Tilemovement"), {
+  ssr: false,
+  loading: () => (
+    <div id="homepage-hero-section" className="w-full min-h-screen" aria-hidden />
+  ),
+});
 
 const INTRO_TEXT_LINE_1 = "Enter a new world of";
 const INTRO_TEXT_LINE_2 = "Curated Spaces";
@@ -106,7 +113,7 @@ export default function HeroSection() {
       sessionStorage.removeItem(RETURN_KEY);
       returnTargetRef.current = target;
       introDoneRef.current = true;
-      setIntroDone(true);
+      queueMicrotask(() => setIntroDone(true));
       return;
     }
 
@@ -126,7 +133,7 @@ export default function HeroSection() {
     // Don't interrupt a brand-return scroll.
     if (returnTargetRef.current) return;
 
-    restartIntroSmooth();
+    queueMicrotask(() => restartIntroSmooth());
   }, [theme, restartIntroSmooth]);
 
   // Smooth scroll to brands only when returning from a brand detail page.
@@ -348,7 +355,7 @@ export default function HeroSection() {
             transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
-          <TileScrollSection introReady={introDone} />
+          {introDone ? <TileScrollSection introReady={introDone} /> : null}
         </div>
       </div>
     </>

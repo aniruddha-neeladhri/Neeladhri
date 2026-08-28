@@ -38,9 +38,10 @@ export default function LuxuryDiscover() {
   const isLuxury = theme === "luxury";
   const cards = isLuxury ? getBlogDiscoverCards("luxury") : [];
   const maxStart = Math.max(0, cards.length - visibleCount);
+  const clampedStartIndex = Math.min(startIndex, maxStart);
   const canScroll = cards.length > visibleCount;
-  const canPrev = canScroll && startIndex > 0;
-  const canNext = canScroll && startIndex < maxStart;
+  const canPrev = canScroll && clampedStartIndex > 0;
+  const canNext = canScroll && clampedStartIndex < maxStart;
 
   useEffect(() => {
     const update = () => setVisibleCount(getVisibleCount(window.innerWidth));
@@ -49,16 +50,12 @@ export default function LuxuryDiscover() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  useEffect(() => {
-    setStartIndex((prev) => Math.min(prev, maxStart));
+  const goPrev = useCallback(() => {
+    setStartIndex((prev) => Math.max(0, Math.min(prev, maxStart) - 1));
   }, [maxStart]);
 
-  const goPrev = useCallback(() => {
-    setStartIndex((prev) => Math.max(0, prev - 1));
-  }, []);
-
   const goNext = useCallback(() => {
-    setStartIndex((prev) => Math.min(maxStart, prev + 1));
+    setStartIndex((prev) => Math.min(maxStart, Math.min(prev, maxStart) + 1));
   }, [maxStart]);
 
   if (!isLuxury) return null;
@@ -67,7 +64,7 @@ export default function LuxuryDiscover() {
 
   const trackWidthPercent = (cards.length / visibleCount) * 100;
   const cardWidthPercent = 100 / cards.length;
-  const translatePercent = (startIndex / cards.length) * 100;
+  const translatePercent = (clampedStartIndex / cards.length) * 100;
 
   return (
     <section className="w-full bg-black py-2 sm:py-2 md:py-4 lg:py-8">

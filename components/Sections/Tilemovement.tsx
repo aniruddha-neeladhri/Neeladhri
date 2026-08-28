@@ -250,7 +250,10 @@ export default function TileScrollSection({
   const isPinnedRef     = useRef(false);
   const isMutedRef      = useRef(true);
   const introReadyRef   = useRef(introReady);
-  introReadyRef.current = introReady;
+
+  useEffect(() => {
+    introReadyRef.current = introReady;
+  }, [introReady]);
 
   const applyMuteToAll = useCallback((muted: boolean) => {
     videoRefs.current.forEach((v, i) => {
@@ -457,7 +460,7 @@ export default function TileScrollSection({
   useEffect(() => {
     if (pinMode === "after") {
       isMutedRef.current = true;
-      setIsMuted(true);
+      queueMicrotask(() => setIsMuted(true));
       videoRefs.current.forEach((v) => {
         if (!v) return;
         v.muted = true;
@@ -479,7 +482,7 @@ export default function TileScrollSection({
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    queueMicrotask(() => handleScroll());
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
@@ -488,7 +491,7 @@ export default function TileScrollSection({
 
     if (skipIntroReset) {
       // Returning from a homepage brand — keep scroll position and sync pin state.
-      handleScroll();
+      queueMicrotask(() => handleScroll());
       return;
     }
 

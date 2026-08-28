@@ -2,7 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { motion, HTMLMotionProps } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Base button props interface - exclude conflicting props with Framer Motion
 export interface ButtonProps extends Omit<
@@ -226,7 +226,9 @@ BorderGradientButton.displayName = "BorderGradientButton";
 // 5. Particle Button - Particles on hover
 export const ParticleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, children, variant = "default", size = "md", ...props }, ref) => {
-    const [particles, setParticles] = React.useState<Array<{ id: number; x: number; y: number }>>([]);
+    const [particles, setParticles] = React.useState<
+      Array<{ id: number; x: number; y: number; driftX: number }>
+    >([]);
     const buttonRef = React.useRef<HTMLButtonElement>(null);
 
     React.useImperativeHandle(ref, () => buttonRef.current as HTMLButtonElement);
@@ -236,6 +238,7 @@ export const ParticleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         id: Date.now() + i,
         x: Math.random() * 100,
         y: Math.random() * 100,
+        driftX: (Math.random() - 0.5) * 40,
       }));
       setParticles(newParticles);
     };
@@ -281,7 +284,7 @@ export const ParticleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
             }}
             animate={{
               y: [0, -30, -60],
-              x: [0, (Math.random() - 0.5) * 40],
+              x: [0, particle.driftX],
               opacity: [1, 0.8, 0],
               scale: [0, 1, 0],
             }}

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Typography from "@/lib/Typography";
 import { useRef, useState, useEffect, useMemo } from "react";
 import { useTheme } from "@/lib/contexts/ThemeContext";
+import { useCarouselBreakpoints } from "@/lib/hooks/use-carousel-breakpoints";
 import {
   CAROUSEL_GAP as GAP,
   CAROUSEL_SIDE_RATIO as SIDE_RATIO,
@@ -23,40 +24,14 @@ export default function LivingRoom() {
     [IMAGES]
   );
   const [index, setIndex] = useState<number>(LIVING_IMAGES_PREMIUM.length);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isMd, setIsMd] = useState(false); // 768px – 1023px only
-  const [isXl, setIsXl] = useState(false); // 1280px and up
+  const { isMobile, isMd, isXl } = useCarouselBreakpoints();
 
   const dragStart = useRef<number | null>(null);
   const dragMoved = useRef(false);
-  const isAnimating = useRef(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [cw, setCw] = useState(0);
-
-  useEffect(() => {
-    const mqMobile = window.matchMedia("(max-width: 767px)");
-    const mqMd = window.matchMedia("(min-width: 768px) and (max-width: 1023px)");
-    const mqXl = window.matchMedia("(min-width: 1280px)");
-
-    setIsMobile(mqMobile.matches);
-    setIsMd(mqMd.matches);
-    setIsXl(mqXl.matches);
-
-    const handleMobile = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    const handleMd = (e: MediaQueryListEvent) => setIsMd(e.matches);
-    const handleXl = (e: MediaQueryListEvent) => setIsXl(e.matches);
-
-    mqMobile.addEventListener("change", handleMobile);
-    mqMd.addEventListener("change", handleMd);
-    mqXl.addEventListener("change", handleXl);
-
-    return () => {
-      mqMobile.removeEventListener("change", handleMobile);
-      mqMd.removeEventListener("change", handleMd);
-      mqXl.removeEventListener("change", handleXl);
-    };
-  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -79,7 +54,6 @@ export default function LivingRoom() {
   const mobileHeight = cw > 0 ? Math.round(centerW_mobile * (3 / 4)) : 0;
 
   const gap = isMobile ? GAP_MOBILE : GAP;
-  const centerW = isMobile ? centerW_mobile : centerW_desktop;
 
   const getTranslateX_desktop = () => {
     let left = 0;
@@ -115,11 +89,11 @@ export default function LivingRoom() {
     : "65vh";
 
   const goTo = (next: number) => {
-    if (isAnimating.current) return;
+    if (isAnimating) return;
     setIndex(next);
-    isAnimating.current = true;
+    setIsAnimating(true);
     setTimeout(() => {
-      isAnimating.current = false;
+      setIsAnimating(false);
       if (next >= IMAGES.length * 2) {
         setIndex(IMAGES.length);
       } else if (next < IMAGES.length) {
@@ -178,7 +152,7 @@ export default function LivingRoom() {
             style={{
               gap,
               transform: `translateX(${translateX}px)`,
-              transition: isAnimating.current
+              transition: isAnimating
                 ? "transform 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
                 : "none",
             }}
