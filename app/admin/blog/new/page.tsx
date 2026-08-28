@@ -29,7 +29,7 @@ export default function AddBlogPage() {
   const [sectionImages, setSectionImages] = useState<Record<string, string>>({});
   const [h2DetectMsg, setH2DetectMsg] = useState("");
 
-  const editorRef = useRef<any>(null);
+  const editorRef = useRef<{ getContent: () => string } | null>(null);
 
   const textColor = theme === "luxury" ? "#FFFFFF" : "#000000";
   const borderColor = theme === "luxury" ? "border-white/20" : "border-black/20";

@@ -8,37 +8,11 @@ import {
   ABOUT_LUXURY_STATS,
 } from "@/lib/constants/about";
 import { useTheme } from "@/lib/contexts/ThemeContext";
+import { useCountUp } from "@/lib/hooks/use-count-up";
 import { useEffect, useRef, useState } from "react";
 
 const GOLD = ABOUT_LUXURY_GOLD;
 const WHITE = "#FFFFFF";
-const DURATION = 2200;
-
-function easeOutQuart(t: number): number {
-  return 1 - Math.pow(1 - t, 4);
-}
-
-function useCountUp(target: number, start: boolean) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!start) return;
-    setCount(0);
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const elapsed = now - startTime;
-      const raw = Math.min(elapsed / DURATION, 1);
-      const eased = easeOutQuart(raw);
-      const current = Math.round(eased * target);
-      setCount(Math.min(current, target));
-      if (raw < 1) requestAnimationFrame(tick);
-      else setCount(target);
-    };
-    requestAnimationFrame(tick);
-  }, [start, target]);
-
-  return count;
-}
 
 function LuxuryStatItem({
   value,

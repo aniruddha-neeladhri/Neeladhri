@@ -19,12 +19,12 @@ export default function ScrollTriggeredNavbar() {
   useEffect(() => {
     if (!isHomePage) {
       introCompleteRef.current = true;
-      setIsVisible(true);
+      queueMicrotask(() => setIsVisible(true));
       return;
     }
 
     introCompleteRef.current = false;
-    setIsVisible(false);
+    queueMicrotask(() => setIsVisible(false));
 
     const updateVisibility = () => {
       if (!introCompleteRef.current) {

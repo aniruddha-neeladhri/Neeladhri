@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Typography from "@/lib/Typography";
 import { THEME_FOREGROUND, useTheme } from "@/lib/contexts/ThemeContext";
+import { useCountUp } from "@/lib/hooks/use-count-up";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
@@ -22,34 +23,6 @@ const highlights = [
     text: "Our strengths lie in quality selection, design understanding, and customer focused service.",
   },
 ];
-
-const DURATION = 2200;
-
-function easeOutQuart(t: number): number {
-  return 1 - Math.pow(1 - t, 4);
-}
-
-function useCountUp(target: number, start: boolean) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!start) return;
-    setCount(0);
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const elapsed = now - startTime;
-      const raw = Math.min(elapsed / DURATION, 1);
-      const eased = easeOutQuart(raw);
-      const current = Math.round(eased * target);
-      setCount(Math.min(current, target));
-      if (raw < 1) requestAnimationFrame(tick);
-      else setCount(target);
-    };
-    requestAnimationFrame(tick);
-  }, [start, target]);
-
-  return count;
-}
 
 function StatItem({
   value,

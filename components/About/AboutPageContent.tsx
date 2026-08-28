@@ -1,7 +1,5 @@
 "use client";
 
-import AboutLuxury from "@/components/About/Aboutluxury";
-import OurStoryLuxury from "@/components/About/ourstoryluxury";
 import CommitmentLuxury from "@/components/About/commitmentluxury";
 import LastLuxurySection from "@/components/About/lastluxurysection";
 import AboutSection from "@/components/About/AboutSection";

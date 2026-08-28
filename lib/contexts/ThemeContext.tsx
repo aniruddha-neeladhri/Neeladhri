@@ -1,6 +1,11 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useSyncExternalStore,
+  ReactNode,
+} from "react";
 
 export type ThemeMode = "premium" | "luxury";
 
@@ -26,25 +31,41 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const STORAGE_KEY = "neeladhri-theme";
 
+function getThemeSnapshot(): ThemeMode {
+  if (typeof window === "undefined") return "premium";
+  return sessionStorage.getItem(STORAGE_KEY) === "luxury" ? "luxury" : "premium";
+}
+
+function getServerThemeSnapshot(): ThemeMode {
+  return "premium";
+}
+
+function subscribeToTheme(callback: () => void) {
+  const onStorage = (event: StorageEvent) => {
+    if (event.key === STORAGE_KEY) callback();
+  };
+  window.addEventListener("storage", onStorage);
+  window.addEventListener("neeladhri-theme-change", callback);
+  return () => {
+    window.removeEventListener("storage", onStorage);
+    window.removeEventListener("neeladhri-theme-change", callback);
+  };
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // Use consistent initial value for SSR to avoid hydration mismatch
-  const [theme, setTheme] = useState<ThemeMode>("premium");
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getServerThemeSnapshot,
+  );
 
-  // Sync with sessionStorage after mount (client-side only)
-  useEffect(() => {
-    const stored = sessionStorage.getItem(STORAGE_KEY);
-    if (stored === "luxury") {
-      setTheme("luxury");
-    }
-  }, []);
-
-  // Save to sessionStorage when theme changes
-  useEffect(() => {
-    sessionStorage.setItem(STORAGE_KEY, theme);
-  }, [theme]);
+  const setTheme = (next: ThemeMode) => {
+    sessionStorage.setItem(STORAGE_KEY, next);
+    window.dispatchEvent(new Event("neeladhri-theme-change"));
+  };
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "premium" ? "luxury" : "premium"));
+    setTheme(theme === "premium" ? "luxury" : "premium");
   };
 
   return (
