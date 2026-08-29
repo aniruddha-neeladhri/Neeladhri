@@ -38,7 +38,7 @@ Create `.env.local` in the project root:
 | `R2_SECRET_ACCESS_KEY` | Yes (uploads) | R2 secret key |
 | `R2_BUCKET_NAME` | Yes (uploads) | R2 bucket name |
 | `R2_PUBLIC_URL` | Yes (uploads) | Public CDN base URL for uploaded files |
-| `NEXT_PUBLIC_SITE_URL` | No | Canonical site URL for SEO metadata and sitemap (`https://www.neeladhriceramics.com`) |
+| `NEXT_PUBLIC_SITE_URL` | No | Canonical site URL for SEO metadata and sitemap (`https://neeladhri.com`) |
 | `ADMIN_SECRET` | Yes (admin) | Password for `/admin/*` and `/api/admin/*` (HTTP Basic Auth in production) |
 | `NEXT_PUBLIC_TINYMCE_API_KEY` | No | TinyMCE key (admin blog editor only) |
 

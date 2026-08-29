@@ -11,9 +11,10 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 interface BrandPageProps {
   brand?: BrandData;
   brandId?: string;
+  pageHeading?: string;
 }
 
-export default function BrandPage({ brand, brandId }: BrandPageProps) {
+export default function BrandPage({ brand, brandId, pageHeading }: BrandPageProps) {
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -67,6 +68,8 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
       </div>
     );
   }
+
+  const heading = pageHeading ?? selectedBrand.name;
 
   const isLuxury = theme === "luxury";
   const accentColor = isLuxury ? "#D3B898" : "#7E7669";
@@ -182,20 +185,20 @@ export default function BrandPage({ brand, brandId }: BrandPageProps) {
           {/* Header */}
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
             <Typography
-              variant="h2"
+              variant="h1"
               className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
                 } sm:hidden`}
               style={{ color: brandNameColor }}
             >
-              {selectedBrand.name}
+              {heading}
             </Typography>
             <Typography
-              variant="h2"
+              variant="h1"
               className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
                 } hidden sm:block`}
               style={{ color: brandNameColor }}
             >
-              {selectedBrand.name}
+              {heading}
             </Typography>
           </div>
 

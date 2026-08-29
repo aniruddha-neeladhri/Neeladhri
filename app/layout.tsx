@@ -5,9 +5,12 @@ import { getSiteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
-  title: "Neeladhri Ceramics - Premium Ceramic Solutions",
+  title: {
+    default: "Ceramic Tiles Showroom in Bangalore | Neeladhri",
+    template: "%s",
+  },
   description:
-    "Neeladhri Ceramics delivers premium quality ceramic products crafted with precision, durability, and elegance.",
+    "Explore premium ceramic tiles, bathroom fittings, sanitaryware and surfaces at Neeladhri Ceramics, a trusted showroom in Bangalore.",
   keywords: [
     "Neeladhri Ceramics",
     "ceramic products",
@@ -23,9 +26,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Neeladhri Ceramics - Premium Ceramic Solutions",
+    title: "Ceramic Tiles Showroom in Bangalore | Neeladhri",
     description:
-      "Premium ceramic products crafted with precision and durability.",
+      "Explore premium ceramic tiles, bathroom fittings, sanitaryware and surfaces at Neeladhri Ceramics, a trusted showroom in Bangalore.",
     url: getSiteUrl(),
     siteName: "Neeladhri Ceramics",
     images: [
@@ -42,9 +45,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Neeladhri Ceramics - Premium Ceramic Solutions",
+    title: "Ceramic Tiles Showroom in Bangalore | Neeladhri",
     description:
-      "Premium ceramic products crafted with precision and durability.",
+      "Explore premium ceramic tiles, bathroom fittings, sanitaryware and surfaces at Neeladhri Ceramics, a trusted showroom in Bangalore.",
     images: ["/logo.png"],
   },
 
