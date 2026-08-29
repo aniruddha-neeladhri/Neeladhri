@@ -7,6 +7,7 @@ import CollectionsSection from "@/components/Collections/CollectionsSection";
 import Dining from "@/components/Collections/dining";
 import Kitchen from "@/components/Collections/kitchen";
 import LivingRoom from "@/components/Collections/livingroom";
+import { PAGE_SEO } from "@/lib/seo";
 
 export default function CollectionsPage() {
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function CollectionsPage() {
 
   return (
     <>
+      <h1 className="sr-only">{PAGE_SEO.collection.h1}</h1>
       <CollectionsSection />
       <section id="living-room">
         <LivingRoom />

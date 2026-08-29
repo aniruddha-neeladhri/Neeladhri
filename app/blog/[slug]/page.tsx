@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { BLOG_POSTS, BlogPost } from "@/lib/constants/blogs";
+import { getBlogSeo } from "@/lib/seo";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
@@ -392,6 +393,7 @@ export default function BlogDetailPage() {
   const fontClass = isLuxury ? "font-cormorant-garamond" : "font-poppins";
 
   const post = slug ? BLOG_POSTS.find((p) => p.slug === slug) : undefined;
+  const pageHeading = slug ? getBlogSeo(slug)?.h1 ?? post?.title : undefined;
 
   // Ref to the scrollable text column on the split (desktop) layout.
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -456,7 +458,7 @@ export default function BlogDetailPage() {
               )}
               style={{ color: textColor }}
             >
-              {post.title}
+              {pageHeading}
             </Typography>
 
             <div className="flex flex-col gap-5 sm:gap-6">{body}</div>
@@ -512,7 +514,7 @@ export default function BlogDetailPage() {
               )}
               style={{ color: textColor, textWrap: "pretty" }}
             >
-              {post.title}
+              {pageHeading}
             </Typography>
 
             <div className="flex flex-col gap-4 sm:gap-5 text-left">{body}</div>

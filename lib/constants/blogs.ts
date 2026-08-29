@@ -101,7 +101,7 @@ export const BLOG_CONTENT = {
   },
   luxury: {
     hero: {
-      title: "Luxury Insights On Tiles,\nInteriors And Design.",
+      title: "Latest Insights On Tiles,\nInteriors And Design.",
       titleColor: "#D8B691",
     },
     // flooringIdeas: {
