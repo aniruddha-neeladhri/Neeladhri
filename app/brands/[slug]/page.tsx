@@ -47,7 +47,7 @@ export default async function BrandDetailPage({ params }: BrandPageProps) {
   return (
     <>
       <h1 className="sr-only">{seo?.h1 ?? ""}</h1>
-      <BrandPage brandId={brandId} pageHeading={seo?.h1} />
+      <BrandPage brandId={brandId} />
     </>
   );
 }

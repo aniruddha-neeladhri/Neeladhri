@@ -5,6 +5,9 @@ export type Brand = {
   href: string;
 };
 
+export const HOME_BRANDS_HEADING =
+  "Experience the Finest Selection of Luxury Brands Under One Roof";
+
 export const brands: Brand[] = [
    {
     image:  "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/2b942839-0584-4ee0-addf-2024cfec5336.png",

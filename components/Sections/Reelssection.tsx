@@ -97,6 +97,7 @@ export default function ReelsSection() {
         >
           <Typography
             variant="display-xl"
+            as="p"
             className={`text-center tracking-wide ${
               isLuxury ? "font-roboto-slab font-light" : "font-poppins font-light"
             }`}

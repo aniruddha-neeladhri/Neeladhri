@@ -22,6 +22,7 @@ function Cell({
   href,
   uniformAspect,
   mobileAspect,
+  showLabel = true,
 }: {
   src: string;
   label: string;
@@ -31,6 +32,7 @@ function Cell({
   href?: string;
   uniformAspect?: boolean; // tablet: fixed aspect ratio, object-cover
   mobileAspect?: boolean;  // mobile: slightly shorter aspect ratio
+  showLabel?: boolean;
 }) {
   const { theme } = useTheme();
   const inner = (
@@ -61,7 +63,7 @@ function Cell({
           aria-hidden
         />
       )}
-      {label && (
+      {label && showLabel && (
           <Typography
             variant="display-xl"
             as="p"
@@ -135,6 +137,7 @@ export default function CollectionsSection() {
             borderColor={borderColor}
             href={href}
             uniformAspect
+            showLabel={false}
           />
         ))}
       </div>
@@ -150,6 +153,7 @@ export default function CollectionsSection() {
             borderColor={borderColor}
             href={href}
             mobileAspect
+            showLabel={false}
           />
         ))}
       </div>

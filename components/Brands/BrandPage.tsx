@@ -11,10 +11,9 @@ import { useTheme } from "@/lib/contexts/ThemeContext";
 interface BrandPageProps {
   brand?: BrandData;
   brandId?: string;
-  pageHeading?: string;
 }
 
-export default function BrandPage({ brand, brandId, pageHeading }: BrandPageProps) {
+export default function BrandPage({ brand, brandId }: BrandPageProps) {
   const router = useRouter();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -69,7 +68,7 @@ export default function BrandPage({ brand, brandId, pageHeading }: BrandPageProp
     );
   }
 
-  const heading = pageHeading ?? selectedBrand.name;
+  const heading = selectedBrand.name;
 
   const isLuxury = theme === "luxury";
   const accentColor = isLuxury ? "#D3B898" : "#7E7669";
