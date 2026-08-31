@@ -4,7 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
 import { useTheme } from "@/lib/contexts/ThemeContext";
-import { brands, luxuryBrands, type Brand } from "@/lib/constants/homebrands";
+import {
+  brands,
+  HOME_BRANDS_HEADING,
+  luxuryBrands,
+  type Brand,
+} from "@/lib/constants/homebrands";
 import {
   cancelHomepageSectionScroll,
   setHomepageScrollTarget,
@@ -38,7 +43,7 @@ export default function BrandsSection() {
           }`}
           style={{ color: headingColor }}
         >
-          Brands
+          {HOME_BRANDS_HEADING}
         </Typography>
 
         {/* Grid */}

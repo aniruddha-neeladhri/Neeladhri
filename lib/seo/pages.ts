@@ -41,7 +41,7 @@ export const PAGE_SEO = {
     title: "Terms and Conditions | Neeladhri Ceramics",
     description:
       "Read the terms and conditions governing the use of the Neeladhri Ceramics website, products, services and online content.",
-    h1: "Terms & Conditions",
+    h1: "Terms and Conditions",
   },
   privacy: {
     title: "Privacy Policy | Neeladhri Ceramics Bangalore",

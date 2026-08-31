@@ -37,7 +37,8 @@ export default function ContactBanner() {
             Request a call back
           </Typography>
           <Typography
-            variant="h3"
+            variant="body-xl"
+            as="p"
             className="!text-white font-light leading-relaxed max-w-[920px] mt-3 sm:mt-4 md:mt-5 font-cormorant-garamond"
           >
             {LUXURY_BANNER_DESCRIPTION}

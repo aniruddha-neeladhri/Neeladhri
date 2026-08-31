@@ -57,7 +57,8 @@ export default function LastLuxurySection() {
             >
               <Typography
                 variant="h4"
-                className="!text-white font-light font-cormorant-garamond normal-case tracking-normal text-left"
+                as="p"
+                className="!text-white w-full text-left font-light font-cormorant-garamond normal-case tracking-normal text-left"
                 style={{ color: "#FFFFFF" }}
               >
                 {cta}
