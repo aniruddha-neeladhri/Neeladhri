@@ -2,6 +2,8 @@ import React from "react";
 import { cn } from "../lib/utils";
 import { FONT_FAMILY_CLASSES } from "./fonts";
 
+type TypographyElement = "h1" | "h2" | "h3" | "h4" | "p" | "span";
+
 export interface TypographyProps {
   children: React.ReactNode;
   variant?:
@@ -17,6 +19,8 @@ export interface TypographyProps {
   | "body-sm"
   | "caption"
   | "overline";
+  /** Override semantic HTML tag while keeping variant styling */
+  as?: TypographyElement;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -63,6 +67,7 @@ function resolveFontFamily(variant: TypographyProps["variant"], className?: stri
 const Typography: React.FC<TypographyProps> = ({
   children,
   variant = "body-lg",
+  as,
   className,
   style,
 }) => {
@@ -99,20 +104,17 @@ const Typography: React.FC<TypographyProps> = ({
 
   const fontFamilyClass = resolveFontFamily(variant, className);
 
-  const getTag = () => {
-    if (
-      variant === "display-3xl" ||
-      variant === "display-2xl" ||
-      variant === "display-xl" ||
-      variant === "h1" ||
-      variant === "h2" ||
-      variant === "h3" ||
-      variant === "h4"
-    ) {
-      return variant === "display-3xl" || variant === "display-2xl" || variant === "display-xl"
-        ? "h1"
-        : variant;
+  const getTag = (): TypographyElement => {
+    if (as) return as;
+
+    if (variant?.startsWith("display")) {
+      return "p";
     }
+
+    if (variant === "h1" || variant === "h2" || variant === "h3" || variant === "h4") {
+      return variant;
+    }
+
     return variant === "caption" || variant === "overline" ? "span" : "p";
   };
 

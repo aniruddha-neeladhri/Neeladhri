@@ -30,6 +30,7 @@ export default function ContactBanner() {
         <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 sm:pb-10 md:pb-12 lg:pb-14 px-4 sm:px-6 md:px-10 text-center">
           <Typography
             variant="display-2xl"
+            as="h2"
             className="font-light leading-tight font-cormorant-garamond"
             style={{ color: "#D3B898" }}
           >

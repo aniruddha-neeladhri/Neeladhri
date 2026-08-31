@@ -204,6 +204,7 @@ export default function BrandsSection() {
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <Typography
                   variant="display-xl"
+                  as="h2"
                   className={`text-white text-xl font-light text-center px-2 ${
                     theme === "luxury" ? "font-roboto-slab" : "font-montserrat"
                   }`}

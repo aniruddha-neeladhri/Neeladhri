@@ -50,6 +50,7 @@ function StatItem({
     <div className="flex flex-col items-center w-[48%] md:w-auto md:flex-1 gap-1">
       <Typography
         variant="display-xl"
+        as="p"
         className="text-[#F79440] font-semibold  font-poppins leading-tight text-center"
       >
         {displayValue}

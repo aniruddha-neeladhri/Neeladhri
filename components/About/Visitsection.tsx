@@ -22,6 +22,7 @@ export default function ShowroomBanner() {
         <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-5 px-4 pb-8 sm:pb-10 md:pb-12 lg:pb-16 text-center">
           <Typography
             variant="display-xl"
+            as="p"
             className="text-white font-normal font-poppins leading-snug"
           >
             Get in touch and <br />let&apos;s build something Beautiful together. 

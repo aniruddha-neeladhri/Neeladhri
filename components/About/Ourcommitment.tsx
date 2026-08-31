@@ -18,6 +18,7 @@ export default function OurCommitment() {
         {/* Heading */}
         <Typography
           variant="display-xl"
+          as="h2"
           className="font-semibold  font-poppins text-center"
           style={{ color: textColor }}
         >
@@ -45,6 +46,7 @@ export default function OurCommitment() {
               {/* Title */}
               <Typography
                 variant="h2"
+                as="h3"
                 className="font-normal font-poppins text-center leading-snug text-lg sm:text-xl xl:text-2xl text-balance sm:min-h-[2.4em]"
                 style={{ color: textColor }}
               >

@@ -38,6 +38,7 @@ function LuxuryStatItem({
     <div className="flex flex-col items-center justify-center text-center py-5 md:py-8 px-2 md:px-3 lg:px-4 gap-1.5 md:gap-2">
       <Typography
         variant="display-xl"
+        as="p"
         className="font-normal font-gfs-didot leading-none tracking-tight"
         style={{ color: GOLD }}
       >
@@ -104,6 +105,7 @@ export default function CommitmentLuxury() {
           <div className="min-w-0 w-full max-lg:text-center">
             <Typography
               variant="display-2xl"
+              as="h2"
               className="!text-white font-medium font-cormorant-garamond leading-tight tracking-tight text-center lg:text-left"
               style={{ color: WHITE }}
             >
@@ -134,6 +136,7 @@ export default function CommitmentLuxury() {
 
                 <Typography
                   variant="h2"
+                  as="h3"
                   className="!text-white font-light font-cormorant-garamond leading-snug text-center w-full lg:text-left"
                   style={{ color: WHITE }}
                 >

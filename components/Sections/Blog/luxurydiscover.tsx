@@ -72,6 +72,7 @@ export default function LuxuryDiscover() {
         <div className="flex flex-col items-center text-center gap-4 sm:gap-5 mb-8 sm:mb-10 md:mb-12">
           <Typography
             variant="display-2xl"
+            as="h2"
             className="!text-white font-normal font-cormorant-garamond leading-tight max-w-[900px]"
           >
             {discover.title}
