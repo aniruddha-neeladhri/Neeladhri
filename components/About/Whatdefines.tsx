@@ -44,6 +44,7 @@ export default function WhatDefinesUs() {
         {/* Heading — centred at all screen sizes */}
         <Typography
           variant="display-xl"
+          as="h2"
           className="text-white font-semibold  font-poppins text-center w-full"
         >
           What Defines Us
@@ -64,6 +65,7 @@ export default function WhatDefinesUs() {
               {/* Title — bold, white, left-aligned */}
               <Typography
                 variant="h2"
+                as="h3"
                 className="text-white font-semibold  font-poppins leading-snug
                   transition-all duration-300 ease-out
                   group-hover:drop-shadow-[0_0_8px_rgba(247,148,64,0.8)]"

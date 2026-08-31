@@ -186,6 +186,7 @@ export default function BrandPage({ brand, brandId, pageHeading }: BrandPageProp
           <div className={`flex flex-col ${flexAlign} mb-6 w-full`}>
             <Typography
               variant="h1"
+              as="p"
               className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
                 } sm:hidden`}
               style={{ color: brandNameColor }}
@@ -194,6 +195,7 @@ export default function BrandPage({ brand, brandId, pageHeading }: BrandPageProp
             </Typography>
             <Typography
               variant="h1"
+              as="p"
               className={`mb-2 ${textAlign} tracking-wide ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-semibold" : "font-montserrat font-semibold"
                 } hidden sm:block`}
               style={{ color: brandNameColor }}
@@ -297,6 +299,7 @@ export default function BrandPage({ brand, brandId, pageHeading }: BrandPageProp
           <div className={`flex flex-col ${flexAlign} w-full mt-6 md:mt-8`}>
             <Typography
               variant="body-sm"
+              as="p"
               className={`${textAlign} leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
                 } sm:hidden`}
               style={{ color: bodyTextColor }}
@@ -305,6 +308,7 @@ export default function BrandPage({ brand, brandId, pageHeading }: BrandPageProp
             </Typography>
             <Typography
               variant="h4"
+              as="p"
               className={`${textAlign} leading-relaxed w-full xl:w-[60%] ${colorTransition} ${isLuxury ? "font-cormorant-garamond font-light" : "font-poppins font-light"
                 } hidden sm:block`}
               style={{ color: bodyTextColor }}

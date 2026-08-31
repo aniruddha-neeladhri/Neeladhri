@@ -328,6 +328,7 @@ export default function HeroSection() {
             <div className="absolute inset-x-0 bottom-0 z-10 flex w-full justify-center px-4 pb-8 sm:px-8 sm:pb-10 md:pb-12 lg:pb-16">
               <Typography
                 variant="display-2xl"
+                as="h2"
                 className={cn(
                   "text-center text-white font-normal font-playfair-display leading-tight tracking-[0.02em]",
                   "text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl",

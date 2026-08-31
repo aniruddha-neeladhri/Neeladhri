@@ -174,6 +174,7 @@ export default function LegalPageContent({ content }: LegalPageContentProps) {
             <article key={section.title} className="space-y-4">
               <Typography
                 variant="h3"
+                as="h2"
                 className={cn(
                   "font-normal leading-snug",
                   isLuxury ? "text-white font-cormorant-garamond" : "text-[#333333] font-poppins"

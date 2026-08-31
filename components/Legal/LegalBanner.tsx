@@ -37,6 +37,7 @@ export default function LegalBanner({ title }: LegalBannerProps) {
       <div className="absolute inset-0 flex items-center justify-center px-4 text-center">
         <Typography
           variant={isLuxury ? "display-2xl" : "display-3xl"}
+          as="h1"
           className={
             isLuxury
               ? "font-light leading-tight font-cormorant-garamond"

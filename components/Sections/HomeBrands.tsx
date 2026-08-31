@@ -30,6 +30,7 @@ export default function BrandsSection() {
         {/* Heading */}
         <Typography
           variant="display-2xl"
+          as="h2"
           className={`font-normal text-center md:text-left ${
             isLuxury
               ? "font-roboto-slab font-light"
@@ -62,7 +63,7 @@ export default function BrandsSection() {
                     aria-hidden
                   />
                   <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-1 px-4 py-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.85)]">
-                    <Typography variant="h2" className="font-cormorant-garamond font-medium text-left" style={{ color: bodyColor }}>
+                    <Typography variant="h2" as="p" className="font-cormorant-garamond font-medium text-left" style={{ color: bodyColor }}>
                       {brand.name}
                     </Typography>
                     <Typography
@@ -96,7 +97,7 @@ export default function BrandsSection() {
                              transition-all duration-500 ease-out
                              group-hover:-translate-y-2 group-hover:shadow-[0_8px_30px_rgba(247,148,64,0.5)]"
                 >
-                  <Typography variant="h3" className="font-poppins font-medium" style={{ color: bodyColor }}>
+                  <Typography variant="h3" as="p" className="font-poppins font-medium" style={{ color: bodyColor }}>
                     {brand.name}
                   </Typography>
                   <Typography

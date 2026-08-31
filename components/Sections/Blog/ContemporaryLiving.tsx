@@ -36,6 +36,7 @@ export default function ContemporaryLiving() {
         <div className="w-full xl:w-[38%] xl:min-w-0 flex flex-col gap-2 xl:gap-2 text-left">
           <Typography
             variant="h1"
+            as="h2"
             className="font-medium font-montserrat leading-tight text-center xl:text-left text-[#555555]"
           >
             {designJournal.title}

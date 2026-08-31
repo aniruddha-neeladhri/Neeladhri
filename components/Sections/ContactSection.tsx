@@ -511,7 +511,7 @@ export default function ContactSection() {
 
             <div className="w-full lg:w-1/2 flex flex-col justify-center gap-6 sm:gap-8 lg:pl-4 xl:pl-8">
               <div className="space-y-1.5 sm:space-y-2 text-center lg:text-left">
-                <Typography variant="h1" className="!text-white font-normal font-cormorant-garamond leading-snug">
+                <Typography variant="h1" as="h2" className="!text-white font-normal font-cormorant-garamond leading-snug">
                   Contact Us
                 </Typography>
               </div>
@@ -588,7 +588,7 @@ export default function ContactSection() {
 
         {/* ROW 1 — Heading */}
         <div className="max-w-[1400px] mx-auto w-full text-center lg:text-left">
-          <Typography variant="display-xl" className="text-white font-semibold font-poppins">
+          <Typography variant="display-xl" as="h2" className="text-white font-semibold font-poppins">
             Request a call back
           </Typography>
         </div>

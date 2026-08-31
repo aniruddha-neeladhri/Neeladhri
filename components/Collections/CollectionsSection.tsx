@@ -62,9 +62,10 @@ function Cell({
         />
       )}
       {label && (
-        <Typography
-          variant="display-xl"
-          className={`absolute top-1/2 left-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 text-white font-light whitespace-nowrap w-full text-center [text-shadow:0_2px_10px_rgba(0,0,0,0.7)] ${
+          <Typography
+            variant="display-xl"
+            as="p"
+            className={`absolute top-1/2 left-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 text-white font-light whitespace-nowrap w-full text-center [text-shadow:0_2px_10px_rgba(0,0,0,0.7)] ${
             theme === "luxury" ? "font-cormorant-garamond" : "font-poppins"
           }`}
         >

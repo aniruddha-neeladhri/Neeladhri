@@ -137,6 +137,7 @@ export default function WhatWeOffer() {
         {/* Heading */}
         <Typography
           variant="display-xl"
+          as="h2"
           className="font-semibold font-poppins"
           style={{ color: textColor }}
         >
@@ -162,6 +163,7 @@ export default function WhatWeOffer() {
               {/* Title */}
               <Typography
                 variant="h2"
+                as="h3"
                 className="font-normal font-poppins leading-snug text-lg sm:text-xl xl:text-2xl sm:min-h-[2.4em] text-balance"
                 style={{ color: textColor }}
               >

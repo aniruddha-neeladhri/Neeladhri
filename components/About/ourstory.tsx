@@ -53,6 +53,7 @@ export default function AboutSection() {
           {/* Title — centered on mobile/tablet, left on desktop */}
           <Typography
             variant="h1"
+            as="h2"
             className="font-light font-poppins leading-snug text-center lg:text-left mb-4"
             style={{ color: textColor }}
           >
@@ -81,6 +82,7 @@ export default function AboutSection() {
           {content.titleAccent && (
             <Typography
               variant="h2"
+              as="h3"
               className="font-light font-poppins leading-snug text-center lg:text-left mt-8 mb-4"
               style={{ color: textColor }}
             >
