@@ -47,7 +47,7 @@ function LuxuryStatItem({
       </Typography>
       <Typography
         variant="body-xl"
-        className="!text-white font-normal font-gfs-didot leading-snug max-w-32 md:max-w-36 lg:max-w-44 mx-auto text-balance"
+        className="!text-white font-normal font-gfs-didot leading-snug mx-auto text-balance"
         style={{ color: WHITE }}
       >
         {label}

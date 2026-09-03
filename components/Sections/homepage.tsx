@@ -37,7 +37,6 @@ export default function HomePage() {
               <Typography
                 variant="display-3xl"
                 className="!text-white font-normal font-playfair-display leading-tight tracking-tight uppercase"
-                style={{ color: WHITE }}
               >
                 {hero.titleLine2}
               </Typography>

@@ -50,6 +50,7 @@ export default function ScrollTriggeredNavbar() {
     const onIntroStart = () => {
       introCompleteRef.current = false;
       setIsVisible(false);
+      setMenuOpen(false);
     };
 
     window.addEventListener("homepage-intro-complete", onIntroComplete);

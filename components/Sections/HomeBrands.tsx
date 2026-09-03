@@ -30,7 +30,7 @@ export default function BrandsSection() {
   return (
     <section id="homebrands" className="relative z-[101] w-full min-h-screen py-4 md:py-6 lg:py-8 px-4 md:px-2 lg:px-20">
       {/* Content Overlay on top of the tile from HeroSection */}
-      <div className="max-w-[1400px] mx-auto flex flex-col gap-6 md:gap-8 lg:gap-12 rounded-3xl p-4 md:p-4 lg:p-10">
+      <div className="max-w-[1400px] mx-auto flex flex-col gap-6 md:gap-8 lg:gap-12 rounded-3xl p-4 md:p-4 xl:p-10">
 
         {/* Heading */}
         <Typography
