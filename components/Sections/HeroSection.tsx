@@ -327,11 +327,10 @@ export default function HeroSection() {
 
             <div className="absolute inset-x-0 bottom-0 z-10 flex w-full justify-center px-4 pb-8 sm:px-8 sm:pb-10 md:pb-12 lg:pb-16">
               <Typography
-                variant="display-2xl"
+                variant="display-3xl"
                 as="p"
                 className={cn(
-                  "text-center text-white font-normal font-playfair-display leading-tight tracking-[0.02em]",
-                  "text-4xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-6xl",
+                  "text-center text-white font-normal font-playfair-display sm:leading-tight tracking-[0.02em]",
                   "max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[60vw]",
                   "[text-shadow:0_2px_16px_rgba(0,0,0,0.55)]"
                 )}

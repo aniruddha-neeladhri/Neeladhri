@@ -12,7 +12,13 @@ interface NavbarProps {
   onMenuToggle: (open: boolean) => void;
 }
 
-function ThemeToggle({ size = "md" }: { size?: "sm" | "md" }) {
+function ThemeToggle({
+  size = "md",
+  onThemeSelect,
+}: {
+  size?: "sm" | "md";
+  onThemeSelect?: () => void;
+}) {
   const { theme, setTheme } = useTheme();
   const isPremium = theme === "premium";
   const isLuxuryNav = theme === "luxury";
@@ -24,6 +30,13 @@ function ThemeToggle({ size = "md" }: { size?: "sm" | "md" }) {
 
   const luxuryTrackBg = "#555555";
   const luxuryActiveBg = "#000000";
+
+  const selectTheme = (next: "premium" | "luxury") => {
+    if (next !== theme) {
+      setTheme(next);
+    }
+    onThemeSelect?.();
+  };
 
   return (
     <div
@@ -51,7 +64,7 @@ function ThemeToggle({ size = "md" }: { size?: "sm" | "md" }) {
 
       <button
         type="button"
-        onClick={() => setTheme("premium")}
+        onClick={() => selectTheme("premium")}
         aria-pressed={isPremium}
         className={[
           "relative z-10 min-w-0 rounded-full cursor-pointer select-none text-center",
@@ -72,7 +85,7 @@ function ThemeToggle({ size = "md" }: { size?: "sm" | "md" }) {
 
       <button
         type="button"
-        onClick={() => setTheme("luxury")}
+        onClick={() => selectTheme("luxury")}
         aria-pressed={!isPremium}
         className={[
           "relative z-10 min-w-0 rounded-full cursor-pointer select-none text-center",
@@ -152,7 +165,7 @@ export default function Navbar({ menuOpen, onMenuToggle }: NavbarProps) {
         </Link>
 
         <div className="hidden lg:flex flex-1 justify-center">
-          <ThemeToggle />
+          <ThemeToggle onThemeSelect={() => onMenuToggle(false)} />
         </div>
 
         {/* Desktop nav links */}
@@ -176,7 +189,7 @@ export default function Navbar({ menuOpen, onMenuToggle }: NavbarProps) {
 
         {/* Mobile controls */}
         <div className="flex lg:hidden items-center gap-3 ml-auto">
-          <ThemeToggle size="sm" />
+          <ThemeToggle size="sm" onThemeSelect={() => onMenuToggle(false)} />
           <button
             onClick={() => onMenuToggle(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}

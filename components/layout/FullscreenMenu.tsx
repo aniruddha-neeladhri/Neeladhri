@@ -4,8 +4,16 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
 import { NAV_LINKS } from "@/lib/constants/Navlinks";
+import { useTheme } from "@/lib/contexts/ThemeContext";
 
 export default function FullscreenMenu({ close }: { close: () => void }) {
+  const { theme } = useTheme();
+  const isLuxury = theme === "luxury";
+  const panelBg = isLuxury ? "bg-black" : "bg-white";
+  const linkClass = isLuxury
+    ? "text-[#D3B898] hover:text-[#E4C9A8]"
+    : "text-[#F79440] hover:text-orange-500";
+
   return (
     <div className="fixed top-[80px] left-0 right-0 bottom-0 z-[10001] overflow-hidden">
 
@@ -16,7 +24,7 @@ export default function FullscreenMenu({ close }: { close: () => void }) {
         exit={{ scaleX: 0 }}
         transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
         style={{ originX: 0 }}
-        className="absolute top-0 left-0 h-full w-1/2 bg-white z-10"
+        className={`absolute top-0 left-0 h-full w-1/2 ${panelBg} z-10`}
       />
 
       {/* Right curtain */}
@@ -26,7 +34,7 @@ export default function FullscreenMenu({ close }: { close: () => void }) {
         exit={{ scaleX: 0 }}
         transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
         style={{ originX: 1 }}
-        className="absolute top-0 right-0 h-full w-1/2 bg-white z-10"
+        className={`absolute top-0 right-0 h-full w-1/2 ${panelBg} z-10`}
       />
 
       {/* Nav links */}
@@ -58,7 +66,7 @@ export default function FullscreenMenu({ close }: { close: () => void }) {
             <Link href={link.href} onClick={close} className="transition-colors">
               <Typography
                 variant="display-xl"
-                className="font-semibold text-[#F79440] hover:text-orange-500"
+                className={`font-semibold ${linkClass}`}
               >
                 {link.text}
               </Typography>
