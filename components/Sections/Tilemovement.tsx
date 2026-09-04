@@ -14,6 +14,8 @@ type TileStep = {
   videoTime: number;
 };
 
+// Each step uses its own short clip (~5s). Always start at 0 — do not seek
+ // with offsets like 5/10/15 (those were leftover from a single long video).
 const STEPS_PREMIUM: TileStep[] = [
   {
     heading: "Living Room",
@@ -27,21 +29,21 @@ const STEPS_PREMIUM: TileStep[] = [
     body: "Cook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
     videoSrc:
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/24ad9e06-4fc6-48d8-880a-ebb74963441a.mp4",
-    videoTime: 5,
+    videoTime: 0,
   },
   {
     heading: "Dining Room",
     body: "Made for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
     videoSrc:
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/10fac9df-5445-47e3-834c-49f68bb3a7db.mp4",
-    videoTime: 10,
+    videoTime: 0,
   },
   {
     heading: "Bathroom",
     body: "Every detail matters. Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
     videoSrc:
       "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/df96c5d9-2037-4625-bc08-47fb1382de5d.mp4",
-    videoTime: 15,
+    videoTime: 0,
   },
 ];
 
@@ -56,19 +58,19 @@ const STEPS_LUXURY: TileStep[] = [
     heading: "Kitchen",
     body: "Designed for a signature lifestyle.\nExplore bespoke surfaces, luxury fittings and refined finishes, thoughtfully curated to create a kitchen of exceptional style and sophistication.",
     videoSrc: STEPS_PREMIUM[1].videoSrc,
-    videoTime: 5,
+    videoTime: 0,
   },
   {
     heading: "Dining Room",
     body: "Dining, elevated to an art.\nSignature surfaces and bespoke collections come together to create an elegant setting defined by luxury, character and timeless appeal.",
     videoSrc: STEPS_PREMIUM[2].videoSrc,
-    videoTime: 10,
+    videoTime: 0,
   },
   {
     heading: "Bathroom",
     body: "A sanctuary of signature luxury.\nFrom bespoke surfaces to statement sanitaryware and fittings, discover exquisite details crafted to create a bathroom of timeless elegance.",
     videoSrc: STEPS_PREMIUM[3].videoSrc,
-    videoTime: 15,
+    videoTime: 0,
   },
 ];
 
@@ -345,7 +347,7 @@ export default function TileScrollSection({
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
       if (i === step) {
-        v.currentTime = STEPS_PREMIUM[i].videoTime;
+        v.currentTime = STEPS[i].videoTime;
         v.muted = isMutedRef.current;
         v.play().catch(() => {});
       } else {
@@ -353,14 +355,20 @@ export default function TileScrollSection({
         v.pause();
       }
     });
-  }, [moveTile]);
+  }, [STEPS, moveTile]);
 
   const scrollToStep = useCallback((step: number) => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
-    const vh    = window.innerHeight;
+    const vh = window.innerHeight;
     const total = wrapper.offsetHeight - vh;
-    const targetScrollY = wrapper.offsetTop + (step / (STEP_COUNT - 1)) * total;
+    // Never scroll the last step to 100% of the pin range — that lands exactly
+    // on the exit threshold (rect.bottom ≈ vh), flips pinMode to "after",
+    // mutes/pauses the Bathroom clip, and hides the mute button.
+    const lastStepSlackPx = Math.min(96, Math.max(48, Math.round(vh * 0.08)));
+    const maxScrollable = Math.max(0, total - lastStepSlackPx);
+    const targetScrollY =
+      wrapper.offsetTop + (step / (STEP_COUNT - 1)) * maxScrollable;
     window.scrollTo({ top: targetScrollY, behavior: "smooth" });
   }, []);
 
@@ -448,6 +456,21 @@ export default function TileScrollSection({
       // the section "pinned" forever and fight exit scrolls.
       isPinnedRef.current = true;
       setPinMode("pinned");
+
+      // Keep step in sync with scroll progress while pinned (wheel/touch
+      // already call applyStep; this covers native scrollbar / smooth settle).
+      if (!isAnimatingRef.current) {
+        const total = wrapper.offsetHeight - vh;
+        const scrolled = Math.min(Math.max(-rect.top, 0), total);
+        const lastStepSlackPx = Math.min(96, Math.max(48, Math.round(vh * 0.08)));
+        const usable = Math.max(1, total - lastStepSlackPx);
+        const progress = Math.min(1, scrolled / usable);
+        const step = Math.min(
+          STEP_COUNT - 1,
+          Math.max(0, Math.round(progress * (STEP_COUNT - 1)))
+        );
+        applyStep(step);
+      }
     } else {
       isPinnedRef.current = false;
       setPinMode("after");
