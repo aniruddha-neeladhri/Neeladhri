@@ -93,7 +93,7 @@ export default function BrandsSection() {
   }, [isLuxury, data]);
 
   return (
-    <section id="homebrands" className="relative z-[101] w-full min-h-screen py-4 md:py-6 lg:py-8 px-4 md:px-2 lg:px-20">
+    <section id="homebrands" className="relative z-[101] w-full py-4 md:py-6 lg:py-8 px-4 md:px-2 lg:px-20">
       <div className="mx-auto flex max-w-[1400px] flex-col gap-6 rounded-3xl p-4 md:gap-8 md:p-4 lg:gap-12 xl:p-10">
         <Typography
           variant="display-2xl"
@@ -110,9 +110,7 @@ export default function BrandsSection() {
 
         <div
           ref={gridRef}
-          className={`grid grid-cols-1 items-stretch gap-3 sm:grid-cols-2 md:gap-3 lg:gap-6 ${
-            isLuxury ? "lg:grid-cols-4" : "md:grid-cols-4"
-          }`}
+          className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-2 md:grid-cols-4 md:gap-3 lg:gap-6"
         >
           {data.map((brand, i) =>
             isLuxury ? (
@@ -121,9 +119,9 @@ export default function BrandsSection() {
                 key={i}
                 onClick={handleBrandNavigate}
                 data-brand-card
-                className="group relative mx-auto block h-full w-full max-w-[320px] overflow-hidden sm:max-w-none"
+                className="group relative mx-auto block w-full max-w-[320px] overflow-hidden sm:max-w-none"
               >
-                {/* Original overlay card height */}
+                {/* Original overlay card height — do not use h-full (breaks aspect-ratio) */}
                 <div className="relative aspect-[3/4] w-full">
                   <Image
                     src={brand.image}
