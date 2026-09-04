@@ -144,8 +144,25 @@ function ContactMenuLink({
 export default function SiteChatbot() {
   const { theme } = useTheme();
   const isLuxury = theme === "luxury";
+  const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  // Defer mount so this widget never becomes LCP (Lighthouse was flagging chatbot.png).
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    const show = () => setReady(true);
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(show, { timeout: 4000 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    timeoutId = setTimeout(show, 2500);
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -163,6 +180,8 @@ export default function SiteChatbot() {
       document.removeEventListener("touchstart", onPointerDown);
     };
   }, [open]);
+
+  if (!ready) return null;
 
   const buttonGradient = isLuxury
     ? "radial-gradient(circle at center, #7B7B7B 0%, #121212 100%)"

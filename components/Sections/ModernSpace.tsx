@@ -242,6 +242,8 @@ export default function SpacesShowcase() {
         >
           {spaces.map((space, idx) => {
             const isCenter = idx === centerIndex;
+            // Only load nearby slides — full carousel was ~7MB of PNGs at once.
+            const shouldLoad = Math.abs(idx - centerIndex) <= 1;
             return (
               <div
                 key={idx}
@@ -255,13 +257,17 @@ export default function SpacesShowcase() {
                       : "w-[85%] h-[260px] md:h-[320px] lg:h-[400px] opacity-90"
                   }`}
                 >
-                  <Image
-                    src={space.src}
-                    alt={space.alt}
-                    fill
-                    draggable={false}
-                    className="object-cover object-center pointer-events-none transition-transform duration-700 ease-in-out group-hover:scale-105"
-                  />
+                  {shouldLoad ? (
+                    <Image
+                      src={space.src}
+                      alt={space.alt}
+                      fill
+                      draggable={false}
+                      className="object-cover object-center pointer-events-none transition-transform duration-700 ease-in-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-neutral-200" aria-hidden />
+                  )}
                 </div>
               </div>
             );

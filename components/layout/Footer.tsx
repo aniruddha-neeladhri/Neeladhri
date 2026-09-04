@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
+import LazyMapEmbed from "@/components/layout/LazyMapEmbed";
 import {
   ABOUT_LINKS,
   ADDRESS,
@@ -41,14 +42,8 @@ export default function Footer() {
               </Typography>
             </div>
             <div className="w-full max-w-[280px] rounded-lg overflow-hidden border border-neutral-700">
-              <iframe
+              <LazyMapEmbed
                 src={MAP_EMBED_URL}
-                width="100%"
-                height="160"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
                 title="Neeladhri Ceramics Location"
               />
             </div>
@@ -103,7 +98,7 @@ export default function Footer() {
             <Link href="/terms" className="transition hover:text-neutral-300">
               <Typography variant="body-sm" className="text-white">Terms of Service</Typography>
             </Link>
-            <Link href="/sitemap" className="transition hover:text-neutral-300">
+            <Link href="/sitemap.xml" className="transition hover:text-neutral-300">
               <Typography variant="body-sm" className="text-white">Sitemap</Typography>
             </Link>
           </div>
@@ -196,14 +191,8 @@ export default function Footer() {
                 </li>
                 <li>
                   <div className="w-full max-w-[280px] rounded-lg overflow-hidden border border-neutral-700">
-                    <iframe
+                    <LazyMapEmbed
                       src={MAP_EMBED_URL}
-                      width="100%"
-                      height="160"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
                       title="Neeladhri Ceramics Location"
                     />
                   </div>
