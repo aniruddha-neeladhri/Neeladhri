@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "@/lib/Typography";
@@ -12,10 +14,34 @@ import {
   SOCIAL,
   TAGLINE,
 } from "@/lib/constants/footer";
+
 const MAP_EMBED_URL =
   "https://www.google.com/maps?q=Neeladhri+Ceramics,+Skanda+Mansion,+JSS+Circle+748/41,+Kanakapura+Rd,+7th+Block,+Jayanagar+Bangalore,+Karnataka+560070,+India&z=16&output=embed";
 
 export default function Footer() {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.includes("#")) {
+      const [path, hash] = href.split("#");
+      const currentPath = window.location.pathname.replace(/\/$/, "");
+      const targetPath = path.replace(/\/$/, "");
+
+      if (currentPath === targetPath || (currentPath === "" && targetPath === "/collection")) {
+        e.preventDefault();
+        window.history.pushState(null, "", href);
+        const element = document.getElementById(hash);
+        if (element) {
+          const navbarOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarOffset;
+          window.scrollTo({
+            top: Math.max(0, offsetPosition),
+            behavior: "smooth",
+          });
+        }
+      }
+    }
+  };
+
   return (
     <footer className="w-full bg-[#262626] text-white">
 
@@ -64,7 +90,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Links Grid */}
+        {/* General Links Grid */}
         <div className="grid grid-cols-2 gap-x-14 gap-y-4 text-left w-max mx-auto mt-2">
           <Link href="/about" className="transition hover:text-neutral-300"><Typography variant="body-sm" className="text-white">About Us</Typography></Link>
           <Link href="/gallery" className="transition hover:text-neutral-300"><Typography variant="body-sm" className="text-white">Gallery</Typography></Link>
@@ -74,8 +100,10 @@ export default function Footer() {
           <Link href="/contact" className="transition hover:text-neutral-300"><Typography variant="body-sm" className="text-white">Contact Us</Typography></Link>
         </div>
 
+
+
         {/* Social Icons & Bottom Bar */}
-        <div className="flex flex-col items-center gap-4 mt-6 w-full">
+        <div className="flex flex-col items-center gap-4 mt-4 w-full">
           <div className="flex gap-5 mb-2">
             <a href={SOCIAL.find(s => s.name === "Facebook")?.href || "#"} aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="text-neutral-400 transition hover:text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
@@ -104,7 +132,7 @@ export default function Footer() {
           </div>
 
           <Typography variant="body-sm" className="text-white">
-            © 2026 Neeladhri Ceramics. All rights reserved.
+            © {new Date().getFullYear()} Neeladhri Ceramics. All rights reserved.
           </Typography>
         </div>
       </div>
@@ -153,7 +181,11 @@ export default function Footer() {
               <ul className="space-y-5">
                 {ABOUT_LINKS.map(({ label, href }) => (
                   <li key={label}>
-                    <Link href={href} className="text-[15px] text-white transition hover:text-neutral-300">
+                    <Link
+                      href={href}
+                      onClick={(e) => handleLinkClick(e, href)}
+                      className="text-[15px] text-white transition hover:text-neutral-300"
+                    >
                       <Typography variant="body-lg" className="text-white transition hover:text-neutral-300 font-medium font-montserrat">{label}</Typography>
                     </Link>
                   </li>
@@ -169,7 +201,11 @@ export default function Footer() {
               <ul className="space-y-5">
                 {PRODUCT_LINKS.map(({ label, href }) => (
                   <li key={label}>
-                    <Link href={href} className="text-[15px] text-white transition hover:text-neutral-300">
+                    <Link
+                      href={href}
+                      onClick={(e) => handleLinkClick(e, href)}
+                      className="text-[15px] text-white transition hover:text-neutral-300"
+                    >
                       <Typography variant="body-lg" className="text-white transition hover:text-neutral-300 font-medium font-montserrat">{label}</Typography>
                     </Link>
                   </li>
