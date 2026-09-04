@@ -37,7 +37,7 @@ async function main() {
 
     const keys = (listed.Contents ?? [])
       .map((o) => o.Key)
-      .filter((k): k is string => Boolean(k) && !k.endsWith("/"));
+      .filter((k): k is string => typeof k === "string" && !k.endsWith("/"));
 
     console.log(`Listed ${keys.length} keys…`);
 
