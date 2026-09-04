@@ -60,9 +60,24 @@ export default function GallerySection() {
     setCenter((prev) => ((prev + dir) % total + total) % total);
   }, [total]);
 
-  const closeZoom = useCallback(() => setZoomedIdx(null), []);
+  const closeZoom = useCallback(() => {
+    // Without this, the card's `tiltMap` entry still holds whatever
+    // rx/ry the last mouse-move over it produced (tilt is only forced
+    // to 0 while `zoomedIdx !== null`, in cardStyle). On close that
+    // stale value comes right back, so the card visibly snaps/animates
+    // from flat into that old tilt instead of just staying flat.
+    // Clearing it here means it settles back exactly where it was.
+    setTiltMap((p) => {
+      if (zoomedIdx === null || !p[zoomedIdx]) return p;
+      return { ...p, [zoomedIdx]: { rx: 0, ry: 0 } };
+    });
+    setZoomedIdx(null);
+  }, [zoomedIdx]);
 
   const openZoom = useCallback((idx: number) => {
+    // Same reasoning as closeZoom: start the zoomed card from a clean,
+    // untilted state rather than whatever tilt the hover left behind.
+    setTiltMap((p) => (p[idx] ? { ...p, [idx]: { rx: 0, ry: 0 } } : p));
     setCenter(idx);
     setZoomedIdx(idx);
   }, []);
