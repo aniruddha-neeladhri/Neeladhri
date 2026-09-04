@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { BLOG_POSTS, BlogPost } from "@/lib/constants/blogs";
 import { getBlogSeo } from "@/lib/seo";
@@ -384,12 +384,54 @@ function useActiveSectionImage(
   return activeImage;
 }
 
+/** Shared "&larr; Back" control, rendered right above the page heading. */
+function BackButton({
+  onClick,
+  isLuxury,
+  className,
+}: {
+  onClick: () => void;
+  isLuxury: boolean;
+  className?: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="Go back to previous page"
+      className={cn(
+        "self-start px-0 py-1 text-sm font-bold transition-colors",
+        isLuxury ? "text-white hover:text-white/70" : "text-[#555555] hover:text-black",
+        className
+      )}
+    >
+      &larr; Back
+    </button>
+  );
+}
+
 export default function BlogDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const slugParam = params?.slug;
   const slug = typeof slugParam === "string" ? slugParam : slugParam?.[0];
   const { theme } = useTheme();
-  const isLuxury = theme === "luxury";
+
+  // `theme` typically comes from localStorage/a client-only source, so it
+  // is not known during server rendering. If we branch on `isLuxury`
+  // immediately, the server renders one variant (usually the default)
+  // while the client's very first render already knows the real theme —
+  // different classNames/colors on the same DOM node = hydration
+  // mismatch. Rendering as the default theme until after mount, then
+  // switching, keeps the server HTML and the first client render
+  // identical; the theme swap then happens as an ordinary post-hydration
+  // state update instead of a mismatch.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isLuxury = mounted && theme === "luxury";
   const fontClass = isLuxury ? "font-cormorant-garamond" : "font-poppins";
 
   const post = slug ? BLOG_POSTS.find((p) => p.slug === slug) : undefined;
@@ -435,7 +477,7 @@ export default function BlogDetailPage() {
 
   return (
     <main
-      className={`w-full bg-inherit box-border ${fontClass} ${isVerticalLayout
+      className={`relative w-full bg-inherit box-border ${fontClass} ${isVerticalLayout
         ? "overflow-y-auto pt-8 pb-8 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20"
         : `pt-2 pb-8 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 ${splitMainHeight} overflow-hidden flex flex-col`
         }`}
@@ -449,10 +491,12 @@ export default function BlogDetailPage() {
           </div>
 
           <div className="flex flex-col gap-6 sm:gap-8 max-w-[900px] mx-auto w-full">
+            <BackButton onClick={() => router.back()} isLuxury={isLuxury} className="text-center sm:text-left" />
+
             <Typography
               variant="display-xl"
               className={cn(
-                "font-normal leading-tight text-center sm:text-left",
+                "font-bold leading-tight text-center sm:text-left",
                 fontClass,
                 isLuxury ? "!text-white" : "!text-[#555555]"
               )}
@@ -466,6 +510,17 @@ export default function BlogDetailPage() {
         </div>
       ) : (
         <div className="mx-auto w-full max-w-[1400px] flex flex-col lg:flex-row lg:items-stretch gap-[2px] lg:gap-10 xl:gap-14 h-full min-h-0 flex-1">
+          {/* Mobile/tablet-only back button: rendered first so it sits at
+              the top-left corner, before the image, below 1024px. Hidden
+              at lg+ since the desktop layout keeps the back button at the
+              top of the scrolling text column instead (see the second
+              BackButton inside the text panel below). */}
+          <BackButton
+            onClick={() => router.back()}
+            isLuxury={isLuxury}
+            className="order-0 lg:hidden"
+          />
+
           {/* Image panel: a fixed-size, non-scrolling slot at all
               breakpoints. It never moves — it's simply outside the
               scrollable area, not "stuck" via position:sticky. That's
@@ -498,6 +553,23 @@ export default function BlogDetailPage() {
             ref={scrollContainerRef}
             className="order-2 lg:order-1 w-full lg:flex-1 lg:min-w-0 min-h-0 flex-1 flex flex-col overflow-y-auto lg:pr-2 xl:pr-4 scrollbar-hide"
           >
+            {/* Desktop-only back button (top of text panel). The mobile
+                equivalent lives above, before the image. This is a
+                full-width sticky bar (not just the button) with a solid,
+                theme-matched background — `position: sticky` keeps the
+                button's own layout space, so without an opaque bg behind
+                it, text that scrolls up from below shows through it.
+                The bar's background is set explicitly per theme so it's
+                never transparent. */}
+            <div
+              className="hidden lg:block lg:sticky lg:top-0 lg:z-10 lg:-mx-1 lg:px-1 lg:pb-2"
+              style={{
+                backgroundColor: isLuxury ? "#000000" : "#FFFFFF",
+              }}
+            >
+              <BackButton onClick={() => router.back()} isLuxury={isLuxury} className="lg:inline-flex mb-0" />
+            </div>
+
             <Typography
               variant="display-xl"
               className={cn(
@@ -508,7 +580,7 @@ export default function BlogDetailPage() {
                 // (via inline style below) avoid awkward mid-word
                 // breaks or overly ragged lines, with no manual <br>
                 // needed anywhere.
-                "font-normal leading-[1.1] tracking-tight mb-4 sm:mb-5 text-left w-full break-words lg:max-w-xl text-[26px] sm:text-[34px] md:text-[38px] lg:text-[42px]",
+                "font-bold leading-[1.1] tracking-tight mb-4 sm:mb-5 text-left w-full break-words lg:max-w-xl text-[26px] sm:text-[34px] md:text-[38px] lg:text-[42px]",
                 fontClass,
                 isLuxury ? "!text-white" : "!text-[#555555]"
               )}
