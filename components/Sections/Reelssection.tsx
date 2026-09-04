@@ -92,7 +92,7 @@ export default function ReelsSection() {
 
   // z-20 keeps controls above reel cards (cards were stealing edge clicks)
   const controlClass =
-    "relative z-20 mb-1 flex h-6 w-6 shrink-0 touch-manipulation items-center justify-center rounded-full transition-opacity";
+    "relative z-20 mb-1 flex h-6 w-6 shrink-0 touch-manipulation items-center justify-center rounded-full transition-opacity md:justify-self-center";
 
   return (
     <section
@@ -123,7 +123,7 @@ export default function ReelsSection() {
 
 
         {/* Design: controls outside the strip, bottom-aligned, small gap */}
-        <div className="isolate grid w-full max-w-[360px] grid-cols-[2rem_minmax(0,1fr)_2rem] items-end gap-3 md:max-w-none md:w-auto md:grid-cols-[2rem_720px_2rem] md:gap-0 lg:grid-cols-[2rem_812px_2rem] lg:gap-4 xl:grid-cols-[2rem_872px_2rem]">
+        <div className="isolate grid w-full max-w-[360px] grid-cols-[2rem_minmax(0,1fr)_2rem] items-end gap-3 md:max-w-none md:w-auto md:grid-cols-[2rem_680px_2rem] md:gap-3 lg:grid-cols-[2rem_812px_2rem] lg:gap-4 xl:grid-cols-[2rem_872px_2rem]">
           <button
             type="button"
             onClick={(e) => {
@@ -155,7 +155,7 @@ export default function ReelsSection() {
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") goToInstagram();
                   }}
-                  className="relative aspect-[9/16] w-full min-w-full shrink-0 snap-start cursor-pointer overflow-hidden shadow-lg md:w-[230px] md:min-w-[230px] lg:w-[260px] lg:min-w-[260px] xl:w-[280px] xl:min-w-[280px]"
+                  className="relative aspect-[9/16] w-full min-w-full shrink-0 snap-start cursor-pointer overflow-hidden shadow-lg md:w-[216px] md:min-w-[216px] lg:w-[260px] lg:min-w-[260px] xl:w-[280px] xl:min-w-[280px]"
                   style={{ backgroundColor: colors.cardBg }}
                 >
                   {reel.videoSrc ? (
