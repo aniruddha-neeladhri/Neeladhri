@@ -12,14 +12,15 @@ export const metadata: Metadata = {
 
 const MAIN_PAGES = [
   { href: "/", label: "Home" },
+  { href: "/collection", label: "Collections" },
   { href: "/about", label: "About" },
   { href: "/brands", label: "Brands" },
-  { href: "/collection", label: "Collections" },
   { href: "/gallery", label: "Gallery" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms of Service" },
+  { href: "/sitemap", label: "Sitemap" },
 ] as const;
 
 function linkClassName() {

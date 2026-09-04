@@ -2,11 +2,12 @@ import { BLOG_POSTS } from "@/lib/constants/blogs";
 import { getAllBrandSlugs } from "@/lib/data/brands/slugs";
 import { getSiteUrl } from "@/lib/site";
 
+/** Main pages — priority 1.0 (matches production sitemap). */
 const STATIC_ROUTES = [
   "",
+  "/collection",
   "/about",
   "/brands",
-  "/collection",
   "/gallery",
   "/blog",
   "/contact",
@@ -18,7 +19,6 @@ const STATIC_ROUTES = [
 export type SitemapEntry = {
   url: string;
   lastModified: string;
-  changeFrequency: "weekly" | "monthly";
   priority: number;
 };
 
@@ -27,24 +27,21 @@ export function getSitemapEntries(): SitemapEntry[] {
   const lastModified = new Date().toISOString();
 
   const staticPages = STATIC_ROUTES.map((path) => ({
-    url: `${base}${path}`,
+    url: `${base}${path || "/"}`,
     lastModified,
-    changeFrequency: path === "" ? ("weekly" as const) : ("monthly" as const),
-    priority: path === "" ? 1 : 0.8,
+    priority: 1.0,
   }));
 
   const brandPages = getAllBrandSlugs().map((slug) => ({
     url: `${base}/brands/${slug}`,
     lastModified,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: 0.8,
   }));
 
   const blogPages = BLOG_POSTS.map((post) => ({
     url: `${base}/blog/${post.slug}`,
     lastModified,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
+    priority: 0.8,
   }));
 
   return [...staticPages, ...brandPages, ...blogPages];
@@ -53,12 +50,11 @@ export function getSitemapEntries(): SitemapEntry[] {
 export function buildSitemapXml(entries: SitemapEntry[]): string {
   const urls = entries
     .map(
-      (entry) => `  <url>
-    <loc>${entry.url}</loc>
-    <lastmod>${entry.lastModified}</lastmod>
-    <changefreq>${entry.changeFrequency}</changefreq>
-    <priority>${entry.priority.toFixed(1)}</priority>
-  </url>`,
+      (entry) => `<url>
+	<loc>${entry.url}</loc>
+	<lastmod>${entry.lastModified}</lastmod>
+	<priority>${entry.priority.toFixed(1)}</priority>
+</url>`,
     )
     .join("\n");
 
