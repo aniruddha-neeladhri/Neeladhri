@@ -56,7 +56,7 @@ export default function BrandsSection() {
                 onClick={handleBrandNavigate}
                 className="group relative block h-full w-full max-w-[320px] mx-auto sm:max-w-none overflow-hidden"
               >
-                <div className="relative w-full aspect-[3/4]">
+                <div className="relative w-full aspect-[3/4] md:aspect-auto md:h-[400px] lg:h-[480px] xl:h-[550px] 2xl:aspect-[3/4] 2xl:h-auto">
                   <Image
                     src={brand.image}
                     alt={brand.name}
@@ -88,7 +88,7 @@ export default function BrandsSection() {
                 onClick={handleBrandNavigate}
                 className="group flex h-full w-full max-w-[320px] mx-auto sm:max-w-none flex-col"
               >
-                <div className="relative w-full aspect-[3/4] overflow-hidden shrink-0">
+                <div className="relative w-full aspect-[3/4] overflow-hidden shrink-0 md:aspect-auto md:h-[400px] lg:h-[480px] xl:h-[550px] 2xl:aspect-[3/4] 2xl:h-auto">
                   <Image
                     src={brand.image}
                     alt={brand.name}
