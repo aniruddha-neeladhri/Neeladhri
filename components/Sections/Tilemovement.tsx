@@ -347,6 +347,11 @@ export default function TileScrollSection({
     videoRefs.current.forEach((v, i) => {
       if (!v) return;
       if (i === step) {
+        const nextSrc = STEPS[i].videoSrc;
+        // Set src immediately — React may not have re-rendered the lazy src yet.
+        if (!v.currentSrc || !v.currentSrc.includes(nextSrc.split("/").pop() ?? "")) {
+          v.src = nextSrc;
+        }
         v.currentTime = STEPS[i].videoTime;
         v.muted = isMutedRef.current;
         v.play().catch(() => {});
@@ -561,23 +566,27 @@ export default function TileScrollSection({
           pinMode === "before" && "relative z-0"
         )}
       >
-        {/* Videos */}
-        {STEPS.map((s, i) => (
-          <video
-            key={i}
-            ref={(el) => {
-              videoRefs.current[i] = el;
-              if (el) el.muted = isMutedRef.current;
-            }}
-            src={s.videoSrc}
-            loop
-            playsInline
-            className={cn(
-              "absolute inset-0 z-0 h-full w-full object-cover object-center transition-opacity duration-700",
-              activeStep === i ? "opacity-100" : "opacity-0"
-            )}
-          />
-        ))}
+        {/* Videos — only attach src for active ±1 so we don't download ~25MB of clips upfront */}
+        {STEPS.map((s, i) => {
+          const shouldLoad = Math.abs(i - activeStep) <= 1;
+          return (
+            <video
+              key={`${theme}-${i}-${s.videoSrc}`}
+              ref={(el) => {
+                videoRefs.current[i] = el;
+                if (el) el.muted = isMutedRef.current;
+              }}
+              src={shouldLoad ? s.videoSrc : undefined}
+              preload={i === activeStep ? "auto" : shouldLoad ? "metadata" : "none"}
+              loop
+              playsInline
+              className={cn(
+                "absolute inset-0 z-0 h-full w-full object-cover object-center transition-opacity duration-700",
+                activeStep === i ? "opacity-100" : "opacity-0"
+              )}
+            />
+          );
+        })}
 
         {/*
           Overlay:
@@ -630,6 +639,7 @@ export default function TileScrollSection({
             src="/tileimage.png"
             alt="Tile"
             fill
+            priority
             className="object-cover"
             sizes="(max-width: 640px) 108px, (max-width: 1024px) 128px, 175px"
           />

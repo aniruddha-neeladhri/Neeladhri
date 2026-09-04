@@ -201,7 +201,6 @@ export default function SpacesShowcase() {
                 src={spaces[activeIndex].src}
                 alt={spaces[activeIndex].alt}
                 fill
-                priority
                 className="object-contain object-center"
               />
             </div>
@@ -261,7 +260,6 @@ export default function SpacesShowcase() {
                     alt={space.alt}
                     fill
                     draggable={false}
-                    priority
                     className="object-cover object-center pointer-events-none transition-transform duration-700 ease-in-out group-hover:scale-105"
                   />
                 </div>

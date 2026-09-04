@@ -90,6 +90,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${fontVariableClassNames} theme-premium`}>
+      <head>
+        <link
+          rel="preconnect"
+          href="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="dns-prefetch"
+          href="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev"
+        />
+      </head>
       <body className="antialiased theme-premium">
         <ThemeProvider>
           <ThemeWrapper />

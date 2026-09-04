@@ -23,6 +23,7 @@ export default function ReelsSection() {
   const [atEnd, setAtEnd] = useState(false);
   // Per-reel unmute: only the clicked video plays sound (others stay muted).
   const [unmutedId, setUnmutedId] = useState<string | null>(null);
+  const [activeReelIndex, setActiveReelIndex] = useState(0);
 
   const syncEdges = useCallback(() => {
     const el = scrollerRef.current;
@@ -30,6 +31,19 @@ export default function ReelsSection() {
     const max = el.scrollWidth - el.clientWidth;
     setAtStart(el.scrollLeft <= 2);
     setAtEnd(max <= 2 || el.scrollLeft >= max - 2);
+
+    const cards = Array.from(el.children) as HTMLElement[];
+    if (!cards.length) return;
+    let active = 0;
+    let best = Infinity;
+    for (let i = 0; i < cards.length; i++) {
+      const d = Math.abs(cards[i].offsetLeft - el.scrollLeft);
+      if (d < best) {
+        best = d;
+        active = i;
+      }
+    }
+    setActiveReelIndex(active);
   }, []);
 
   useEffect(() => {
@@ -129,7 +143,9 @@ export default function ReelsSection() {
               className="relative flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain scroll-smooth md:gap-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
-              {reels.map((reel) => (
+              {reels.map((reel, index) => {
+                const shouldLoad = Math.abs(index - activeReelIndex) <= 1;
+                return (
                 <div
                   key={reel.id}
                   onClick={goToInstagram}
@@ -144,9 +160,10 @@ export default function ReelsSection() {
                   {reel.videoSrc ? (
                     <>
                       <video
-                        src={reel.videoSrc}
+                        src={shouldLoad ? reel.videoSrc : undefined}
                         poster={reel.poster}
-                        autoPlay
+                        preload={shouldLoad ? "metadata" : "none"}
+                        autoPlay={shouldLoad}
                         muted={unmutedId !== reel.id}
                         loop
                         playsInline
@@ -180,7 +197,8 @@ export default function ReelsSection() {
                     </div>
                   )}
                 </div>
-              ))}
+              );
+              })}
             </div>
           </div>
 
