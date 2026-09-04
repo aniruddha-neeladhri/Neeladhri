@@ -22,7 +22,6 @@ function Cell({
   href,
   uniformAspect,
   mobileAspect,
-  showLabel = true,
 }: {
   src: string;
   label: string;
@@ -32,7 +31,6 @@ function Cell({
   href?: string;
   uniformAspect?: boolean; // tablet: fixed aspect ratio, object-cover
   mobileAspect?: boolean;  // mobile: slightly shorter aspect ratio
-  showLabel?: boolean;
 }) {
   const { theme } = useTheme();
   const inner = (
@@ -63,7 +61,7 @@ function Cell({
           aria-hidden
         />
       )}
-      {label && showLabel && (
+      {label && (
           <Typography
             variant="display-xl"
             as="p"
@@ -77,9 +75,32 @@ function Cell({
     </div>
   );
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href && href.includes("#")) {
+      const [path, hash] = href.split("#");
+      const currentPath = window.location.pathname.replace(/\/$/, "");
+      const targetPath = path.replace(/\/$/, "");
+
+      if (currentPath === targetPath || (currentPath === "" && targetPath === "/collection")) {
+        e.preventDefault();
+        window.history.pushState(null, "", href);
+        const element = document.getElementById(hash);
+        if (element) {
+          const navbarOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarOffset;
+          window.scrollTo({
+            top: Math.max(0, offsetPosition),
+            behavior: "smooth",
+          });
+        }
+      }
+    }
+  };
+
   if (href) {
     return (
-      <Link href={href} className="block w-full flex-shrink-0">
+      <Link href={href} onClick={handleClick} className="block w-full flex-shrink-0">
         {inner}
       </Link>
     );
@@ -137,7 +158,6 @@ export default function CollectionsSection() {
             borderColor={borderColor}
             href={href}
             uniformAspect
-            showLabel={false}
           />
         ))}
       </div>
@@ -153,7 +173,6 @@ export default function CollectionsSection() {
             borderColor={borderColor}
             href={href}
             mobileAspect
-            showLabel={false}
           />
         ))}
       </div>
