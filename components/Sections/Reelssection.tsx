@@ -144,7 +144,8 @@ export default function ReelsSection() {
               style={{ WebkitOverflowScrolling: "touch" }}
             >
               {reels.map((reel, index) => {
-                const shouldLoad = Math.abs(index - activeReelIndex) <= 1;
+                // Desktop shows ~3 cards at once; ±1 left the far card black.
+                const shouldLoad = Math.abs(index - activeReelIndex) <= 2;
                 return (
                 <div
                   key={reel.id}
