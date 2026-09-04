@@ -39,6 +39,8 @@ export async function uploadFileToR2(
       Key: fileName,
       Body: buffer,
       ContentType: file.type || "application/octet-stream",
+      // Long TTL for immutable media (hashed UUID filenames).
+      CacheControl: "public, max-age=31536000, immutable",
     }),
   );
 
