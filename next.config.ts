@@ -25,6 +25,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/logo.png", headers: longCache },
       { source: "/tileimage.png", headers: longCache },
+      { source: "/chatbot.png", headers: longCache },
       { source: "/favicon.ico", headers: longCache },
       { source: "/_next/static/:path*", headers: longCache },
     ];

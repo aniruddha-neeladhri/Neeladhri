@@ -17,14 +17,15 @@ export default function HomePage() {
   return (
     <section className="relative isolate w-full lg:min-h-[100dvh] min-h-[80dvh] overflow-hidden">
       <div className="absolute inset-0 z-0 h-full min-h-full w-full">
-        <Image
-          src={hero.image}
-          alt="Neeladhri Ceramics home interior"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+          <Image
+            src={hero.image}
+            alt="Neeladhri Ceramics home interior"
+            fill
+            priority
+            fetchPriority="high"
+            className="object-cover"
+            sizes="100vw"
+          />
         {isLuxury && (
           <div className="absolute inset-0 bg-black/55" aria-hidden />
         )}
