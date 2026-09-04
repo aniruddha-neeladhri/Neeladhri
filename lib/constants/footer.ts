@@ -32,5 +32,5 @@ export const ADDRESS =
 export const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
-  { label: "Sitemap", href: "/sitemap" },
+  { label: "Sitemap", href: "/sitemap.xml" },
 ];
