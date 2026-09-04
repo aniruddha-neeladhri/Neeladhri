@@ -1,5 +1,5 @@
 /** Production domain for Neeladhri Ceramics. */
-export const PRODUCTION_SITE_URL = "https://neeladhri.com";
+export const PRODUCTION_SITE_URL = "https://www.neeladhri.com";
 
 /** Canonical site URL for metadata, sitemap, and robots. */
 export function getSiteUrl(): string {
