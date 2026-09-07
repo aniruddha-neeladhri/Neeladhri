@@ -21,28 +21,28 @@ const STEPS_PREMIUM: TileStep[] = [
     heading: "Living Room",
     body: "Spaces that reflect your style.\nFind flooring and wall solutions that transform everyday living into something extraordinary.",
     videoSrc:
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/dc42b44c-f3ce-4206-98f2-ea7e67ca890b.mp4",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/9299b4a7-58b0-4f1c-b4a1-70629e4b0650.mp4",
     videoTime: 0,
   },
   {
     heading: "Kitchen",
     body: "Cook. Gather. Create.\nEverything your kitchen needs, from premium surfaces to trusted brands, brought together at Neeladhri Ceramics.",
     videoSrc:
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/24ad9e06-4fc6-48d8-880a-ebb74963441a.mp4",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/0d5e6b92-5570-457d-821e-70e295e1dc5d.mp4",
     videoTime: 0,
   },
   {
     heading: "Dining Room",
     body: "Made for moments that matter.\nCurated collections that bring comfort, elegance and timeless appeal to your dining space.",
     videoSrc:
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/10fac9df-5445-47e3-834c-49f68bb3a7db.mp4",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/7dafedeb-af81-4306-86c5-133603bfa8ef.mp4",
     videoTime: 0,
   },
   {
     heading: "Bathroom",
     body: "Every detail matters. Especially here.\nFrom premium tiles to sanitaryware and bath fittings, Neeladhri Ceramics helps you create bathrooms that are stylish, functional and built to last.",
     videoSrc:
-      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/df96c5d9-2037-4625-bc08-47fb1382de5d.mp4",
+      "https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/6a97ea74-238c-469c-be75-2835cbd46f51.mp4",
     videoTime: 0,
   },
 ];
