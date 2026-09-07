@@ -297,7 +297,7 @@ export default function HeroSection() {
             <video
               key={introKey}
               ref={videoRef}
-              src="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/614865fa-45b6-4695-ac10-7e9db4608d83.mp4"
+              src="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev/home/34347890-7294-41fd-bd72-c5654c2950ac.mp4"
               className="absolute inset-0 h-full w-full object-cover object-center"
               autoPlay
               playsInline
