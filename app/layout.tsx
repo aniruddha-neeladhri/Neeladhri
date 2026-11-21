@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { fontVariableClassNames } from "@/lib/fonts";
 import { getSiteUrl } from "@/lib/site";
@@ -100,6 +101,21 @@ export default function RootLayout({
           rel="dns-prefetch"
           href="https://pub-c09c5323c0124e5e879b38e76ec68aa9.r2.dev"
         />
+
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18569243810"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-18569243810');
+          `}
+        </Script>
       </head>
       <body className="antialiased theme-premium">
         <ThemeProvider>
